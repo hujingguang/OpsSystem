@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+{%load static%}
+{%block head %}
+<li  class="active">
+<i class="fa fa-dashboard"></i>&nbsp Dashboard
+</li>
+{%endblock%}
+{%block page_content %}
+<div class='row'>
+    <div class="col-lg-3">
+	<div class="panel panel-green">
+	    <div class='panel-heading'>
+		<h5 class="panel-title">Salt Minion Key Status<h5>
+		    </div>
+		    <div class='panel-body'>
+			<div id="status" style="width: 400px;height:200px;">
+			    <script type='text/javascript'>
+var myChart=echarts.init(document.getElementById('status'));
+var Dict = {{ Dict|safe }};
+option = {
+tooltip: {
+trigger: 'item',
+	 formatter: "{a} <br/>{b}: {c} ({d}%)"
+	 },
+legend: {
+orient: 'vertical',
+	x: 'left',
+	data:['accept','reject','unaccept']
+	},
+series: [
+	{
+type:'pie',
+     radius: ['30%', '50%'],
+     avoidLabelOverlap: false,
+     label: {
+normal: {
+show: false,
+      position: 'left'
+	},
+emphasis: {
+show: true,
+      textStyle: {
+fontSize: '15',
+	  fontWeight: 'bold'
+      }
+	  }
+     },
+labelLine: {
+normal: {
+show: false
+	}
+	   },
+data:[
+
+     {value:Dict.a_n, name:'accept', itemStyle:{
+normal:{color:'green'}
+					       }},
+
+     {value:Dict.r_n, name:'reject', itemStyle:{
+normal:{color:'red'}
+					       }},
+     {value:Dict.u_n, name:'unaccept', itemStyle:{
+normal:{color:'gray'}
+						 }},
+]
+	}
+	 ]
+};
+myChart.setOption(option);
+
+			    </script>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	    <div class='col-lg-3'>
+		<div class='panel panel-info'>
+		    <div class='panel-heading'>
+			<h4 class='panel-title'>Salt Minion Status<h4>
+			    </div>
+			    <div class='panel-body'>
+				<div id='minion' style='width:350px;height:200px'>
+				    <script style='text/javascript'>
+ var myChart = echarts.init(document.getElementById('minion'));
+ var infos={{ info|safe }};
+option = {
+tooltip: {
+trigger: 'item'
+	 },
+xAxis: [
+       {
+type: 'category',
+      show: false,
+      data: ['total', 'online', 'offline']
+       }
+],
+    yAxis: [
+    {
+type: 'value',
+      show: false
+    }
+    ],
+	series: [
+	{
+name: '',
+      type: 'bar',
+      itemStyle: {
+normal: {
+color: function(params) {
+	   var colorList = [
+	       '#B8860B','#C0FF3E','#CD0000'
+	   ];
+	   return colorList[params.dataIndex]
+       },
+label: {
+show: true,
+      position: 'top',
+      formatter: '{b}\n{c}'
+       }
+	}
+      },
+data: [infos[0],infos[1],infos[2]],
+      markPoint: {
+tooltip: {
+trigger: 'item',
+	 backgroundColor: 'rgba(0,0,0,0)',
+	 formatter: function(params){
+	     return '<img src="' 
+		 + params.data.symbol.replace('image://', '')
+		 + '"/>';
+	 }
+	 },
+data: [
+      {xAxis:0, y: 350, name:'total', symbolSize:20}, 
+      {xAxis:0, y: 350, name:'online', symbolSize:10},
+      {xAxis:0, y: 350, name:'offline', symbolSize:20}
+]
+      }
+	}
+    ]
+};
+    myChart.setOption(option);
+				    </script>
+				</div>
+			    </div>
+			</div>
+		    </div>
+		    <div class='col-lg-4'>
+			<a href='#' class='list-group-item active'><h4 class='list-group-item-heading'>系统信息</h4></a>
+			<a href='#' class='list-group-item'>Cpu: &nbsp {{ info_dict.cpu_sockets }} Socket &nbsp x &nbsp {{ info_dict.cpu_cores }}  Core </a>
+			<a href='#' class='list-group-item'>Memery: &nbsp {{ info_dict.mem_used}}M &nbsp/&nbsp {{ info_dict.mem_total }}M <p></P> 
+			    <div class='progress progress-striped' style='margin:right;'>
+				<div class='progress-bar progress-bar-danger' role='progressbar' aria-valuenow='60' ria-valuemin="0" aria-valuemax="100" style="width: {{info_dict.mem_percentage}}%;">
+				</div>
+				<div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='60' ria-valuemin="0" aria-valuemax="100" style="width: {{info_dict.mem_left_percentage}}%;">
+				</div>
+			    </div>
+			</a>
+			<a href='#' class='list-group-item'>Login User: &nbsp;&nbsp;&nbsp; {{info_dict.users }}</a>
+			<a href='#' class='list-group-item'>Uptime: &nbsp;&nbsp;&nbsp; {{info_dict.uptime}}</a>
+		    </div>
+		</div>
+
+	    </div>
+	    <div class='row'>
+		<div class='col-lg-10'>
+		    <div class='panel panel-info'>
+			<div class='panel-heading'>
+			</div>
+			<div class='panel-body'>
+
+			</div>
+		    </div>
+		</div>
+	    </div>
+	    {%endblock%}

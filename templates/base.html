@@ -1,0 +1,116 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>每天惠运维平台</title>
+    <link href={% static "bootstrap/css/bootstrap.min.css" %} rel="stylesheet">
+    <link href={% static "css/sb-admin.css" %} rel="stylesheet">
+    <link href={% static "font-awesome/css/font-awesome.min.css" %} rel="stylesheet" type="text/css">
+    <script src={% static "js/jquery.js" %}></script>
+    <script src={% static "bootstrap/js/bootstrap.min.js" %}></script>
+    <script src={% static "js/echarts.js"%}></script>
+
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+		<a class="navbar-brand" href="/index"><img src={% static "img/meitianhui.png" %} class='carousel-inner img-responsive img-rounded'></img></a>
+            </div>
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>&nbsp {{ request.user }} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+			<a href={% url 'logout' %}><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a href="/index"><i class="fa fa-fw fa-dashboard"></i>&nbsp;Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#deploy"><i class="fa fa-fw fa-arrows-v"></i> 项目管理 <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="deploy" class="collapse">
+                            <li>
+			    <a href='javascript:;' data-toggle='collapse' data-target='#add'>添加版本库</a>
+			       <ul id='add' class='collapse'>
+				   <li> <a href={%url 'deploy:add_svn_repo'%}>SVN库</a></li>
+				   <li> <a href={%url 'deploy:add_git_repo'%}>Git库</a></li>
+			       </ul>
+                            </li>
+                            <li>
+			    <a href={% url 'deploy:list_repo_info' %}>版本库列表</a>
+                            </li>
+                            <li>
+			    <a href={%url 'deploy:deploy_project'%}>发布工程</a>
+                            </li>
+                            <li>
+                                <a href="#">发布日志</a>
+                            </li>
+                            <li>
+                                <a href="#">代码回滚</a>
+                            </li>
+                        </ul>
+                    </li>
+                   <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#source"><i class="fa fa-fw fa-arrows-v"></i> 资产管理 <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="source" class="collapse">
+                            <li>
+			    <a href={% url 'hosts:list' %}>主机列表</a>
+                            </li>
+                            <li>
+			    <a href='#'>云资产总览</a>
+                            </li>
+                        </ul>
+	       	</li>
+                   <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#saltstack"><i class="fa fa-fw fa-arrows-v"></i> SaltStack <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="saltstack" class="collapse">
+                            <li>
+			    <a href='#'>应用部署</a>
+                            </li>
+                            <li>
+			    <a href='#'>命令批量执行</a>
+                            </li>
+                        </ul>
+	       	</li>
+                 </ul>
+             </div>
+        </nav>
+             
+        <div  id="page-wrapper">
+             <div class="container-fluid">
+                 <!-- Page Heading -->
+                 <div class="row">
+                     <div class="col-lg-12">
+                         <ol class="breadcrumb">
+			    {%block head %}
+			    {%endblock%}
+                        </ol>
+                    </div>
+                </div>
+		{%block page_content%}
+
+		{%endblock%}
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+</body>
+
+</html>

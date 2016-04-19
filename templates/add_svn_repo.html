@@ -1,0 +1,58 @@
+{%extends 'base.html' %}
+{%load static %}
+{%block head%}
+<li>
+   <i class='fa fa-dashboard'></i><a href={%url 'index' %}>&nbsp Dashboard</a>
+</li>
+<li>
+   <i class='fa fa-table'></i>&nbsp 项目管理
+</li>
+<li >
+<i class='fa fa-building-o'></i>&nbsp; 添加版本库
+</li>
+<li class='active'>
+<i ></i> SVN 
+</li>
+{%endblock%}
+
+{%block page_content%}
+
+<div class='row'>
+    <div class='panel panel-info'>
+     <div class='panel-heading'>
+	 <h3 class='panel-title'><i class='fa fa-bell'></i>&nbsp 添加SVN库信息<h3>
+     </div>
+     <div class='panel-body'>
+          <div class='panel panel-info' style='width:700px;height:1300px;margin:auto'>
+	      <div class='panel-body'>
+		  <form class='form-group' action={%url 'deploy:add_svn_repo'%} method='post'>
+		      {% csrf_token %}
+		      {%if form %}
+		      {%for f in form %}
+		      <div class='form-group input-group'>
+			  <label class='input-group-addon control-label'> {{f.label}}</label> 
+			  {{f}}
+		      </div>
+		         {%if f.errors %}
+			  <div class='alert alert-danger'> {{f.errors}}</div>
+			  {%endif%}
+		      {%endfor%}
+		      {%endif%}
+		      <p> 
+		      <div class='form-group input-group'>
+		      </div>
+		      <div class='form-group input-group'>
+		      </div>
+		      <button type='reset' class='btn  btn-danger' value='reset' style='margin-left:150px'>Reset</button>
+		      <button type='submit' class='btn  btn-primary' value='submit' style='margin-left:250px'>Submit</button>
+		      </p>
+		      </form>
+	      </div>
+	  </div>
+	 <div>
+
+    </div>
+</div>
+
+
+{%endblock%}

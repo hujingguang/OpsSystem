@@ -1,0 +1,56 @@
+{%extends 'base.html' %}
+{%load static %}
+{%block head%}
+<li>
+   <i class='fa fa-dashboard'></i><a href={%url 'index' %}>&nbsp Dashboard</a>
+</li>
+<li>
+   <i class='fa fa-table'></i>&nbsp 项目管理
+</li>
+<li  class='active'>
+<i class='fa fa-building-o'></i>&nbsp; 版本库列表
+</li>
+{%endblock%}
+
+{%block page_content%}
+
+<div class='row'>
+    <div class='panel panel-info'>
+     <div class='panel-heading'>
+	 <h3 class='panel-title'><i class='fa fa-bell'></i>&nbsp 版本库信息浏览<h3>
+     </div>
+     <div class='panel-body'>
+          <div class='panel panel-info' style='width:auto;height:1300px;margin:auto'>
+	      <div class='table-responsive'>
+		  <table class="table table-striped table-bordered">
+		      <thead>
+			  <tr class='info'>
+			      <th>版本库名</th>
+			      <th>库地址</th>
+			      <th>测试环境地址</th>
+			      <th>预生产环境地址</th>
+			      <th>生产环境地址</th>
+			      <th>网站根目录</th>
+			      <th>排除文件</th>
+			  </tr>
+		      </thead>
+		      <tbody>
+		      {%for repo in repos_list %}
+		      <tr>
+		      <td>{{repo.repoName}}</td>
+		      <td>{{repo.repoAddress}}</td>
+		      <td>{{repo.testDeployIP}}</td>
+		      <td>{{repo.preDeployIP}}</td>
+		      <td>{{repo.onlineDeployIP}}</td>
+		      <td>{{repo.wwwDir}}</td>
+		      <td>{{repo.excludeDir}}</td>
+                       </tr>
+	            {%endfor%}
+		      </tbody>
+		  </table>
+	  </div>
+      </div>
+	 </div>
+    </div>
+</div>
+{%endblock%}

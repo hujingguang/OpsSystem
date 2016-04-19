@@ -1,0 +1,45 @@
+{%extends 'base.html' %}
+{%load static %}
+{%block head%}
+<li>
+   <i class='fa fa-dashboard'></i><a href={%url 'index' %}>&nbsp Dashboard</a>
+</li>
+<li>
+   <i class='fa fa-table'></i>&nbsp 项目管理
+</li>
+<li  class='active'>
+<i class='fa fa-building-o'></i>&nbsp; 发布工程
+</li>
+{%endblock%}
+
+{%block page_content%}
+
+<div class='row'>
+    <div class='panel panel-info'>
+     <div class='panel-heading'>
+	 <h4 class='panel-title'><i class='fa fa-bell'></i>&nbsp Deploy Project<h4>
+     </div>
+     <div class='panel-body'>
+          <div class='panel panel-info' style='width:400px;height:400px;margin:auto'>
+	      <form class='form-group' method='post',action={%url 'deploy:deploy_project'%}>
+		  {%csrf_token %}
+		  {%for f in form %}
+		  <div class='form-group input-group'>
+		      <label class='input-group-addon control-label'>{{f.label}}</label>  {{f}}
+		  </div>
+		  <div class='form-group input-group'>
+		  </div>
+		  <div class='form-group input-group'>
+		  </div>
+		    {%endfor%}
+		  <div class='form-group input-group'>
+		  </div>
+		  <div class='form-group input-group'>
+		  </div>
+                   <button style='width:300px;margin-left:50px' type='submit' value='deploy' class='btn btn-danger'> Deploy </button>
+	      </form>
+      </div>
+      </div>
+    </div>
+</div>
+{%endblock%}
