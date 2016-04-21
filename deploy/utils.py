@@ -157,6 +157,7 @@ def deploy_svn_code(repo_name,user,password,repo_address,checkout_dir,exclude_di
 	code,log=commands.getstatusoutput('cat %s' %diff_file)
         if target == 'test' or target == 'pre':
 	    res,mess,log_file=upload_code_password(checkout_code_parent_dir+'/'+code_dir,deploy_password,wwwDir,ip[0],diff_file+'.log',exclude_dir,log_file)
+            os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
 	    if res:
 		recode,m=insert_deploy_log(repo_name,target,lastest_revision,datetime.now(),log,deploy_person.get_username())
 		return recode,m,log_file
@@ -168,6 +169,7 @@ def deploy_svn_code(repo_name,user,password,repo_address,checkout_dir,exclude_di
 	    user=authenticate(username=deploy_person.get_username(),password=deploy_password)
 	    if user is not None:
 	        res,mess,log_file=upload_code_no_password(checkout_code_parent_dir+'/'+code_dir,wwwDir,ip,diff_file+'.log',exclude_dir,log_file)
+		os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
 		if res:
 		    recode,m=insert_deploy_log(repo_name,target,lastest_revision,datetime.now(),log,deploy_person.get_username())
 		    return recode,m,log_file

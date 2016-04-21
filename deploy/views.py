@@ -87,6 +87,12 @@ def list_repo_info(request):
     repos_list=RepoModel.objects.all()
     return render_to_response('list_repo_info.html',RequestContext(request,{'repos_list':repos_list}))
 
+
+@login_required(login_url='/')
+def list_deploy_info(request):
+    deploy_list=DeployInfoModel.objects.all().order_by('-date')
+    return render_to_response('list_deploy_info.html',RequestContext(request,{'deploy_list':deploy_list}))
+
 @login_required(login_url='/')
 def deploy_project(request):
     if request.method=='POST':
@@ -113,6 +119,7 @@ def deploy_project(request):
 		f=open(log_file,'r')
 		log=f.readlines()
 		f.close()
+		os.system('rm -f %s' %log_file)
 	    if res:
 		form.errors['password']=mess
 		return render_to_response('deploy_project.html',RequestContext(request,{'form':form,'log':log,'res':res}))
