@@ -16,11 +16,21 @@ def add_svn_repo(request):
 	    if RepoModel.objects.filter(repoName=form.cleaned_data['repoName']).count() == 1:
 		form.errors['repoName']=u'已经存在该库名！请重新命名'
 		return render_to_response('add_svn_repo.html',RequestContext(request,{'form':form}))
-	    print '----------------'
 	    svn_is_ok,message=check_svn_validated(user=form.cleaned_data['repoUser'].strip(),password=form.cleaned_data['repoPassword'].strip(),url=form.cleaned_data['repoAddress'].strip())
 	    if not svn_is_ok:
 		form.errors['repoAddress']=message
 		return render_to_response('add_svn_repo.html',RequestContext(request,{'form':form}))
+	    if not check_ip_reachable(form.cleaned_data['testDeployIP']):
+		form.errors['testDeployIP']=u'本机无法连接到此 IP: %s ！！！' %form.cleaned_data['testDeployIP']
+		return render_to_response('add_svn_repo.html',RequestContext(request,{'form':form}))
+	    if not check_ip_reachable(form.cleaned_data['preDeployIP']):
+		form.errors['preDeployIP']=u'本机无法连接到此 IP: %s ！！！' %form.cleaned_data['preDeployIP']
+		return render_to_response('add_svn_repo.html',RequestContext(request,{'form':form}))
+	    for ip in form.cleaned_data['onlineDeployIP'].split(' '):
+		if ip != '':
+		    if not check_ip_reachable(ip):
+		        form.errors['onlineDeployIP']=u'本机到IP：%s  无法连通！！！' %ip
+		        return render_to_response('add_svn_repo.html',RequestContext(request,{'form':form}))
 	    addDate=datetime.now()
 	    repo_dict={}
 	    for items in form.cleaned_data:
@@ -47,6 +57,17 @@ def add_git_repo(request):
 	    if not git_is_ok:
 		form.errors['repoAddress']=message
 		return render_to_response('add_git_repo.html',RequestContext(request,{'form':form}))
+	    if not check_ip_reachable(form.cleaned_data['testDeployIP']):
+		form.errors['testDeployIP']=u'本机无法连接到此 IP: %s ！！！' %form.cleaned_data['testDeployIP']
+		return render_to_response('add_git_repo.html',RequestContext(request,{'form':form}))
+	    if not check_ip_reachable(form.cleaned_data['preDeployIP']):
+		form.errors['preDeployIP']=u'本机无法连接到此 IP: %s ！！！' %form.cleaned_data['preDeployIP']
+		return render_to_response('add_git_repo.html',RequestContext(request,{'form':form}))
+	    for ip in form.cleaned_data['onlineDeployIP'].split(' '):
+		if ip != '':
+		    if not check_ip_reachable(ip):
+		        form.errors['onlineDeployIP']=u'本机到IP：%s  无法连通！！！' %ip
+		        return render_to_response('add_git_repo.html',RequestContext(request,{'form':form}))
 	    addDate=datetime.now()
 	    repo_dict={}
 	    for items in form.cleaned_data:
@@ -68,5 +89,39 @@ def list_repo_info(request):
 
 @login_required(login_url='/')
 def deploy_project(request):
+    if request.method=='POST':
+	form=DeployInputForm(request.POST)
+	if form.is_valid():
+	    repoName=form.cleaned_data['repoName']
+	    password=form.cleaned_data['password']
+	    target=form.cleaned_data['target']
+	    repoinfo=RepoModel.objects.get(repoName=repoName.strip())
+	    if target== u'test':
+		ip=repoinfo.testDeployIP.strip()
+	    elif target== u'pre':
+		ip=repoinfo.preDeployIP.strip()
+	    else:
+		ip=repoinfo.onlineDeployIP.strip()
+	    if target != 'online':
+	        if not check_ssh_passwd(password,ip):
+		    form.errors['password']=u'发布密码错误！！！！'
+		    return render_to_response('deploy_project.html',RequestContext(request,{'form':form}))
+	    print '---------------'
+	    deploy_person=request.user.get_username()
+	    print deploy_person
+	    print type(deploy_person)
+	    res,mess,log_file=deploy_project_func(repoName,password,target,deploy_person)
+	    log=[]
+	    if log_file is not None:
+		f=open(log_file,'r')
+		log=f.readlines()
+		f.close()
+	    if res:
+		form.errors['password']=mess
+		return render_to_response('deploy_project.html',RequestContext(request,{'form':form,'log':log,'res':res}))
+	    else:
+		form.errors['password']=mess
+		return render_to_response('deploy_project.html',RequestContext(request,{'form':form,'log':log,'res':res}))
+        return render_to_response('deploy_project.html',RequestContext(request,{'form':form}))
     form=DeployInputForm()
     return render_to_response('deploy_project.html',RequestContext(request,{'form':form}))

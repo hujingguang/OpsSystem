@@ -32,12 +32,12 @@ class GitInfoForm(forms.Form):
 
 
 class DeployInputForm(forms.Form):
-    target=forms.ChoiceField(label=u'发布环境',choices=(('online',u'测试环境'),('online',u'预生产环境'),('online',u'生产环境')),widget=forms.Select(attrs={'class':'form-control','style':'width:300px'})) 
-    repoNameChoice=forms.ChoiceField(label=u'项目名称',choices=(),widget=forms.Select(attrs={'class':'form-control','style':'width:300px'}))
+    target=forms.ChoiceField(label=u'发布环境',choices=(('test',u'测试环境'),('pre',u'预生产环境'),('online',u'生产环境')),widget=forms.Select(attrs={'class':'form-control','style':'width:300px'})) 
+    repoName=forms.ChoiceField(label=u'项目名称',choices=(),widget=forms.Select(attrs={'class':'form-control','style':'width:300px'}))
     password=forms.CharField(label=u'发布密码',error_messages={'required':u'请输入发布密码!!!'},max_length=100,widget=forms.PasswordInput(attrs={'class':'form-control','style':'width:300px'}))
     def __init__(self,*args,**kwargs):
 	super(DeployInputForm,self).__init__(*args,**kwargs)
-        self.fields['repoNameChoice'].choices=[(ob.id,ob.repoName) for ob in RepoModel.objects.all()]
+        self.fields['repoName'].choices=[(ob.repoName,ob.repoName) for ob in RepoModel.objects.all()]
 
 
 

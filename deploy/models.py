@@ -20,4 +20,12 @@ class RepoModel(models.Model):
     class Meta:
 	db_table='ops_repo_info'
 
-
+class DeployInfoModel(models.Model):
+    repoName=models.CharField(max_length=100)
+    target=models.CharField(max_length=10)
+    revision=models.CharField(max_length=100)
+    person=models.CharField(max_length=50)
+    date=models.DateTimeField()
+    log=models.TextField()
+    class Meta:
+	db_table='ops_deploy_info'

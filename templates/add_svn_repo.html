@@ -29,8 +29,8 @@
 		      {% csrf_token %}
 		      {%if form %}
 		      {%for f in form %}
-		      <div class='form-group input-group'>
-			  <label class='input-group-addon control-label'> {{f.label}}</label> 
+		      <div class='form-group input-group' style='width:650px'>
+			  <label class='input-group-addon control-label' style='width:150px'> {{f.label}}</label> 
 			  {{f}}
 		      </div>
 		         {%if f.errors %}
@@ -43,8 +43,8 @@
 		      </div>
 		      <div class='form-group input-group'>
 		      </div>
-		      <button type='reset' class='btn  btn-danger' value='reset' style='margin-left:150px'>Reset</button>
-		      <button type='submit' class='btn  btn-primary' value='submit' style='margin-left:250px'>Submit</button>
+		      <button type='reset' class='btn  btn-danger' value='reset' style='margin-left:100px;width:100px'>Reset</button>
+		      <button type='submit' class='btn  btn-primary' value='submit' style='margin-left:200px;width:100px'>Submit</button>
 		      </p>
 		      </form>
 	      </div>
