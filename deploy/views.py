@@ -106,10 +106,7 @@ def deploy_project(request):
 	        if not check_ssh_passwd(password,ip):
 		    form.errors['password']=u'发布密码错误！！！！'
 		    return render_to_response('deploy_project.html',RequestContext(request,{'form':form}))
-	    print '---------------'
-	    deploy_person=request.user.get_username()
-	    print deploy_person
-	    print type(deploy_person)
+	    deploy_person=request.user
 	    res,mess,log_file=deploy_project_func(repoName,password,target,deploy_person)
 	    log=[]
 	    if log_file is not None:

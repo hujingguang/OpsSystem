@@ -158,21 +158,23 @@ def deploy_svn_code(repo_name,user,password,repo_address,checkout_dir,exclude_di
         if target == 'test' or target == 'pre':
 	    res,mess,log_file=upload_code_password(checkout_code_parent_dir+'/'+code_dir,deploy_password,wwwDir,ip[0],diff_file+'.log',exclude_dir,log_file)
 	    if res:
-		recode,m=insert_deploy_log(repo_name,target,lastest_revision,datetime.now(),log,deploy_person)
+		recode,m=insert_deploy_log(repo_name,target,lastest_revision,datetime.now(),log,deploy_person.get_username())
 		return recode,m,log_file
 	    else:
 		return res,mess,log_file
 	else:
-	    user=authenticate(username='admin',password=deploy_password)
+	    if not deploy_person.is_superuser:
+		return False,u'非管理员无法发布至正式环境！！！',None
+	    user=authenticate(username=deploy_person.get_username(),password=deploy_password)
 	    if user is not None:
 	        res,mess,log_file=upload_code_no_password(checkout_code_parent_dir+'/'+code_dir,wwwDir,ip,diff_file+'.log',exclude_dir,log_file)
 		if res:
-		    recode,m=insert_deploy_log(repo_name,target,lastest_revision,datetime.now(),log,deploy_person)
+		    recode,m=insert_deploy_log(repo_name,target,lastest_revision,datetime.now(),log,deploy_person.get_username())
 		    return recode,m,log_file
 		else:
 		    return res,mess,log_file
 	    else:
-		return False,u'密码错误,发布到正式环境请输入管理员密码',None
+		return False,u'密码错误,请输入管理员密码',None
 
 	
 
