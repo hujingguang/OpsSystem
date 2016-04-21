@@ -192,7 +192,7 @@ def upload_code_no_password(code_dir,wwwDir,ip,diff_file,exclude_dir,log_file):
 	    return False,u'IP: %s 没有配置秘钥连接！！请先配置ssh key 登陆再进行正式环境代码发布' %i,None
     failed=0
     for ii in ip:
-        cmd_upload=''' rsync -avlpq %s --files-from=%s %s %s:%s && echo ok >/tmp/.tmp0001 || echo error >/tmp/.tmp0001 ''' %(exclude_args,diff_file,code_dir,ii,wwwDir)
+        cmd_upload=''' rsync -avlpP %s --files-from=%s %s %s:%s && echo ok >/tmp/.tmp0001 || echo error >/tmp/.tmp0001 ''' %(exclude_args,diff_file,code_dir,ii,wwwDir)
         logfunc(log_file,'INFO','upload file cmd: '+cmd_upload)
 	res=os.system(cmd_upload)
 	logfunc(log_file,'INFO','upload cmd return code: '+str(res))
@@ -225,7 +225,7 @@ def upload_code_password(code_dir,password,wwwDir,ip,diff_file,exclude_dir,log_f
 	return False,u'不存在源代码目录: %s' %code_dir,log_file
     os.system('rm -rf /tmp/.tmp0001')
     exclude_args=deal_with_exclude(exclude_dir)
-    cmd_upload=''' rsync -avlpq %s --files-from=%s %s %s:%s && echo ok >/tmp/.tmp0001 || echo error >/tmp/.tmp0001 ''' %(exclude_args,diff_file,code_dir,ip,wwwDir)
+    cmd_upload=''' rsync -avlpP %s --files-from=%s %s %s:%s && echo ok >/tmp/.tmp0001 || echo error >/tmp/.tmp0001 ''' %(exclude_args,diff_file,code_dir,ip,wwwDir)
     logfunc(log_file,'INFO','upload file cmd: '+cmd_upload)
     f=open('/tmp/.cmd_run.sh','w')
     f.write(cmd_upload)

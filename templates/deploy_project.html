@@ -2,10 +2,10 @@
 {%load static %}
 {%block head%}
 <li>
-   <i class='fa fa-dashboard'></i><a href={%url 'index' %}>&nbsp Dashboard</a>
+<i class='fa fa-dashboard'></i><a href={%url 'index' %}>&nbsp Dashboard</a>
 </li>
 <li>
-   <i class='fa fa-table'></i>&nbsp 项目管理
+<i class='fa fa-table'></i>&nbsp 项目管理
 </li>
 <li  class='active'>
 <i class='fa fa-building-o'></i>&nbsp; 发布工程
@@ -16,64 +16,76 @@
 
 <div class='row'>
     <div class='panel panel-info'>
-     <div class='panel-heading'>
-	 <h4 class='panel-title'><i class='fa fa-bell'></i>&nbsp Deploy Project<h4>
-     </div>
-     <div class='panel-body'>
-          <div class='panel panel-info' style='width:400px;height:500px;margin:auto'>
-	      <form class='form-group' method='post',action={%url 'deploy:deploy_project'%}>
-		  {%csrf_token %}
-		  {%for f in form %}
-		  <div class='form-group input-group'>
-		      <label class='input-group-addon control-label'>{{f.label}}</label>  {{f}}
-		  </div>
-		  {%if f.errors%}
-		  {%if res %}
-		  <div class='alert alert-success'>
-		      {{f.errors}}
-		  </div>
-		  <div class='form-group input-group'>
-		  </div>
-		  {%else%}
-		  <div class='alert alert-danger'>
-		      {{f.errors}}
-		  </div>
-		  <div class='form-group input-group'>
-		  </div>
-                  {%endif%}
-		  {%endif%}
-		  <div class='form-group input-group'>
-		  </div>
-		  <div class='form-group input-group'>
-		  </div>
-		  <div class='form-group input-group'>
-		  </div>
-		  <div class='form-group input-group'>
-		  </div>
-		  {%endfor%}
-		  <div class='form-group input-group'>
-		  </div>
-                   <button style='width:300px;margin-left:50px' type='submit' value='deploy' class='btn btn-danger'> Deploy </button>
-	      </form>
-      </div>
-      </div>
-    </div>
+	<div class='panel-heading'>
+	    <h4 class='panel-title'><i class='fa fa-bell'></i>&nbsp Deploy Project<h4>
+		</div>
+		<div class='panel-body'>
+		    <div class='panel panel-info' style='width:400px;height:500px;margin:auto'>
+			<form class='form-group' method='post' action={%url 'deploy:deploy_project'%} onsubmit='return validation();'>
+			    {%csrf_token %}
+			    {%for f in form %}
+			    <div class='form-group input-group'>
+				<label class='input-group-addon control-label'>{{f.label}}</label>  {{f}}
+			    </div>
+			    {%if f.errors%}
+			    {%if res %}
+			    <div class='alert alert-success'>
+				{{f.errors}}
+			    </div>
+			    <div class='form-group input-group'>
+			    </div>
+			    {%else%}
+			    <div class='alert alert-danger'>
+				{{f.errors}}
+			    </div>
+			    <div class='form-group input-group'>
+			    </div>
+			    {%endif%}
+			    {%endif%}
+			    <div class='form-group input-group'>
+			    </div>
+			    <div class='form-group input-group'>
+			    </div>
+			    <div class='form-group input-group'>
+			    </div>
+			    <div class='form-group input-group'>
+			    </div>
+			    {%endfor%}
+			    <div class='form-group input-group'>
+			    </div>
+			    <button style='width:300px;margin-left:50px' type='submit' value='deploy' id='sb' class='btn btn-danger'> Deploy </button>
+			    <span id="sp_1" style="display:none;width:30px;margin-left:50px"><img style='width:100px;height:60px;'src={%static 'img/wait.gif'%}
+				            id="sp"/> 正在处理中.......</span> 
+			</form>
+			<script type="text/javascript"> 
+function getId(id) { 
+    return document.getElementById(id); 
+} 
+function validation() { 
+    getId("sb").style.display="none"; 
+    getId("sp_1").style.display=""; 
+    return true; 
+} 
+			</script>
+</div>
+</div>
+</div>
 </div>
 
 {%if log %}
 <div class='row'>
-    <div class='panel'> 
-		<div class='panel-body'>
-		    <div class='panel panel-info' style='width:700px;height:1200px;margin:auto;'>
-                     <div class='alert alert-info'>
-			 <h3>发布日志</h3>
-			 {%for m in log%}
-			 <p> {{m}} </p>
-			 {%endfor%}
-		     </div>
-		    </div>
-		</div>
-	    </div>
+<div class='panel'> 
+<div class='panel-body'>
+<div class='panel panel-info' style='width:700px;height:1200px;margin:auto;'>
+<div class='alert alert-info'>
+<h3>发布日志</h3>
+{%for m in log%}
+<p> {{m}} </p>
+{%endfor%}
+</div>
+</div>
+</div>
+</div>
 </div>
 {%endif%}
 {%endblock%}
