@@ -2,10 +2,10 @@
 {%load static %}
 {%block head%}
 <li>
-   <i class='fa fa-dashboard'></i><a href={%url 'index' %}>&nbsp Dashboard</a>
+<i class='fa fa-dashboard'></i><a href={%url 'index' %}>&nbsp Dashboard</a>
 </li>
 <li>
-   <i class='fa fa-table'></i>&nbsp 项目管理
+<i class='fa fa-table'></i>&nbsp 项目管理
 </li>
 <li  class='active'>
 <i class='fa fa-building-o'></i>&nbsp; 版本库列表
@@ -16,37 +16,48 @@
 
 <div class='row'>
     <div class='panel panel-info'>
-     <div class='panel-heading'>
-	 <h3 class='panel-title'><i class='fa fa-bell'></i>&nbsp 版本库信息浏览<h3>
-     </div>
-     <div class='panel-body'>
-          <div class='panel panel-info' style='width:auto;height:1300px;margin:auto'>
-	      <div class='table-responsive'>
-		  <table class="table table-striped table-bordered">
-		      <thead>
-			  <tr class='info'>
-			      <th>版本库名</th>
-			      <th>发布环境</th>
-			      <th>版本号</th>
-			      <th>发布时间</th>
-			      <th>发布用户</th>
-			  </tr>
-		      </thead>
-		      <tbody>
-		      {%for deploy in deploy_list %}
-		      <tr>
-		      <td>{{deploy.repoName}}</td>
-		      <td>{{deploy.target}}</td>
-		      <td>{{deploy.revision}}</td>
-		      <td>{{deploy.date}}</td>
-		      <td>{{deploy.person}}</td>
-                       </tr>
-	            {%endfor%}
-		      </tbody>
-		  </table>
-	  </div>
-      </div>
-	 </div>
-    </div>
-</div>
-{%endblock%}
+	<div class='panel-heading'>
+	    <h3 class='panel-title'><i class='fa fa-bell'></i>&nbsp 版本库信息浏览<h3>
+		</div>
+		<div class='panel-body'>
+		    <div class='panel panel-info' style='width:auto;height:auto;margin:auto'>
+			<div class='table-responsive'>
+			    <table class="table table-striped table-bordered">
+				<thead>
+				    <tr class='info'>
+					<th>版本库名</th>
+					<th>发布环境</th>
+					<th>版本号</th>
+					<th>发布时间</th>
+					<th>发布用户</th>
+				    </tr>
+				</thead>
+				<tbody>
+				{%for deploy in deploy_list %}
+				<tr>
+				    <td>{{deploy.repoName}}</td>
+				    <td>{{deploy.target}}</td>
+				    <td>{{deploy.revision}}</td>
+				    <td>{{deploy.date}}</td>
+				    <td>{{deploy.person}}</td>
+				</tr>
+				{%endfor%}
+				</tbody>
+			    </table>
+			</div>
+		    </div>
+		    <div class='pagination' style='margin-top:30px;width:auto'> 
+			<span class='step-links'>
+			            {%if deploy_list.has_previous %}
+				    <a href="?page={{deploy_list.previous_page_number}}">&larr;Previous</a>
+                                     {%endif%}
+				    <span class='current'> Page {{ deploy_list.number }} of {{ deploy_list.paginator.num_pages }}. </span>
+				    {%if deploy_list.has_next %}
+				    <a href="?page={{deploy_list.next_page_number}}">Next &rarr;</a>
+				    {%endif%}
+				</span>
+		   </div>
+		</div>
+	    </div>
+	</div>
+	{%endblock%}

@@ -5,6 +5,7 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect,HttpResponse
 from django.core.urlresolvers import reverse
 from forms import *
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from models import RepoModel
 from datetime import datetime
 from utils import * 
@@ -91,7 +92,15 @@ def list_repo_info(request):
 @login_required(login_url='/')
 def list_deploy_info(request):
     deploy_list=DeployInfoModel.objects.all().order_by('-date')
-    return render_to_response('list_deploy_info.html',RequestContext(request,{'deploy_list':deploy_list}))
+    paginator=Paginator(deploy_list,2)
+    page=request.GET.get('page')
+    try:
+	deploy=paginator.page(page)
+    except PageNotAnInteger:
+	deploy=paginator.page(1)
+    except EmptyPage:
+	deploy=paginator.page(paginator.num_pages)
+    return render_to_response('list_deploy_info.html',RequestContext(request,{'deploy_list':deploy}))
 
 @login_required(login_url='/')
 def deploy_project(request):
