@@ -103,7 +103,93 @@ def check_ssh_passwd(passwd,ip):
 		return True
         return False
 
+def deploy_git_code(repo_name,repo_address,checkout_dir,exclude_dir,revision,ip,target,wwwDir,deploy_password,deploy_person):
+    log_file='/tmp/.'+str(random.randint(100,100000))+'.log'
+    if not checkout_dir.startswith('/'):
+	checkout_dir='/'+checkout_dir
+    if not checkout_dir.endswith('/'):
+	checkout_dir=checkout_dir+'/'
+    checkout_code_parent_dir=checkout_dir+repo_name+'_'+target
+    if not os.path.exists(checkout_code_parent_dir):
+	os.system('mkdir -p %s' %checkout_code_parent_dir)
+    if repo_address.strip(' ').endswith('.git'):
+	n=repo_address.rfind('/')
+	code_dir=repo_address[n+1:].strip('.git')
+    else:
+	n=repo_address.rfind(':')
+	if n==-1:
+	    return False,u'错误的Git地址',None
+	code_dir=repo_address[n+1:]
+    print code_dir
+    if not os.path.exists(checkout_code_parent_dir+'/'+code_dir+'/.git'):
+	cmd_init_project=''' cd %s && git clone %s ''' %(checkout_code_parent_dir,repo_address)
+	logfunc(log_file,'INFO','init cmd : '+cmd_init_project)
+	res=os.system(cmd_init_project)
+	logfunc(log_file,'INFO','cmd run return code :'+str(res))
+	if res !=0 :
+	    return False,u'初始化Git库失败！！',log_file
+    else:
+	cmd_pull_project=''' cd %s/%s && git pull origin master ''' %(checkout_code_parent_dir,code_dir)
+	logfunc(log_file,'INFO','pull lastest code cmd :'+cmd_pull_project)
+	res=os.system(cmd_pull_project)
+	logfunc(log_file,'INFO','cmd run return code: '+str(res))
+	if res != 0:
+	    return False,u'拉取最新代码失败！！',log_file
+    if not os.path.exists(checkout_code_parent_dir+'/'+code_dir+'/.git/refs/heads'):
+	logfunc(log_file,'Error','the revision file do not exists! :%s'+checkout_code_parent_dir+'/'+code_dir+'/.git/refs/heads')
+	return False,u'无法获取最新版本号',log_file
+    cmd_get_lastest_version='cat %s/%s/.git/refs/heads/master' %(checkout_code_parent_dir,code_dir)
+    lastest_revision=commands.getstatusoutput(cmd_get_lastest_version)[1][:10]
+    if lastest_revision==revision:
+	return False,u'没有可更新的代码',None
+    diff_file='/tmp/.'+str(random.randint(10000,1000000))+'.log'
+    cmd_get_diff_file=''' cd %s/%s && git diff --name-status %s %s|sed "s/^\s\+//g" >%s ''' %(checkout_code_parent_dir,code_dir,revision,lastest_revision,diff_file)
+    logfunc(log_file,'INFO','get diff file cmd: '+cmd_get_diff_file)
+    cmd_res=os.system(cmd_get_diff_file)
+    logfunc(log_file,'INFO','cmd run return code: '+str(cmd_res))
+    if cmd_res != 0:
+        return False,u'获取更新文件失败！！！',log_file
+    cmd_dealwith_diff_file=''' cat %s |egrep -v '^$' |awk '/^[^D]/{print $2}' > %s.log ''' %(diff_file,diff_file)
+    logfunc(log_file,'INFO','get dealwith file cmd: '+cmd_dealwith_diff_file)
+    cmd_res=os.system(cmd_dealwith_diff_file)
+    logfunc(log_file,'INFO','cmd run return code: '+str(cmd_res))
+    if cmd_res != 0:
+	return False,u'处理更新文件失败！',log_file
+    f=open(diff_file,'r')
+    diff_file_list=f.readlines()
+    logfunc(log_file,'INFO','以下文件将上传到服务器: ')
+    for line in diff_file_list:
+	logfunc(log_file,'file',line)
+    code,log=commands.getstatusoutput('cat %s' %diff_file)
+    if target == 'test' or target == 'pre':
+	res,mess,log_file=upload_code_password(checkout_code_parent_dir+'/'+code_dir,deploy_password,wwwDir,ip[0],diff_file+'.log',exclude_dir,log_file)
+	os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
+	if res:
+	    recode,m=insert_deploy_log(repo_name,target,lastest_revision,datetime.now(),log,deploy_person.get_username())
+	    return recode,m,log_file
+	else:
+	    return res,mess,log_file
+    else:
+	if not deploy_person.is_superuser:
+	    return False,u'非管理员无法发布至正式环境！！！',None
+	user=authenticate(username=deploy_person.get_username(),password=deploy_password)
+	if user is not None:
+	    res,mess,log_file=upload_code_no_password(checkout_code_parent_dir+'/'+code_dir,wwwDir,ip,diff_file+'.log',exclude_dir,log_file)
+	    os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
+	    if res:
+		recode,m=insert_deploy_log(repo_name,target,lastest_revision,datetime.now(),log,deploy_person.get_username())
+		return recode,m,log_file
+	    else:
+		return res,mess,log_file
+	else:
+	    return False,u'密码错误,请输入管理员密码',None
 
+	
+
+
+
+    
+    
 def deploy_svn_code(repo_name,user,password,repo_address,checkout_dir,exclude_dir,revision,ip,target,wwwDir,deploy_password,deploy_person):
     log_file='/tmp/.'+str(random.randint(100,100000))+'.log'
     if not checkout_dir.startswith('/'):
@@ -256,8 +342,6 @@ def upload_code_password(code_dir,password,wwwDir,ip,diff_file,exclude_dir,log_f
 
 
 
-def deploy_git_code():
-    pass
 
 
 def logfunc(log_file,log_rate,info):
@@ -296,8 +380,11 @@ def deploy_project_func(repoName,password,target,deploy_person):
 	#svn 发布方法
 	return deploy_svn_code(repoinfo.repoName,repoinfo.repoUser,repoinfo.repoPassword,repoinfo.repoAddress,repoinfo.localCheckoutDir,repoinfo.excludeDir,revision,ip,target,repoinfo.wwwDir,password,deploy_person)
     else:
+	if len(revision)<10:
+	    return False,u'Git版本号字符串必须大于等于10位',None
+	revision=revision[:10]
 	#git 发布方法
-	return deploy_git_code(repoinfo.repoName,repoinfo.repoAddress,repoinfo.localCheckoutDir,repoinfo.excludeDir,revision,ip,target,repoinfo.wwwDir,password)
+	return deploy_git_code(repoinfo.repoName,repoinfo.repoAddress,repoinfo.localCheckoutDir,repoinfo.excludeDir,revision,ip,target,repoinfo.wwwDir,password,deploy_person)
 
 
 	
