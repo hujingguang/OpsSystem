@@ -20,3 +20,19 @@ ops plateform
 7： 如果发布到正式环境，需配置ssh秘钥登陆，发布密码为管理员密码。
 
 8： 运行平台 python manage.py runserver 0.0.0.0:80
+
+#### Screenshots
+-----------
+
+![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/1.png)
+
+![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/2.png)
+
+![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/3.png)
+
+
+![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/4.png)
+
+![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/5.png)
+
+![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/6.png)
