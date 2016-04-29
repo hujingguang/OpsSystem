@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^index/$',index,name='index'),
     url(r'^host-manage/', include('hosts.urls',namespace='host-manage',app_name='hosts')),
     url(r'^deploy-manage/',include('deploy.urls',namespace='deploy-manage',app_name='deploy')),
+    url(r'^saltstack/',include('salt.urls',namespace='saltstack',app_name='salt')),
     url(r'^logout/$',logout_view,name='logout'),
 	]
 
