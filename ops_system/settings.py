@@ -13,7 +13,7 @@ INSTALLED_APPS = [
     'ops_system',
     'deploy',
     'hosts',
-    'salt',
+    'salts',
 ]
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
