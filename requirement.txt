@@ -1,4 +1,4 @@
 
-1,  环境 : python2.7  mysql,svn ,git 
+1,  环境 : python2.7  mysql,svn ,git ,salt-master,salt
 
-2, python模块  pexpect, django
+2, python模块  pexpect, django,salt

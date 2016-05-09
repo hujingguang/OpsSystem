@@ -1,3 +1,4 @@
+# -*- coding=UTF-8 -*-
 import urllib,urllib2,json
 
 try:
@@ -8,7 +9,7 @@ except:
     print 'please install salt!!!   commands: pip install salt '
     exit(1)
 
-class SaltApiByWeb(object):
+class SaltByWebApi(object):
     def __init__(self,url,user,password):
 	self.headers={'Accept':'application/json'}
 	self.auth_params={'username':user,'password':password,'eauth':'pam'}
@@ -39,7 +40,7 @@ class SaltApiByWeb(object):
 
 
 
-class SaltApiByLocal(object):
+class SaltByLocalApi(object):
     def __init__(self,main_config):
 	opts=master_config(main_config)
 	self.wheel=Wheel(opts)
@@ -55,10 +56,19 @@ class SaltApiByLocal(object):
     def get_minions_status(self):
         return [self.total,len(self.connected_minions_list),self.total-len(self.connected_minions_list)]
 
-
+    def get_host_info(self):
+	minions=self.connected_minions_list
+	ret=self.client.cmd(minions,'grains.item',['mem_total','osfullname','host','osrelease','num_cpus','ipv4','group','area','usage'],expr_form='list')
+        host_info_dict={}
+	for k,v in ret.iteritems():
+	    v['ipv4'].remove('127.0.0.1')
+	    ips='/'.join(v['ipv4']) if len(v['ipv4'])>1 else v['ipv4'][0]
+	    values=[v['host'],ips,v['osfullname']+v['osrelease'],str(v['num_cpus'])+' cores',str(v['mem_total'])+' MB',v['group'],v['area'],v['usage']]
+	    host_info_dict[k]=values
+        return host_info_dict
 
 if __name__=='__main__':
     #salt=SaltApi('http://10.117.74.247:8080','salt','hoover123')
     #salt.get_minion_info('/run')
-    local=SaltApiByLocal('/etc/salt/master')
-    print local.get_minions_status(),local.get_minions_key_status()
+    local=SaltByLocalApi('/etc/salt/master')
+    print local.get_host_info()

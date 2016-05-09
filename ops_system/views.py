@@ -6,12 +6,12 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from utils import *
 import json
-from salts.utils import SaltApiByLocal
+from salts.utils import SaltByLocalApi
 @login_required(login_url='/')
 def index(request):
     if request.method=='POST':
 	return 403
-    local=SaltApiByLocal('/etc/salt/master')
+    local=SaltByLocalApi('/etc/salt/master')
     res=local.get_minions_key_status()
     key_status={'a_n':res[0],'r_n':res[1],'u_n':res[2]}
     minion_status=local.get_minions_status()
