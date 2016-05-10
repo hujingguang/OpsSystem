@@ -20,7 +20,7 @@
 	    <h4 class='panel-title'><i class='fa fa-bell'></i>&nbsp Deploy Project<h4>
 		</div>
 		<div class='panel-body'>
-		    <div class='panel panel-info' style='width:400px;height:500px;margin:auto'>
+		    <div class='panel panel-info' style='width:400px;height:600px;margin:auto'>
 			<form class='form-group' method='post' action={%url 'deploy:deploy_project'%} onsubmit='return validation();'>
 			    {%csrf_token %}
 			    {%for f in form %}

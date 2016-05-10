@@ -1,0 +1,94 @@
+{%extends 'base.html' %}
+{%load static %}
+{%block head%}
+<li>
+<i class='fa fa-dashboard'></i><a href={%url 'index' %}>&nbsp Dashboard</a>
+</li>
+<li>
+<i class='fa fa-table'></i>&nbsp SaltStack
+</li>
+<li  class='active'>
+<i class='fa fa-building-o'></i>&nbsp; 应用部署
+</li>
+{%endblock%}
+
+{%block page_content%}
+
+<div class='row'>
+    <div class='panel panel-info'>
+	<div class='panel-heading'>
+	    <h3 class='panel-title'><i class='fa fa-bell'></i>&nbsp 应用部署<h3>
+		</div>
+		<div class='panel-body'>
+		    <div class='panel panel-info' style='width:800px;height:500px;margin:auto'>
+                     <div class='row' >
+			 <div class="col-lg-10" > 
+			     <form class='form-group' method='post' action='#'>
+			     <div class='form-group input-group' style='margin-left:20px;margin-top:20px' >
+				 <span class='input-group-btn'>
+				     <button class='btn btn-default' type='button' style='width:100px'>
+					 目标主机
+				     </button>
+				 </span>
+				 <input type='text' class='form-control' name='target'>
+			     </div>
+			     <div class='form-group input-group' style='margin-top:60px;float:left'>
+				 <label class='checkbox-inline' style='margin-left:0px'>
+				     <button class='btn btn-default' type='button' style='width:100px;'> 匹配模式 </button>
+				 </label>
+				 <label class='checkbox-inline'>
+				     <input type='radio' name='map' id='r1' value='L'>List
+				 </label>
+				 <label class='checkbox-inline'>
+				     <input type='radio' name='map' id='r2' value='G'>Grains
+				 </label>
+				 <label class='checkbox-inline'>
+				     <input type='radio' name='map' id='r3' value='R'>Regrex
+				 </label>
+				 <label class='checkbox-inline'>
+				     <input type='radio' name='map' id='r4' value='H' checked>Hostname
+				 </label>
+				 <label class='checkbox-inline'>
+				     <input type='radio' name='map' id='r5' value='N'>Nodegroup
+				 </label>
+			     </div>
+                             <div class='form-group input-group' style='margin-top:60px;float:left'>
+				 <label class='checkbox-inline' style='margin-left:0px'>
+				     <button class='btn btn-default' type='button' style='width:100px;'> 部署应用 </button>
+				 </label>
+				 <label class='checkbox-inline'>
+				     <input type='radio' name='app' id='r1' value='zabbix' checked>Zabbix Agent
+				 </label>
+				 <label class='checkbox-inline'>
+				     <input type='radio' name='app' id='r2' value='mysql'>Mysql
+				 </label>
+				 <label class='checkbox-inline'>
+				     <input type='radio' name='app' id='r3' value='nginx'>Nginx
+				 </label>
+				 <label class='checkbox-inline'>
+				     <input type='radio' name='app' id='r4' value='php'>Php
+				 </label>
+				 <label class='checkbox-inline'>
+				     <input type='radio' name='app' id='r5' value='redis'>Redis
+				 </label>
+				 <label class='checkbox-inline' style='margin-left:135px;margin-top:30px'>
+				     <input type='radio' name='app' id='r5' value='memcached'>Memcached
+				 </label>
+				 <label class='checkbox-inline' style='margin-top:30px'>
+				     <input type='radio' name='app' id='r5' value='tomcat'>Tomcat
+				 </label>
+				 <label class='checkbox-inline' style='margin-top:30px'>
+				     <input type='radio' name='app' id='r5' value='init'>Init System
+				 </label>
+			     </div>
+			     <div class='input-group' style='margin:auto;width:400px'>
+				     <button class='btn btn-danger' type='submit' value='deploy' style='width:400px;margin-top:100px'> Deploy </button>
+			     </div>
+			     </form>
+			 </div>
+		     </div>
+		    </div>
+	  	</div>
+	    </div>
+	</div>
+	{%endblock%}

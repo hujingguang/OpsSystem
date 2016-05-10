@@ -67,9 +67,6 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#source"><i class="fa fa-fw fa-arrows-v"></i> 资产管理 <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="source" class="collapse">
                             <li>
-			    <a href={% url 'hosts:list' %}>主机列表</a>
-                            </li>
-                            <li>
 			    <a href='#'>云资产总览</a>
                             </li>
                         </ul>
@@ -81,13 +78,25 @@
 			    <a href={% url 'salts:host_info' %}>主机信息</a>
                             </li>
                             <li>
-			    <a href='#'>应用部署</a>
+			    <a href={% url 'salts:deploy' %}>应用部署</a>
                             </li>
                             <li>
-			    <a href='#'>命令批量执行</a>
+			    <a href='#'>命令执行</a>
+                            </li>
+                            <li>
+			    <a href='#'>操作记录</a>
+			    </li>
+                        </ul>
+	       	</li>
+                 <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#zabbix"><i class="fa fa-fw fa-arrows-v"></i> Zabbix集成 <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="zabbix" class="collapse">
+                            <li>
+			    <a href='#'>报表</a>
                             </li>
                         </ul>
 	       	</li>
+                 
                  </ul>
              </div>
         </nav>

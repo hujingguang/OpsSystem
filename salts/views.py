@@ -39,7 +39,9 @@ def refresh_host_info(request):
 	if host.hostname not in host_info_dict:
 	    host.delete()
     return  HttpResponseRedirect(reverse('salts:host_info'))
-    
+@login_required(login_url='/')
+def deploy_application(request):
+    return render_to_response('salt_deploy_application.html',RequestContext(request))
 
 
 
