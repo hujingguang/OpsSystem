@@ -1,0 +1,16 @@
+redis.lo: /srv/salt/php/files/phpredis-2.2.4/redis.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/srv/salt/php/files/phpredis-2.2.4 $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /srv/salt/php/files/phpredis-2.2.4/redis.c -o redis.lo 
+library.lo: /srv/salt/php/files/phpredis-2.2.4/library.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/srv/salt/php/files/phpredis-2.2.4 $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /srv/salt/php/files/phpredis-2.2.4/library.c -o library.lo 
+redis_session.lo: /srv/salt/php/files/phpredis-2.2.4/redis_session.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/srv/salt/php/files/phpredis-2.2.4 $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /srv/salt/php/files/phpredis-2.2.4/redis_session.c -o redis_session.lo 
+redis_array.lo: /srv/salt/php/files/phpredis-2.2.4/redis_array.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/srv/salt/php/files/phpredis-2.2.4 $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /srv/salt/php/files/phpredis-2.2.4/redis_array.c -o redis_array.lo 
+redis_array_impl.lo: /srv/salt/php/files/phpredis-2.2.4/redis_array_impl.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/srv/salt/php/files/phpredis-2.2.4 $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /srv/salt/php/files/phpredis-2.2.4/redis_array_impl.c -o redis_array_impl.lo 
+$(phplibdir)/redis.la: ./redis.la
+	$(LIBTOOL) --mode=install cp ./redis.la $(phplibdir)
+
+./redis.la: $(shared_objects_redis) $(REDIS_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_redis) $(REDIS_SHARED_LIBADD)
+

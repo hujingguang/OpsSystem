@@ -1,0 +1,64 @@
+{% set php_install_dir = '/webdata/opt/local' %}
+{% set configure_args = '--with-fpm-user=www --with-fpm-group=www   --with-openssl --enable-fpm --with-mysql --with-mysqli --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir=shared --enable-xml --with-curl --with-mhash --with-mcrypt --with-gd --enable-gd-native-ttf --with-xsl --with-ldap --with-ldap-sasl --without-pear --enable-zip --enable-soap --enable-mbstring --enable-sockets --enable-pcntl --enable-bcmath --enable-shmop --enable-sysvsem --enable-inline-optimization --disable-rpath --enable-mbregex --with-xmlrpc --enable-wddx --enable-ftp' %}
+
+include:
+  - epel.install
+/tmp/php-5.6.16.tar.gz:
+  file.managed:
+    - source: salt://php/files/php-5.6.16.tar.gz
+    - mode: 755
+    - user: root
+    - unless: test -e /tmp/php-5.6.16.tar.gz
+
+/tmp/phpredis-2.2.4.tar.gz:
+  file.managed:
+    - source: salt://php/files/phpredis-2.2.4.tar.gz
+    - mode: 755
+    - user: root
+    - unless: test -e /tmp/phpredis-2.2.4.tar.gz
+
+/tmp/memcache-3.0.5.tgz:
+  file.managed:
+    - source: salt://php/files/memcache-3.0.5.tgz
+    - mode: 755
+    - user: root
+    - unless: test -e /tmp/memcache-3.0.5.tgz
+
+add_run_user:
+  user.present:
+    - shell: /sbin/nologin
+    - name: www
+    - gid_from_name: Ture
+    - createhome: False
+    - system: Ture
+
+install_dep_pkg:
+  cmd.run:
+    - name: yum install gcc gcc-c++ cmake make openldap openldap-devel  libxslt libsxlt-devel  libxslt-devel gd-devel libxml2-devel curl-devel libpng-devel libjpeg-turbo-devel freetype-devel libmcrypt-devel libmcrypt php-mbstring mhash-devel libcurl-devel pcre-devel openssl-devel ncurses-devel bison-devel zlib-devel mysql-server -y &>/dev/null
+    
+install_php_source:
+  cmd.run:
+    - name: cd /tmp && tar -zxf php-5.6.16.tar.gz && cd php-5.6.16 && mkdir -p {{php_install_dir }} && ./configure --prefix={{php_install_dir}}/php {{configure_args}} && make && make install 
+    - required:
+      - cmd: install_dep_pkg
+      - file: /tmp/php-5.6.16.tar.gz
+    - unless: test -e {{php_install_dir}}/php/bin/php
+
+install_php_memcache:
+  cmd.run:
+    - name: cd /tmp && tar -zxf memcache-3.0.5.tgz && cd memcache-3.0.5 && {{php_install_dir}}/php/bin/phpize && ./configure --with-php-config={{php_install_dir}}/php/bin/php-config --enable-memcache && make && make install
+    - required:
+      - file: /tmp/memcache-3.0.5.tgz
+      - cmd: install_php_source
+    - unless: find {{php_install_dir}}/php -name 'memcache.so'|grep 'memcache.so'
+
+install_php_redis:
+  cmd.run:
+    - name: cd /tmp && tar -zxf phpredis-2.2.4.tar.gz && cd phpredis-2.2.4 && {{php_install_dir}}/php/bin/phpize && ./configure --with-php-config={{php_install_dir}}/php/bin/php-config --enable-redis && make && make install
+    - required:
+      - file: /tmp/phpredis-2.2.4.tar.gz 
+      - cmd: install_php_source
+    - unless: find {{php_install_dir}}/php -name 'redis.so'|grep 'redis.so'
+
+
+

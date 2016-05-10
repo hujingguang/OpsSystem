@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.9.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>memcache</name>
+ <channel>pecl.php.net</channel>
+ <summary>memcached extension</summary>
+ <description>Memcached is a caching daemon designed especially for 
+    dynamic web applications to decrease database load by 
+    storing objects in memory.
+    This extension allows you to work with memcached through
+    handy OO and procedural interfaces.</description>
+ <lead>
+  <name>Antony Dovgal</name>
+  <user>tony2001</user>
+  <email>tony@daylessday.org</email>
+  <active>no</active>
+ </lead>
+ <lead>
+  <name>Mikael Johansson</name>
+  <user>mikl</user>
+  <email>mikael@synd.info</email>
+  <active>yes</active>
+ </lead>
+ <lead>
+  <name>Pierre-Alain Joye</name>
+  <user>pajoye</user>
+  <email>pierre.php@gmail.com</email>
+  <active>yes</active>
+ </lead>
+ <lead>
+  <name>Herman Radtke</name>
+  <user>hradtke</user>
+  <email>hradtke@php.net</email>
+  <active>yes</active>
+ </lead>
+ <date>2010-10-03</date>
+ <time>14:41:21</time>
+ <version>
+  <release>3.0.5</release>
+  <api>3.0.5</api>
+ </version>
+ <stability>
+  <release>beta</release>
+  <api>beta</api>
+ </stability>
+ <license uri="http://www.php.net/license">PHP License</license>
+ <notes>
+- Fixed PECL bug #16059 (Build error: &apos;MSG_NOSIGNAL&apos; undeclared)
+- Added method MemcachePool::findServer(key) which returns the server a key hashes to
+- Changed MemcachePool::findServer() to return only &quot;hostname:port&quot; since tcp port is significant
+- Fixed PECL bug #16536 (Weight of 0 causes SegFault on memcache_add_server)
+- Fixed PECL bug #17566 (3.0.4 cache delete bug)
+- Fixed PECL Bug #16442 (memcache_set fail with integer value)
+ </notes>
+ <contents>
+  <dir name="/">
+   <file md5sum="2de287e7774dad44aaa11a7da26e38d0" name="config.m4" role="src" />
+   <file md5sum="5bf1bf855ca8efdb17352736da7e5c17" name="config9.m4" role="src" />
+   <file md5sum="01b1231fa34c0bd88605ebcaa1654d68" name="config.w32" role="src" />
+   <file md5sum="f818c8af5b84d8c936eca307b63aafec" name="CREDITS" role="doc" />
+   <file md5sum="5b6b03aebb60f141416489a527b2c9be" name="example.php" role="doc" />
+   <file md5sum="b064ff2dc6df9ee8eeb75a2fb5676622" name="memcache.c" role="src" />
+   <file md5sum="c2f4abe0b3d85dbefeb9384ca2f6b010" name="memcache_pool.c" role="src" />
+   <file md5sum="843f0c3791344a6d0afc546c926a2fcf" name="memcache_queue.c" role="src" />
+   <file md5sum="b11e41a96ce2e25c4bb56444476c117e" name="memcache_session.c" role="src" />
+   <file md5sum="2b1a5e228ace204fa9e4cb707a075705" name="memcache_ascii_protocol.c" role="src" />
+   <file md5sum="86ee1ca48017b57b803b3e5e44567987" name="memcache_binary_protocol.c" role="src" />
+   <file md5sum="cb6d2a37b6f4818e7b5fd8814e72415d" name="memcache_standard_hash.c" role="src" />
+   <file md5sum="755184d99ff95ab0d79dc3ef48ccdd86" name="memcache_consistent_hash.c" role="src" />
+   <file md5sum="a0904f003d7ae14ff22c15fd0c417ceb" name="memcache.dsp" role="src" />
+   <file md5sum="a6d2231072225be47c47a7fe4cb53387" name="php_memcache.h" role="src" />
+   <file md5sum="f9a3aca8f95d64da5034ac85dabc7366" name="memcache_pool.h" role="src" />
+   <file md5sum="311d824a78554154157f647a87a708b2" name="memcache_queue.h" role="src" />
+   <file md5sum="7900b5759a4d1a89ae40753b0a7bc065" name="README" role="doc" />
+   <file md5sum="f35ec9b92f71391e6b26d0fc5f02aead" name="memcache.php" role="doc" />
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>4.3.11</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.0b1</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <providesextension>memcache</providesextension>
+ <extsrcrelease>
+  <configureoption default="yes" name="enable-memcache-session" prompt="Enable memcache session handler support?" />
+ </extsrcrelease>
+ <changelog>
+  <release>
+   <date>2009-02-22</date>
+   <version>
+    <release>3.0.4</release>
+    <api>3.0.4</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+- Improved performance of consistent hash strategy
+- Accept timeout parameter as float to enable microsecond timeouts, param is still 
+  given in seconds but with a microsecond fraction.
+- Added session locking to avoid concurrency problems with AJAX apps
+- Fixed PECL bug #14642 (3.0.x breaks BC with 2.2.x)
+- Fixed PECL request #13758 (Failed to extract &apos;connection&apos; variable from object)
+- Fixed PECL request #14658 (Allow connection timeouts in ms, not seconds)
+- New INI directive
+   memcache.lock_timeout = 15
+   </notes>
+  </release>
+  <release>
+   <date>2009-01-13</date>
+   <version>
+    <release>3.0.3</release>
+    <api>3.0.3</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+- Enabled compression by default for values larger than 20kb
+- Scalar data types (int, bool, double) are preserved by get/set
+- Reserved the lowest 2 bytes of the flags for internal use 
+- Fixed PECL bug #14157 (Segmentation fault with errorcallback handler)
+- Fixed PECL bug #15342 (memcache keys whitespaces replace issue)
+- Fixed PECL bug #15447 (Persistent Connections Cause Segfaults if One Server Drops)
+- Fixed PECL bug #15529 (memcache object loses port information)
+- Fixed PECL bug #14730 (Types lost during get/set)
+- Fixed PECL request #14801 (Session handler and large sessions)
+- Added REPORT_ERRORS to php stream open
+- New INI directive
+   memcache.compress_threshold = 20000
+   </notes>
+  </release>
+  <release>
+   <date>2008-09-11</date>
+   <version>
+    <release>3.0.2</release>
+    <api>3.0.2</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+- Updated binary protocol to be compatible with memcached 1.3.0
+- Added memcached stats script from Harun Yayli (http://livebookmark.net/memcachephp)
+- Fixed server weight not being used in the session handler
+- Fixed PECL bug #13343 (compilation breaks with CodeWarrior compiler)
+- Fixed PECL bug #13546 (Session handler through unix socket)
+- Fixed PECL bug #13592 (error in opcode)
+- Fixed PECL req #13588 (minor inefficiency in binary protocol implementation)
+- Fixed PECL bug #14044 (send of 32768 bytes failed with errno=11 Resource temporarily unavailable)
+- Fixed PECL bug #14239 (Memcache::set() modifies value parameter)
+- Fixed PECL bug #14156 (No check for parameter count in php_mmc_store)
+- Fixed PECL bug #14458 (off-by-one causes corrupted arrays in 3.0.x)
+- Fixed PECL bug #14104 (Malformed VALUE header (0))
+- Fixed PECL request #13725 (unnecessary allocations in mmc_consistent_add_server)
+- Changed behaviour when unserialize/uncompress fail to return false instead of failing the server
+   </notes>
+  </release>
+  <release>
+   <date>2008-02-05</date>
+   <version>
+    <release>3.0.1</release>
+    <api>3.0.1</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+- Fixed PECL bug #12866 (Ignore memcache.default_port in memcache_connect)
+- Fixed PECL bug #12883 (Breaks UTF-8 in keys)
+- Fixed PECL bug #13060 (make problems, due to role=&quot;doc&quot; instead of role=&quot;src&quot;)
+- Changed behaviour of close() to actually remove all servers from pool (PECL bug #12555)
+- Added configure option for PEAR installer to disable session handler support
+- Added package version to phpinfo()
+   </notes>
+  </release>
+  <release>
+   <date>2007-11-26</date>
+   <version>
+    <release>3.0.0</release>
+    <api>3.0.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+See README for details on new API and INI directives.
+    
+- UDP support
+- Binary protocol support 
+- Non-blocking IO using select()
+- Pipelined multi-set/delete/increment/decrement
+- CAS (Compare-And-Swap) support
+- Append/prepend support
+- Key and session redundancy (values are written to N mirrors)
+- Improved error reporting and failover handling
+- Added class &quot;MemcachePool&quot; implementing the new API
+- New INI directives
+   memcache.protocol = {ascii, binary}
+   memcache.redundancy = 1
+   memcache.session_redundancy = 2
+- Changed INI defaults 
+   memcache.hash_strategy = consistent
+   memcache.chunk_size = 32768
+   </notes>
+  </release>
+  <release>
+   <date>2008-02-05</date>
+   <version>
+    <release>2.2.3</release>
+    <api>2.2.3</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+- Fixed PECL bug #12883 (Breaks UTF-8 in keys)
+- Fixed PECL bug #13060 (make problems, due to role=&quot;doc&quot; instead of role=&quot;src&quot;)
+- Added package version to phpinfo()
+   </notes>
+  </release>
+  <release>
+   <date>2008-01-10</date>
+   <version>
+    <release>2.2.2</release>
+    <api>2.2.2</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+- Fixed PECL bug 12494 (Segmentation fault when Exception thrown in the callback function)
+- Fixed PECL bug #12834 (segfault when getting duplicate array values on 64-bit system)
+- Changed behaviour of close() to actually remove all servers from pool (PECL bug #12555)
+- Added configure option for PEAR installer to disable session handler support
+   </notes>
+  </release>
+  <release>
+   <date>2007-11-01</date>
+   <version>
+    <release>2.2.1</release>
+    <api>2.2.1</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+- Added argument to Memcache::get() that receives the flags for retrieved value(s)
+- Fixed PECL bug 11369 (&quot;nested&quot; get calls in __wakeup() functions breaks)
+- Fixed problem with keys being modified in-place and empty keys (PECL Bug #11236)
+- Fixed incompatibility with standard hash strategy in previous versions
+   </notes>
+  </release>
+  <release>
+   <date>2007-09-21</date>
+   <version>
+    <release>2.2.0</release>
+    <api>2.2.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+- Added support for consistent hash strategy
+- New INI directives 
+    &quot;memcache.hash_strategy&quot; = {standard, consistent}
+    &quot;memcache.hash_function&quot; = {crc32, fnv}
+- PHP6 support
+- Fixed PECL bug #11221 (Double free when returning cached object with __sleep)
+- Fixed PECL bug #10607 (Segfault on array key retrieval when array key is not IS_STRING)
+- Don&apos;t failover on &quot;object to large&quot; errors
+- Use $phpincludedir for finding php_session.h
+   </notes>
+  </release>
+  <release>
+   <date>2007-03-27</date>
+   <version>
+    <release>2.1.2</release>
+    <api>2.1.2</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+- Added missing files to the package.
+   </notes>
+  </release>
+  <release>
+   <date>2007-03-27</date>
+   <version>
+    <release>2.1.1</release>
+    <api>2.1.1</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+- Added experimental session storage support. You can use memcached as session storage.
+- Fixed PECL bug #9486 (empty keys should not be allowed in memcache_set/add())
+- Fixed PECL bug #9854 (get() changes the datatype of variable of given as key)
+   </notes>
+  </release>
+  <release>
+   <date>2006-10-09</date>
+   <version>
+    <release>2.1.0</release>
+    <api>2.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+- Servers may be flagged up/down and the user may specify a error callback
+- Individual server params and up/down status may be changed at runtime
+- New methods: setServerParams(), getServerStatus()
+- Statistics methods support fetching other kinds of stats (slabs, items, cachedump, ...)
+- Fixed PECL bugs #7631, #8117 (erroneous line feeds in config.m4)
+- Added memcache.max_failover_attempts ini directive, which can be used to configure max number of 
+    servers to try when setting and getting data.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.0.4</release>
+    <api>2.0.4</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2006-05-16</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+- Redefined retry_interval as long to fix no-automatic-reconnect behaviour
+        - Fixed PECL bugs #7635, #7637 (OnUpdateInt: referenced symbol not found)
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.0.3</release>
+    <api>2.0.3</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2006-05-15</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+- Display ini entries in phpinfo() output
+        - Fixed Zend2 compat
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.0.2</release>
+    <api>2.0.2</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2006-05-14</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+- Added &quot;memcache.default_port&quot; ini directive (default 11211)
+- Added &quot;memcache.allow_failover&quot; ini directive (default On)
+- Added &quot;memcache.chunk_size&quot; ini directive (default 8192 bytes)
+- Setting retry_interval parameter to -1 disables automatic reconnect
+- Fixed PECL bug #7331 (NULL pointer freeing causes memcache to segfault)
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.0.1</release>
+    <api>2.0.1</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2006-02-01</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+- Fixed PECL bug #6595 (segfault in addServer())
+- Fixed PECL bug #6512 (buffer overrun in getVersion())
+- Fixed PECL bug #6460 (lacking include of php_smart_str_public.h)
+- Fixed PECL bug #6370 (incorrect failover on out-of-memory server errors)
+- Improved zlib detection
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.0.0</release>
+    <api>2.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2005-12-21</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+- Multiple servers with loadbalancing and failover
+- Automatic compress threshold setting
+- New methods: addServer(), getExtendedStats(), setCompressThreshold()
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.6</release>
+    <api>1.6</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2005-10-12</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+- Fixed minor leak appeared when connect fails.
+- Fixed PECL bug #5626 (segfault when trying to use previously closed connection).
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.5</release>
+    <api>1.5</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2005-08-05</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+1) Fixed minor leak.
+2) Class Memcache made inheritable.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.4</release>
+    <api>1.4</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2004-12-02</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+1) Added multi get support (i.e. you&apos;re now able to get multiple items with one get() call, 
+just pass array of keys to get() and it will return associative array of found items).
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.3</release>
+    <api>1.3</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2004-08-29</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+1) Fixed potential problem with empty datasets (yet another patch from Andrey Nigmatulin [anight at monamour dot ru]).
+2) Fixed bug #2167 (thanks to [pbnadeau at gmail dot com] for noticing, testing and patching).
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.2</release>
+    <api>1.2</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2004-07-20</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+1) Fixed typo, preventing to use set() with flags and expire in the same time (thanks to Troy Hakala [troy at recipezaar dot com] for noticing).
+2) Added possibility to store objects and arrays compressed.
+3) Hopefully fixed all possible problems with persistent connections (thanks to [anight at monamour dot ru]).
+4) Some uncritical impovements.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.1</release>
+    <api>1.1</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2004-06-08</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+1) Fixed couple of possible segfaults and one error (many thanks to Anight).
+2) Minor improvements.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0</release>
+    <api>1.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2004-05-21</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+1) Ifdef&apos;ed debug routines, so they are available only in debug mode.
+This should add more speed to extension. 
+2) Minor code decorations.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.4</release>
+    <api>0.4</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2004-xx-xx</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+1) Added on-the-fly data (de)compression support.
+2) Added procedural API.
+3) Extension was fairly refactored and accelerated.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.2</release>
+    <api>0.2</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2004-02-26</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+New methods: getStats(), increment(), decrement().
+Extension should be rather stable.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.1</release>
+    <api>0.1</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2004-02-08</date>
+   <license uri="http://www.php.net/license">PHP License</license>
+   <notes>
+Initial release in PECL
+   </notes>
+  </release>
+ </changelog>
+</package>

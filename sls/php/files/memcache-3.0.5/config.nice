@@ -1,0 +1,8 @@
+#! /bin/sh
+#
+# Created by configure
+
+'./configure' \
+'--enable-memcache' \
+'--with-php-config=/webdata/opt/local/php/bin/php-config' \
+"$@"

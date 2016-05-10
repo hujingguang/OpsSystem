@@ -1,0 +1,22 @@
+memcache.lo: /srv/salt/php/files/memcache-3.0.5/memcache.c
+	$(LIBTOOL) --mode=compile $(CC) -I/webdata/opt/local/php/include/php -I. -I/srv/salt/php/files/memcache-3.0.5 $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /srv/salt/php/files/memcache-3.0.5/memcache.c -o memcache.lo 
+memcache_pool.lo: /srv/salt/php/files/memcache-3.0.5/memcache_pool.c
+	$(LIBTOOL) --mode=compile $(CC) -I/webdata/opt/local/php/include/php -I. -I/srv/salt/php/files/memcache-3.0.5 $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /srv/salt/php/files/memcache-3.0.5/memcache_pool.c -o memcache_pool.lo 
+memcache_queue.lo: /srv/salt/php/files/memcache-3.0.5/memcache_queue.c
+	$(LIBTOOL) --mode=compile $(CC) -I/webdata/opt/local/php/include/php -I. -I/srv/salt/php/files/memcache-3.0.5 $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /srv/salt/php/files/memcache-3.0.5/memcache_queue.c -o memcache_queue.lo 
+memcache_ascii_protocol.lo: /srv/salt/php/files/memcache-3.0.5/memcache_ascii_protocol.c
+	$(LIBTOOL) --mode=compile $(CC) -I/webdata/opt/local/php/include/php -I. -I/srv/salt/php/files/memcache-3.0.5 $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /srv/salt/php/files/memcache-3.0.5/memcache_ascii_protocol.c -o memcache_ascii_protocol.lo 
+memcache_binary_protocol.lo: /srv/salt/php/files/memcache-3.0.5/memcache_binary_protocol.c
+	$(LIBTOOL) --mode=compile $(CC) -I/webdata/opt/local/php/include/php -I. -I/srv/salt/php/files/memcache-3.0.5 $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /srv/salt/php/files/memcache-3.0.5/memcache_binary_protocol.c -o memcache_binary_protocol.lo 
+memcache_standard_hash.lo: /srv/salt/php/files/memcache-3.0.5/memcache_standard_hash.c
+	$(LIBTOOL) --mode=compile $(CC) -I/webdata/opt/local/php/include/php -I. -I/srv/salt/php/files/memcache-3.0.5 $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /srv/salt/php/files/memcache-3.0.5/memcache_standard_hash.c -o memcache_standard_hash.lo 
+memcache_consistent_hash.lo: /srv/salt/php/files/memcache-3.0.5/memcache_consistent_hash.c
+	$(LIBTOOL) --mode=compile $(CC) -I/webdata/opt/local/php/include/php -I. -I/srv/salt/php/files/memcache-3.0.5 $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /srv/salt/php/files/memcache-3.0.5/memcache_consistent_hash.c -o memcache_consistent_hash.lo 
+memcache_session.lo: /srv/salt/php/files/memcache-3.0.5/memcache_session.c
+	$(LIBTOOL) --mode=compile $(CC) -I/webdata/opt/local/php/include/php -I. -I/srv/salt/php/files/memcache-3.0.5 $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /srv/salt/php/files/memcache-3.0.5/memcache_session.c -o memcache_session.lo 
+$(phplibdir)/memcache.la: ./memcache.la
+	$(LIBTOOL) --mode=install cp ./memcache.la $(phplibdir)
+
+./memcache.la: $(shared_objects_memcache) $(MEMCACHE_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_memcache) $(MEMCACHE_SHARED_LIBADD)
+

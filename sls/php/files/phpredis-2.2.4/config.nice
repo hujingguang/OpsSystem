@@ -1,0 +1,8 @@
+#! /bin/sh
+#
+# Created by configure
+
+'./configure' \
+'--enable-redis' \
+'--with-php-config=/webdata/opt/local/php/bin/php-config' \
+"$@"
