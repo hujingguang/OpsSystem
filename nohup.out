@@ -1568,3 +1568,260 @@ Forbidden (CSRF token missing or incorrect.): /saltstack/hosts/deploy/applicatio
 [10/May/2016 11:11:28] "POST /saltstack/hosts/deploy/application HTTP/1.1" 403 2274
 Forbidden (CSRF token missing or incorrect.): /saltstack/hosts/deploy/application
 [10/May/2016 11:11:55] "POST /saltstack/hosts/deploy/application HTTP/1.1" 403 2274
+[10/May/2016 11:33:55] "GET /saltstack/hosts/host_info HTTP/1.1" 200 9688
+[10/May/2016 11:34:07] "GET /saltstack/hosts/host_info?page=2 HTTP/1.1" 200 8108
+[10/May/2016 11:34:08] "GET /saltstack/hosts/host_info?page=1 HTTP/1.1" 200 9688
+[10/May/2016 11:34:09] "GET /saltstack/hosts/host_info?page=2 HTTP/1.1" 200 8108
+[10/May/2016 11:34:10] "GET /saltstack/hosts/host_info?page=1 HTTP/1.1" 200 9688
+[10/May/2016 11:34:10] "GET /saltstack/hosts/host_info?page=2 HTTP/1.1" 200 8108
+[10/May/2016 11:34:11] "GET /saltstack/hosts/host_info?page=1 HTTP/1.1" 200 9688
+[10/May/2016 11:34:11] "GET /saltstack/hosts/host_info?page=2 HTTP/1.1" 200 8108
+[10/May/2016 11:34:12] "GET /saltstack/hosts/host_info?page=1 HTTP/1.1" 200 9688
+[10/May/2016 11:34:24] "GET /saltstack/hosts/host_info HTTP/1.1" 200 9688
+[10/May/2016 11:34:26] "GET /saltstack/hosts/deploy/application HTTP/1.1" 200 8688
+[10/May/2016 11:35:08] "GET /index/ HTTP/1.1" 200 9114
+[10/May/2016 11:35:14] "GET /deploy-manage/list_deploy_info/ HTTP/1.1" 200 6331
+[10/May/2016 11:35:20] "GET /deploy-manage/list_repo_info/ HTTP/1.1" 200 6257
+[10/May/2016 11:35:27] "GET /deploy-manage/list_deploy_info/ HTTP/1.1" 200 6331
+[10/May/2016 11:35:31] "GET /deploy-manage/add_svn_repo/ HTTP/1.1" 200 9635
+[10/May/2016 11:35:37] "GET /deploy-manage/add_git_repo/ HTTP/1.1" 200 9031
+[10/May/2016 11:36:30] "POST /deploy-manage/add_git_repo/ HTTP/1.1" 200 9940
+[10/May/2016 11:36:35] "GET /saltstack/hosts/deploy/application HTTP/1.1" 200 8688
+   - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web2
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- svn
+- supply_img
+- app_api
+- bangnihui
+- WEB_DB
+- supply_web3
+- supply_web2
+- supply_web4
+- htbl.meitianhui.com
+- img001
+- web3
+- web1
+- portal
+- mobile
+- web5
+- ops_node1
+- loading_balance
+- mps_node1
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web2
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- svn
+- supply_img
+- app_api
+- bangnihui
+- WEB_DB
+- supply_web3
+- supply_web2
+- supply_web4
+- htbl.meitianhui.com
+- img001
+- web3
+- web1
+- portal
+- mobile
+- web5
+- ops_node1
+- loading_balance
+- mps_node1
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web2
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- svn
+- supply_img
+- app_api
+- bangnihui
+- WEB_DB
+- supply_web3
+- supply_web2
+- supply_web4
+- htbl.meitianhui.com
+- img001
+- web3
+- web1
+- portal
+- mobile
+- web5
+- ops_node1
+- loading_balance
+- mps_node1
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web2
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- svn
+- supply_img
+- app_api
+- bangnihui
+- WEB_DB
+- supply_web3
+- supply_web2
+- supply_web4
+- htbl.meitianhui.com
+- img001
+- web3
+- web1
+- portal
+- mobile
+- web5
+- ops_node1
+- loading_balance
+- mps_node1
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web2
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- svn
+- supply_img
+- app_api
+- bangnihui
+- WEB_DB
+- supply_web3
+- supply_web2
+- supply_web4
+- htbl.meitianhui.com
+- img001
+- web3
+- web1
+- portal
+- mobile
+- web5
+- ops_node1
+- loading_balance
+- mps_node1
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web2
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:

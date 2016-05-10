@@ -20,7 +20,7 @@
 	    <h3 class='panel-title'><i class='fa fa-bell'></i>&nbsp 应用部署<h3>
 		</div>
 		<div class='panel-body'>
-		    <div class='panel panel-info' style='width:800px;height:600px;margin:auto'>
+		    <div class='panel panel-info' style='width:800px;height:500px;margin:auto'>
                      <div class='row' >
 			 <div class="col-lg-10" > 
 			     <form class='form-group' method='post' action={%url 'salts:deploy'%} onsubmit='return validation();'>
@@ -84,7 +84,7 @@
 			     </div>
 			     <div class='input-group' style='margin:auto;width:400px'>
 			     <button class='btn btn-danger' type='submit' value='deploy' id='d' style='width:400px;margin-top:100px'> Deploy </button>
-			     <span id='r' style='display:none;width:200px;margin-top:500px'><img style='width:200px;height:200px;' src={%static 'img/wait.gif'%} />正在部署.......</span>
+			     <span id='r' style='display:none;width:200px;margin-top:500px'><img style='width:200px;height:200px;' src={%static 'img/wait.gif'%} />正在发布.......</span>
 			     </div>
                              <script type='text/javascript'>
 				 function validation(){

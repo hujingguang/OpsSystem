@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from models import *
+import time
 from utils import SaltByLocalApi
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 @login_required(login_url='/')
@@ -39,8 +40,12 @@ def refresh_host_info(request):
 	if host.hostname not in host_info_dict:
 	    host.delete()
     return  HttpResponseRedirect(reverse('salts:host_info'))
+
 @login_required(login_url='/')
 def deploy_application(request):
+    if request.method=='POST':
+	print request.POST
+        time.sleep(10)
     return render_to_response('salt_deploy_application.html',RequestContext(request))
 
 
