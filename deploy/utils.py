@@ -186,10 +186,6 @@ def deploy_git_code(repo_name,repo_address,checkout_dir,exclude_dir,revision,ip,
 
 	
 
-
-
-    
-    
 def deploy_svn_code(repo_name,user,password,repo_address,checkout_dir,exclude_dir,revision,ip,target,wwwDir,deploy_password,deploy_person):
     log_file='/tmp/.'+str(random.randint(100,100000))+'.log'
     if not checkout_dir.startswith('/'):
@@ -337,13 +333,6 @@ def upload_code_password(code_dir,password,wwwDir,ip,diff_file,exclude_dir,log_f
 	return False,u'代码上传至服务器失败！',log_file
 
 
-
-    
-
-
-
-
-
 def logfunc(log_file,log_rate,info):
     f=open(log_file,'a')
     content=time.strftime('%Y-%m-%d %X',time.localtime())+'  ---'+log_rate+'---: '+info
@@ -421,8 +410,6 @@ def deal_with_exclude(exclude_dir):
 	exclude_files=exclude_files[:n]
 	exclude_args=' --exclude={' +exclude_files+'} '
     return exclude_args
-
-
 
 
 if __name__=='__main__':
