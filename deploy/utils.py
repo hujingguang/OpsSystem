@@ -355,8 +355,9 @@ def loopfunc(pid):
     while True:
 	res=os.system(cmd)
 	if res == 0:
+	    time.sleep(2)
 	    break
-	time.sleep(2)
+	time.sleep(3)
 
 
 

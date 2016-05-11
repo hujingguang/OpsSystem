@@ -43,9 +43,17 @@ def refresh_host_info(request):
 
 @login_required(login_url='/')
 def deploy_application(request):
+    match_list=['list','grain','nodegroup','pcre','glob']
+    app_list=['zabbix','mysql','memcached','nginx','tomcat','init','redis','php']
     if request.method=='POST':
-	print request.POST
-        time.sleep(10)
+	mapping=request.POST.get('map','')
+	target=request.POST.get('target','')
+	app=request.POST.get('app','')
+	if app == '' or target == '' or mapping == '':
+	    return HttpResponseNotAllowed(request)
+	if mapping not in match_list or app not in app_list:
+	    return HttpResponseNotAllowed(request)
+        
     return render_to_response('salt_deploy_application.html',RequestContext(request))
 
 

@@ -42,8 +42,8 @@ class SaltByWebApi(object):
 
 class SaltByLocalApi(object):
     def __init__(self,main_config):
-	opts=master_config(main_config)
-	self.wheel=Wheel(opts)
+	self.opts=master_config(main_config)
+	self.wheel=Wheel(self.opts)
 	self.client=LocalClient()
 	self.connected_minions_list=self.wheel.call_func('minions.connected')
 	self.key_dict=self.wheel.call_func('key.list_all')
@@ -66,6 +66,8 @@ class SaltByLocalApi(object):
 	    values=[v['host'],ips,v['osfullname']+v['osrelease'],str(v['num_cpus'])+' cores',str(v['mem_total'])+' MB',v['group'],v['area'],v['usage']]
 	    host_info_dict[k]=values
         return host_info_dict
+    def get_master_config(self):
+	return self.opts
 
 if __name__=='__main__':
     #salt=SaltApi('http://10.117.74.247:8080','salt','hoover123')
