@@ -1,5 +1,5 @@
 include:
-  - zabbix.install
+  - zabbix.install_zabbix
   - zabbix.update_zbx_conf
 
 start_zbx_agentd:

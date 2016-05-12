@@ -38,8 +38,6 @@ class SaltByWebApi(object):
 	j=json.load(response)
         print j
 
-
-
 class SaltByLocalApi(object):
     def __init__(self,main_config):
 	self.opts=master_config(main_config)
@@ -68,9 +66,56 @@ class SaltByLocalApi(object):
         return host_info_dict
     def get_master_config(self):
 	return self.opts
+    def get_grains(self):
+	if self.connected_minions_list is None or len(self.connected_minions_list)<1:
+	    return None
+	return self.client.cmd(self.connected_minions_list[0],'grains.items',[])
+
+
+
+def parse_target_params(target,match):
+    saltapi=SaltByLocalApi('/etc/salt/master')
+    active_minion_list=saltapi.connected_minions_list
+    nodegroup_list=[]
+    t_list=[]
+    target=target.replace(' ','')
+    for key in saltapi.get_master_config()['nodegroups'].iterkeys():
+	nodegroup_list.append(key)
+    if match == 'list':
+	L=target.split(',')
+	t_list=[x for x in L if x !='']
+        for v in t_list:
+	    if v not in active_minion_list:
+		return None,'do not exists the minion: %s' %v
+	return True,','.join(t_list)
+    elif match == 'glob':
+	if target == '*':
+	    pass
+	elif target not in active_minion_list:
+	    return None,'illegal hostname: %s ' %target
+    elif match == 'grain':
+        grains=saltapi.get_grains().values()[0]
+	if grains is None:
+	    return None,'do not exists online monions'
+        var_list=target.split(':')
+	length=len(var_list)
+	if length<2:
+	    return None,'illegal grains'
+        g_var=var_list[length-1]
+	g_key=var_list[:length-1]
+	for k in g_key:
+	    if k not in grains:
+		return None,'bad grains key : %s' %k
+            grains=grains[k] 
+    elif match == 'nodegroup':
+	if target not in nodegroup_list:
+	    return None,'do not exist nodegroup: %s' %target
+    elif match =='pcre':
+	pass
+    return True,target
 
 if __name__=='__main__':
     #salt=SaltApi('http://10.117.74.247:8080','salt','hoover123')
     #salt.get_minion_info('/run')
-    local=SaltByLocalApi('/etc/salt/master')
-    print local.get_host_info()
+    #local=SaltByLocalApi('/etc/salt/master')
+    print parse_target_params('supply_webs','nodegroup')

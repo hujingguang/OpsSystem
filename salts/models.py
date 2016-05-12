@@ -15,3 +15,13 @@ class HostInfoModel(models.Model):
     class Meta:
 	db_table='ops_host_info'
 	
+class AppDeployLogModel(models.Model):
+    user=models.CharField(max_length=50)
+    time=models.DateTimeField()
+    target=models.CharField(max_length=100)
+    application=models.CharField(max_length=100)
+    mapping=models.CharField(max_length=20)
+    log=models.TextField()
+    class Meta:
+	db_table='ops_app_deploy_log'
+

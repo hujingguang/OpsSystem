@@ -19,14 +19,14 @@ include:
 
 install_jdk:
   cmd.run:
-    - name: cd /tmp && tar -zxf jdk-7u71-linux-i586.tar.gz &>/dev/null && mkdir -p {{ jdk_install_dir }} && mv jdk1.7.0_71 {{ jdk_install_dir }}/jdk7
+    - name: cd /tmp && rm -rf jdk1.7.0_71 && tar -zxf jdk-7u71-linux-i586.tar.gz &>/dev/null && mkdir -p {{ jdk_install_dir }} && mv jdk1.7.0_71 {{ jdk_install_dir }}/jdk7
     - required:
       file: /tmp/jdk-7u71-linux-i586.tar.gz
     - unless: test -e {{jdk_install_dir}}/jdk7/bin/java  
 
 install_tomcat:
   cmd.run:
-    - name: cd /tmp && tar -zxf apache-tomcat-7.0.54.tar.gz &>/dev/null && mkdir -p {{ tomcat_install_dir }} && mv apache-tomcat-7.0.54  {{ tomcat_install_dir }}/tomcat7
+    - name: cd /tmp && rm -rf apache-tomcat-7.0.54 && tar -zxf apache-tomcat-7.0.54.tar.gz &>/dev/null && mkdir -p {{ tomcat_install_dir }} && mv apache-tomcat-7.0.54  {{ tomcat_install_dir }}/tomcat7
     - required:
       file: /tmp/apache-tomcat-7.0.54.tar.gz
     - unless: test -d {{tomcat_install_dir}}/tomcat7/bin

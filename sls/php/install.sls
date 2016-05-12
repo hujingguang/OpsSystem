@@ -3,6 +3,7 @@
 
 include:
   - epel.install
+
 /tmp/php-5.6.16.tar.gz:
   file.managed:
     - source: salt://php/files/php-5.6.16.tar.gz
@@ -38,7 +39,7 @@ install_dep_pkg:
     
 install_php_source:
   cmd.run:
-    - name: cd /tmp && tar -zxf php-5.6.16.tar.gz && cd php-5.6.16 && mkdir -p {{php_install_dir }} && ./configure --prefix={{php_install_dir}}/php {{configure_args}} && make && make install 
+    - name: cd /tmp && rm -rf php-5.6.16 && tar -zxf php-5.6.16.tar.gz && cd php-5.6.16 && mkdir -p {{php_install_dir }} && ./configure --prefix={{php_install_dir}}/php {{configure_args}} &>/dev/null && make &>/dev/null && make install &>/dev/null
     - required:
       - cmd: install_dep_pkg
       - file: /tmp/php-5.6.16.tar.gz
@@ -46,19 +47,38 @@ install_php_source:
 
 install_php_memcache:
   cmd.run:
-    - name: cd /tmp && tar -zxf memcache-3.0.5.tgz && cd memcache-3.0.5 && {{php_install_dir}}/php/bin/phpize && ./configure --with-php-config={{php_install_dir}}/php/bin/php-config --enable-memcache && make && make install
+    - name: cd /tmp && rm -rf memcache-3.0.5 && tar -zxf memcache-3.0.5.tgz && cd memcache-3.0.5 && {{php_install_dir}}/php/bin/phpize &>/dev/null && ./configure --with-php-config={{php_install_dir}}/php/bin/php-config --enable-memcache &>/dev/null && make &>/dev/null && make install &>/dev/null
     - required:
       - file: /tmp/memcache-3.0.5.tgz
       - cmd: install_php_source
-    - unless: find {{php_install_dir}}/php -name 'memcache.so'|grep 'memcache.so'
+    - unless: find {{php_install_dir}}/php -name 'memcache.so'|grep 'memcache.so' &>/dev/null
 
 install_php_redis:
   cmd.run:
-    - name: cd /tmp && tar -zxf phpredis-2.2.4.tar.gz && cd phpredis-2.2.4 && {{php_install_dir}}/php/bin/phpize && ./configure --with-php-config={{php_install_dir}}/php/bin/php-config --enable-redis && make && make install
+    - name: cd /tmp && rm -rf phpredis-2.2.4 && tar -zxf phpredis-2.2.4.tar.gz && cd phpredis-2.2.4 && {{php_install_dir}}/php/bin/phpize &>/dev/null && ./configure --with-php-config={{php_install_dir}}/php/bin/php-config --enable-redis &>/dev/null && make &>/dev/null && make install &>/dev/null
     - required:
       - file: /tmp/phpredis-2.2.4.tar.gz 
       - cmd: install_php_source
-    - unless: find {{php_install_dir}}/php -name 'redis.so'|grep 'redis.so'
+    - unless: find {{php_install_dir}}/php -name 'redis.so'|grep 'redis.so' &>/dev/null
 
+copy_php_ini:
+  file.managed:
+    - source: salt://php/files/php.ini
+    - name: {{php_install_dir}}/php/lib/php.ini
+    - mode: 755
+    - user: www
+    - required:
+      - cmd: install_php_source
+
+copy_php_fpm:
+  file.managed:
+    - source: salt://php/files/php-fpm.conf
+    - name: {{php_install_dir}}/php/etc/php-fpm.conf
+    - mode: 755
+    - user: www
+    - required:
+      - cmd: install_php_source
+  
+  
 
 
