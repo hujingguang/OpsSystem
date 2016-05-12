@@ -4,6 +4,7 @@ ops plateform
 
 #这是一个运维平台，使用bootstrap 和django 框架进行开发。目前实现了项目管理模块，发布Git和SVN代码库的php工程，以及集成Saltstack 进行应用批量部署模块.
 
+
 部署步骤，  
 
 1 ：安装python2.7版本，django1.9框架  pexpect python模块，svn工具  git工具 Saltstack 自动化工具
@@ -21,6 +22,7 @@ ops plateform
 
 8： 运行平台 python manage.py runserver 0.0.0.0:80
 
+9:   如果要进行应用部署，请将项目根目录下的sls目录里面的所有文件拷贝至salt的file_root 下面，一般为/srv/salt 下面。如果要部署tomcat应用，请自行下载jdk源码包，放在/srv/salt/tomcat/files下面，并修改install.sls文件.
 #### Screenshots
 -----------
 
