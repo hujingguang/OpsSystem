@@ -39,7 +39,7 @@ install_dep_pkg:
     
 install_php_source:
   cmd.run:
-    - name: cd /tmp && rm -rf php-5.6.16 && tar -zxf php-5.6.16.tar.gz && cd php-5.6.16 && mkdir -p {{php_install_dir }} && ./configure --prefix={{php_install_dir}}/php {{configure_args}} &>/dev/null && make &>/dev/null && make install &>/dev/null
+    - name: cp -frp /usr/lib64/libldap* /usr/lib/ && cd /tmp && rm -rf php-5.6.16 && tar -zxf php-5.6.16.tar.gz && cd php-5.6.16 && mkdir -p {{php_install_dir }} && ./configure --prefix={{php_install_dir}}/php {{configure_args}} &>/dev/null && make &>/dev/null && make install &>/dev/null
     - required:
       - cmd: install_dep_pkg
       - file: /tmp/php-5.6.16.tar.gz
