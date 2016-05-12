@@ -36,3 +36,5 @@ ops plateform
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/5.png)
 
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/6.png)
+
+![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/7.png)
