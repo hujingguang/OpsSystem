@@ -47,7 +47,7 @@ def refresh_host_info(request):
 @login_required(login_url='/')
 def deploy_application(request):
     match_list=['list','grain','nodegroup','pcre','glob']
-    app_list=['zabbix','mysql','memcached','nginx','tomcat','init','redis','php']
+    app_list=['zabbix','mysql','memcached','nginx','tomcat','system','redis','php']
     if request.method=='POST':
 	mapping=request.POST.get('map','').replace(' ','')
 	target=request.POST.get('target','').replace(' ','')
@@ -68,6 +68,8 @@ def deploy_application(request):
 	ok_dict={}
 	all_dict={}
 	for k,v in output.iteritems():
+	    if isinstance(v,list):
+		return render_to_response('salt_deploy_application.html',RequestContext(request,{'error':v[0]}))
 	    tmp_list=[]
 	    for i,j in v.iteritems():
 		if 'name' not in j or 'duration'  not in j:
