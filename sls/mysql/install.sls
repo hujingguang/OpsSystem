@@ -65,3 +65,10 @@ add_chkconfig:
     - unless: chkconfig --list|grep mysqld &>/dev/null
     
     
+chown_mysql_dir:
+  cmd.run:
+    - name: chown -R mysql.mysql {{mysql_install_dir }}/mysql && chown -R mysql.mysql {{mysql_install_dir}}/mysql/data
+    - required:
+      - cmd: install_mysql_source
+      - user: add_mysql_user
+
