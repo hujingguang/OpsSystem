@@ -8,7 +8,9 @@ from django.contrib.auth import authenticate
 from datetime import datetime
 from django.shortcuts import render_to_response
 from models import *
+from forms import CmdInputForm
 import time
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from utils import SaltByLocalApi,parse_target_params
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 @login_required(login_url='/')
@@ -33,7 +35,14 @@ def refresh_host_info(request):
 	    continue
 	if HostInfoModel.objects.filter(hostname=host.strip('')).count()==0:
 	    if info_list[5] != '' and info_list[6] !='' and info_list[7] != '':
-	        host_info=HostInfoModel(hostname=host,ipaddress=info_list[1],cpuinfo=info_list[3],meminfo=info_list[4],group=info_list[5],osinfo=info_list[2],area=info_list[6],usage=info_list[7])
+	        host_info=HostInfoModel(hostname=host,
+			ipaddress=info_list[1],
+			cpuinfo=info_list[3],
+			meminfo=info_list[4],
+			group=info_list[5],
+			osinfo=info_list[2],
+			area=info_list[6],
+			usage=info_list[7])
 	        try:
 		    host_info.save()
 	        except Exception as e:
@@ -105,7 +114,6 @@ def deploy_application(request):
 	       spend_time=0
 	       for i in v:
 		   if v[4] != {} and isinstance(v[4],dict):
-		       print type(i[4]['stderr'])
 	               log=log+'''name: %s \n  --error_info--: %s \n ''' %(i[1],i[4]['stderr'])
 		   else:
 	               log=log+'''name: %s \n  --error_info--: %s \n ''' %(i[1],i[4])
@@ -114,11 +122,23 @@ def deploy_application(request):
 	       error_txt=error_txt+''' Host: %s   | Spend time: %s Sec | Result: failed  \n ''' %(k,spend_time)
 	       error_txt=error_txt+'''-----------host: %s error log-----------\n''' %k
 	       error_txt=error_txt+'''%s \n -------------------------\n''' %log
+	if ok_dict.keys() == []:
+	    success_hosts=''
+	else:
+	    success_hosts=','.join(ok_dict.keys())
+	if error_dict.keys() == []:
+	    failed_hosts=''
+	else:
+	    failed_hosts=','.join(error_dict.keys())
+	total=len(all_key)
         deploylog=AppDeployLogModel(user=request.user,
 		time=datetime.now(),
 		target=target,
 		application=app,
 		mapping=mapping,
+		success_hosts=success_hosts,
+		failed_hosts=failed_hosts,
+		total=total,
 		log=head_txt+success_txt+error_txt)
 	try:
 	    deploylog.save()
@@ -132,6 +152,29 @@ def deploy_application(request):
 	f.close()
 	return render_to_response('salt_deploy_application.html',RequestContext(request,{'log':log}))
     return render_to_response('salt_deploy_application.html',RequestContext(request))
+
+
+@login_required(login_url='/')
+def cmd_run(request):
+    form=CmdInputForm()
+    time.sleep(5)
+    return render_to_response('salt_cmd_run.html',RequestContext(request,{'form':form}))
+@login_required(login_url='/')
+def list_app_deploy_info(request):
+    app_deploy_info=AppDeployLogModel.objects.all().order_by('-time')
+    paginator=Paginator(app_deploy_info,5)
+    page=request.GET.get('page')
+    try:
+	info=paginator.page(page)
+    except PageNotAnInteger:
+	info=paginator.page(1)
+    except EmptyPage:
+	info=paginator.page(paginator.num_pages)
+    return render_to_response('list_app_deploy_info.html',RequestContext(request,{'app_info':info}))
+@login_required(login_url='/')
+def list_cmd_run_info(request):
+    return render_to_response('list_cmd_run_info.html',RequestContext(request))
+
 
 
 

@@ -94,7 +94,7 @@
                              <script type='text/javascript'>
 				 function validation(){
 				    var target=document.getElementById('target');
-				    if (target.value==null || target.value=='')
+				    if (target.value==null || target.value.replace(/(^\s*)|(\s*$)/g, "")=='')
 				    {
 				            alert('请输入目标主机!!!');
 					    return false;

@@ -80,10 +80,13 @@
 			    <a href={% url 'salts:deploy' %}>应用部署</a>
                             </li>
                             <li>
-			    <a href='#'>命令执行</a>
+			    <a href={% url 'salts:cmd_run' %}>命令执行</a>
                             </li>
                             <li>
-			    <a href='#'>操作记录</a>
+			    <a href={% url 'salts:list_app_deploy_info'%}>部署记录</a>
+			    </li>
+                            <li>
+			    <a href={% url 'salts:list_cmd_run_info'%}>命令记录</a>
 			    </li>
                         </ul>
 	       	</li>

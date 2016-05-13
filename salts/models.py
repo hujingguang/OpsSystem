@@ -21,7 +21,20 @@ class AppDeployLogModel(models.Model):
     target=models.CharField(max_length=100)
     application=models.CharField(max_length=100)
     mapping=models.CharField(max_length=20)
+    success_hosts=models.CharField(max_length=500)
+    failed_hosts=models.CharField(max_length=500)
+    total=models.IntegerField()
     log=models.TextField()
     class Meta:
 	db_table='ops_app_deploy_log'
 
+class CmdRunLogModel(models.Model):
+    user=models.CharField(max_length=30)
+    time=models.DateTimeField()
+    target=models.CharField(max_length=100)
+    mapping=models.CharField(max_length=50)
+    cmd=models.CharField(max_length=500)
+    hosts=models.CharField(max_length=500) 
+    total=models.IntegerField()
+    class Meta:
+	db_table='ops_cmd_run_log'
