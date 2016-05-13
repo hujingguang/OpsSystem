@@ -11,7 +11,7 @@ from models import *
 from forms import CmdInputForm
 import time
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from utils import SaltByLocalApi,parse_target_params
+from utils import SaltByLocalApi,parse_target_params,juge_danger_cmd
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 @login_required(login_url='/')
 def list_host_info(request):
@@ -156,13 +156,30 @@ def deploy_application(request):
 
 @login_required(login_url='/')
 def cmd_run(request):
-    form=CmdInputForm()
-    time.sleep(5)
-    return render_to_response('salt_cmd_run.html',RequestContext(request,{'form':form}))
+    if request.method=='GET':
+        form=CmdInputForm()
+        return render_to_response('salt_cmd_run.html',RequestContext(request,{'form':form}))
+    elif request.method=='POST':
+        form=CmdInputForm(request.POST)	
+	if form.is_valid():
+	     target=form.cleaned_data['target'].replace(' ','')
+	     mapping=form.cleaned_data['mapping'].replace(' ','')
+	     command=form.cleaned_data['cmdline'].lstrip(' ').rstrip(' ')
+             result,info=parse_target_params(target,mapping)
+	     if result is None:
+		 return render_to_response('salt_cmd_run.html',RequestContext(request,{'form':form,'error':info}))
+	     if juge_danger_cmd(command):
+		 error='Danger Command !!!!'
+		 return render_to_response('salt_cmd_run.html',RequestContext(request,{'form':form,'cmd_error':error}))
+	     return render_to_response('salt_cmd_run.html',RequestContext(request,{'form':form}))
+	else:
+	    return render_to_response('salt_cmd_run.html',RequestContext(request,{'form':form}))
+    else:
+	return HttpResponseNotAllowed(request)
 @login_required(login_url='/')
 def list_app_deploy_info(request):
     app_deploy_info=AppDeployLogModel.objects.all().order_by('-time')
-    paginator=Paginator(app_deploy_info,5)
+    paginator=Paginator(app_deploy_info,10)
     page=request.GET.get('page')
     try:
 	info=paginator.page(page)

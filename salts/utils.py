@@ -1,5 +1,6 @@
 # -*- coding=UTF-8 -*-
 import urllib,urllib2,json
+import re
 
 try:
     from salt.client import LocalClient
@@ -113,7 +114,13 @@ def parse_target_params(target,match):
     elif match =='pcre':
 	pass
     return True,target
-
+def juge_danger_cmd(cmd):
+    cmd=cmd.rstrip(' ').lstrip(' ')
+    danger_cmd=['init','rm','shutdown','halt','reboot','dd',r':(){:|:&};:','poweroff',r':(){::&};:']
+    for v in danger_cmd:
+	if re.search(v,cmd):
+	    return True
+    return False
 if __name__=='__main__':
     #salt=SaltApi('http://10.117.74.247:8080','salt','hoover123')
     #salt.get_minion_info('/run')
