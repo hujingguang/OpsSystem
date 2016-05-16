@@ -103,14 +103,14 @@
 	  	</div>
 	    </div>
 	</div>
-{%if log %}
+{%if result %}
 <div class='row'>
 <div class='panel'> 
 <div class='panel-body'>
 <div class='panel panel-info' style='width:700px;height:1200px;margin:auto;'>
 <div class='alert alert-info'>
-<h3>部署日志</h3>
-{%for m in log%}
+<h3>命令执行结果：</h3>
+{%for m in result %}
 <p> {{m}} </p>
 {%endfor%}
 </div>

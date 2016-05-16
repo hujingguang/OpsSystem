@@ -121,8 +121,16 @@ def juge_danger_cmd(cmd):
 	if re.search(v,cmd):
 	    return True
     return False
+
+
+def test_cmd():
+    client=SaltByLocalApi('/etc/salt/master')
+    cmd='ls /root'
+    output=client.client.cmd('self,dip_node11','cmd.run',[cmd],expr_form='list')
+    print output
 if __name__=='__main__':
     #salt=SaltApi('http://10.117.74.247:8080','salt','hoover123')
     #salt.get_minion_info('/run')
     #local=SaltByLocalApi('/etc/salt/master')
-    print parse_target_params('supply_webs','nodegroup')
+    #print parse_target_params('supply_webs','nodegroup')
+    test_cmd()

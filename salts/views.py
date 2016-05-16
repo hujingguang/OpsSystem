@@ -68,6 +68,7 @@ def deploy_application(request):
 	result,info=parse_target_params(target,mapping)
 	if result is None:
 	    return render_to_response('salt_deploy_application.html',RequestContext(request,{'error':info}))
+	target=info
         client=SaltByLocalApi('/etc/salt/master')
 	cmd='%s.install' %app
 	output=client.client.cmd(target,'state.sls',[cmd],expr_form=mapping) 
@@ -171,11 +172,34 @@ def cmd_run(request):
 	     if juge_danger_cmd(command):
 		 error='Danger Command !!!!'
 		 return render_to_response('salt_cmd_run.html',RequestContext(request,{'form':form,'cmd_error':error}))
-	     return render_to_response('salt_cmd_run.html',RequestContext(request,{'form':form}))
+	     target=info
+	     client=SaltByLocalApi('/etc/salt/master')
+	     output=client.client.cmd(target,'cmd.run',[command],expr_form=mapping)
+             if output is None or output == {}:
+		 error='Bad Target Host !!!'
+		 return render_to_response('salt_cmd_run.html',RequestContext(request,{'form':form,'error':error}))
+	     result=''
+	     hosts=[]
+	     for k,v in output.iteritems():
+		 hosts.append(k)
+		 result=result+'\n\n---------------------------------------'+k+'------------------------\n\n'+v
+	     f=open('/tmp/.cmd_run.out','w')
+	     f.write(result)
+	     f.close()
+	     f=open('/tmp/.cmd_run.out','r')
+	     result=f.readlines()
+	     f.close()
+	     cmd_info=CmdRunLogModel(user=request.user,time=datetime.now(),target=target,mapping=mapping,cmd=command,hosts=','.join(hosts),total=len(hosts))
+	     try:
+		 cmd_info.save()
+	     except:
+		 pass
+	     return render_to_response('salt_cmd_run.html',RequestContext(request,{'form':form,'result':result}))
 	else:
 	    return render_to_response('salt_cmd_run.html',RequestContext(request,{'form':form}))
     else:
 	return HttpResponseNotAllowed(request)
+
 @login_required(login_url='/')
 def list_app_deploy_info(request):
     app_deploy_info=AppDeployLogModel.objects.all().order_by('-time')
@@ -188,9 +212,19 @@ def list_app_deploy_info(request):
     except EmptyPage:
 	info=paginator.page(paginator.num_pages)
     return render_to_response('list_app_deploy_info.html',RequestContext(request,{'app_info':info}))
+
 @login_required(login_url='/')
 def list_cmd_run_info(request):
-    return render_to_response('list_cmd_run_info.html',RequestContext(request))
+    cmd_list=CmdRunLogModel.objects.all().order_by('-time')
+    paginator=Paginator(cmd_list,10)
+    page=request.GET.get('page')
+    try:
+	cmd_info=paginator.page(page)
+    except PageNotAnInteger:
+	cmd_info=paginator.page(1)
+    except EmptyPage:
+	cmd_info=paginator.page(paginator.num_pages)
+    return render_to_response('list_cmd_run_info.html',RequestContext(request,{'cmd_info':cmd_info}))
 
 
 
