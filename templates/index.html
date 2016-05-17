@@ -62,6 +62,7 @@ normal:{color:'red'}
 					       }},
      {value:Dict.u_n, name:'unaccept', itemStyle:{
 normal:{color:'gray'}
+
 						 }},
 ]
 	}
@@ -150,18 +151,17 @@ data: [
 			<a href='#' class='list-group-item active'><h4 class='list-group-item-heading'>系统信息</h4></a>
 			<a href='#' class='list-group-item'>Cpu: &nbsp {{ info_dict.cpu_sockets }} Socket &nbsp x &nbsp {{ info_dict.cpu_cores }}  Core </a>
 			<a href='#' class='list-group-item'>Memery: &nbsp {{ info_dict.mem_used}}M &nbsp/&nbsp {{ info_dict.mem_total }}M <p></P> 
-			    <div class='progress progress-striped' style='margin:right;'>
-				<div class='progress-bar progress-bar-danger' role='progressbar' aria-valuenow='60' ria-valuemin="0" aria-valuemax="100" style="width: {{info_dict.mem_percentage}}%;">
-				</div>
-				<div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='60' ria-valuemin="0" aria-valuemax="100" style="width: {{info_dict.mem_left_percentage}}%;">
-				</div>
+			   <div class='progress progress-striped' style='margin:right;'>			
+		       	     <div class='progress-bar progress-bar-danger' role='progressbar' aria-valuenow='60' ria-valuemin="0" aria-valuemax="100" style="width: {{info_dict.mem_percentage}}%;">
+	                	</div>
+		          <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='60' ria-valuemin="0" aria-valuemax="100" style="width: {{info_dict.mem_left_percentage}}%;">
+			  </div>
 			    </div>
 			</a>
 			<a href='#' class='list-group-item'>Login User: &nbsp;&nbsp;&nbsp; {{info_dict.users }}</a>
 			<a href='#' class='list-group-item'>Uptime: &nbsp;&nbsp;&nbsp; {{info_dict.uptime}}</a>
 		    </div>
 		</div>
-
 	    </div>
 	    <div class='row'>
 		<div class='col-lg-10'>

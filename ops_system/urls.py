@@ -6,7 +6,7 @@ urlpatterns = [
     url(r'^$',login_view,name='login'),
     url(r'^admin/', admin.site.urls),
     url(r'^index/$',index,name='index'),
-    url(r'^host-manage/', include('hosts.urls',namespace='host-manage',app_name='hosts')),
+    url(r'^asset/', include('asset.urls',namespace='asset',app_name='asset')),
     url(r'^deploy-manage/',include('deploy.urls',namespace='deploy-manage',app_name='deploy')),
     url(r'^saltstack/',include('salts.urls',namespace='saltstack',app_name='salts')),
     url(r'^logout/$',logout_view,name='logout'),

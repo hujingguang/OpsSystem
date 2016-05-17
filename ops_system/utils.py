@@ -7,7 +7,7 @@ def get_system_info():
     cmd_get_cpu_cores=r"cat /proc/cpuinfo|grep processor|wc -l"
     cmd_get_mem_total=r"free -m |head -n 2|tail -n 1|awk '{print $2}'"
     cmd_get_mem_used=r"free -m |tail -n 2|head -n 1|awk '{print $3}'"
-    cmd_get_users_num=r"uptime |awk -F',' '{print $3}'"
+    cmd_get_users_num=r"uptime |awk -F',' '{print $2}'"
     cmd_get_uptime=r"uptime |awk -F',' '{print $1}'"
     cpu_sockets=commands.getoutput(cmd_get_cpu_sockect)
     cpu_cores=commands.getoutput(cmd_get_cpu_cores)

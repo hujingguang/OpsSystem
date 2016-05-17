@@ -12,7 +12,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ops_system',
     'deploy',
-    'hosts',
+    'asset',
     'salts',
 ]
 MIDDLEWARE_CLASSES = [
