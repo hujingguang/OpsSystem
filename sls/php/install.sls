@@ -62,7 +62,7 @@ install_php_source:
 
 install_libmemcached:
   cmd.run:
-    - name: cd /tmp && rm -rf libmemcached-1.0.18 && tar -zvf libmemcached-1.0.18.tar.gz && cd libmemcached-1.0.18 && ./configure --prefix=/usr/local/libmemcached --with-memcached &>/dev/null && make &>/dev/null && make install
+    - name: cd /tmp && rm -rf libmemcached-1.0.18 && tar -zxf libmemcached-1.0.18.tar.gz && cd libmemcached-1.0.18 && ./configure --prefix=/usr/local/libmemcached --with-memcached &>/dev/null && make &>/dev/null && make install
     - required:
       - file: /tmp/libmemcached-1.0.18.tar.gz
       - cmd: install_pkg_memcached
