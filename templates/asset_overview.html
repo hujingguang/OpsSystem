@@ -21,7 +21,7 @@
 		<h3 class='panel-title'><i class='fa fa-bell'></i>&nbsp 主机区域分布<h3>
 		    </div>
 		    <div class='panel-body'>
-			<div id='area' style='width:500px;height:300px'>
+			<div id='area' style='width:500px;height:400px'>
 			</div>
 			<script type='text/javascript'>
 			    var myChart=echarts.init(document.getElementById('area'));
@@ -64,9 +64,9 @@ restore : {show: false},
 calculable : true,
 	     series : [
 	     {
-name:'访问来源',
+name:'机器数量',
      type:'pie',
-     radius : '55%',
+     radius : '40%',
      center: ['50%', '60%'],
      data:[
      {value:335, name:'杭州'},
