@@ -25,6 +25,7 @@ class AppDeployLogModel(models.Model):
     failed_hosts=models.CharField(max_length=500)
     total=models.IntegerField()
     log=models.TextField()
+    duration=models.CharField(max_length=500)
     class Meta:
 	db_table='ops_app_deploy_log'
 
