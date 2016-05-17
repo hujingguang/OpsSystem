@@ -75,6 +75,7 @@ def deploy_application(request):
 	if output is None or output == {}:
 	    return render_to_response('salt_deploy_application.html',RequestContext(request,{'error':u'无效的目标主机'}))
 	error_dict={}
+	error_log=''
 	ok_dict={}
 	all_dict={}
 	for k,v in output.iteritems():
@@ -82,16 +83,35 @@ def deploy_application(request):
 		return render_to_response('salt_deploy_application.html',RequestContext(request,{'error':v[0]}))
 	    tmp_list=[]
 	    for i,j in v.iteritems():
-		if 'name' not in j or 'duration'  not in j:
-		    tmp_list.append([i,' ',0,j['result'],j['changes']])
+		if 'name' not in j or 'duration'  not in j or 'comment' not in j:
+		    tmp_list.append([i,' ',0,j['result'],j['changes'],j['comment']])
 		else:
-		    tmp_list.append([i,j['name'],j['duration'],j['result'],j['changes']])
+		    tmp_list.append([i,j['name'],j['duration'],j['result'],j['changes'],j['comment']])
 	    all_dict[k]=tmp_list 
 	for k ,v in all_dict.iteritems():
 	    for i in v:
 		if not i[3]:
 		    error_dict[k]=v
 		    break
+	if len(error_dict)>0:
+	    host_error_dict={}
+            for k,v in error_dict.iteritems():
+	        host_error_list=[]
+	        for i in v:
+		    if not i[3]:
+		        host_error_list.append(i)
+			break
+	        host_error_dict[k]=host_error_list
+	    for k,v in host_error_dict.iteritems():
+		error_log=error_log+'''-----host name: %s error log -----\n''' %k
+                for i in v:
+		    print '-------'
+		    print i
+		    print '-------'
+		    if i[4] != {} and isinstance(i[4],dict):
+			error_log=error_log+'''id:  %s   \n comment: %s \n name: %s  \n   %s \n''' %(i[0],i[5],i[1],i[4]['stderr'])
+		    else:
+			error_log=error_log+'''id:   %s   \n comment: %s \n name: %s  \n     %s \n''' %(i[0],i[5],i[1],i[4])
 	all_key=all_dict.keys()
 	for key in all_key:
 	    if key not in error_dict.keys():
@@ -101,28 +121,32 @@ def deploy_application(request):
 	head_txt=head_txt+'------------------------------\n'
 	success_txt='---------------success-------------\n'
 	error_txt=''
+	total_error_spend_time=0
+	total_ok_spend_time=0
 	if len(ok_dict)>0:
 	    for k,v in ok_dict.iteritems():
-		spend_time=0
+		ok_spend_time=0
 		for i in v:
-		    spend_time=i[2]+spend_time
-		spend_time=str(spend_time/1000)
-                success_txt=success_txt+''' Host: %s  | Spend time: %s Sec | Result: success \n''' %(k,spend_time)
+		    ok_spend_time=i[2]+ok_spend_time
+		ok_spend_time=ok_spend_time/1000
+		total_ok_spend_time=total_ok_spend_time+ok_spend_time
+                success_txt=success_txt+''' Host: %s  | Spend time: %s Sec | Result: success \n''' %(k,str(ok_spend_time))
 	success_txt=success_txt+'--------------success-------------\n'
 	if len(error_dict)>0:
 	   log=''
 	   for k,v in error_dict.iteritems():
-	       spend_time=0
+	       error_spend_time=0
 	       for i in v:
-		   if v[4] != {} and isinstance(v[4],dict):
+		   if i[4] != {} and isinstance(i[4],dict):
 	               log=log+'''name: %s \n  --error_info--: %s \n ''' %(i[1],i[4]['stderr'])
 		   else:
 	               log=log+'''name: %s \n  --error_info--: %s \n ''' %(i[1],i[4])
-		   spend_time=i[2]+spend_time
-               spend_time=str(spend_time/1000)
-	       error_txt=error_txt+''' Host: %s   | Spend time: %s Sec | Result: failed  \n ''' %(k,spend_time)
-	       error_txt=error_txt+'''-----------host: %s error log-----------\n''' %k
-	       error_txt=error_txt+'''%s \n -------------------------\n''' %log
+		   error_spend_time=i[2]+error_spend_time
+               error_spend_time=error_spend_time/1000
+	       total_error_spend_time=total_error_spend_time+error_spend_time
+	       error_txt=error_txt+''' Host: %s   | Spend time: %s Sec | Result: failed  \n ''' %(k,str(error_spend_time))
+	       #error_txt=error_txt+'''-----------host: %s error log-----------\n''' %k
+	       error_txt=error_txt+'''%s \n -------------------------\n''' %error_log
 	if ok_dict.keys() == []:
 	    success_hosts=''
 	else:
@@ -140,7 +164,8 @@ def deploy_application(request):
 		success_hosts=success_hosts,
 		failed_hosts=failed_hosts,
 		total=total,
-		log=head_txt+success_txt+error_txt)
+		log=head_txt+success_txt+error_txt,
+		duration=str(total_error_spend_time+total_ok_spend_time)+' s')
 	try:
 	    deploylog.save()
 	except:

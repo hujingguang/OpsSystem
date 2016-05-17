@@ -32,6 +32,7 @@
 			      <th>部署成功主机</th>
 			      <th>部署失败主机</th>
 			      <th>影响主机数</th>
+			      <th>总耗时</th>
 			  </tr>
 		      </thead>
 		      <tbody>
@@ -44,6 +45,7 @@
 		      <td>{{info.success_hosts}}</td>
 		      <td>{{info.failed_hosts}}</td>
 		      <td>{{info.total}}</td>
+		      <td>{{info.duration}}</td>
                        </tr>
 	            {%endfor%}
 		      </tbody>

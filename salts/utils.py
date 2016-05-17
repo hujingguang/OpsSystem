@@ -126,8 +126,16 @@ def juge_danger_cmd(cmd):
 def test_cmd():
     client=SaltByLocalApi('/etc/salt/master')
     cmd='ls /root'
-    output=client.client.cmd('self,dip_node11','cmd.run',[cmd],expr_form='list')
-    print output
+    output=client.client.cmd('self','state.sls',['php.install'],expr_form='glob')
+    for k,v in output.iteritems():
+	print '-------'
+	print k
+	for i,j in v.iteritems():
+	    print i
+	    print '------------'
+	    print j
+
+
 if __name__=='__main__':
     #salt=SaltApi('http://10.117.74.247:8080','salt','hoover123')
     #salt.get_minion_info('/run')
