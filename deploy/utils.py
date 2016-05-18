@@ -103,7 +103,15 @@ def check_ssh_passwd(passwd,ip):
 		return True
         return False
 
-def deploy_git_code(repo_name,repo_address,checkout_dir,exclude_dir,revision,ip,target,wwwDir,deploy_password,deploy_person):
+def deploy_git_code(repo_name,
+	repo_address,
+	checkout_dir,
+	exclude_dir,
+	revision,ip,
+	target,
+	wwwDir,
+	deploy_password,
+	deploy_person):
     log_file='/tmp/.'+str(random.randint(100,100000))+'.log'
     if not checkout_dir.startswith('/'):
 	checkout_dir='/'+checkout_dir
@@ -162,10 +170,21 @@ def deploy_git_code(repo_name,repo_address,checkout_dir,exclude_dir,revision,ip,
 	logfunc(log_file,'file',line)
     code,log=commands.getstatusoutput('cat %s' %diff_file)
     if target == 'test' or target == 'pre':
-	res,mess,log_file=upload_code_password(checkout_code_parent_dir+'/'+code_dir,deploy_password,wwwDir,ip[0],diff_file+'.log',exclude_dir,log_file)
+	res,mess,log_file=upload_code_password(checkout_code_parent_dir+'/'+code_dir,
+		deploy_password,
+		wwwDir,
+		ip[0],
+		diff_file+'.log',
+		exclude_dir,
+		log_file)
 	os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
 	if res:
-	    recode,m=insert_deploy_log(repo_name,target,lastest_revision,datetime.now(),log,deploy_person.get_username())
+	    recode,m=insert_deploy_log(repo_name,
+		    target,
+		    lastest_revision,
+		    datetime.now(),
+		    log,
+		    deploy_person.get_username())
 	    return recode,m,log_file
 	else:
 	    return res,mess,log_file
@@ -177,7 +196,12 @@ def deploy_git_code(repo_name,repo_address,checkout_dir,exclude_dir,revision,ip,
 	    res,mess,log_file=upload_code_no_password(checkout_code_parent_dir+'/'+code_dir,wwwDir,ip,diff_file+'.log',exclude_dir,log_file)
 	    os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
 	    if res:
-		recode,m=insert_deploy_log(repo_name,target,lastest_revision,datetime.now(),log,deploy_person.get_username())
+		recode,m=insert_deploy_log(repo_name,
+			target,
+			lastest_revision,
+			datetime.now(),
+			log,
+			deploy_person.get_username())
 		return recode,m,log_file
 	    else:
 		return res,mess,log_file
@@ -186,7 +210,18 @@ def deploy_git_code(repo_name,repo_address,checkout_dir,exclude_dir,revision,ip,
 
 	
 
-def deploy_svn_code(repo_name,user,password,repo_address,checkout_dir,exclude_dir,revision,ip,target,wwwDir,deploy_password,deploy_person):
+def deploy_svn_code(repo_name,
+	user,
+	password,
+	repo_address,
+	checkout_dir,
+	exclude_dir,
+	revision,
+	ip,
+	target,
+	wwwDir,
+	deploy_password,
+	deploy_person):
     log_file='/tmp/.'+str(random.randint(100,100000))+'.log'
     if not checkout_dir.startswith('/'):
 	checkout_dir='/'+checkout_dir
@@ -238,10 +273,20 @@ def deploy_svn_code(repo_name,user,password,repo_address,checkout_dir,exclude_di
 	    logfunc(log_file,'file',line)
 	code,log=commands.getstatusoutput('cat %s' %diff_file)
         if target == 'test' or target == 'pre':
-	    res,mess,log_file=upload_code_password(checkout_code_parent_dir+'/'+code_dir,deploy_password,wwwDir,ip[0],diff_file+'.log',exclude_dir,log_file)
+	    res,mess,log_file=upload_code_password(checkout_code_parent_dir+'/'+code_dir,
+		    deploy_password,
+		    wwwDir,
+		    ip[0],
+		    diff_file+'.log',
+		    exclude_dir,log_file)
             os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
 	    if res:
-		recode,m=insert_deploy_log(repo_name,target,lastest_revision,datetime.now(),log,deploy_person.get_username())
+		recode,m=insert_deploy_log(repo_name,
+			target,
+			lastest_revision,
+			datetime.now(),
+			log,
+			deploy_person.get_username())
 		return recode,m,log_file
 	    else:
 		return res,mess,log_file
@@ -253,7 +298,10 @@ def deploy_svn_code(repo_name,user,password,repo_address,checkout_dir,exclude_di
 	        res,mess,log_file=upload_code_no_password(checkout_code_parent_dir+'/'+code_dir,wwwDir,ip,diff_file+'.log',exclude_dir,log_file)
 		os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
 		if res:
-		    recode,m=insert_deploy_log(repo_name,target,lastest_revision,datetime.now(),log,deploy_person.get_username())
+		    recode,m=insert_deploy_log(repo_name,target,
+			    lastest_revision,datetime.now(),
+			    log,
+			    deploy_person.get_username())
 		    return recode,m,log_file
 		else:
 		    return res,mess,log_file
@@ -292,7 +340,12 @@ def upload_code_no_password(code_dir,wwwDir,ip,diff_file,exclude_dir,log_file):
 
 
 def insert_deploy_log(repoName,target,revision,date,log,person):
-    deployinfo=DeployInfoModel(repoName=repoName,target=target,revision=revision,date=date,log=log,person=person)
+    deployinfo=DeployInfoModel(repoName=repoName,
+	    target=target,
+	    revision=revision,
+	    date=date,
+	    log=log,
+	    person=person)
     try:
 	deployinfo.save()
     except:
@@ -368,13 +421,33 @@ def deploy_project_func(repoName,password,target,deploy_person):
 		ip.append(i)
     if repoinfo.repoType=='svn':
 	#svn 发布方法
-	return deploy_svn_code(repoinfo.repoName,repoinfo.repoUser,repoinfo.repoPassword,repoinfo.repoAddress,repoinfo.localCheckoutDir,repoinfo.excludeDir,revision,ip,target,repoinfo.wwwDir,password,deploy_person)
+	return deploy_svn_code(repoinfo.repoName,
+		repoinfo.repoUser,
+		repoinfo.repoPassword,
+		repoinfo.repoAddress,
+		repoinfo.localCheckoutDir,
+		repoinfo.excludeDir,
+		revision,
+		ip,
+		target,
+		repoinfo.wwwDir,
+		password,
+		deploy_person)
     else:
 	if len(revision)<10:
 	    return False,u'Git版本号字符串必须大于等于10位',None
 	revision=revision[:10]
 	#git 发布方法
-	return deploy_git_code(repoinfo.repoName,repoinfo.repoAddress,repoinfo.localCheckoutDir,repoinfo.excludeDir,revision,ip,target,repoinfo.wwwDir,password,deploy_person)
+	return deploy_git_code(repoinfo.repoName,
+		repoinfo.repoAddress,
+		repoinfo.localCheckoutDir,
+		repoinfo.excludeDir,
+		revision,
+		ip,
+		target,
+		repoinfo.wwwDir,
+		password,
+		deploy_person)
 
 
 	

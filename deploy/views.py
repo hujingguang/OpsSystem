@@ -17,7 +17,9 @@ def add_svn_repo(request):
 	    if RepoModel.objects.filter(repoName=form.cleaned_data['repoName']).count() == 1:
 		form.errors['repoName']=u'已经存在该库名！请重新命名'
 		return render_to_response('add_svn_repo.html',RequestContext(request,{'form':form}))
-	    svn_is_ok,message=check_svn_validated(user=form.cleaned_data['repoUser'].strip(),password=form.cleaned_data['repoPassword'].strip(),url=form.cleaned_data['repoAddress'].strip())
+	    svn_is_ok,message=check_svn_validated(user=form.cleaned_data['repoUser'].strip(),
+		    password=form.cleaned_data['repoPassword'].strip(),
+		    url=form.cleaned_data['repoAddress'].strip())
 	    if not svn_is_ok:
 		form.errors['repoAddress']=message
 		return render_to_response('add_svn_repo.html',RequestContext(request,{'form':form}))
@@ -36,7 +38,18 @@ def add_svn_repo(request):
 	    repo_dict={}
 	    for items in form.cleaned_data:
 		repo_dict[items]=form.cleaned_data[items].strip(' ')
-	    repoinfo=RepoModel(repoName=repo_dict['repoName'],repoAddress=repo_dict['repoAddress'],repoUser=repo_dict['repoUser'],repoPassword=repo_dict['repoPassword'],wwwDir=repo_dict['wwwDir'],testDeployIP=repo_dict['testDeployIP'],preDeployIP=repo_dict['preDeployIP'],onlineDeployIP=repo_dict['onlineDeployIP'],excludeDir=repo_dict['excludeDir'],repoType='svn',localCheckoutDir=repo_dict['localCheckoutDir'],addDate=addDate)
+	    repoinfo=RepoModel(repoName=repo_dict['repoName'],
+		    repoAddress=repo_dict['repoAddress'],
+		    repoUser=repo_dict['repoUser'],
+		    repoPassword=repo_dict['repoPassword'],
+		    wwwDir=repo_dict['wwwDir'],
+		    testDeployIP=repo_dict['testDeployIP'],
+		    preDeployIP=repo_dict['preDeployIP'],
+		    onlineDeployIP=repo_dict['onlineDeployIP'],
+		    excludeDir=repo_dict['excludeDir'],
+		    repoType='svn',
+		    localCheckoutDir=repo_dict['localCheckoutDir'],
+		    addDate=addDate)
 	    try:
 		repoinfo.save()
 	    except e:
@@ -73,7 +86,16 @@ def add_git_repo(request):
 	    repo_dict={}
 	    for items in form.cleaned_data:
 		repo_dict[items]=form.cleaned_data[items].strip(' ')
-	    repoinfo=RepoModel(repoName=repo_dict['repoName'],repoAddress=repo_dict['repoAddress'],wwwDir=repo_dict['wwwDir'],testDeployIP=repo_dict['testDeployIP'],preDeployIP=repo_dict['preDeployIP'],onlineDeployIP=repo_dict['onlineDeployIP'],excludeDir=repo_dict['excludeDir'],repoType='git',localCheckoutDir=repo_dict['localCheckoutDir'],addDate=addDate)
+	    repoinfo=RepoModel(repoName=repo_dict['repoName'],
+		    repoAddress=repo_dict['repoAddress'],
+		    wwwDir=repo_dict['wwwDir'],
+		    testDeployIP=repo_dict['testDeployIP'],
+		    preDeployIP=repo_dict['preDeployIP'],
+		    onlineDeployIP=repo_dict['onlineDeployIP'],
+		    excludeDir=repo_dict['excludeDir'],
+		    repoType='git',
+		    localCheckoutDir=repo_dict['localCheckoutDir'],
+		    addDate=addDate)
 	    try:
 		repoinfo.save()
 	    except e:
