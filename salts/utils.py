@@ -57,12 +57,27 @@ class SaltByLocalApi(object):
 
     def get_host_info(self):
 	minions=self.connected_minions_list
-	ret=self.client.cmd(minions,'grains.item',['mem_total','osfullname','host','osrelease','num_cpus','ipv4','group','area','usage'],expr_form='list')
+	ret=self.client.cmd(minions,'grains.item',['mem_total',
+	    'osfullname',
+	    'host',
+	    'osrelease',
+	    'num_cpus',
+	    'ipv4',
+	    'group',
+	    'area',
+	    'usage'],expr_form='list')
         host_info_dict={}
 	for k,v in ret.iteritems():
 	    v['ipv4'].remove('127.0.0.1')
 	    ips='/'.join(v['ipv4']) if len(v['ipv4'])>1 else v['ipv4'][0]
-	    values=[v['host'],ips,v['osfullname']+v['osrelease'],str(v['num_cpus'])+' cores',str(v['mem_total'])+' MB',v['group'],v['area'],v['usage']]
+	    values=[v['host'],
+		    ips,
+		    v['osfullname']+v['osrelease'],
+		    str(v['num_cpus'])+' cores',
+		    str(v['mem_total'])+' MB',
+		    v['group'],
+		    v['area'],
+		    v['usage']]
 	    host_info_dict[k]=values
         return host_info_dict
     def get_master_config(self):
@@ -128,11 +143,9 @@ def test_cmd():
     cmd='ls /root'
     output=client.client.cmd('self','state.sls',['php.install'],expr_form='glob')
     for k,v in output.iteritems():
-	print '-------'
 	print k
 	for i,j in v.iteritems():
 	    print i
-	    print '------------'
 	    print j
 
 

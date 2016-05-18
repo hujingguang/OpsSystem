@@ -105,9 +105,6 @@ def deploy_application(request):
 	    for k,v in host_error_dict.iteritems():
 		error_log=error_log+'''-----host name: %s error log -----\n''' %k
                 for i in v:
-		    print '-------'
-		    print i
-		    print '-------'
 		    if i[4] != {} and isinstance(i[4],dict):
 			error_log=error_log+'''id:  %s   \n comment: %s \n name: %s  \n   %s \n''' %(i[0],i[5],i[1],i[4]['stderr'])
 		    else:
@@ -116,10 +113,10 @@ def deploy_application(request):
 	for key in all_key:
 	    if key not in error_dict.keys():
 		ok_dict[key]=all_dict[key]
-	head_txt='----------------------------\n'
+	head_txt='---------\n'
         head_txt=head_txt+''' total: %d , successed: %d  , failed: %d  \n''' %(len(all_dict),len(ok_dict),len(error_dict))
-	head_txt=head_txt+'------------------------------\n'
-	success_txt='---------------success-------------\n'
+	head_txt=head_txt+'---------\n'
+	success_txt='-----success-----\n'
 	error_txt=''
 	total_error_spend_time=0
 	total_ok_spend_time=0
@@ -131,7 +128,7 @@ def deploy_application(request):
 		ok_spend_time=ok_spend_time/1000
 		total_ok_spend_time=total_ok_spend_time+ok_spend_time
                 success_txt=success_txt+''' Host: %s  | Spend time: %s Sec | Result: success \n''' %(k,str(ok_spend_time))
-	success_txt=success_txt+'--------------success-------------\n'
+	success_txt=success_txt+'-----success-----\n'
 	if len(error_dict)>0:
 	   log=''
 	   for k,v in error_dict.iteritems():
@@ -146,7 +143,7 @@ def deploy_application(request):
 	       total_error_spend_time=total_error_spend_time+error_spend_time
 	       error_txt=error_txt+''' Host: %s   | Spend time: %s Sec | Result: failed  \n ''' %(k,str(error_spend_time))
 	       #error_txt=error_txt+'''-----------host: %s error log-----------\n''' %k
-	       error_txt=error_txt+'''%s \n -------------------------\n''' %error_log
+	       error_txt=error_txt+'''%s \n ----------\n''' %error_log
 	if ok_dict.keys() == []:
 	    success_hosts=''
 	else:
@@ -207,14 +204,20 @@ def cmd_run(request):
 	     hosts=[]
 	     for k,v in output.iteritems():
 		 hosts.append(k)
-		 result=result+'\n\n---------------------------------------'+k+'------------------------\n\n'+v
+		 result=result+'\n\n------'+k+'-----\n\n'+v
 	     f=open('/tmp/.cmd_run.out','w')
 	     f.write(result)
 	     f.close()
 	     f=open('/tmp/.cmd_run.out','r')
 	     result=f.readlines()
 	     f.close()
-	     cmd_info=CmdRunLogModel(user=request.user,time=datetime.now(),target=target,mapping=mapping,cmd=command,hosts=','.join(hosts),total=len(hosts))
+	     cmd_info=CmdRunLogModel(user=request.user,
+		     time=datetime.now(),
+		     target=target,
+		     mapping=mapping,
+		     cmd=command,
+		     hosts=','.join(hosts),
+		     total=len(hosts))
 	     try:
 		 cmd_info.save()
 	     except:
