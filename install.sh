@@ -45,8 +45,8 @@ install_python2_7(){
 	new_version=`python --version`
         echo $new_version |grep '2.7' &>/dev/null
 	sed -i 's#\#!/usr/bin/python#\#!/usr/bin/python2.6#g' /usr/bin/yum
+	rm -rf ./Python-2.7.11*
     fi
-      rm -rf ./Python-2.7.11*
 }
 
 install_python_module(){
