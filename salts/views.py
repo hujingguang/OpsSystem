@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponseServerError
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate
 from datetime import datetime
@@ -46,7 +46,7 @@ def refresh_host_info(request):
 	        try:
 		    host_info.save()
 	        except Exception as e:
-		    return 500
+		        return HttpResponseServerError(request)
     all_host=HostInfoModel.objects.all()
     for host in all_host:
 	if host.hostname not in host_info_dict:
@@ -71,7 +71,7 @@ def deploy_application(request):
 	target=info
         client=SaltByLocalApi('/etc/salt/master')
 	cmd='%s.install' %app
-	output=client.client.cmd(target,'state.sls',[cmd],expr_form=mapping) 
+	output=client.client.cmd(target,'state.sls',[cmd],expr_form=mapping)
 	if output is None or output == {}:
 	    return render_to_response('salt_deploy_application.html',RequestContext(request,{'error':u'无效的目标主机'}))
 	error_dict={}
@@ -87,7 +87,7 @@ def deploy_application(request):
 		    tmp_list.append([i,' ',0,j['result'],j['changes'],j['comment']])
 		else:
 		    tmp_list.append([i,j['name'],j['duration'],j['result'],j['changes'],j['comment']])
-	    all_dict[k]=tmp_list 
+	    all_dict[k]=tmp_list
 	for k ,v in all_dict.iteritems():
 	    for i in v:
 		if not i[3]:
@@ -183,7 +183,7 @@ def cmd_run(request):
         form=CmdInputForm()
         return render_to_response('salt_cmd_run.html',RequestContext(request,{'form':form}))
     elif request.method=='POST':
-        form=CmdInputForm(request.POST)	
+        form=CmdInputForm(request.POST)
 	if form.is_valid():
 	     target=form.cleaned_data['target'].replace(' ','')
 	     mapping=form.cleaned_data['mapping'].replace(' ','')

@@ -1,12 +1,0 @@
-€}q(Uops_system.authq]qUMyAuthqaUdeploy.migrationsq]qUdeploy.adminq]qU
-salts.urlsq	]q
-UurlpatternsqaUasset.modelsq]qUops_system.django-wsgiq]qUapplicationqaUdeploy.modelsq]q(U	RepoModelqUDeployInfoModelqeUdeploy.testsq]qUdeploy.appsq]qUDeployConfigqaUsaltsq]qU
-ops_systemq]qUops_system.viewsq]q(Uindexq U	host_listq!Ulogout_viewq"U
-login_viewq#eU
-asset.urlsq$]q%haUops_system.urlsq&]q'haU
-salts.appsq(]q)U
-SaltConfigq*aUsalts.migrationsq+]q,U(salts.migrations.0002_auto_20160517_1642q-]q.U	Migrationq/aUdeploy.formsq0]q1(UGitInfoFormq2Usvninfoq3USvnInfoFormq4UDeployInputFormq5eUassetq6]q7Udeploy.urlsq8]q9haUsalts.utilsq:]q;(Uparse_target_paramsq<Utest_cmdq=USaltByWebApiq>USaltByLocalApiq?Ujuge_danger_cmdq@eUsalts.migrations.0001_initialqA]qBh/aUops_system.settingsqC]qD(U	TEMPLATESqEUAUTH_PASSWORD_VALIDATORSqFUUSE_L10NqGUSTATIC_ROOTqHULANGUAGE_CODEqIUUSE_TZqJUUSE_I18NqKU	DATABASESqLU	TIME_ZONEqMU
-STATIC_URLqNUSTATICFILE_DIRSqOUROOT_URLCONFqPUWSGI_APPLICATIONqQUMIDDLEWARE_CLASSESqRUDEBUGqSUALLOWED_HOSTSqTU
-SECRET_KEYqUUBASE_DIRqVUINSTALLED_APPSqWeU
-asset.appsqX]qYUAssetConfigqZaUmanageq[]q\Uops_system.utilsq]]q^Uget_system_infoq_aUdeployq`]qaUasset.migrationsqb]qcUops_system.wsgiqd]qehaUsalts.viewsqf]qg(Ucmd_runqhUlist_app_deploy_infoqiUlist_host_infoqjUdeploy_applicationqkUrefresh_host_infoqlUlist_cmd_run_infoqmeUtestqn]qoUfunqpaUasset.adminqq]qrU
-salts.testqs]qt(Utest1quh<eUdeploy.migrations.0001_initialqv]qwh/aUsalts.formsqx]qy(UCmdInputFormqzUChoiceq{eUasset.viewsq|]q}Uoverviewq~aUsalts.modelsq]q€(UAppDeployLogModelqUCmdRunLogModelq‚UHostInfoModelqƒeUasset.testsq„]q…Usalts.testsq†]q‡Udeploy.utilsqˆ]q‰(Ucheck_svn_validatedqŠUdeploy_svn_codeq‹UloopfuncqŒUdeploy_git_codeqUdeal_with_excludeqŽUcheck_git_validatedqUcheck_ssh_passwdqUupload_code_no_passwordq‘Ucheck_ip_reachableq’UIP_regexq“Uupload_code_passwordq”Udeploy_project_funcq•Uinsert_deploy_logq–Ulogfuncq—eUdeploy.viewsq˜]q™(Uadd_git_repoqšUadd_svn_repoq›Ulist_deploy_infoqœUlist_repo_infoqUdeploy_projectqžeUsalts.adminqŸ]q u.

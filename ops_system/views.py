@@ -3,14 +3,14 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from django.template import RequestContext
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponseNotAllowed
 from utils import *
 import json
 from salts.utils import SaltByLocalApi
 @login_required(login_url='/')
 def index(request):
     if request.method=='POST':
-	return 403
+	return HttpResponseNotAllowed(request)
     local=SaltByLocalApi('/etc/salt/master')
     res=local.get_minions_key_status()
     key_status={'a_n':res[0],'r_n':res[1],'u_n':res[2]}
@@ -30,8 +30,7 @@ def login_view(request):
 	    #return render_to_response('index.html',RequestContext(request))
 	    return HttpResponseRedirect(reverse('index'))
         else:
-	    print request.user.is_authenticated
-	    return render_to_response('login.html',RequestContext(request,{'error':'Bad Username or Password'})) 
+	    return render_to_response('login.html',RequestContext(request,{'error':'Bad Username or Password'}))
     else:
 	return render_to_response('login.html',RequestContext(request,{'error':''}))
 
@@ -41,6 +40,3 @@ def logout_view(request):
     return HttpResponseRedirect('/')
 
 
-@login_required(login_url='/')
-def host_list(request):
-    return render_to_response('host_list.html', RequestContext(request))

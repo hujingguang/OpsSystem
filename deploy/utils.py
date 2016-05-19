@@ -48,6 +48,7 @@ def check_svn_validated(user,password,url):
     res=os.system('grep "repository" /tmp/.svn_32197')
     if res == 0:
 	return False,u'不存在该SVN 库'
+
 def check_git_validated(url):
     global IP_regex
     if not re.search(IP_regex,url):
@@ -77,9 +78,6 @@ def check_ip_reachable(ip):
 	return False
     return True
     
-
-
-
 def check_ssh_passwd(passwd,ip):
         ch=pexpect.spawn('ssh root@%s' %ip)
 	res=ch.expect(['yes','assword',pexpect.EOF,pexpect.TIMEOUT],timeout=120)
@@ -208,7 +206,6 @@ def deploy_git_code(repo_name,
 	else:
 	    return False,u'密码错误,请输入管理员密码',None
 
-	
 
 def deploy_svn_code(repo_name,
 	user,
@@ -308,7 +305,6 @@ def deploy_svn_code(repo_name,
 	    else:
 		return False,u'密码错误,请输入管理员密码',None
 
-	
 
 def upload_code_no_password(code_dir,wwwDir,ip,diff_file,exclude_dir,log_file):
     if not os.path.exists(code_dir):
@@ -353,8 +349,6 @@ def insert_deploy_log(repoName,target,revision,date,log,person):
     return True,u'发布成功'
 
 	
-    
-
 def upload_code_password(code_dir,password,wwwDir,ip,diff_file,exclude_dir,log_file):
     if not os.path.exists(code_dir):
 	return False,u'不存在源代码目录: %s' %code_dir,log_file
@@ -400,8 +394,6 @@ def loopfunc(pid):
 	    time.sleep(2)
 	    break
 	time.sleep(3)
-
-
 
 def deploy_project_func(repoName,password,target,deploy_person):
     repoinfo=RepoModel.objects.get(repoName=repoName)

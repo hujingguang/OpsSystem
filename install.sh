@@ -19,6 +19,8 @@
 
 set -o nounset                              # Treat unset variables as an error
 
+root_dir=`pwd`
+
 rpm -qa|grep epel &>/dev/null 
 if [ $? != 0 ]
 then
