@@ -94,15 +94,16 @@ copy_sls_files(){
     then
 	mkdir -p /srv/salt
     fi
-    \cp -a ./sls/* /srv/salt/
+    cur=`pwd`
+    \cp -a $cur/sls/* /srv/salt/
 }
 
 
 main(){
+copy_sls_files
 install_python2_7
 install_python_module
 install_salt_master
-copy_sls_files
 }
 
 echo 'begin to start.......'
