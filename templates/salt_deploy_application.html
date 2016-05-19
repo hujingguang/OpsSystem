@@ -117,14 +117,14 @@
 <div class='panel-body'>
 <div class='panel panel-info' style='width:700px;height:1200px;margin:auto;'>
 <div class='alert alert-info'>
-<h3>部署日志</h3>
-{%for m in log%}
-<p> {{m}} </p>
-{%endfor%}
+<textarea style='width:100%;height:1000px;background: #300a24'>
+部署日志:
+{{log}}
+</textarea>
 </div>
 </div>
 </div>
 </div>
 </div>
 {%endif%}
-	{%endblock%}
+{%endblock%}

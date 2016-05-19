@@ -9,7 +9,7 @@ from datetime import datetime
 from django.shortcuts import render_to_response
 from models import *
 from forms import CmdInputForm
-import time
+import time,commands
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from utils import SaltByLocalApi,parse_target_params,juge_danger_cmd
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
@@ -170,9 +170,7 @@ def deploy_application(request):
 	f=open('/tmp/.app_deploy.log','w')
 	f.write(head_txt+success_txt+error_txt)
 	f.close()
-        f=open('/tmp/.app_deploy.log','r')
-	log=f.readlines()
-	f.close()
+	code,log=commands.getstatusoutput('cat /tmp/.app_deploy.log')
 	return render_to_response('salt_deploy_application.html',RequestContext(request,{'log':log}))
     return render_to_response('salt_deploy_application.html',RequestContext(request))
 
@@ -208,9 +206,7 @@ def cmd_run(request):
 	     f=open('/tmp/.cmd_run.out','w')
 	     f.write(result)
 	     f.close()
-	     f=open('/tmp/.cmd_run.out','r')
-	     result=f.readlines()
-	     f.close()
+	     code,result=commands.getstatusoutput('cat /tmp/.cmd_run.out')
 	     cmd_info=CmdRunLogModel(user=request.user,
 		     time=datetime.now(),
 		     target=target,

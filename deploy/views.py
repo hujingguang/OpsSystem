@@ -147,9 +147,11 @@ def deploy_project(request):
 	    res,mess,log_file=deploy_project_func(repoName,password,target,deploy_person)
 	    log=[]
 	    if log_file is not None:
-		f=open(log_file,'r')
-		log=f.readlines()
-		f.close()
+		#f=open(log_file,'r')
+		#log=f.readlines()
+		#f.close()
+		cmd='cat %s' %log_file
+		log=commands.getstatusoutput(cmd)
 		os.system('rm -f %s' %log_file)
 	    if res:
 		form.errors['password']=mess
