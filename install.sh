@@ -80,7 +80,7 @@ install_python_module(){
 }
 
 install_salt_master(){
-     yum install salt-master -y &>/dev/null
+     yum install salt-master git subversion -y &>/dev/null
      if [ $? != 0 ]
      then
 	 echo 'install salt-master failed '
