@@ -28,7 +28,8 @@ fi
 #install python2.7
 
 install_python2_7(){
-    echo `python --version` |grep '2.7' &>/dev/null
+    version=`python --version`
+    echo $version |grep '2.7' &>/dev/null
     if [ $? != 0 ]
     then 
 	yum install xz -y &>/dev/null
@@ -40,15 +41,15 @@ install_python2_7(){
 	    exit 1
 	fi
 	mv /usr/bin/python /usr/bin/python.bak && ln -s /usr/local/python2.7/bin/python /usr/bin/python
-        echo `python --version` |grep '2.7' &>/dev/null
+	new_version=`python --version`
+        echo $new_version |grep '2.7' &>/dev/null
 	if [ $? == 0 ]
 	then
 	    echo 'python2.7 install successed '
-	    sed -i 's#\#!/usr/bin/python#\#!/usr/bin/python2.6#g' /usr/bin/yum
 	else
 	    echo 'python2.7 install dir : /usr/local/python2.7'
-	    exit 1
 	fi
+	   sed -i 's#\#!/usr/bin/python#\#!/usr/bin/python2.6#g' /usr/bin/yum
     fi
 }
 
@@ -72,11 +73,11 @@ install_python_module(){
     echo 'install pexpect , salt , django ,MySQL-python'
     /usr/local/python2.7/bin/pip install django
     /usr/local/python2.7/bin/pip install salt
-    /usr/local/python4.7/bin/pip install pexpect
-    /usr/local/python4.7/bin/pip install MySQL-python
+    /usr/local/python2.7/bin/pip install pexpect
+    /usr/local/python2.7/bin/pip install MySQL-python
 }
 
-install_salt(){
+install_salt_master(){
      yum install salt-master -y &>/dev/null
      if [ $? != 0 ]
      then
@@ -85,3 +86,6 @@ install_salt(){
      fi
 }
 
+install_python2_7
+install_python_module
+install_salt_master
