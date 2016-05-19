@@ -40,17 +40,13 @@ install_python2_7(){
 	    echo 'install python2.7 failed ! '
 	    exit 1
 	fi
-	mv /usr/bin/python /usr/bin/python.bak && ln -s /usr/local/python2.7/bin/python /usr/bin/python
+	mv /usr/bin/python /usr/bin/python.bak 
+	ln -s /usr/local/python2.7/bin/python /usr/bin/python
 	new_version=`python --version`
         echo $new_version |grep '2.7' &>/dev/null
-	if [ $? == 0 ]
-	then
-	    echo 'python2.7 install successed '
-	else
-	    echo 'python2.7 install dir : /usr/local/python2.7'
-	fi
-	   sed -i 's#\#!/usr/bin/python#\#!/usr/bin/python2.6#g' /usr/bin/yum
+	sed -i 's#\#!/usr/bin/python#\#!/usr/bin/python2.6#g' /usr/bin/yum
     fi
+      rm -rf ./Python-2.7.11*
 }
 
 install_python_module(){
@@ -75,6 +71,8 @@ install_python_module(){
     /usr/local/python2.7/bin/pip install salt
     /usr/local/python2.7/bin/pip install pexpect
     /usr/local/python2.7/bin/pip install MySQL-python
+    yum install mysql-devel  MySQL-python -y &>/dev/null
+    ln -s /usr/local/mysql/lib/libmysqlclient.so.18 /usr/lib64/libmysqlclient.so.18
 }
 
 install_salt_master(){
@@ -84,8 +82,23 @@ install_salt_master(){
 	 echo 'install salt-master failed '
 	 exit 1
      fi
+     service salt-master start &>/dev/null
 }
 
+copy_sls_files(){
+    if [ ! -e /srv/salt ]
+    then
+	mkdir -p /srv/salt
+    fi
+    \cp -a ./sls/* /srv/salt/
+}
+
+main(){
 install_python2_7
 install_python_module
 install_salt_master
+copy_sls_files
+}
+
+echo 'begin to start.......'
+main
