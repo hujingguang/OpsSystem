@@ -71,8 +71,12 @@ install_python_module(){
     /usr/local/python2.7/bin/pip install salt
     /usr/local/python2.7/bin/pip install pexpect
     /usr/local/python2.7/bin/pip install MySQL-python
-    yum install mysql-devel  MySQL-python -y &>/dev/null
-    ln -s /usr/local/mysql/lib/libmysqlclient.so.18 /usr/lib64/libmysqlclient.so.18
+    yum install mysql-devel mysql-server mysql MySQL-python -y &>/dev/null
+    mysqlib=`find / -name 'libmysqlclient.so.18'`
+    if [ ! -e /usr/lib64/libmysqlclient.so.18 ]
+    then
+    ln -s $mysqlib /usr/lib64/libmysqlclient.so.18
+    fi
 }
 
 install_salt_master(){
@@ -93,6 +97,7 @@ copy_sls_files(){
     \cp -a ./sls/* /srv/salt/
 }
 
+
 main(){
 install_python2_7
 install_python_module
@@ -102,3 +107,7 @@ copy_sls_files
 
 echo 'begin to start.......'
 main
+echo 'please install mysql server and start '
+echo 'please vim ./ops_system/setting.py  and set database '
+echo 'run: python manage.py test '
+
