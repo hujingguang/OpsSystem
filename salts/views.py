@@ -207,13 +207,22 @@ def cmd_run(request):
 	     f.write(result)
 	     f.close()
 	     code,result=commands.getstatusoutput('cat /tmp/.cmd_run.out')
-	     cmd_info=CmdRunLogModel(user=request.user,
-		     time=datetime.now(),
-		     target=target,
-		     mapping=mapping,
-		     cmd=command,
-		     hosts=','.join(hosts),
-		     total=len(hosts))
+	     if target == '*':
+	         cmd_info=CmdRunLogModel(user=request.user,
+		         time=datetime.now(),
+		         target=target,
+		         mapping=mapping,
+		         cmd=command,
+		         hosts='all hosts',
+		         total=len(hosts))
+	     else:
+	         cmd_info=CmdRunLogModel(user=request.user,
+		         time=datetime.now(),
+		         target=target,
+		         mapping=mapping,
+		         cmd=command,
+		         hosts=','.join(hosts),
+		         total=len(hosts))
 	     try:
 		 cmd_info.save()
 	     except:
