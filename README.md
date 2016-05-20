@@ -25,6 +25,7 @@ ops plateform
 
 9:   如果要进行应用部署，请将项目根目录下的sls目录里面的所有文件拷贝至salt的file_root 下面，一般为/srv/salt 下面。如果要部署tomcat应用，请自行下载jdk源码包，放在/srv/salt/tomcat/files下面，并修改install.sls文件.
 
+10: 要进行应用部署，需要安装minion客户端，并配置好master 和id  ,还有必须在grains 添加三个变量：group,area,usage。  这个三个变量信息会在主机信息中对应:组,地址,和用途三栏。否则刷新无法获取到主机信息
 
 ----快捷安装：
 

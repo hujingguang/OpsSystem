@@ -34,7 +34,7 @@ install_python2_7(){
     echo $version |grep '2.7' &>/dev/null
     if [ $? != 0 ]
     then 
-	yum install xz -y &>/dev/null
+	yum install xz gcc -y &>/dev/null
 	wget https://www.python.org/ftp/python/2.7.11/Python-2.7.11.tar.xz &>/dev/null
 	tar -xf Python-2.7.11.tar.xz && cd Python-2.7.11 && ./configure --prefix=/usr/local/python2.7 &>/dev/null && make &>/dev/null && make install &>/dev/null
 	if [ $? != 0 ]
