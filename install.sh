@@ -113,4 +113,7 @@ main
 echo 'please install mysql server and start '
 echo 'please vim ./ops_system/setting.py  and set database '
 echo 'run: python manage.py test '
+echo 'run: python manage.py makemigrations  '
+echo 'run: python manage.py migrate'
+echo 'run: python manage.py createsuperuser'
 
