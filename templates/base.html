@@ -39,7 +39,7 @@
                         <a href="/index"><i class="fa fa-fw fa-dashboard"></i>&nbsp;Dashboard</a>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#deploy"><i class="fa fa-fw fa-arrows-v"></i> 项目管理 <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#deploy"><i class="fa fa-fw fa-github-alt"></i> 项目管理 <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="deploy" class="collapse">
                             <li>
 			    <a href='javascript:;' data-toggle='collapse' data-target='#add'>添加版本库</a>
@@ -63,7 +63,7 @@
                         </ul>
                     </li>
                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#source"><i class="fa fa-fw fa-arrows-v"></i> 资产管理 <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#source"><i class="fa fa-fw fa-bar-chart-o"></i> 资产管理 <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="source" class="collapse">
                             <li>
 			    <a href={% url 'asset:overview' %}>云资产概览</a>
@@ -71,14 +71,16 @@
                         </ul>
 	       	</li>
                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#saltstack"><i class="fa fa-fw fa-arrows-v"></i> SaltStack <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#saltstack"><i class="fa fa-fw fa-wrench"></i> SaltStack <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="saltstack" class="collapse">
                             <li>
 			    <a href={% url 'salts:host_info' %}>主机信息</a>
                             </li>
+			    {%if request.user.is_superuser %}
                             <li>
 			    <a href={% url 'salts:deploy' %}>应用部署</a>
-                            </li>
+			    </li>
+			    {%endif%}
 			    {%if request.user.is_superuser%}
 			    <li>
                             <a href={% url 'salts:cmd_run' %}>命令执行</a>
@@ -93,7 +95,7 @@
                         </ul>
 	       	</li>
                  <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#zabbix"><i class="fa fa-fw fa-arrows-v"></i> Zabbix集成 <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#zabbix"><i class="fa fa-fw fa-cubes"></i> Zabbix集成 <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="zabbix" class="collapse">
                             <li>
 			    <a href='#'>报表</a>

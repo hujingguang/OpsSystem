@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
-from django.http import HttpResponseRedirect,HttpResponseServerError
+from django.http import HttpResponseRedirect,HttpResponseServerError,HttpResponseNotAllowed,HttpResponseForbidden
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate
 from datetime import datetime
@@ -58,6 +58,8 @@ def deploy_application(request):
     match_list=['list','grain','nodegroup','pcre','glob']
     app_list=['zabbix','mysql','memcached','nginx','tomcat','system','redis','php']
     if request.method=='POST':
+	if not request.user.is_superuser:
+	    return HttpResponseForbidden(request)
 	mapping=request.POST.get('map','').replace(' ','')
 	target=request.POST.get('target','').replace(' ','')
 	app=str(request.POST.get('app','').replace(' ',''))
