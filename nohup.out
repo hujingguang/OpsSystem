@@ -8064,3 +8064,5 @@ Not Found: /http:/zc.qq.com/cgi-bin/common/attr
 [24/May/2016 09:38:24] "GET /saltstack/hosts/list_app_deploy_info HTTP/1.1" 200 6911
 [24/May/2016 09:38:51] "GET /saltstack/hosts/list_cmd_run_info HTTP/1.1" 200 8883
 [24/May/2016 09:39:21] "GET /asset/asset/overview HTTP/1.1" 200 8868
+[24/May/2016 09:41:42] "GET /logout/ HTTP/1.1" 302 0
+[24/May/2016 09:41:42] "GET / HTTP/1.1" 200 3204

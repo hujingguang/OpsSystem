@@ -36,6 +36,10 @@ cd OpsSystem && ./install.sh
 
 #### Screenshots
 -----------
+登陆界面
+
+![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/0.png)
+
 
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/1.png)
 
@@ -53,3 +57,8 @@ cd OpsSystem && ./install.sh
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/7.png)
 
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/8.png)
+
+![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/9.png)
+
+
+![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/10.png)
