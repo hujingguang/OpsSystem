@@ -16,6 +16,7 @@ from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 @login_required(login_url='/')
 def list_host_info(request):
     hosts=HostInfoModel.objects.all().order_by('group')
+    total=len(hosts)
     paginator=Paginator(hosts,10)
     page=request.GET.get('page')
     try:
@@ -24,7 +25,7 @@ def list_host_info(request):
 	host=paginator.page(1)
     except EmptyPage:
 	host=paginator.page(paginator.num_pages)
-    return render_to_response('salt_hosts.html',RequestContext(request,{'hosts':host}))
+    return render_to_response('salt_hosts.html',RequestContext(request,{'hosts':host,'total':total}))
 
 @login_required(login_url='/')
 def refresh_host_info(request):

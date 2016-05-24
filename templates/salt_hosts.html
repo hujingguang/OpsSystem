@@ -58,7 +58,7 @@
 	      {%if hosts.has_previous %}
 	      <li>  <a href="?page={{hosts.previous_page_number}}">&larr;Previous</a></li>
 	      {%endif%}
-	      <span class='current'>Page {{hosts.number}} of {{hosts.paginator.num_pages}}</span>
+	      <span class='current'>Page {{hosts.number}} of {{hosts.paginator.num_pages}}  &nbsp;&nbsp; total: {{total}} </span>
 	      {%if hosts.has_next%}
 	      <li> <a href="?page={{hosts.next_page_number}}">Next &rarr;</a></li>
 	      {%endif%}
