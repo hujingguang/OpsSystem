@@ -40,25 +40,32 @@ cd OpsSystem && ./install.sh
 
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/0.png)
 
-
+Dashboard
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/1.png)
 
+添加SVN版本库项目
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/2.png)
 
+添加Git版本库项目
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/3.png)
 
-
+发布工程
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/4.png)
 
+主机信息
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/5.png)
 
+应用部署
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/6.png)
 
+命令执行
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/7.png)
 
+应用部署记录
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/8.png)
 
+命令执行记录
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/9.png)
 
-
+云资产信息
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/10.png)
