@@ -4,6 +4,11 @@
     - name: echo 'HISTTIMEFORMAT="%F %T `whoami`"' >>/etc/profile
     - unless: grep HISTTIMEFORMAT /etc/profile &>/dev/null 
 
+install_lrzsz:
+  cmd.run:
+    - name: yum install lrzsz -y &>/dev/null
+    - unless: rpm -qa|grep lrzsz
+
 net.ipv4.conf.default.accept_source_route:
   sysctl.present:
     - value: 0

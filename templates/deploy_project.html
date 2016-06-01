@@ -55,18 +55,25 @@
 			    </div>
 			    <button style='width:300px;margin-left:50px' type='submit' value='deploy' id='sb' class='btn btn-danger'> Deploy </button>
 			    <span id="sp_1" style="display:none;width:30px;margin-left:50px"><img style='width:100px;height:60px;'src={%static 'img/wait.gif'%}
-				            id="sp"/> 正在处理中.......</span> 
+				id="sp"/> 正在处理中.......</span> 
 			</form>
 			<script type="text/javascript"> 
-function getId(id) { 
-    return document.getElementById(id); 
-} 
+			    function getId(id) { 
+				return document.getElementById(id); 
+			    } 
 function validation() { 
+    target=document.getElementById('id_password')
+    if (target.value==null || target.value.replace(/(^\s*)|(\s*$)/g, "")=='')
+    {
+	alert('请输入发布密码!!!');
+	return false;
+    }
+
     getId("sb").style.display="none"; 
     getId("sp_1").style.display=""; 
     return true; 
 } 
-			</script>
+</script>
 </div>
 </div>
 </div>
@@ -74,17 +81,17 @@ function validation() {
 
 {%if log %}
 <div class='row'>
-<div class='panel'> 
-<div class='panel-body'>
-<div class='panel panel-info' style='width:700px;height:1200px;margin:auto;'>
-<div class='alert alert-info'>
-<textarea style='width:100%;height:1000px;background: #300a24'>
-发布日志
-{{log}}
-</div>
-</div>
-</div>
-</div>
-</div>
-{%endif%}
-{%endblock%}
+    <div class='panel'> 
+	<div class='panel-body'>
+	    <div class='panel panel-info' style='width:700px;height:1200px;margin:auto;'>
+		<div class='alert alert-info'>
+		    <textarea style='width:100%;height:1000px;background: #300a24'>
+			发布日志
+			{{log}}
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </div>
+    {%endif%}
+    {%endblock%}

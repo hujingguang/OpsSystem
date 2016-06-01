@@ -116,10 +116,10 @@ def deploy_application(request):
 	for key in all_key:
 	    if key not in error_dict.keys():
 		ok_dict[key]=all_dict[key]
-	head_txt='---------\n'
+	head_txt='-'*10+'\n'
         head_txt=head_txt+''' total: %d , successed: %d  , failed: %d  \n''' %(len(all_dict),len(ok_dict),len(error_dict))
-	head_txt=head_txt+'---------\n'
-	success_txt='-----success-----\n'
+	head_txt=head_txt+'-'*10+'\n'
+	success_txt='-'*10+'success'+'-'*10+'\n'
 	error_txt=''
 	total_error_spend_time=0
 	total_ok_spend_time=0

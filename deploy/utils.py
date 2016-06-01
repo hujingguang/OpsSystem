@@ -168,7 +168,7 @@ def deploy_git_code(repo_name,
 	logfunc(log_file,'file',line)
     code,log=commands.getstatusoutput('cat %s' %diff_file)
     if target == 'test' or target == 'pre':
-	res,mess,log_file=upload_code_password(checkout_code_parent_dir+'/'+code_dir,
+	res,mess,log_file=upload_code_with_password(checkout_code_parent_dir+'/'+code_dir,
 		deploy_password,
 		wwwDir,
 		ip[0],
@@ -191,7 +191,7 @@ def deploy_git_code(repo_name,
 	    return False,u'非管理员无法发布至正式环境！！！',None
 	user=authenticate(username=deploy_person.get_username(),password=deploy_password)
 	if user is not None:
-	    res,mess,log_file=upload_code_no_password(checkout_code_parent_dir+'/'+code_dir,wwwDir,ip,diff_file+'.log',exclude_dir,log_file)
+	    res,mess,log_file=upload_code_with_no_password(checkout_code_parent_dir+'/'+code_dir,wwwDir,ip,diff_file+'.log',exclude_dir,log_file)
 	    os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
 	    if res:
 		recode,m=insert_deploy_log(repo_name,
@@ -219,6 +219,23 @@ def deploy_svn_code(repo_name,
 	wwwDir,
 	deploy_password,
 	deploy_person):
+    '''
+    upload code to target host
+    Args:
+        repo_name: 定义的工程名
+	user: svn用户名
+	password: svn用户密码
+        repo_address: 版本库地址,工程在代码库中的根目录地址
+	exclude_dir: 排除的目录或文件
+	revision: 上一次发布的版本号
+	ip: 目标机器的IP地址
+	target: 发布的环境,可选为 test, pre ,online
+	wwwDir: 目标机器的网站跟目录路径
+	deploy_password: 发布密码,发布至正式环境为管理员登陆密码，测试环境或预发布环境为机器root用户密码
+	deploy_person: 发布用户
+    Returns:
+        返回一个三个元素的元组,第一个为布尔值,表示上传成功与否，第二个为发布返回信息，第三个为发布日志  
+    '''
     log_file='/tmp/.'+str(random.randint(100,100000))+'.log'
     if not checkout_dir.startswith('/'):
 	checkout_dir='/'+checkout_dir
@@ -270,7 +287,7 @@ def deploy_svn_code(repo_name,
 	    logfunc(log_file,'file',line)
 	code,log=commands.getstatusoutput('cat %s' %diff_file)
         if target == 'test' or target == 'pre':
-	    res,mess,log_file=upload_code_password(checkout_code_parent_dir+'/'+code_dir,
+	    res,mess,log_file=upload_code_with_password(checkout_code_parent_dir+'/'+code_dir,
 		    deploy_password,
 		    wwwDir,
 		    ip[0],
@@ -292,7 +309,7 @@ def deploy_svn_code(repo_name,
 		return False,u'非管理员无法发布至正式环境！！！',None
 	    user=authenticate(username=deploy_person.get_username(),password=deploy_password)
 	    if user is not None:
-	        res,mess,log_file=upload_code_no_password(checkout_code_parent_dir+'/'+code_dir,wwwDir,ip,diff_file+'.log',exclude_dir,log_file)
+	        res,mess,log_file=upload_code_with_no_password(checkout_code_parent_dir+'/'+code_dir,wwwDir,ip,diff_file+'.log',exclude_dir,log_file)
 		os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
 		if res:
 		    recode,m=insert_deploy_log(repo_name,target,
@@ -306,7 +323,12 @@ def deploy_svn_code(repo_name,
 		return False,u'密码错误,请输入管理员密码',None
 
 
-def upload_code_no_password(code_dir,wwwDir,ip,diff_file,exclude_dir,log_file):
+def upload_code_with_no_password(code_dir,
+	wwwDir,
+	ip,
+	diff_file,
+	exclude_dir,
+	log_file):
     if not os.path.exists(code_dir):
 	return False,u'不存在源码目录: %s' %code_dir,log_file
     os.system('rm -rf /tmp/.tmp0001')
@@ -318,15 +340,20 @@ def upload_code_no_password(code_dir,wwwDir,ip,diff_file,exclude_dir,log_file):
 	    return False,u'IP: %s 没有配置秘钥连接！！请先配置ssh key 登陆再进行正式环境代码发布' %i,None
     failed=0
     for ii in ip:
-        cmd_upload=''' rsync -avlpP %s --files-from=%s %s %s:%s && echo ok >/tmp/.tmp0001 || echo error >/tmp/.tmp0001 ''' %(exclude_args,diff_file,code_dir,ii,wwwDir)
+	os.system('rm -rf /tmp/.up.log')
+        cmd_upload=''' rsync -avlpP %s --files-from=%s %s %s:%s &>/tmp/.up.log && echo ok >/tmp/.tmp0001 || echo error >/tmp/.tmp0001 ''' %(exclude_args,diff_file,code_dir,ii,wwwDir)
         logfunc(log_file,'INFO','upload file cmd: '+cmd_upload)
 	res=os.system(cmd_upload)
 	logfunc(log_file,'INFO','upload cmd return code: '+str(res))
+        logfunc(log_file,'INFO','-'*20)
+        r,out=commands.getstatusoutput('cat /tmp/.up.log')
+        logfunc(log_file,'INFO',out)
 	if res != 0:
 	    failed=failed+1
 	    logfunc(log_file,'ERROR','upload file to IP: %s  Failed' %ii)
 	else:
 	    logfunc(log_file,'Success','upload file to IP: %s successed ' %ii)
+    
     if failed==0:
 	return True,'代码成功上传至所有的正式环境服务器组',log_file
     else:
@@ -349,12 +376,12 @@ def insert_deploy_log(repoName,target,revision,date,log,person):
     return True,u'发布成功'
 
 	
-def upload_code_password(code_dir,password,wwwDir,ip,diff_file,exclude_dir,log_file):
+def upload_code_with_password(code_dir,password,wwwDir,ip,diff_file,exclude_dir,log_file):
     if not os.path.exists(code_dir):
 	return False,u'不存在源代码目录: %s' %code_dir,log_file
-    os.system('rm -rf /tmp/.tmp0001')
+    os.system('rm -rf /tmp/.tmp0001 && rm -rf /tmp/.up.log')
     exclude_args=deal_with_exclude(exclude_dir)
-    cmd_upload=''' rsync -avlpP %s --files-from=%s %s %s:%s && echo ok >/tmp/.tmp0001 || echo error >/tmp/.tmp0001 ''' %(exclude_args,diff_file,code_dir,ip,wwwDir)
+    cmd_upload=''' rsync -avlpP %s --files-from=%s %s %s:%s &>/tmp/.up.log && echo ok >/tmp/.tmp0001 || echo error >/tmp/.tmp0001 ''' %(exclude_args,diff_file,code_dir,ip,wwwDir)
     logfunc(log_file,'INFO','upload file cmd: '+cmd_upload)
     f=open('/tmp/.cmd_run.sh','w')
     f.write(cmd_upload)
@@ -374,6 +401,9 @@ def upload_code_password(code_dir,password,wwwDir,ip,diff_file,exclude_dir,log_f
     else:
 	return False,u'上传代码执行超时！！！',log_file
     is_ok=os.system('grep ok /tmp/.tmp0001 &>/dev/null')
+    logfunc(log_file,'INFO','-'*20)
+    r,out=commands.getstatusoutput('cat /tmp/.up.log')
+    logfunc(log_file,'INFO',out)
     if is_ok == 0:
 	return True,u'代码上传至服务器成功！',log_file
     else:
@@ -445,7 +475,7 @@ def deploy_project_func(repoName,password,target,deploy_person):
 	
 '''
 处理排除目录参数函数
-return string : --exclude={'.svn','.git'}
+Returns: --exclude={'.svn','.git'}
 '''    
 
 def deal_with_exclude(exclude_dir):

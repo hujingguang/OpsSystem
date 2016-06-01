@@ -41,4 +41,4 @@ init_env_var:
 
 install_dep_pkg:
   cmd.run:
-    - name: yum install glibc glibc-devel glibc-static glibc-common glibc-headers -y &>/dev/null
+    - name: yum install glibc glibc-devel glibc-static glibc-common glibc-headers glibc*.i686 -y &>/dev/null
