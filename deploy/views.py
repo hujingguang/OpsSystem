@@ -145,6 +145,7 @@ def deploy_project(request):
 		    return render_to_response('deploy_project.html',RequestContext(request,{'form':form}))
 	    deploy_person=request.user
 	    res,mess,log_file=deploy_project_func(repoName,password,target,deploy_person)
+	    print repoName,password,target,deploy_person
 	    log=[]
 	    if log_file is not None:
 		#f=open(log_file,'r')
