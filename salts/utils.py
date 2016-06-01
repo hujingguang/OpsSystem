@@ -11,6 +11,9 @@ except:
     exit(1)
 
 class SaltByWebApi(object):
+    '''
+    SaltApi class,使用saltapi Restful获取数据
+    '''
     def __init__(self,url,user,password):
 	self.headers={'Accept':'application/json'}
 	self.auth_params={'username':user,'password':password,'eauth':'pam'}
@@ -40,6 +43,9 @@ class SaltByWebApi(object):
         print j
 
 class SaltByLocalApi(object):
+    '''
+    Saltapi class 通过salt本地接口调用,需和salt-master服务在同一台机器
+    '''
     def __init__(self,main_config):
 	self.opts=master_config(main_config)
 	self.wheel=Wheel(self.opts)
