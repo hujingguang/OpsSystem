@@ -151,7 +151,7 @@ def deploy_project(request):
 		#log=f.readlines()
 		#f.close()
 		cmd='cat %s' %log_file
-		log=commands.getstatusoutput(cmd)
+		r,log=commands.getstatusoutput(cmd)
 		os.system('rm -f %s' %log_file)
 	    if res:
 		form.errors['password']=mess
