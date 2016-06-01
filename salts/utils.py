@@ -90,6 +90,14 @@ class SaltByLocalApi(object):
 
 
 def parse_target_params(target,match):
+    '''
+    处理应用部署参数
+    Args:
+       target: 匹配目标
+       match: 匹配模式
+    Returns:
+        返回一个元组: 第一个元素为布尔值,标志正确与否,第二个为错误信息 
+    '''
     saltapi=SaltByLocalApi('/etc/salt/master')
     active_minion_list=saltapi.connected_minions_list
     nodegroup_list=[]
