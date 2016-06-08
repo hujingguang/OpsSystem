@@ -1,0 +1,323 @@
+[08/Jun/2016 17:07:00] "GET /index HTTP/1.1" 301 0
+/usr/local/python2.7/lib/python2.7/site-packages/django/template/loader.py:97: RemovedInDjango110Warning: render() must be called with a dict, not a RequestContext.
+  return template.render(context, request)
+
+[08/Jun/2016 17:07:01] "GET /index/ HTTP/1.1" 200 9194
+[08/Jun/2016 17:08:08] "GET /saltstack/hosts/download_file HTTP/1.1" 200 8095
+[08/Jun/2016 17:10:10] "POST /saltstack/hosts/download_file HTTP/1.1" 200 2570752
+- Broken pipe from ('113.90.220.94', 8768)
+[08/Jun/2016 17:12:29] "POST /saltstack/hosts/download_file HTTP/1.1" 200 95221552
+[08/Jun/2016 17:13:53] "GET /saltstack/hosts/download_file HTTP/1.1" 200 8095
+[08/Jun/2016 17:13:57] "GET /saltstack/hosts/host_info HTTP/1.1" 200 9752
+[08/Jun/2016 17:14:08] "GET /saltstack/hosts/host_info?page=2 HTTP/1.1" 200 9796
+[08/Jun/2016 17:14:14] "GET /saltstack/hosts/download_file HTTP/1.1" 200 8095
+[08/Jun/2016 17:14:44] "POST /saltstack/hosts/download_file HTTP/1.1" 200 540953
+[08/Jun/2016 17:16:02] "GET / HTTP/1.1" 200 3204
+[08/Jun/2016 17:16:03] "GET /static/css/form-elements.css HTTP/1.1" 200 2508
+[08/Jun/2016 17:16:03] "GET /static/css/style.css HTTP/1.1" 200 3639
+[08/Jun/2016 17:16:03] "GET /static/font-awesome/css/font-awesome.min.css HTTP/1.1" 200 21984
+[08/Jun/2016 17:16:03] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 35951
+[08/Jun/2016 17:16:03] "GET /static/js/jquery.backstretch.min.js HTTP/1.1" 200 4233
+[08/Jun/2016 17:16:03] "GET /static/js/scripts.js HTTP/1.1" 200 710
+[08/Jun/2016 17:16:03] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 117305
+[08/Jun/2016 17:16:03] "GET /static/js/jquery-1.11.1.min.js HTTP/1.1" 200 95786
+[08/Jun/2016 17:16:03] "GET /static/ico/favicon.png HTTP/1.1" 200 459
+[08/Jun/2016 17:16:24] "GET /static/font-awesome/fonts/fontawesome-webfont.woff?v=4.2.0 HTTP/1.1" 200 71508
+[08/Jun/2016 17:16:24] "GET /static/img/backgrounds/1.jpg HTTP/1.1" 200 170790
+[08/Jun/2016 17:18:06] "GET /saltstack/hosts/host_info HTTP/1.1" 200 9752
+[08/Jun/2016 17:18:08] "GET /saltstack/hosts/host_info?page=2 HTTP/1.1" 200 9796
+[08/Jun/2016 17:26:30] "POST / HTTP/1.1" 302 0
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 08, 2016 - 17:06:51
+Django version 1.9.5, using settings 'ops_system.settings'
+Starting development server at http://0.0.0.0:8080/
+Quit the server with CONTROL-C.
+- db-redis
+- htbl.meitianhui.com
+- test_ops_omp_server
+- supply_img
+- supply_web3
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node2
+- mps_node1
+- img001
+- db-master
+- self
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - mps_node2
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - test_ops_omp_server
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+- db-redis
+- htbl.meitianhui.com
+- test_ops_omp_server
+- supply_img
+- supply_web3
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node2
+- mps_node1
+- img001
+- db-master
+- self
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - mps_node2
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - test_ops_omp_server
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+/var/cache/salt/master/minions/ops_node1/files//logs/mth_ops/finance/finance_info.log
+- db-redis
+- htbl.meitianhui.com
+- test_ops_omp_server
+- supply_img
+- supply_web3
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node2
+- mps_node1
+- img001
+- db-master
+- self
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - mps_node2
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - test_ops_omp_server
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+/var/cache/salt/master/minions/self/files//logs/gcc-5.2.0.tar.bz2
+- db-redis
+- htbl.meitianhui.com
+- test_ops_omp_server
+- supply_img
+- supply_web3
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node2
+- mps_node1
+- img001
+- db-master
+- self
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    - dip_node1
+    - htbl.meitianhui.com
+    - img001
+    - loading_balance
+    - mobile
+    - mps_node1
+    - mps_node2
+    - ops_node1
+    - portal
+    - self
+    - supply_img
+    - supply_web2
+    - supply_web3
+    - supply_web4
+    - svn
+    - test_ops_omp_server
+    - web1
+    - web3
+    - web5
+    - WEB_DB
+minions_denied:
+minions_pre:
+minions_rejected:
+/var/cache/salt/master/minions/mps_node1/files//logs/mth_omp/clean/clean_info.log
+- db-redis
+- htbl.meitianhui.com
+- test_ops_omp_server
+- supply_img
+- supply_web3
+- supply_web2
+- supply_web4
+- base_platform_db
+- ops_node1
+- loading_balance
+- bangnihui
+- dip_node1
+- app_api
+- web3
+- web1
+- portal
+- web5
+- svn
+- mobile
+- WEB_DB
+- mps_node2
+- mps_node1
+- img001
+- db-master
+- self
+local:
+    - master.pem
+    - master.pub
+minions:
+    - app_api
+    - bangnihui
+    - base_platform_db
+    - db-master
+    - db-redis
+    [08/Jun/2016 17:26:31] "GET /index/ HTTP/1.1" 200 9448
+[08/Jun/2016 17:26:31] "GET /static/css/sb-admin.css HTTP/1.1" 200 3480
+[08/Jun/2016 17:26:31] "GET /static/js/jquery.js HTTP/1.1" 200 95785
+[08/Jun/2016 17:26:31] "GET /static/js/echarts.js HTTP/1.1" 200 296800
+[08/Jun/2016 17:26:31] "GET /static/img/meitianhui.png HTTP/1.1" 200 7082
+Not Found: /favicon.ico
+[08/Jun/2016 17:26:31] "GET /favicon.ico HTTP/1.1" 404 2638
+Not Found: /favicon.ico
+[08/Jun/2016 17:26:31] "GET /favicon.ico HTTP/1.1" 404 2638
+[08/Jun/2016 17:26:35] "GET /saltstack/hosts/download_file HTTP/1.1" 200 8349
+[08/Jun/2016 17:26:36] "GET /static/img/wait.gif HTTP/1.1" 200 54292
+[08/Jun/2016 17:29:05] "GET /index/ HTTP/1.1" 200 9446
+[08/Jun/2016 17:29:11] "GET /deploy-manage/list_deploy_info/ HTTP/1.1" 200 7987
+[08/Jun/2016 17:29:16] "GET /deploy-manage/list_repo_info/ HTTP/1.1" 200 7083
+[08/Jun/2016 17:29:26] "GET /deploy-manage/list_deploy_info/ HTTP/1.1" 200 7987
+[08/Jun/2016 17:29:30] "GET /saltstack/hosts/deploy/application HTTP/1.1" 200 9859
+[08/Jun/2016 17:29:39] "GET /saltstack/hosts/download_file HTTP/1.1" 200 8349
+[08/Jun/2016 17:29:48] "GET /asset/asset/overview HTTP/1.1" 200 8977
+[08/Jun/2016 17:29:54] "GET /index/ HTTP/1.1" 200 9446
+[08/Jun/2016 17:29:56] "GET /index HTTP/1.1" 301 0
+[08/Jun/2016 17:29:57] "GET /index/ HTTP/1.1" 200 9448
+[08/Jun/2016 17:30:00] "GET /saltstack/hosts/download_file HTTP/1.1" 200 8349

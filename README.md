@@ -69,3 +69,6 @@ Dashboard
 
 云资产信息
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/10.png)
+
+文件下载
+![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/11.png)
