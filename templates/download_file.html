@@ -1,0 +1,103 @@
+{%extends 'base.html' %}
+{%load static %}
+{%block head%}
+<li>
+<i class='fa fa-dashboard'></i><a href={%url 'index' %}>&nbsp Dashboard</a>
+</li>
+<li>
+<i class='fa fa-table'></i>&nbsp SaltStack
+</li>
+<li  class='active'>
+<i class='fa fa-building-o'></i>&nbsp;文件下载
+</li>
+{%endblock%}
+
+{%block page_content%}
+
+<div class='row'>
+    <div class='panel panel-info'>
+	<div class='panel-heading'>
+	    <h3 class='panel-title'><i class='fa fa-bell'></i>&nbsp Download File<h3>
+		</div>
+		<div class='panel-body'>
+		    <div class='panel panel-info' style='width:900px;height:600px;margin:auto'>
+                     <div class='row' >
+			 <div class="col-lg-9" > 
+			     <form class='form-group' method='post' action={%url 'salts:download_file'%} onsubmit='return validation();'>
+				 {%csrf_token%}
+				 <div class='form-group input-group'>
+				 </div>
+                                <div class='form-group input-group' style='margin-left:20px;margin-top:20px' >
+				 <span class='input-group-btn'>
+				     <button class='btn btn-default' type='button' style='width:100px'>
+					 目标主机
+				     </button>
+				 </span>
+			             {{form.target}}
+			         </div>
+                             {% if form.target.errors %}
+			     <div class='form-group input-group' style='width:100%'>
+				 <div class='alert alert-danger' style='text-align:center'> {{form.target.errors}} </div>
+			     </div>
+			     {%endif%}
+                                <div class='form-group input-group' style='margin-top:200px;margin-left:20px' >
+				 <span class='input-group-btn'>
+				     <button class='btn btn-default' type='button' style='width:100px'>
+				         文件路径	
+				     </button>
+				 </span>
+			             {{form.file_path}}
+			         </div>
+                            {% if form.file_path.errors %}
+			     <div class='form-group input-group' style='width:100%'>
+				 <div class='alert alert-danger' style='text-align:center'> {{form.file_path.errors}} </div>
+			     </div>
+			     {%endif%}
+                           
+
+                  <div class='input-group' style='margin:auto;width:400px'>
+			     <button class='btn btn-success' type='submit' value='deploy' id='d' style='width:400px;margin-top:100px'> Download </button>
+		<span id='r' style='display:none;width:200px;margin-top:500px'><img style='width:200px;height:200px;' src={%static 'img/wait.gif'%} />正在下载.......</span>
+			     </div>
+                             <script type='text/javascript'>
+				 function validation(){
+				    var target=document.getElementById('id_target');
+				    var path=document.getElementById('id_file_path')
+				    if (target.value==null || target.value.replace(/(^\s*)|(\s*$)/g, "")=='')
+				    {
+				            alert('请输入目标主机!!!');
+					    return false;
+				    }
+				    if(path.value==null||path.value.replace(/(^\s*)|(\s*$)/g, "")==''){
+				            alert('请输入文件绝对路径！！！')
+				            return false;
+				    }
+				    return true;
+				 }
+			     </script>
+			      </form>
+
+			       {{file}}
+			 </div>
+		     </div>
+		    </div>
+	  	</div>
+	    </div>
+	</div>
+{%if result %}
+<div class='row'>
+<div class='panel'> 
+<div class='panel-body'>
+<div class='panel panel-info' style='width:900px;height:1200px;margin:auto;'>
+<div class='alert alert-info'>
+<textarea style='width:100%;height:1000px;background: #300a24'>
+命令执行结果：
+{{result}}
+</textarea>
+</div>
+</div>
+</div>
+</div>
+</div>
+{%endif%}
+	{%endblock%}

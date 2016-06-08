@@ -2,17 +2,18 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
-from django.http import HttpResponseRedirect,HttpResponseServerError,HttpResponseNotAllowed,HttpResponseForbidden
+from django.http import HttpResponseRedirect,HttpResponseServerError,HttpResponseNotAllowed,HttpResponseForbidden,StreamingHttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate
 from datetime import datetime
 from django.shortcuts import render_to_response
 from models import *
-from forms import CmdInputForm
-import time,commands
+from forms import CmdInputForm,DownloadFileForm
+import time,commands,os
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from utils import SaltByLocalApi,parse_target_params,juge_danger_cmd
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
+ALLOW_DOWNLOAD_DIR=['/logs']
 @login_required(login_url='/')
 def list_host_info(request):
     hosts=HostInfoModel.objects.all().order_by('group')
@@ -262,6 +263,60 @@ def list_cmd_run_info(request):
 	cmd_info=paginator.page(paginator.num_pages)
     return render_to_response('list_cmd_run_info.html',RequestContext(request,{'cmd_info':cmd_info}))
 
+@login_required(login_url='/')
+def download_file(request):
+    global ALLOW_DOWNLOAD_DIR
+    form=DownloadFileForm()
+    if request.method == 'POST':
+	form=DownloadFileForm(request.POST)
+	if form.is_valid():
+	    saltapi=SaltByLocalApi('/etc/salt/master')
+	    target=form.cleaned_data['target'].replace(' ','')
+	    file_path=form.cleaned_data['file_path'].replace(' ','')
+	    if file_path.endswith('/'):
+		file_path=file_path[:len(file_path)-1]
+	    file_split=os.path.split(file_path)
+	    file_parent_dir=file_split[0]
+            default_dir='/var/cache/salt/master/minions'
+	    output=saltapi.client.cmd(target,'cp.push',[file_path]) 
+	    if target not in saltapi.connected_minions_list:
+		form.errors['target']=u'无效的主机名！！！'
+	        return render_to_response('download_file.html',RequestContext(request,{'form':form}))
+	    output=saltapi.client.cmd(target,'cp.push',[file_path]) 
+	    local_absolute_path=default_dir+'/'+target+'/files/'+file_path
+	    print local_absolute_path
+	    if not output.get(target,False):
+		form.errors['file_path']=u'不存在该文件或输入的为目录！！'
+	    elif not os.path.exists(local_absolute_path):
+		form.errors['file_path']=u'下载失败！！！'
+	    else:
+		flag=False
+		for allow_dir in ALLOW_DOWNLOAD_DIR:
+		    if file_path.startswith(allow_dir):
+			flag=True
+			break
+		if not request.user.is_superuser:
+		    if not flag:
+			form.errors['file_path']=u'该文件非管理员无法下载！！'
+	                return render_to_response('download_file.html',RequestContext(request,{'form':form}))
+		def file_iterator(local_file,chunk_size=512):
+		    with open(local_file) as f:
+			while True:
+			    c=f.read(chunk_size)
+			    if c:
+				yield c
+			    else:
+				break
+		file_name=file_split[1]
+		response=StreamingHttpResponse(file_iterator(local_absolute_path))
+		response['Content-Type'] = 'application/octet-stream'
+		response['Content-Disposition'] = 'attachment;filename="{0}"'.format(file_name)
+	        return response
+	    return render_to_response('download_file.html',RequestContext(request,{'form':form}))
+
+
+	return render_to_response('download_file.html',RequestContext(request,{'form':form,'file':file_path}))
+    return render_to_response('download_file.html',RequestContext(request,{'form':form}))
 
 
 
