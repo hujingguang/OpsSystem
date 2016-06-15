@@ -197,7 +197,7 @@ def cmd_run(request):
 		 error='Danger Command !!!!'
 		 return render_to_response('salt_cmd_run.html',RequestContext(request,{'form':form,'cmd_error':error}))
 	     if not request.user.is_superuser:
-		 if not command.startswith('ls'):
+		 if not command.startswith('ls') or ';' in command or r'&' in command or r'|' in command :
 		     error='Permission Denied ! '
 		     return render_to_response('salt_cmd_run.html',RequestContext(request,{'form':form,'cmd_error':error}))
 	     target=info
