@@ -81,11 +81,9 @@
 			    <a href={% url 'salts:deploy' %}>应用部署</a>
 			    </li>
 			    {%endif%}
-			    {%if request.user.is_superuser%}
 			    <li>
                             <a href={% url 'salts:cmd_run' %}>命令执行</a>
                             </li>
-			    {%endif%}
                             <li>
 			    <a href={% url 'salts:list_app_deploy_info'%}>部署记录</a>
 			    </li>

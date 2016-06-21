@@ -75,6 +75,8 @@ install_python_module(){
     /usr/local/python2.7/bin/pip install MySQL-python
     /usr/local/python2.7/bin/pip install pyaml
     /usr/local/python2.7/bin/pip install tornado
+    /usr/local/python2.7/bin/pip install zmq
+    /usr/local/python2.7/bin/pip install msgpack-python
     yum install mysql-devel mysql-server mysql MySQL-python -y &>/dev/null
     mysqlib=`find / -name 'libmysqlclient.so.18'`
     if [ ! -e /usr/lib64/libmysqlclient.so.18 ]

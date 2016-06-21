@@ -105,7 +105,8 @@ def deploy_git_code(repo_name,
 	repo_address,
 	checkout_dir,
 	exclude_dir,
-	revision,ip,
+	revision,
+	ip,
 	target,
 	wwwDir,
 	deploy_password,
@@ -120,13 +121,12 @@ def deploy_git_code(repo_name,
 	os.system('mkdir -p %s' %checkout_code_parent_dir)
     if repo_address.strip(' ').endswith('.git'):
 	n=repo_address.rfind('/')
-	code_dir=repo_address[n+1:].strip('.git')
+	code_dir=repo_address[n+1:].replace('.git','')
     else:
 	n=repo_address.rfind(':')
 	if n==-1:
 	    return False,u'错误的Git地址',None
 	code_dir=repo_address[n+1:]
-    print code_dir
     if not os.path.exists(checkout_code_parent_dir+'/'+code_dir+'/.git'):
 	cmd_init_project=''' cd %s && git clone %s ''' %(checkout_code_parent_dir,repo_address)
 	logfunc(log_file,'INFO','init cmd : '+cmd_init_project)

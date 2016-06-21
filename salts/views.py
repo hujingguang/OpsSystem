@@ -197,7 +197,26 @@ def cmd_run(request):
 		 error='Danger Command !!!!'
 		 return render_to_response('salt_cmd_run.html',RequestContext(request,{'form':form,'cmd_error':error}))
 	     if not request.user.is_superuser:
-		 if not command.startswith('ls') or ';' in command or r'&' in command or r'|' in command :
+		 flag=True
+		 if command.startswith('ls'):
+		     flag=False
+		 if command.startswith('/root/deploy/deploy_test.sh'):
+		     num,output=commands.getstatusoutput(command)
+		     if num != 0 :
+			 error='please checkout your command format !'
+			 return render_to_response('salt_cmd_run.html',RequestContext(request,{'form':form,'cmd_error':error}))
+                     cmd_info=CmdRunLogModel(user=request.user,
+		         time=datetime.now(),
+		         target=target,
+		         mapping=mapping,
+		         cmd=command,
+		         hosts='self',
+		         total=1)
+		     cmd_info.save()
+                     return render_to_response('salt_cmd_run.html',RequestContext(request,{'form':form,'result':output}))
+		 if  ';' in command or r'&' in command or r'|' in command :
+		     flag=True
+                 if flag: 
 		     error='Permission Denied ! '
 		     return render_to_response('salt_cmd_run.html',RequestContext(request,{'form':form,'cmd_error':error}))
 	     target=info
