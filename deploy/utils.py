@@ -10,6 +10,8 @@ from django.contrib.auth import authenticate
 from models import RepoModel,DeployInfoModel
 from datetime import datetime
 IP_regex=r'((?:(?:25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))\.){3}(?:25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d))))'
+RSYNC_LOG_FILE='/tmp/ops_rsync.log'
+REVISION=''
 def check_svn_validated(user,password,url):
     global IP_regex
     ip_match=re.search(IP_regex,url)
@@ -111,6 +113,7 @@ def deploy_git_code(repo_name,
 	wwwDir,
 	deploy_password,
 	deploy_person):
+    global REVISION
     log_file='/tmp/.'+str(random.randint(100,100000))+'.log'
     if not checkout_dir.startswith('/'):
 	checkout_dir='/'+checkout_dir
@@ -167,6 +170,7 @@ def deploy_git_code(repo_name,
     for line in diff_file_list:
 	logfunc(log_file,'file',line)
     code,log=commands.getstatusoutput('cat %s' %diff_file)
+    REVISION=lastest_revision
     if target == 'test' or target == 'pre':
 	res,mess,log_file=upload_code_with_password(checkout_code_parent_dir+'/'+code_dir,
 		deploy_password,
@@ -236,6 +240,7 @@ def deploy_svn_code(repo_name,
     Returns:
         返回一个三个元素的元组,第一个为布尔值,表示上传成功与否，第二个为发布返回信息，第三个为发布日志  
     '''
+    global REVISION
     log_file='/tmp/.'+str(random.randint(100,100000))+'.log'
     if not checkout_dir.startswith('/'):
 	checkout_dir='/'+checkout_dir
@@ -286,6 +291,7 @@ def deploy_svn_code(repo_name,
 	for line in diff_file_list:
 	    logfunc(log_file,'file',line)
 	code,log=commands.getstatusoutput('cat %s' %diff_file)
+	REVISION=lastest_revision
         if target == 'test' or target == 'pre':
 	    res,mess,log_file=upload_code_with_password(checkout_code_parent_dir+'/'+code_dir,
 		    deploy_password,
@@ -329,6 +335,7 @@ def upload_code_with_no_password(code_dir,
 	diff_file,
 	exclude_dir,
 	log_file):
+    global RSYNC_LOG_FILE,REVISION
     if not os.path.exists(code_dir):
 	return False,u'不存在源码目录: %s' %code_dir,log_file
     os.system('rm -rf /tmp/.tmp0001')
@@ -346,6 +353,8 @@ def upload_code_with_no_password(code_dir,
 	res=os.system(cmd_upload)
 	logfunc(log_file,'INFO','upload cmd return code: '+str(res))
         logfunc(log_file,'INFO','-'*20)
+        cmd_rsync_log='echo %s >> %s && cat /tmp/.up.log >> %s' %(REVISION,RSYNC_LOG_FILE,RSYNC_LOG_FILE)
+        os.system(cmd_rsync_log)
         r,out=commands.getstatusoutput('cat /tmp/.up.log')
         logfunc(log_file,'INFO',out)
 	if res != 0:
@@ -377,6 +386,7 @@ def insert_deploy_log(repoName,target,revision,date,log,person):
 
 	
 def upload_code_with_password(code_dir,password,wwwDir,ip,diff_file,exclude_dir,log_file):
+    global RSYNC_LOG_FILE,REVISION
     if not os.path.exists(code_dir):
 	return False,u'不存在源代码目录: %s' %code_dir,log_file
     os.system('rm -rf /tmp/.tmp0001 && rm -rf /tmp/.up.log')
@@ -402,6 +412,8 @@ def upload_code_with_password(code_dir,password,wwwDir,ip,diff_file,exclude_dir,
 	return False,u'上传代码执行超时！！！',log_file
     is_ok=os.system('grep ok /tmp/.tmp0001 &>/dev/null')
     logfunc(log_file,'INFO','-'*20)
+    cmd_rsync_log='echo %s >> %s && cat /tmp/.up.log >> %s' %(REVISION,RSYNC_LOG_FILE,RSYNC_LOG_FILE)
+    os.system(cmd_rsync_log)
     r,out=commands.getstatusoutput('cat /tmp/.up.log')
     logfunc(log_file,'INFO',out)
     if is_ok == 0:

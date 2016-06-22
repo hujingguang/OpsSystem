@@ -24,7 +24,9 @@ root_dir=`pwd`
 rpm -qa|grep epel &>/dev/null 
 if [ $? != 0 ]
 then
-wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm &>/dev/null && rpm -ih ./epel-release-latest-6.noarch.rpm &>/dev/null && rm -rf ./epel-release-latest-6.noarch.rpm
+wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm &>/dev/null \
+&& rpm -ih ./epel-release-latest-6.noarch.rpm &>/dev/null \
+&& rm -rf ./epel-release-latest-6.noarch.rpm
 fi
 
 #install python2.7
@@ -36,7 +38,10 @@ install_python2_7(){
     then 
 	yum install xz gcc -y &>/dev/null
 	wget https://www.python.org/ftp/python/2.7.11/Python-2.7.11.tar.xz &>/dev/null
-	tar -xf Python-2.7.11.tar.xz && cd Python-2.7.11 && ./configure --prefix=/usr/local/python2.7 &>/dev/null && make &>/dev/null && make install &>/dev/null
+	tar -xf Python-2.7.11.tar.xz && \
+	cd Python-2.7.11 && \
+	./configure --prefix=/usr/local/python2.7 &>/dev/null && \
+	make &>/dev/null && make install &>/dev/null
 	if [ $? != 0 ]
 	then
 	    echo 'install python2.7 failed ! '
@@ -56,7 +61,10 @@ install_python_module(){
     setuptools_url='https://pypi.python.org/packages/f0/32/99ead2d74cba43bd59aa213e9c6e8212a9d3ed07805bb66b8bf9affbb541/setuptools-21.1.0.tar.gz#md5=8fd8bdbf05c286063e1052be20a5bd98'
     pip_url='https://pypi.python.org/packages/ce/15/ee1f9a84365423e9ef03d0f9ed0eba2fb00ac1fffdd33e7b52aea914d0f8/pip-8.0.2.tar.gz#md5=3a73c4188f8dbad6a1e6f6d44d117eeb'
     wget $setuptools_url &>/dev/null && wget $pip_url &>/dev/null
-    tar -zxf setuptools-21.1.0.tar.gz && tar -zxf pip-8.0.2.tar.gz && cd setuptools-21.1.0 && /usr/local/python2.7/bin/python setup.py install &>/dev/null
+    tar -zxf setuptools-21.1.0.tar.gz && \
+    tar -zxf pip-8.0.2.tar.gz && \
+    cd setuptools-21.1.0 && \
+    /usr/local/python2.7/bin/python setup.py install &>/dev/null
     if [ $? != 0 ]
     then 
 	echo 'install setuptools failed'
@@ -77,7 +85,7 @@ install_python_module(){
     /usr/local/python2.7/bin/pip install tornado
     /usr/local/python2.7/bin/pip install zmq
     /usr/local/python2.7/bin/pip install msgpack-python
-    yum install mysql-devel mysql-server mysql MySQL-python -y &>/dev/null
+    yum install salt salt-master  mysql-devel mysql-server mysql MySQL-python -y &>/dev/null
     mysqlib=`find / -name 'libmysqlclient.so.18'`
     if [ ! -e /usr/lib64/libmysqlclient.so.18 ]
     then
