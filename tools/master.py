@@ -7,7 +7,7 @@ import MySQLdb
 import sys
 import simplejson
 db_info={'db_name':'deploy',
-	'host':'127.0.0.1',
+	'host':'10.117.74.247',
 	'user':'root',
 	'password':'helloworld',
 	}
