@@ -81,16 +81,19 @@ class MainMaster(object):
 	if d:
 	    conn=self.get_db_connect()
 	    try:
+		d['cmd']=d['cmd'].replace('\\','')
 		sql=''' insert into ops_cmd_opt_log (hostname,user,command,login_ip,runtime) values('%s','%s','%s','%s','%s');''' %(d['host'],d['user'],d['cmd'],d['ip'],d['time'])
 		print sql
 		cursor=conn.cursor()
-		cursor.execute(sql)
-	        conn.commit()
+		try:
+		    cursor.execute(sql)
+		    conn.commit()
+	        except Exception as e:
+		    pass
 	    except Exception as e:
 		print e
 		sys.exit(1)
 	    finally:
-		
 		conn.close()
     def start_listen(self):
 	sk=socket.socket(socket.AF_INET,socket.SOCK_STREAM)

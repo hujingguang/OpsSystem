@@ -5,11 +5,15 @@ import time
 import os
 import commands
 import socket
-import simplejson
 from optparse import OptionParser
 SERVER_IP=''
 SERVER_PORT=8899
 DETECT_TIME=3600
+try:
+    import simplejson
+except ImportError as e:
+    import json as simplejson
+
 def init_login_env():
     log_path='/tmp/.history_cmd.log'
     shell_scripts='''
