@@ -48,8 +48,8 @@ WSGI_APPLICATION = 'ops_system.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'deploy',
-        'HOST': '127.0.0.1',
+        'NAME': 'ops',
+        'HOST': '10.117.74.247',
 	'USER': 'root',
 	'PORT': 3306,
 	'PASSWORD': 'helloworld',

@@ -9,10 +9,13 @@
     <meta name="author" content="">
     <title>每天惠运维平台</title>
     <link href={% static "bootstrap/css/bootstrap.min.css" %} rel="stylesheet">
+    <link href={% static "bootstrap/css/bootstrap-datetimepicker.css" %} rel="stylesheet">
     <link href={% static "css/sb-admin.css" %} rel="stylesheet">
     <link href={% static "font-awesome/css/font-awesome.min.css" %} rel="stylesheet" type="text/css">
     <script src={% static "js/jquery.js" %}></script>
     <script src={% static "bootstrap/js/bootstrap.min.js" %}></script>
+    <script src={% static "bootstrap/js/jquery-1.8.3.min.js" %}></script>
+    <script src={% static "bootstrap/js/bootstrap-datetimepicker.js" %}></script>
     <script src={% static "js/echarts.js"%}></script>
 
 </head>
@@ -68,6 +71,10 @@
                             <li>
 			    <a href={% url 'asset:overview' %}>云资产概览</a>
                             </li>
+                            <li>
+			    <a href={% url 'asset:query_cmd_log' %}>命令审计</a>
+                            </li>
+
                         </ul>
 	       	</li>
                    <li>

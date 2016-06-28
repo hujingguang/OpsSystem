@@ -1,0 +1,50 @@
+{%extends 'base.html' %}
+{%load static %}
+{%block head%}
+<li>
+<i class='fa fa-dashboard'></i><a href={%url 'index' %}>&nbsp Dashboard</a>
+</li>
+<li>
+<i class='fa fa-table'></i>&nbsp 资产管理
+</li>
+<li  class='active'>
+<i class='fa fa-building-o'></i>&nbsp; 命令审计
+</li>
+{%endblock%}
+
+{%block page_content%}
+
+<div class='row'>
+    <div class='panel panel-info'>
+	<div class='panel-heading'>
+	    <h4 class='panel-title'><i class='fa fa-bell'></i>&nbsp 命令审计<h4>
+		</div>
+		<div class='panel-body'>
+		    <div class='panel panel-info' style='width:700px;height:600px;margin:auto'>
+			<form class='form-group' method='post' action={%url 'deploy:deploy_project'%} onsubmit='return validation();'>
+			    {%csrf_token %}
+			    {% for f in form %}
+                                {{f}}
+			    {%endfor%} 
+
+			</form>
+
+			<div class="form-group">
+			    <div class='input-group date' id='picker'>
+				<input type='text' class="form-control" readonly/>
+				<span class="input-group-addon">
+				    <span class="glyphicon glyphicon-calendar"></span>
+				</span>
+			    </div>
+			</div>
+
+			<script type="text/javascript">
+			    $(function () {
+				    $('#picker').datetimepicker();
+			    });
+</script>
+		</div>
+	    </div>
+	</div>
+    </div>
+    {%endblock%}

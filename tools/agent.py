@@ -25,6 +25,11 @@ def init_login_env():
          then
               echo $hist_format >>/etc/profile
     fi
+    egrep '@_@' /root/.bash_profile &>/dev/null
+    if [ $? != 0 ]
+         then
+              echo $hist_format >>/root/.bash_profile
+    fi
     egrep 'history_cmd' /root/.bash_logout &>/dev/null
     if [ $? != 0 ]
       then

@@ -89,9 +89,8 @@ class MainMaster(object):
 		    cursor.execute(sql)
 		    conn.commit()
 	        except Exception as e:
-		    pass
+		    print e
 	    except Exception as e:
-		print e
 		sys.exit(1)
 	    finally:
 		conn.close()
@@ -116,9 +115,13 @@ class MainMaster(object):
 			del fdmap[fd]
 		    else:
 			print data
-			info=simplejson.loads(data)
-			if info['type'] == 'cmd':
-			    self.dowith_cmd_info(info)
+			try:
+			    info=simplejson.loads(data)
+			    if info['type'] == 'cmd':
+			        self.dowith_cmd_info(info)
+			except Exception as e:
+			    print e
+			    pass
 			
 
 def main():
