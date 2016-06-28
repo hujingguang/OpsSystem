@@ -21,30 +21,54 @@
 		</div>
 		<div class='panel-body'>
 		    <div class='panel panel-info' style='width:700px;height:600px;margin:auto'>
-			<form class='form-group' method='post' action={%url 'deploy:deploy_project'%} onsubmit='return validation();'>
+			<form class='form-group' method='post' action={%url 'asset:query_cmd_log'%} onsubmit='return validation();'>
 			    {%csrf_token %}
-			    {% for f in form %}
-                                {{f}}
-			    {%endfor%} 
-
-			</form>
-
-			<div class="form-group">
-			    <div class='input-group date' id='picker'>
-				<input type='text' class="form-control" readonly/>
-				<span class="input-group-addon">
-				    <span class="glyphicon glyphicon-calendar"></span>
+			    {%for f in form %}
+			    {%if f.label = "Begin" or f.label = "End" %}
+			    <div class='form-group input-group date' id='{{f.label}}' style='margin-top:90px;margin-left:40px'>
+				<span class='input-group-btn'>
+				    <button class='btn btn-default' type='button' style='width:100px'>
+					{%if f.label = "Begin" %}
+					开始时间
+					{%else%}
+					结束时间
+					{%endif%}
+				    </button>
+				</span>
+				{{f}}
+				<span class="input-group input-group-addon" style='float:left;height:34px;width:34px' >
+				    <span class="input-group glyphicon glyphicon-calendar"></span>
 				</span>
 			    </div>
-			</div>
+			    {%else%}
+			    <div class='form-group input-group' style='margin-left:40px;margin-top:20px' >
+				<span class='input-group-btn'>
+				    <button class='btn btn-default' type='button' style='width:100px'>
+					目标主机
+				    </button>
+				</span>
+				{{f}}
+			    </div>
+			    {%endif%}
+			    {%endfor%}
+			    <div class='input-group' style='margin-left:150px;width:200px'>
+				<button class='btn btn-outline btn-success' type='submit' value='deploy' id='d' style='width:200px;margin-top:100px'> Query </button>
+			    </div>
+			</form>
 
 			<script type="text/javascript">
 			    $(function () {
-				    $('#picker').datetimepicker();
-			    });
+				    $('#Begin').datetimepicker({format: 'yyyy-mm-dd hh:ii:ss',language: 'zh-CN'});
+				    });
 </script>
-		</div>
-	    </div>
-	</div>
-    </div>
-    {%endblock%}
+<script type="text/javascript">
+    $(function () {
+	    $('#End').datetimepicker({format: 'yyyy-mm-dd hh:ii:ss',language: 'zh-CN'});
+	    });
+</script>
+
+				    </div>
+				</div>
+			    </div>
+			</div>
+			{%endblock%}

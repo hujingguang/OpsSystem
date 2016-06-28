@@ -1,0 +1,63 @@
+{%extends 'base.html' %}
+{%load static %}
+{%block head%}
+<li>
+<i class='fa fa-dashboard'></i><a href={%url 'index' %}>&nbsp Dashboard</a>
+</li>
+<li>
+<i class='fa fa-table'></i>&nbsp 资产管理
+</li>
+<li  class='active'>
+<i class='fa fa-building-o'></i>&nbsp; 命令审计
+</li>
+{%endblock%}
+
+{%block page_content%}
+
+<div class='row'>
+    <div class='panel panel-info'>
+	<div class='panel-heading'>
+	    <h3 class='panel-title'><i class='fa fa-bell'></i>&nbsp 命令审计<h3>
+		</div>
+		<div class='panel-body'>
+		    <div class='panel panel-info' style='width:auto;height:450px;margin:auto'>
+			<div class='table-responsive'>
+			    <table class="table table-striped table-bordered">
+				<thead>
+				    <tr class='info'>
+					<th>登陆主机</th>
+					<th>登陆用户</th>
+					<th>执行命令</th>
+					<th>登陆IP</th>
+					<th>执行时间</th>
+				    </tr>
+				</thead>
+				<tbody>
+				{%for cmd in cmd_set %}
+				<tr>
+				    <td>{{cmd.hostname}}</td>
+				    <td>{{cmd.user}}</td>
+				    <td>{{cmd.command}}</td>
+				    <td>{{cmd.login_ip}}</td>
+				    <td>{{cmd.runtime}}</td>
+				</tr>
+				{%endfor%}
+				</tbody>
+			    </table>
+			</div>
+		    </div>
+		    <div class='pager' style='argin-top:30px;width:auto;margin-left:50px'> 
+			<span class='step-links'>
+			            {%if cmd_set.has_previous %}
+				    <li><a href="?page={{cmd_set.previous_page_number}}">&larr;Previous</a></li>
+                                     {%endif%}
+				    <span class='current'> Page {{ cmd_set.number }} of {{ cmd_set.paginator.num_pages }}. </span>
+				    {%if cmd_set.has_next %}
+				    <li>  <a href="?page={{cmd_set.next_page_number}}">Next &rarr;</a> </li>
+				    {%endif%}
+			</span>
+		   </div>
+		</div>
+	    </div>
+	</div>
+	{%endblock%}
