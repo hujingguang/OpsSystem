@@ -27,6 +27,11 @@ ops plateform
 
 10: 要进行应用部署，需要安装minion客户端，并配置好master 和id  ,还有必须在grains 添加三个变量：group,area,usage。  这个三个变量信息会在主机信息中对应:组,地址,和用途三栏。否则刷新无法获取到主机信息
 
+
+11: 命令审计模块需要在各个salt-minion端安装agent.py,该文件位于项目下tools文件夹中，在salt-master运行 master.py接受来自agent.py的数据。,master.py需要配置数据库连接信息。直接编辑文件添加即可.
+
+
+
 ----快捷安装：
 
 git clone https://github.com/hujingguang/OpsSystem.git
