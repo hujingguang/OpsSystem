@@ -263,6 +263,8 @@ def cmd_run(request):
 @login_required(login_url='/')
 def list_app_deploy_info(request):
     app_deploy_info=AppDeployLogModel.objects.all().order_by('-time')
+    for a in app_deploy_info:
+	a.time=datetime.strftime(a.time,'%Y-%m-%d %H:%M:%S')
     paginator=Paginator(app_deploy_info,10)
     page=request.GET.get('page')
     try:
@@ -276,6 +278,8 @@ def list_app_deploy_info(request):
 @login_required(login_url='/')
 def list_cmd_run_info(request):
     cmd_list=CmdRunLogModel.objects.all().order_by('-time')
+    for cmd in cmd_list:
+	cmd.time=datetime.strftime(cmd.time,'%Y-%m-%d %H:%M:%S')
     paginator=Paginator(cmd_list,10)
     page=request.GET.get('page')
     try:

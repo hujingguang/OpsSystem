@@ -34,6 +34,8 @@ def list_cmd_opt_log(request):
     if not Host or not Begin or not End:
 	return HttpResponseRedirect(reverse('asset:query_cmd_log')) 
     query_set=CmdLogModel.objects.filter(hostname=Host).filter(runtime__range=(Begin,End))
+    for q in query_set:
+	q.runtime=datetime.strftime(q.runtime,'%Y-%m-%d %H:%M:%S')
     paginator=Paginator(query_set,100)
     page=request.GET.get('page')
     try:

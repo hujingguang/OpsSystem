@@ -114,6 +114,8 @@ def list_repo_info(request):
 @login_required(login_url='/')
 def list_deploy_info(request):
     deploy_list=DeployInfoModel.objects.all().order_by('-date')
+    for d in deploy_list:
+	d.date=datetime.strftime(d.date,'%Y-%m-%d %H:%M:%S')
     paginator=Paginator(deploy_list,10)
     page=request.GET.get('page')
     try:
