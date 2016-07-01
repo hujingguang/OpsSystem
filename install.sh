@@ -24,9 +24,11 @@ root_dir=`pwd`
 rpm -qa|grep epel &>/dev/null 
 if [ $? != 0 ]
 then
+    echo 'begin install epel repo..............'
 wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm &>/dev/null \
 && rpm -ih ./epel-release-latest-6.noarch.rpm &>/dev/null \
 && rm -rf ./epel-release-latest-6.noarch.rpm
+    echo 'is ok ...............................'
 fi
 
 #install python2.7
@@ -36,6 +38,7 @@ install_python2_7(){
     echo $version |grep '2.7' &>/dev/null
     if [ $? != 0 ]
     then 
+	echo 'begin install python2.7 .........................'
 	yum install xz gcc -y &>/dev/null
 	wget https://www.python.org/ftp/python/2.7.11/Python-2.7.11.tar.xz &>/dev/null
 	tar -xf Python-2.7.11.tar.xz && \
@@ -47,6 +50,7 @@ install_python2_7(){
 	    echo 'install python2.7 failed ! '
 	    exit 1
 	fi
+	echo 'install python2.7 is ok .........................'
 	mv /usr/bin/python /usr/bin/python.bak 
 	ln -s /usr/local/python2.7/bin/python /usr/bin/python
 	new_version=`python --version`
@@ -76,6 +80,8 @@ install_python_module(){
 	echo 'install pip tool failed '
 	exit 1
     fi
+    echo 'install setuptool and pip tools is ok .............................'
+    echo 
     echo 'install pexpect , salt , django ,MySQL-python'
     /usr/local/python2.7/bin/pip install django
     /usr/local/python2.7/bin/pip install salt
@@ -91,15 +97,18 @@ install_python_module(){
     then
     ln -s $mysqlib /usr/lib64/libmysqlclient.so.18
     fi
+    echo 'install pexpect salt django MySQL-pytho is ok ....................................'
 }
 
 install_salt_master(){
+    echo 'install git subversion ...............................'
      yum install salt-master git subversion -y &>/dev/null
      if [ $? != 0 ]
      then
 	 echo 'install salt-master failed '
 	 exit 1
      fi
+     echo 'install git subversion is ok ...........................'
      service salt-master start &>/dev/null
 }
 
