@@ -5,6 +5,7 @@ import socket
 import select
 import MySQLdb
 import sys
+import time
 import simplejson
 db_info={'db_name':'deploy',
 	'host':'10.117.74.247',
@@ -102,6 +103,7 @@ class MainMaster(object):
 	poll=select.epoll()
 	poll.register(sk)
 	while True:
+	    time.sleep(2)
 	    events=poll.poll()
 	    for fd,event in events:
 		if fd == sk.fileno():

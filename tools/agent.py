@@ -212,9 +212,9 @@ def main():
     agent=MainAgent(func_list)
     agent.start_threads()
     threads=agent.get_threads()
+    for t in threads:
+	t.join()
 
 
 if __name__ == '__main__':
     main()
-    while 1:
-	pass
