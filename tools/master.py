@@ -103,7 +103,6 @@ class MainMaster(object):
 	poll=select.epoll()
 	poll.register(sk)
 	while True:
-	    time.sleep(2)
 	    events=poll.poll()
 	    for fd,event in events:
 		if fd == sk.fileno():

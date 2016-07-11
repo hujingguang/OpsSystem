@@ -118,7 +118,7 @@ copy_sls_files(){
 	mkdir -p /srv/salt
     fi
     cur=`pwd`
-    \cp -a $cur/sls/* /srv/salt/
+    \cp -a $cur/sls/* /srv/salt/ &>/dev/null
 }
 
 
