@@ -32,6 +32,8 @@ def get_daemon():
 	    daemon_list.append(i)
     all_daemon_list=[]
     try:
+	if not os.path.exists('/etc/daemon.conf'):
+	    os.system('echo sshd >/etc/daemon.conf')
 	with open('/etc/daemon.conf','r') as f:
 	    for i in f.readlines():
 		all_daemon_list.append(i.replace('\n',''))
