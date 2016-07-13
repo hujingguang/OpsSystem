@@ -7,6 +7,7 @@ import MySQLdb
 import sys
 import time
 import simplejson
+import SocketServer
 db_info={'db_name':'deploy',
 	'host':'10.117.74.247',
 	'user':'root',
@@ -39,7 +40,7 @@ class MainMaster(object):
 	    pid=os.fork()
 	    if pid>0:
 		sys.exit()
-        except OSError as e:
+	except OSError as e:
 	    print e
 	    sys.exit(1)
 	for f in sys.stdout,sys.stderr:f.flush()
@@ -84,12 +85,11 @@ class MainMaster(object):
 	    try:
 		d['cmd']=d['cmd'].replace('\\','')
 		sql=''' insert into ops_cmd_opt_log (hostname,user,command,login_ip,runtime) values('%s','%s','%s','%s','%s');''' %(d['host'],d['user'],d['cmd'],d['ip'],d['time'])
-		print sql
 		cursor=conn.cursor()
 		try:
 		    cursor.execute(sql)
 		    conn.commit()
-	        except Exception as e:
+		except Exception as e:
 		    print e
 	    except Exception as e:
 		sys.exit(1)
@@ -115,20 +115,68 @@ class MainMaster(object):
 			poll.unregister(fd)
 			del fdmap[fd]
 		    else:
-			print data
+			with open('/tmp/master','a') as f:
+			    f.write(data+'\n')
 			try:
 			    info=simplejson.loads(data)
 			    if info['type'] == 'cmd':
-			        self.dowith_cmd_info(info)
+				self.dowith_cmd_info(info)
 			except Exception as e:
 			    print e
 			    pass
-			
+    def start_listen2(self):
+	server=SocketServer.ForkingTCPServer((self.server_ip,self.server_port),HandlerProcess)
+	server.serve_forever()
+
+class HandlerProcess(SocketServer.StreamRequestHandler):
+    def handle(self):
+	while True:
+	    data=self.request.recv(1024)
+	    if not data:
+		break
+	    try:
+		info=simplejson.loads(data)
+		if info['type'] == 'cmd':
+		    self.dowith_cmd_info(info)
+	    except Exception as e:
+		pass
+    def dowith_cmd_info(self,d=None):
+	if d:
+	    conn=self.get_db_connect()
+	    try:
+		d['cmd']=d['cmd'].replace('\\','')
+		sql=''' insert into ops_cmd_opt_log (hostname,user,command,login_ip,runtime) values('%s','%s','%s','%s','%s');''' %(d['host'],d['user'],d['cmd'],d['ip'],d['time'])
+		cursor=conn.cursor()
+		try:
+		    cursor.execute(sql)
+		    conn.commit()
+		except Exception as e:
+		    print e
+	    except Exception as e:
+		sys.exit(1)
+	    finally:
+		conn.close()
+    def get_db_connect(self):
+        global db_info
+	self.db_name=db_info.get('db_name',None)
+	self.host=db_info.get('host',None)
+	self.user=db_info.get('user',None)
+	self.password=db_info.get('password',None)
+        try:
+	    conn=MySQLdb.connect(user=self.user,passwd=self.password,host=self.host,db=self.db_name)
+	except Exception as e:
+	    print e
+	    sys.exit(1)
+	return conn
+
+
+
+
 
 def main():
     master=MainMaster()
     master.optparse()
-    master.start_listen()
+    master.start_listen2()
 
 
 if __name__=='__main__':

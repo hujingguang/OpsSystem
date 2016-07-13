@@ -32,6 +32,8 @@ def get_daemon():
 	    daemon_list.append(i)
     all_daemon_list=[]
     try:
+	if not os.path.exists('/etc/daemon.conf'):
+	    os.system('echo sshd >/etc/daemon.conf')
 	with open('/etc/daemon.conf','r') as f:
 	    for i in f.readlines():
 		all_daemon_list.append(i.replace('\n',''))
@@ -106,7 +108,7 @@ def init_login_env():
     if [ ! -e /tmp/.history_cmd.log ]
       then
           touch /tmp/.history_cmd.log
-           chmod 777 /tmp/.history_cmd.log
+          chmod 777 /tmp/.history_cmd.log
           chattr +a /tmp/.history_cmd.log &>/dev/null
     fi
     '''
@@ -166,16 +168,17 @@ def send_cmd_info():
 	        res,info=commands.getstatusoutput(cmd)
 		if info:
 		    str_list=info.split('@_@')
-		    dicts={'type':'cmd'}
-		    dicts['time']=str_list[0].rstrip(' ')
-		    dicts['user']=str_list[1]
-		    dicts['ip']=str_list[2]
-		    dicts['cmd']=str_list[3]
-		    dicts['host']=hostname
-		    json=simplejson.dumps(dicts)
-		    if dicts['ip'] == '' or dicts['user'] == '':
-			continue
-	            sk.sendall(json)
+		    if len(str_list)>3:
+			dicts={'type':'cmd'}
+			dicts['time']=str_list[0].rstrip(' ')
+			dicts['user']=str_list[1]
+			dicts['ip']=str_list[2]
+			dicts['cmd']=str_list[3]
+			dicts['host']=hostname
+			json=simplejson.dumps(dicts)
+			if dicts['ip'] == '' or dicts['user'] == '':
+			    continue
+			sk.sendall(json)
         except Exception as e:
 	    print e
         finally:
