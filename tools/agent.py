@@ -85,6 +85,8 @@ def init_login_env():
     if [ $? != 0 ]
          then
               echo $hist_format >>/etc/profile
+	      echo "\`history >>/tmp/.history_cmd.log\`" >> /etc/profile
+	      echo "export PROMPT_COMMAND='\$(history 1 >>/tmp/.history_cmd.log)'" >>/etc/profile
     fi
     egrep '@_@' /root/.bash_profile &>/dev/null
     if [ $? != 0 ]
@@ -111,6 +113,7 @@ def init_login_env():
           chmod 777 /tmp/.history_cmd.log
           chattr +a /tmp/.history_cmd.log &>/dev/null
     fi
+    chattr +a /tmp/.history_cmd.log &>/dev/null
     '''
     with open('/tmp/.run_script.sh','w') as f:
 	f.write(shell_scripts)
