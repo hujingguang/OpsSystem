@@ -59,7 +59,8 @@ class SaltByLocalApi(object):
 	accept=len(self.key_dict['minions'])
 	return [accept,reject,unaccept]
     def get_minions_status(self):
-        return [self.total,len(self.connected_minions_list),self.total-len(self.connected_minions_list)]
+	online=len(self.get_host_info)
+        return [self.total,online,self.total-online]
 
     def get_host_info(self):
 	minions=self.connected_minions_list
