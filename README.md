@@ -77,3 +77,6 @@ Dashboard
 
 文件下载
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/11.png)
+
+命令审计
+![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/12.png)
