@@ -43,17 +43,15 @@ fi
 
 #install python2.7
 
-install_python2_7(){
     version=`python --version`
     echo $version |grep '2.7' &>/dev/null
     if [ $? != 0 ]
     then 
 	echo 'begin install python2.7 .........................'
 	yum install xz gcc -y &>/dev/null
-	wget https://www.python.org/ftp/python/2.7.11/Python-2.7.11.tar.xz &>/dev/null
-	tar -xf Python-2.7.11.tar.xz && \
-	cd Python-2.7.11 && \
-	./configure --prefix=/usr/local/python2.7 &>/dev/null && \
+	cd ./soft && tar -xzf Python-2.7.10.tgz && \
+	cd Python-2.7.10 && \
+	./configure --prefix=/usr/local/ops/python2.7 &>/dev/null && \
 	make &>/dev/null && make install &>/dev/null
 	if [ $? != 0 ]
 	then
@@ -62,29 +60,21 @@ install_python2_7(){
 	fi
 	echo 'install python2.7 is ok .........................'
 	mv /usr/bin/python /usr/bin/python.bak 
-	ln -s /usr/local/python2.7/bin/python /usr/bin/python
-	new_version=`python --version`
-        echo $new_version |grep '2.7' &>/dev/null
+	ln -s /usr/local/ops/python2.7/bin/python /usr/bin/python
 	sed -i 's#\#!/usr/bin/python#\#!/usr/bin/python2.6#g' /usr/bin/yum &>/dev/null
 	rm -rf ./Python-2.7.11* &>/dev/null
     fi
-}
-
-install_python_module(){
     echo 'install setuptool and pip tools'
-    setuptools_url='https://pypi.python.org/packages/f0/32/99ead2d74cba43bd59aa213e9c6e8212a9d3ed07805bb66b8bf9affbb541/setuptools-21.1.0.tar.gz#md5=8fd8bdbf05c286063e1052be20a5bd98'
-    pip_url='https://pypi.python.org/packages/ce/15/ee1f9a84365423e9ef03d0f9ed0eba2fb00ac1fffdd33e7b52aea914d0f8/pip-8.0.2.tar.gz#md5=3a73c4188f8dbad6a1e6f6d44d117eeb'
-    wget $setuptools_url &>/dev/null && wget $pip_url &>/dev/null
-    tar -zxf setuptools-21.1.0.tar.gz && \
-    tar -zxf pip-8.0.2.tar.gz && \
+    tar -zxf setuptools-18.4.tar.gz && \
+    tar -zxf pip-7.1.2.tar.gz && \
     cd setuptools-21.1.0 && \
-    /usr/local/python2.7/bin/python setup.py install &>/dev/null
+    /usr/local/ops/python2.7/bin/python setup.py install &>/dev/null
     if [ $? != 0 ]
     then 
 	echo 'install setuptools failed'
 	exit 1
     fi
-    cd ../pip-8.0.2 && /usr/local/python2.7/bin/python setup.py install &>/dev/null
+    cd ../pip-8.0.2 && /usr/local/ops/python2.7/bin/python setup.py install &>/dev/null
     if [ $? != 0 ]
     then
 	echo 'install pip tool failed '
@@ -93,16 +83,16 @@ install_python_module(){
     echo 'install setuptool and pip tools is ok .............................'
     echo 
     echo 'install pexpect , salt , django ,MySQL-python'
-    if [ -e /usr/local/python2.7/bin/pip ]
+    if [ -e /usr/local/ops/python2.7/bin/pip ]
     then
-    /usr/local/python2.7/bin/pip install django
-    /usr/local/python2.7/bin/pip install salt
-    /usr/local/python2.7/bin/pip install pexpect
-    /usr/local/python2.7/bin/pip install MySQL-python
-    /usr/local/python2.7/bin/pip install pyaml
-    /usr/local/python2.7/bin/pip install tornado
-    /usr/local/python2.7/bin/pip install zmq
-    /usr/local/python2.7/bin/pip install msgpack-python
+    /usr/local/ops/python2.7/bin/pip install django
+    /usr/local/ops/python2.7/bin/pip install salt
+    /usr/local/ops/python2.7/bin/pip install pexpect
+    /usr/local/ops/python2.7/bin/pip install MySQL-python
+    /usr/local/ops/python2.7/bin/pip install pyaml
+    /usr/local/ops/python2.7/bin/pip install tornado
+    /usr/local/ops/python2.7/bin/pip install zmq
+    /usr/local/ops/python2.7/bin/pip install msgpack-python
     else
     pip install django
     pip install salt
@@ -121,27 +111,13 @@ install_python_module(){
     fi
     /etc/init.d/salt-master start &>/dev/null
     echo 'install pexpect salt django MySQL-pytho is ok ....................................'
-}
-
-
-copy_sls_files(){
+    cd ../..
     if [ ! -e /srv/salt ]
     then
 	mkdir -p /srv/salt
     fi
-    cur=`pwd`
-    \cp -a $cur/sls/* /srv/salt/ &>/dev/null
-}
+    \cp -a ./sls/* /srv/salt/ &>/dev/null
 
-
-main(){
-copy_sls_files
-install_python2_7
-install_python_module
-}
-
-echo 'begin to start.......'
-main
 echo 'please install mysql server and start '
 echo 'please vim ./ops_system/setting.py  and set database '
 echo 'run: python manage.py test '
