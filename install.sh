@@ -31,7 +31,6 @@ then
 else
     exit
 fi
-exit
 rpm -qa|grep epel &>/dev/null 
 if [ $? != 0 ]
 then
