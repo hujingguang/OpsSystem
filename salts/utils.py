@@ -59,7 +59,7 @@ class SaltByLocalApi(object):
 	accept=len(self.key_dict['minions'])
 	return [accept,reject,unaccept]
     def get_minions_status(self):
-	online=len(self.get_host_info)
+	online=len(self.get_host_info())
         return [self.total,online,self.total-online]
 
     def get_host_info(self):
