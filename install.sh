@@ -62,19 +62,22 @@ fi
 	mv /usr/bin/python /usr/bin/python.bak 
 	ln -s /usr/local/ops/python2.7/bin/python /usr/bin/python
 	sed -i 's#\#!/usr/bin/python#\#!/usr/bin/python2.6#g' /usr/bin/yum &>/dev/null
+	cd ..
 	rm -rf ./Python-2.7.11* &>/dev/null
+    else
+	cd ./soft
     fi
     echo 'install setuptool and pip tools'
     tar -zxf setuptools-18.4.tar.gz && \
     tar -zxf pip-7.1.2.tar.gz && \
-    cd setuptools-21.1.0 && \
+    cd setuptools-18.4 && \
     /usr/local/ops/python2.7/bin/python setup.py install &>/dev/null
     if [ $? != 0 ]
     then 
 	echo 'install setuptools failed'
 	exit 1
     fi
-    cd ../pip-8.0.2 && /usr/local/ops/python2.7/bin/python setup.py install &>/dev/null
+    cd ../pip-7.1.2 && /usr/local/ops/python2.7/bin/python setup.py install &>/dev/null
     if [ $? != 0 ]
     then
 	echo 'install pip tool failed '
