@@ -60,6 +60,7 @@ fi
 	fi
 	echo 'install python2.7 is ok .........................'
 	mv /usr/bin/python /usr/bin/python.bak 
+	rm -rf /usr/bin/python
 	ln -s /usr/local/ops/python2.7/bin/python /usr/bin/python
 	sed -i 's#\#!/usr/bin/python#\#!/usr/bin/python2.6#g' /usr/bin/yum &>/dev/null
 	cd ..
