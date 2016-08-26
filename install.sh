@@ -108,10 +108,9 @@ fi
     pip install msgpack-python
     fi
     yum install salt salt-master git subversion mysql-devel mysql-server mysql MySQL-python -y &>/dev/null
-    mysqlib=`find / -name 'libmysqlclient.so.18'`
     if [ ! -e /usr/lib64/libmysqlclient.so.18 ]
     then
-    \cp ../libmysqlclient.s0.18  /usr/lib64/
+    \cp ../libmysqlclient.so.18  /usr/lib64/
     fi
     /etc/init.d/salt-master start &>/dev/null
     echo 'install pexpect salt django MySQL-pytho is ok ....................................'
