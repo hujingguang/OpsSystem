@@ -101,7 +101,6 @@ fi
     pip install django
     pip install salt
     pip install pexpect
-    pip install MySQL-python
     pip install pyaml
     pip install tornado
     pip install zmq
@@ -120,6 +119,7 @@ fi
 	mkdir -p /srv/salt
     fi
     \cp -a ./sls/* /srv/salt/ &>/dev/null
+    /usr/local/ops/python2.7/bin/pip install Mysql-python &>/dev/null
 
 echo 'please install mysql server and start '
 echo 'please vim ./ops_system/setting.py  and set database '
