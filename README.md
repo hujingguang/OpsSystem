@@ -8,7 +8,7 @@ ops plateform
 
 部署步骤，  
 
-1 ：安装python2.7版本，django1.9框架  pexpect python模块，svn工具  git工具 Saltstack 自动化工具
+1 ：安装python2.7版本，CentOS6.x, django1.9框架  pexpect python模块，svn工具  git工具 Saltstack 自动化工具
 
 2： pip install django  && pip install pexpect && yum install git subversion -y && pip install salt
 
