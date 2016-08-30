@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^deploy-manage/',include('deploy.urls',namespace='deploy-manage',app_name='deploy')),
     url(r'^saltstack/',include('salts.urls',namespace='saltstack',app_name='salts')),
     url(r'^logout/$',logout_view,name='logout'),
+    url(r'^api/',include('api.urls',namespace='api',app_name='api')),
 	]
 
 

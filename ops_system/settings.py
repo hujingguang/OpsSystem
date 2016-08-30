@@ -14,6 +14,7 @@ INSTALLED_APPS = [
     'deploy',
     'asset',
     'salts',
+    'api',
 ]
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

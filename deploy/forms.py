@@ -124,6 +124,25 @@ class DeployInputForm(forms.Form):
 	super(DeployInputForm,self).__init__(*args,**kwargs)
         self.fields['repoName'].choices=[(ob.repoName,ob.repoName) for ob in RepoModel.objects.all()]
 
+class RollBackForm(forms.Form):
+    repoName=forms.ChoiceField(label=u'项目名称',
+	    choices=(),
+	    widget=forms.Select(attrs={'class':'form-control','style':'width:300px'}))
+    target=forms.ChoiceField(label=u'回滚环境',
+	    choices=(('test',u'测试环境'),('pre',u'预发布环境'),('online',u'正式环境')),
+	    widget=forms.Select(attrs={'class':'form-control','style':'width:300px'}))
+    currentVersion=forms.ChoiceField(label=u'当前版本号',
+	    choices=(),
+	    widget=forms.Select(attrs={'class':'form-control','style':'width:300px'}))
+    rollbackVersion=forms.CharField(label=u'回滚版本号',
+	    error_messages={'required':'请输入回滚的版本号！！！'},
+	    max_length=50,
+	    required=True,
+	    widget=forms.TextInput(attrs={'class':'form-control','style':'width:300px'}))
+    password=forms.CharField(label=u'回滚密码',error_messages={'required':u'请输入密码！！！'},max_length=100,
+	    widget=forms.PasswordInput(attrs={'class':'form-control','style':'width:300px'}))
+
+    
 
 
 if __name__=='__main__':
