@@ -29,3 +29,16 @@ class DeployInfoModel(models.Model):
     log=models.TextField()
     class Meta:
 	db_table='ops_deploy_info'
+
+
+class RollBackInfoModel(models.Model):
+    repoName=models.CharField(max_length=100)
+    curRevision=models.CharField(max_length=30)
+    backRevision=models.CharField(max_length=30)
+    status=models.CharField(max_length=10,choices=(('success','rollback success'),('failed','rollback failed')))
+    rollDate=models.DateTimeField()
+    target=models.CharField(max_length=10)
+    person=models.CharField(max_length=30)
+
+    class Meta:
+	db_table='ops_rollback_info'

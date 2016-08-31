@@ -126,6 +126,14 @@ def list_deploy_info(request):
 	deploy=paginator.page(paginator.num_pages)
     return render_to_response('list_deploy_info.html',RequestContext(request,{'deploy_list':deploy}))
 
+
+@login_required(login_url='/')
+def rollback_project(request):
+    if request.method=='POST':
+	pass
+    form=RollBackForm()
+    return render_to_response('rollback_project.html',RequestContext(request,{'form':form}))
+
 @login_required(login_url='/')
 def deploy_project(request):
     if request.method=='POST':

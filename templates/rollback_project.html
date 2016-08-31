@@ -1,0 +1,132 @@
+{%extends 'base.html' %}
+{%load static %}
+{%block head%}
+<li>
+<i class='fa fa-dashboard'></i><a href={%url 'index' %}>&nbsp Dashboard</a>
+</li>
+<li>
+<i class='fa fa-table'></i>&nbsp 项目管理
+</li>
+<li  class='active'>
+<i class='fa fa-building-o'></i>&nbsp; 代码回滚
+</li>
+{%endblock%}
+
+{%block page_content%}
+
+<div class='row'>
+    <div class='panel panel-info'>
+	<div class='panel-heading'>
+	    <h4 class='panel-title'><i class='fa fa-bell'></i>&nbsp Deploy Project<h4>
+		</div>
+		<div class='panel-body'>
+		    <div class='panel panel-info' style='width:500px;height:700px;margin:auto'>
+			<form class='form-group' method='post' action={%url 'deploy:rollback_project'%} onsubmit='return rollback();'>
+			    {%csrf_token %}
+			    {%for f in form %}
+			    <div class='form-group input-group'>
+				<label class='input-group-addon control-label'>{{f.label}}</label>  {{f}}
+			    </div>
+			    {%if f.errors%}
+			    {%if res %}
+			    <div class='alert alert-success'>
+				{{f.errors}}
+			    </div>
+			    <div class='form-group input-group'>
+			    </div>
+			    {%else%}
+			    <div class='alert alert-danger'>
+				{{f.errors}}
+			    </div>
+			    <div class='form-group input-group'>
+			    </div>
+			    {%endif%}
+			    {%endif%}
+			    <div class='form-group input-group'>
+			    </div>
+			    <div class='form-group input-group'>
+			    </div>
+			    <div class='form-group input-group'>
+			    </div>
+			    <div class='form-group input-group'>
+			    </div>
+			    {%endfor%}
+			    <div class='form-group input-group'>
+			    </div>
+			    <button style='width:400px;margin-left:50px' type='submit' value='deploy' id='sb' class='btn btn-danger'> RollBack </button>
+			    <span id="sp_1" style="display:none;width:70px;margin-left:50px"><img style='width:200px;height:60px;'src={%static 'img/wait.gif'%}
+				id="sp"/> 正在处理中.......</span> 
+			</form>
+			<script type="text/javascript"> 
+			    function getId(id) { 
+				return document.getElementById(id); 
+			    } 
+function rollback() { 
+    target=document.getElementById('id_password')
+    rollbackVersion=$('#id_rollbackVersion').val();
+    //currentVersion=$('#id_currentVersion').val();
+    currentVersion=$('#id_currentVersion').find('option:selected').text();
+    if (target.value==null || target.value.replace(/(^\s*)|(\s*$)/g, "")=='')
+    {
+	alert('请输入发布密码！！！');
+	return false;
+    }
+    if(rollbackVersion===null||rollbackVersion.replace(/(^\s*)|(\s*$)/g,"")==''){
+        alert('请输入回滚版本号！！！');
+	return false;
+    }
+    if(currentVersion===null||currentVersion.replace(/(^\s*)|(\s*$)/g,"")==''){
+	alert('没有可用的当前版本号！！！');
+	return false;
+    }
+    getId("sb").style.display="none"; 
+    getId("sp_1").style.display=""; 
+    return true; 
+} 
+   var apiData;
+   function func(){
+     var v1=$('#id_repoName option:selected').val();
+     var v2=$('#id_target option:selected').val();
+     $('#id_currentVersion').empty();
+      if(apiData){
+	     if(v2==='test'){var txt=apiData[v1].test;}
+	     if(v2==='pre'){var txt=apiData[v1].pre;}
+	     if(v2==='online'){var txt=apiData[v1].online;}
+             var option=$("<option>").val(1).text(txt);
+	 }
+      $('#id_currentVersion').append(option);
+   }
+   var s1=$('#id_repoName');
+   s1.on('change',func);
+   var s2=$('#id_target');
+   s2.on('change',func);
+   var req=$.ajax({
+dataType:'json',
+url:'/api/project/version/current/',
+success: function(data){
+        apiData=data; 
+   }
+	   });
+    </script>
+</div>
+</div>
+</div>
+</div>
+
+{%if log %}
+<div class='row'>
+    <div class='panel'> 
+	<div class='panel-body'>
+	    <div class='panel panel-info' style='width:700px;height:1200px;margin:auto;'>
+		<div class='alert alert-info'>
+		    <textarea style='width:100%;height:1000px;background: #300a24'>
+			发布日志
+			{{log}}
+		    </textarea>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </div>
+    {%endif%}
+    {%endblock%}
