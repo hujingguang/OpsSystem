@@ -57,6 +57,9 @@ Dashboard
 发布工程
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/4.png)
 
+代码回滚
+![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/13.png)
+
 主机信息
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/5.png)
 
