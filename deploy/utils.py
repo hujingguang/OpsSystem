@@ -195,7 +195,12 @@ def deploy_git_code(repo_name,
 	    return False,u'非管理员无法发布至正式环境！！！',None
 	user=authenticate(username=deploy_person.get_username(),password=deploy_password)
 	if user is not None:
-	    res,mess,log_file=upload_code_with_no_password(checkout_code_parent_dir+'/'+code_dir,wwwDir,ip,diff_file+'.log',exclude_dir,log_file)
+	    res,mess,log_file=upload_code_with_no_password(checkout_code_parent_dir+'/'+code_dir,
+		    wwwDir,
+		    ip,
+		    diff_file+'.log',
+		    exclude_dir,
+		    log_file)
 	    os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
 	    if res:
 		recode,m=insert_deploy_log(repo_name,
@@ -273,7 +278,11 @@ def deploy_svn_code(repo_name,
 	return False,u'最新的版本号小于上次记录版本号！ 请检查数据库',log_file
     if int(revision) < int(lastest_revision):
 	diff_file='/tmp/.'+str(random.randint(10000,1000000))+'.log'
-	cmd_get_diff_file=''' cd %s/%s && svn diff -r%s:%s --summarize|sed "s/^\s\+//g" >%s ''' %(checkout_code_parent_dir,code_dir,revision,lastest_revision,diff_file)
+	cmd_get_diff_file=''' cd %s/%s && svn diff -r%s:%s --summarize|sed "s/^\s\+//g" >%s ''' %(checkout_code_parent_dir,
+		code_dir,
+		revision,
+		lastest_revision,
+		diff_file)
         logfunc(log_file,'INFO','get diff file cmd: '+cmd_get_diff_file)
 	cmd_res=os.system(cmd_get_diff_file)
 	logfunc(log_file,'INFO','cmd run return code: '+str(cmd_res))
@@ -315,7 +324,12 @@ def deploy_svn_code(repo_name,
 		return False,u'非管理员无法发布至正式环境！！！',None
 	    user=authenticate(username=deploy_person.get_username(),password=deploy_password)
 	    if user is not None:
-	        res,mess,log_file=upload_code_with_no_password(checkout_code_parent_dir+'/'+code_dir,wwwDir,ip,diff_file+'.log',exclude_dir,log_file)
+	        res,mess,log_file=upload_code_with_no_password(checkout_code_parent_dir+'/'+code_dir,
+			wwwDir,
+			ip,
+			diff_file+'.log',
+			exclude_dir,
+			log_file)
 		os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
 		if res:
 		    recode,m=insert_deploy_log(repo_name,target,
@@ -384,7 +398,15 @@ def insert_deploy_log(repoName,target,revision,date,log,person):
 	return False,u'插入发布日志失败'
     return True,u'发布成功'
 
-	
+
+def judge_rollback_version_exist(project,target,version):
+    try:
+	v=DeployInfoModel.objects.filter(repoName=project).filter(target=target).filter(revision=version)
+	if v:
+	    return (None,True)
+    except Exception as e:
+	return ('查询回滚版本号失败',False)
+    return ('不存在该回滚版本',False)
 def upload_code_with_password(code_dir,password,wwwDir,ip,diff_file,exclude_dir,log_file):
     global RSYNC_LOG_FILE,REVISION
     if not os.path.exists(code_dir):

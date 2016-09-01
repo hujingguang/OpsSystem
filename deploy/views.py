@@ -130,7 +130,42 @@ def list_deploy_info(request):
 @login_required(login_url='/')
 def rollback_project(request):
     if request.method=='POST':
-	pass
+	form=RollBackForm(request.POST)
+	if form.is_valid():
+	    repo_name=form.cleaned_data['repoName'].replace(' ','')
+	    target=form.cleaned_data['target'].replace(' ','')
+	    cur_version=form.cleaned_data['currentVersion'].replace(' ','')
+	    roll_version=form.cleaned_data['rollbackVersion'].replace(' ','')
+	    password=form.cleaned_data['password'].replace(' ','')
+	    if cur_version!=roll_version:
+	        error,result=judge_rollback_version_exist(repo_name,target,roll_version)
+	        if result :
+		    if target != 'online':
+			try:
+			    repo_object=RepoModel.objects.filter(repoName=repo_name).first()
+			    if target=='pre':
+				ip=repo_object.preDeployIP.replace(' ','')
+			    else:
+				ip=repo_object.testDeployIP.replace(' ','')
+			    if not ip or ip=='':
+				form.errors['password']='数据库中不存在有效的IP地址'
+			    else:
+				if check_ssh_passwd(password,ip):
+				    pass
+				else:
+				    form.errors['password']='回滚密码错误！！！'
+			except Exception as e:
+			    form.errors['password']='查询项目库失败'
+		    else:
+			if request.user.is_superuser:
+			    pass
+			else:
+			    form.errors['password']='非管理员无法回滚正式环境代码！！！'
+	        else:
+		    form.errors['rollbackVersion']=error
+	    else:
+		form.errors['rollbackVersion']='回滚版本号不能和当前版本号相同！！！'
+        return render_to_response('rollback_project.html',RequestContext(request,{'form':form}))
     form=RollBackForm()
     return render_to_response('rollback_project.html',RequestContext(request,{'form':form}))
 
@@ -155,7 +190,6 @@ def deploy_project(request):
 		    return render_to_response('deploy_project.html',RequestContext(request,{'form':form}))
 	    deploy_person=request.user
 	    res,mess,log_file=deploy_project_func(repoName,password,target,deploy_person)
-	    print repoName,password,target,deploy_person
 	    log=[]
 	    if log_file is not None:
 		#f=open(log_file,'r')

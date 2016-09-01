@@ -131,9 +131,11 @@ class RollBackForm(forms.Form):
     target=forms.ChoiceField(label=u'回 滚 环 境',
 	    choices=(('test',u'测试环境'),('pre',u'预发布环境'),('online',u'正式环境')),
 	    widget=forms.Select(attrs={'class':'form-control','style':'width:400px'}))
-    currentVersion=forms.ChoiceField(label=u'当前版本号',
-	    choices=(),
-	    widget=forms.Select(attrs={'class':'form-control','style':'width:400px'}))
+   # currentVersion=forms.ChoiceField(label=u'当前版本号',
+   #	    choices=(),
+   #	    widget=forms.Select(attrs={'class':'form-control','style':'width:400px'}))
+    currentVersion=forms.CharField(label=u'当前版本号',error_messages={'required':'请输入当前版本号'},max_length=50,required=True,
+	    widget=forms.TextInput(attrs={'class':'form-control','style':'width:400px','readonly':True}))
     rollbackVersion=forms.CharField(label=u'回滚版本号',
 	    error_messages={'required':'请输入回滚的版本号！！！'},
 	    max_length=50,
