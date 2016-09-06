@@ -9,7 +9,9 @@ def get_system_info():
     cmd_get_mem_used=r"free -m |tail -n 2|head -n 1|awk '{print $3}'"
     cmd_get_users_num=r"w -h |wc -l"
     cmd_get_uptime=r"uptime |awk -F',' '{print $1}'"
-    cpu_sockets=commands.getoutput(cmd_get_cpu_sockect)
+    res,cpu_sockets=commands.getstatusoutput(cmd_get_cpu_sockect)
+    if res != 0:
+	cpu_sockets=1
     cpu_cores=commands.getoutput(cmd_get_cpu_cores)
     mem_total=commands.getoutput(cmd_get_mem_total)
     mem_used=commands.getoutput(cmd_get_mem_used)
