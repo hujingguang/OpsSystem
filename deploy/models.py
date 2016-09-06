@@ -26,6 +26,7 @@ class DeployInfoModel(models.Model):
     revision=models.CharField(max_length=100)
     person=models.CharField(max_length=50)
     date=models.DateTimeField()
+    remark=models.CharField(max_length=80,default=None)
     log=models.TextField()
     class Meta:
 	db_table='ops_deploy_info'

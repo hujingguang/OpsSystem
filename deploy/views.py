@@ -138,7 +138,7 @@ def rollback_project(request):
 	    roll_version=form.cleaned_data['rollbackVersion'].replace(' ','')
 	    password=form.cleaned_data['password'].replace(' ','')
 	    if cur_version!=roll_version:
-	        error,result=judge_rollback_version_exist(repo_name,target,roll_version)
+	        error,result=judge_rollback_version_exist(repo_name,target,cur_version,roll_version)
 	        if result :
 		    if target != 'online':
 			try:
@@ -151,14 +151,33 @@ def rollback_project(request):
 				form.errors['password']='数据库中不存在有效的IP地址'
 			    else:
 				if check_ssh_passwd(password,ip):
-				    pass
+				    status,info,log=rollback(repo_name,target,cur_version,roll_version,request.user,password)# return: status,info,rollback_log
+				    if status is False:
+					form.errors['password']=info
+					return render_to_response('rollback_project.html',RequestContext(request,{'form':form}))
+				    else:
+					succ_info='恭喜, 回滚成功'
+					res,log=commands.getstatusoutput('cat %s' %log)
+					return render_to_response('rollback_project.html',RequestContext(request,{'form':form,'log':log,'succ_info':succ_info}))
 				else:
 				    form.errors['password']='回滚密码错误！！！'
 			except Exception as e:
+			    print e
 			    form.errors['password']='查询项目库失败'
 		    else:
 			if request.user.is_superuser:
-			    pass
+	                    user=authenticate(username=request.user.get_username(),password=password)
+			    if not user:
+				form.errors['password']='回滚密码错误！！！'
+				return render_to_response('rollback_project.html',RequestContext(request,{'form':form}))
+			    status,info,log=rollback(repo_name,target,cur_version,roll_version,request.user,password)
+			    if status is False:
+				form.errors['password']=info
+				return render_to_response('rollback_project.html',RequestContext(request,{'form':form}))
+			    else:
+				succ_info='恭喜,回滚成功'
+				res,log=commands.getstatusoutput('cat %s' %log)
+				return render_to_response('rollback_project.html',RequestContext(request,{'form':form,'log':log,'succ_info':succ_info}))
 			else:
 			    form.errors['password']='非管理员无法回滚正式环境代码！！！'
 	        else:

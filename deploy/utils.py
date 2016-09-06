@@ -9,8 +9,13 @@ import commands
 from django.contrib.auth import authenticate
 from models import RepoModel,DeployInfoModel
 from datetime import datetime
+import sys
+reload(sys)
+sys.setdefaultencoding( "utf-8" )
+
 IP_regex=r'((?:(?:25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))\.){3}(?:25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d))))'
 RSYNC_LOG_FILE='/tmp/ops_rsync.log'
+ROLL_LOG_FILE='/tmp/rollback.log'
 REVISION=''
 def check_svn_validated(user,password,url):
     global IP_regex
@@ -172,21 +177,24 @@ def deploy_git_code(repo_name,
     code,log=commands.getstatusoutput('cat %s' %diff_file)
     REVISION=lastest_revision
     if target == 'test' or target == 'pre':
+	rsync_target=ip[0]+':'+wwwDir
+	exclude_dir=deal_with_exclude(exclude_dir)
 	res,mess,log_file=upload_code_with_password(checkout_code_parent_dir+'/'+code_dir,
 		deploy_password,
-		wwwDir,
-		ip[0],
+		rsync_target,
 		diff_file+'.log',
 		exclude_dir,
 		log_file)
 	os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
 	if res:
+	    remark='从版本 '+revision+' 发布至 '+lastest_revision
 	    recode,m=insert_deploy_log(repo_name,
 		    target,
 		    lastest_revision,
 		    datetime.now(),
 		    log,
-		    deploy_person.get_username())
+		    deploy_person.get_username(),
+		    remark)
 	    return recode,m,log_file
 	else:
 	    return res,mess,log_file
@@ -195,6 +203,7 @@ def deploy_git_code(repo_name,
 	    return False,u'非管理员无法发布至正式环境！！！',None
 	user=authenticate(username=deploy_person.get_username(),password=deploy_password)
 	if user is not None:
+	    exclude_dir=deal_with_exclude(exclude_dir)
 	    res,mess,log_file=upload_code_with_no_password(checkout_code_parent_dir+'/'+code_dir,
 		    wwwDir,
 		    ip,
@@ -203,12 +212,14 @@ def deploy_git_code(repo_name,
 		    log_file)
 	    os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
 	    if res:
+	        remark='从版本 '+revision+' 发布至 '+lastest_revision
 		recode,m=insert_deploy_log(repo_name,
 			target,
 			lastest_revision,
 			datetime.now(),
 			log,
-			deploy_person.get_username())
+			deploy_person.get_username(),
+			remark)
 		return recode,m,log_file
 	    else:
 		return res,mess,log_file
@@ -302,20 +313,23 @@ def deploy_svn_code(repo_name,
 	code,log=commands.getstatusoutput('cat %s' %diff_file)
 	REVISION=lastest_revision
         if target == 'test' or target == 'pre':
+	    rsync_target=ip[0]+':'+wwwDir
+	    exclude_dir=deal_with_exclude(exclude_dir)
 	    res,mess,log_file=upload_code_with_password(checkout_code_parent_dir+'/'+code_dir,
 		    deploy_password,
-		    wwwDir,
-		    ip[0],
+		    rsync_target,
 		    diff_file+'.log',
 		    exclude_dir,log_file)
             os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
 	    if res:
+	        remark='从版本 '+revision+' 发布至 '+lastest_revision
 		recode,m=insert_deploy_log(repo_name,
 			target,
 			lastest_revision,
 			datetime.now(),
 			log,
-			deploy_person.get_username())
+			deploy_person.get_username(),
+			remark)
 		return recode,m,log_file
 	    else:
 		return res,mess,log_file
@@ -324,6 +338,7 @@ def deploy_svn_code(repo_name,
 		return False,u'非管理员无法发布至正式环境！！！',None
 	    user=authenticate(username=deploy_person.get_username(),password=deploy_password)
 	    if user is not None:
+		exclude_dir=deal_with_exclude(exclude_dir)
 	        res,mess,log_file=upload_code_with_no_password(checkout_code_parent_dir+'/'+code_dir,
 			wwwDir,
 			ip,
@@ -332,10 +347,12 @@ def deploy_svn_code(repo_name,
 			log_file)
 		os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
 		if res:
+	            remark='从版本 '+revision+' 发布至 '+lastest_revision
 		    recode,m=insert_deploy_log(repo_name,target,
 			    lastest_revision,datetime.now(),
 			    log,
-			    deploy_person.get_username())
+			    deploy_person.get_username(),
+			    remark)
 		    return recode,m,log_file
 		else:
 		    return res,mess,log_file
@@ -353,12 +370,12 @@ def upload_code_with_no_password(code_dir,
     if not os.path.exists(code_dir):
 	return False,u'不存在源码目录: %s' %code_dir,log_file
     os.system('rm -rf /tmp/.tmp0001')
-    exclude_args=deal_with_exclude(exclude_dir)
+    exclude_args=exclude_dir
     for i in ip:
 	ch=pexpect.spawn('ssh %s' %i)
 	res=ch.expect(['password','#',pexpect.EOF,pexpect.TIMEOUT])
 	if res != 1:
-	    return False,u'IP: %s 没有配置秘钥连接！！请先配置ssh key 登陆再进行正式环境代码发布' %i,None
+	    return False,u'IP: %s 没有配置秘钥连接！！请先配置ssh key 登陆再进行操作' %i,None
     failed=0
     for ii in ip:
 	os.system('rm -rf /tmp/.up.log')
@@ -385,35 +402,138 @@ def upload_code_with_no_password(code_dir,
 	return False,'代码发布失败,发布结果 成功台数： %s 失败台数：%s '  %(success,failed),log_file
 
 
-def insert_deploy_log(repoName,target,revision,date,log,person):
+def insert_deploy_log(repoName,target,revision,date,log,person,remark):
     deployinfo=DeployInfoModel(repoName=repoName,
 	    target=target,
 	    revision=revision,
 	    date=date,
 	    log=log,
-	    person=person)
+	    person=person,
+	    remark=remark)
     try:
 	deployinfo.save()
-    except:
+    except Exception as e:
+	print e
 	return False,u'插入发布日志失败'
     return True,u'发布成功'
 
 
-def judge_rollback_version_exist(project,target,version):
+def rollback(repo_name,target,cur_version,roll_version,user,password):
+    global ROLL_LOG_FILE
     try:
-	v=DeployInfoModel.objects.filter(repoName=project).filter(target=target).filter(revision=version)
-	if v:
+	repo_info=RepoModel.objects.filter(repoName=repo_name).first()
+	if not repo_info:
+	    return False,u'版本库数据异常',None
+	checkout_dir=repo_info.localCheckoutDir.replace(' ','')
+	rsync_exclude_args=deal_with_exclude(repo_info.excludeDir.replace(' ',''))
+	test_env_ip=repo_info.testDeployIP.replace(' ','')
+	pre_env_ip=repo_info.preDeployIP.replace(' ','')
+	online_env_ip=repo_info.onlineDeployIP
+	repo_type=repo_info.repoType.replace(' ','')
+	www_dir=repo_info.wwwDir.replace(' ','')
+	repo_addr=repo_info.repoAddress.replace(' ','')
+	pre_rsync_target=pre_env_ip+':'+www_dir
+        online_rsync_target_list=[]
+	for ip in online_env_ip.split(' '):
+	    if ip !='':
+		online_rsync_target_list.append(ip+":"+www_dir)
+	if repo_type=='git':
+	    if not checkout_dir.startswith('/'):
+		return False,u'checkout目录数据有误',None
+	    if checkout_dir.endswith('/'):
+		n=check_dir.rfind('/')
+		checkout_dir=checkout_dir[:n]
+	    code_path=checkout_dir+'/'+repo_name+'_'+target+'/'+repo_addr[repo_addr.rfind('/')+1:].split('.')[0]
+	    if not os.path.exists(code_path+'/'+'.git'):
+		return False,u'代码库未checkout,请确定是否存在再回滚',None
+	    if target=='test':
+	        rsync_target=test_env_ip+':'+www_dir
+	    elif target=='pre':
+	        rsync_target=pre_env_ip+':'+www_dir
+	    else:
+		rsync_target=online_rsync_target_list
+	    status,info,logfile=rollback_git_code(repo_name,roll_version,code_path,rsync_exclude_args,rsync_target,password)
+	    if status:
+		with open('/tmp/.d','r') as f:
+		    log=''.join(f.readlines())
+		remark='从版本 '+cur_version+' 回滚至 '+roll_version 
+		ret,info=insert_deploy_log(repo_name,target,roll_version,datetime.now(),log,user,remark)
+		logfunc(ROLL_LOG_FILE,'INFO',info)
+	    return status,info,logfile
+	else:
+	    svn_user=repo_info.repoUser
+	    svn_password=repo_info.repoPassword
+	    rollback_svn_code()
+    except Exception as e:
+	print e
+	return False,u'数据库连接失败',None
+
+
+
+
+def rollback_git_code(repo_name,roll_version,path,rsync_args,rsync_target,password):
+    global ROLL_LOG_FILE
+    log=ROLL_LOG_FILE
+    os.system('rm -f %s && touch %s' %(log,log))
+    logfunc(log,'INFO','begin rollback. repo name: %s , code path: %s' %(repo_name,path))
+    get_diff_file_cmd=r''' cd %s && git pull origin master && git diff --name-status HEAD %s |egrep '^M' |awk -F' ' '{print $NF}' >/tmp/.d ''' %(path,roll_version)
+    logfunc(log,'INFO','get differ file command: %s' %get_diff_file_cmd)
+    res=os.system(get_diff_file_cmd)
+    if res!=0:
+	return False,u'获取差异文件失败',None
+    rollback_cmd=''' cd %s && git pull origin master && git reset --hard %s ''' %(path,roll_version)
+    logfunc(log,'INFO','reset version command: %s' %rollback_cmd)
+    res=os.system(rollback_cmd)
+    if res !=0:
+	return False,u'版本重置失败',None
+    file_list=open('/tmp/.d','r')
+    logfunc(log,'INFO','以下文件将回滚')
+    for filename in file_list.readlines():
+	if not filename:
+	    break
+	logfunc(log,'INFO',filename)
+    if isinstance(rsync_target,list):
+	ip=[]
+	www_dir=rsync_target[0].split(':')[1]
+	for i in rsync_target:
+	    ip.append(i.split(':')[0])
+	return upload_code_with_no_password(path,www_dir,ip,'/tmp/.d',rsync_args,log)
+    else:
+	return upload_code_with_password(path,password,rsync_target,'/tmp/.d',rsync_args,log)
+    
+
+    
+    
+
+    
+
+
+def rollback_svn_code():
+    pass
+
+
+def judge_rollback_version_exist(project,target,cur_version,roll_version):
+    try:
+	roll_ver=DeployInfoModel.objects.filter(repoName=project).filter(target=target).filter(revision=roll_version).first()
+	cur_ver=DeployInfoModel.objects.filter(repoName=project).filter(target=target).filter(revision=cur_version).first()
+	if roll_ver:
+	    roll_ver_deploy_date=int(time.mktime(roll_ver.date.timetuple()))
+	    cur_ver_deploy_date=int(time.mktime(cur_ver.date.timetuple()))
+	    if roll_ver_deploy_date > cur_ver_deploy_date or int(cur_ver.id) < int(roll_ver.id):
+		return (u'回滚版本时间不能大于当前版本发布时间！！！',False)
 	    return (None,True)
     except Exception as e:
-	return ('查询回滚版本号失败',False)
-    return ('不存在该回滚版本',False)
-def upload_code_with_password(code_dir,password,wwwDir,ip,diff_file,exclude_dir,log_file):
+	return (u'查询回滚版本号失败',False)
+    return (u'不存在该回滚版本',False)
+
+
+def upload_code_with_password(code_dir,password,rsync_target,diff_file,exclude_dir,log_file):
     global RSYNC_LOG_FILE,REVISION
     if not os.path.exists(code_dir):
-	return False,u'不存在源代码目录: %s' %code_dir,log_file
+	return False,u'不存在源代码目录: %s' %code_dir
     os.system('rm -rf /tmp/.tmp0001 && rm -rf /tmp/.up.log')
-    exclude_args=deal_with_exclude(exclude_dir)
-    cmd_upload=''' rsync -avlpP %s --files-from=%s %s %s:%s &>/tmp/.up.log && echo ok >/tmp/.tmp0001 || echo error >/tmp/.tmp0001 ''' %(exclude_args,diff_file,code_dir,ip,wwwDir)
+    exclude_args=exclude_dir
+    cmd_upload=''' rsync -avlpP %s --files-from=%s %s %s &>/tmp/.up.log && echo ok >/tmp/.tmp0001 || echo error >/tmp/.tmp0001 ''' %(exclude_args,diff_file,code_dir,rsync_target)
     logfunc(log_file,'INFO','upload file cmd: '+cmd_upload)
     f=open('/tmp/.cmd_run.sh','w')
     f.write(cmd_upload)
@@ -434,7 +554,7 @@ def upload_code_with_password(code_dir,password,wwwDir,ip,diff_file,exclude_dir,
 	return False,u'上传代码执行超时！！！',log_file
     is_ok=os.system('grep ok /tmp/.tmp0001 &>/dev/null')
     logfunc(log_file,'INFO','-'*20)
-    cmd_rsync_log='echo %s >> %s && cat /tmp/.up.log >> %s' %(REVISION,RSYNC_LOG_FILE,RSYNC_LOG_FILE)
+    cmd_rsync_log='''echo '%s  :  %s' >> %s && cat /tmp/.up.log >> %s ''' %(code_dir,REVISION,RSYNC_LOG_FILE,RSYNC_LOG_FILE)
     os.system(cmd_rsync_log)
     r,out=commands.getstatusoutput('cat /tmp/.up.log')
     logfunc(log_file,'INFO',out)

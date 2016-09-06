@@ -28,19 +28,11 @@
 				<label class='input-group-addon control-label'>{{f.label}}</label>  {{f}}
 			    </div>
 			    {%if f.errors%}
-			    {%if res %}
-			    <div class='alert alert-success'>
-				{{f.errors}}
-			    </div>
-			    <div class='form-group input-group'>
-			    </div>
-			    {%else%}
 			    <div class='alert alert-danger'>
 				{{f.errors}}
 			    </div>
 			    <div class='form-group input-group'>
 			    </div>
-			    {%endif%}
 			    {%endif%}
 			    <div class='form-group input-group'>
 			    </div>
@@ -51,6 +43,14 @@
 			    <div class='form-group input-group'>
 			    </div>
 			    {%endfor%}
+                            {%if succ_info%}
+                              <div class='alert alert-success'>
+				{{succ_info}}
+			    </div>
+			    <div class='form-group input-group'>
+			    </div>
+			    {%endif%}
+
 			    <div class='form-group input-group'>
 			    </div>
 			    <button style='width:400px;margin-left:50px' type='submit' value='deploy' id='sb' class='btn btn-danger'> RollBack </button>
@@ -65,7 +65,8 @@ function rollback() {
     target=document.getElementById('id_password')
     rollbackVersion=$('#id_rollbackVersion').val();
     //currentVersion=$('#id_currentVersion').val();
-    currentVersion=$('#id_currentVersion').find('option:selected').text();
+    //currentVersion=$('#id_currentVersion').find('option:selected').text();
+    currentVersion=$('#id_currentVersion').val();
     if (target.value==null || target.value.replace(/(^\s*)|(\s*$)/g, "")=='')
     {
 	alert('请输入发布密码！！！');
@@ -92,9 +93,10 @@ function rollback() {
 	     if(v2==='test'){var txt=apiData[v1].test;}
 	     if(v2==='pre'){var txt=apiData[v1].pre;}
 	     if(v2==='online'){var txt=apiData[v1].online;}
-             var option=$("<option>").val(1).text(txt);
+           //  var option=$("<option>").val(txt).text(txt);
+            $('#id_currentVersion').val(txt);
 	 }
-      $('#id_currentVersion').append(option);
+     // $('#id_currentVersion').append(option);
    }
    var s1=$('#id_repoName');
    s1.on('change',func);
