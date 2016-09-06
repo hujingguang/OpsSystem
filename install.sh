@@ -41,6 +41,9 @@ wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm &>/d
     echo 'is ok ...............................'
 fi
 
+yum install https://repo.saltstack.com/yum/redhat/salt-repo-2015.8-3.el6.noarch.rpm -y &>/dev/null
+yum install salt salt-master  salt-ssh salt-syndic salt-minion  -y &>/dev/null
+
 #install python2.7
 
     version=`python --version`
