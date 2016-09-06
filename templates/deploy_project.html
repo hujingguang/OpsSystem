@@ -20,7 +20,7 @@
 	    <h4 class='panel-title'><i class='fa fa-bell'></i>&nbsp Deploy Project<h4>
 		</div>
 		<div class='panel-body'>
-		    <div class='panel panel-info' style='width:400px;height:600px;margin:auto'>
+		    <div class='panel panel-info' style='width:600px;height:700px;margin:auto'>
 			<form class='form-group' method='post' action={%url 'deploy:deploy_project'%} onsubmit='return validation();'>
 			    {%csrf_token %}
 			    {%for f in form %}
@@ -50,11 +50,15 @@
 			    </div>
 			    <div class='form-group input-group'>
 			    </div>
+			    <div class='form-group input-group'>
+			    </div>
+			    <div class='form-group input-group'>
+			    </div>
 			    {%endfor%}
 			    <div class='form-group input-group'>
 			    </div>
-			    <button style='width:300px;margin-left:50px' type='submit' value='deploy' id='sb' class='btn btn-danger'> Deploy </button>
-			    <span id="sp_1" style="display:none;width:30px;margin-left:50px"><img style='width:100px;height:60px;'src={%static 'img/wait.gif'%}
+			    <button style='width:600px;margin-left:0px;margin-top:50px' type='submit' value='deploy' id='sb' class='btn btn-danger'> Deploy </button>
+			    <span id="sp_1" style="display:none;width:30px;margin-left:100px;"><img style='width:100px;height:60px;margin-left:100px'src={%static 'img/wait.gif'%}
 				id="sp"/> 正在处理中.......</span> 
 			</form>
 			<script type="text/javascript"> 
