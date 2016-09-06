@@ -39,6 +39,15 @@ git clone https://github.com/hujingguang/OpsSystem.git
 cd OpsSystem && ./install.sh
 
 
+-----Demo 地址：
+
+   http://demo.wikiki.cn 
+
+   username: guest
+
+   password: hoover#123$
+
+
 #### Screenshots
 -----------
 登陆界面
