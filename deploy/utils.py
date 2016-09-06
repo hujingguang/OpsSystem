@@ -463,6 +463,7 @@ def rollback(repo_name,target,cur_version,roll_version,user,password):
 	else:
 	    svn_user=repo_info.repoUser
 	    svn_password=repo_info.repoPassword
+	    return False,u'暂不支持svn代码回滚',None
 	    rollback_svn_code()
     except Exception as e:
 	print e
