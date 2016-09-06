@@ -1,5 +1,5 @@
 # OpsSystem
-ops platform
+ops platform  Demo 地址:  http://demo.wikiki.cn
 
 
 #这是一个运维平台，使用bootstrap 和django 框架进行开发。目前实现了项目管理模块，发布Git和SVN代码库的php工程，以及集成Saltstack 进行应用批量部署模块和命令批量执行.
