@@ -112,14 +112,14 @@ class GitInfoForm(forms.Form):
 class DeployInputForm(forms.Form):
     target=forms.ChoiceField(label=u'发布环境',
 	    choices=(('test',u'测试环境'),('pre',u'预生产环境'),('online',u'生产环境')),
-	    widget=forms.Select(attrs={'class':'form-control','style':'width:300px'}))
+	    widget=forms.Select(attrs={'class':'form-control','style':'width:500px'}))
     repoName=forms.ChoiceField(label=u'项目名称',
 	    choices=(),
-	    widget=forms.Select(attrs={'class':'form-control','style':'width:300px'}))
+	    widget=forms.Select(attrs={'class':'form-control','style':'width:500px'}))
     password=forms.CharField(label=u'发布密码',
 	    error_messages={'required':u'请输入发布密码!!!'},
 	    max_length=100,
-	    widget=forms.PasswordInput(attrs={'class':'form-control','style':'width:300px'}))
+	    widget=forms.PasswordInput(attrs={'class':'form-control','style':'width:500px'}))
     def __init__(self,*args,**kwargs):
 	super(DeployInputForm,self).__init__(*args,**kwargs)
         self.fields['repoName'].choices=[(ob.repoName,ob.repoName) for ob in RepoModel.objects.all()]
@@ -127,22 +127,22 @@ class DeployInputForm(forms.Form):
 class RollBackForm(forms.Form):
     repoName=forms.ChoiceField(label=u'项 目 名 称',
 	    choices=(),
-	    widget=forms.Select(attrs={'class':'form-control','style':'width:400px'}))
+	    widget=forms.Select(attrs={'class':'form-control','style':'width:600px'}))
     target=forms.ChoiceField(label=u'回 滚 环 境',
 	    choices=(('test',u'测试环境'),('pre',u'预发布环境'),('online',u'正式环境')),
-	    widget=forms.Select(attrs={'class':'form-control','style':'width:400px'}))
+	    widget=forms.Select(attrs={'class':'form-control','style':'width:600px'}))
    # currentVersion=forms.ChoiceField(label=u'当前版本号',
    #	    choices=(),
    #	    widget=forms.Select(attrs={'class':'form-control','style':'width:400px'}))
     currentVersion=forms.CharField(label=u'当前版本号',error_messages={'required':'请输入当前版本号'},max_length=50,required=True,
-	    widget=forms.TextInput(attrs={'class':'form-control','style':'width:400px','readonly':True}))
+	    widget=forms.TextInput(attrs={'class':'form-control','style':'width:600px','readonly':True}))
     rollbackVersion=forms.CharField(label=u'回滚版本号',
 	    error_messages={'required':'请输入回滚的版本号！！！'},
 	    max_length=50,
 	    required=True,
-	    widget=forms.TextInput(attrs={'class':'form-control','style':'width:400px'}))
+	    widget=forms.TextInput(attrs={'class':'form-control','style':'width:600px'}))
     password=forms.CharField(label=u'回 滚 密 码',error_messages={'required':u'请输入密码！！！'},max_length=100,
-	    widget=forms.PasswordInput(attrs={'class':'form-control','style':'width:400px'}))
+	    widget=forms.PasswordInput(attrs={'class':'form-control','style':'width:600px'}))
 
     def __init__(self,*args,**kwargs):
 	super(RollBackForm,self).__init__(*args,**kwargs)
