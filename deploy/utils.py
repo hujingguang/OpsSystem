@@ -157,7 +157,11 @@ def deploy_git_code(repo_name,
     if lastest_revision==revision:
 	return False,u'没有可更新的代码',None
     diff_file='/tmp/.'+str(random.randint(10000,1000000))+'.log'
-    cmd_get_diff_file=''' cd %s/%s && git diff --name-status %s %s|sed "s/^\s\+//g" >%s ''' %(checkout_code_parent_dir,code_dir,revision,lastest_revision,diff_file)
+    cmd_get_diff_file=''' cd %s/%s && git diff --name-status %s %s|sed "s/^\s\+//g" >%s ''' %(checkout_code_parent_dir,
+	    code_dir,
+	    revision,
+	    lastest_revision,
+	    diff_file)
     logfunc(log_file,'INFO','get diff file cmd: '+cmd_get_diff_file)
     cmd_res=os.system(cmd_get_diff_file)
     logfunc(log_file,'INFO','cmd run return code: '+str(cmd_res))
@@ -271,7 +275,9 @@ def deploy_svn_code(repo_name,
     if not os.path.exists(checkout_code_parent_dir):
 	os.system('mkdir -p %s' %checkout_code_parent_dir)
     svn_cmd_args=' --non-interactive --username="%s" --password="%s" %s ' %(user,password,repo_address)
-    cmd_checkout_code=''' cd %s && svn checkout  --force %s && cd %s && svn cleanup ''' %(checkout_code_parent_dir,svn_cmd_args,code_dir)
+    cmd_checkout_code=''' cd %s && svn checkout  --force %s && cd %s && svn cleanup ''' %(checkout_code_parent_dir,
+	    svn_cmd_args,
+	    code_dir)
     logfunc(log_file,'INFO','checkout out cmd: '+cmd_checkout_code)
     cmd_res=os.system(cmd_checkout_code)
     logfunc(log_file,'INFO','cmd run return code: '+str(cmd_res))
@@ -379,7 +385,12 @@ def upload_code_with_no_password(code_dir,
     failed=0
     for ii in ip:
 	os.system('rm -rf /tmp/.up.log')
-        cmd_upload=''' rsync -avlpP %s --files-from=%s %s %s:%s &>/tmp/.up.log && echo ok >/tmp/.tmp0001 || echo error >/tmp/.tmp0001 ''' %(exclude_args,diff_file,code_dir,ii,wwwDir)
+        cmd_upload=''' rsync -avlpP %s --files-from=%s %s %s:%s &>/tmp/.up.log ''' %(exclude_args,
+		diff_file,
+		code_dir,
+		ii,
+		wwwDir)
+	cmd_upload=cmd_upload+r'  && echo ok >/tmp/.tmp0001 || echo error >/tmp/.tmp0001 '
         logfunc(log_file,'INFO','upload file cmd: '+cmd_upload)
 	res=os.system(cmd_upload)
 	logfunc(log_file,'INFO','upload cmd return code: '+str(res))
@@ -420,6 +431,7 @@ def insert_deploy_log(repoName,target,revision,date,log,person,remark):
 
 def rollback(repo_name,target,cur_version,roll_version,user,password):
     global ROLL_LOG_FILE
+    log=ROLL_LOG_FILE
     try:
 	repo_info=RepoModel.objects.filter(repoName=repo_name).first()
 	if not repo_info:
@@ -437,36 +449,57 @@ def rollback(repo_name,target,cur_version,roll_version,user,password):
 	for ip in online_env_ip.split(' '):
 	    if ip !='':
 		online_rsync_target_list.append(ip+":"+www_dir)
+        if not checkout_dir.startswith('/'):
+	    return False,u'checkout目录必须为绝对路径',None
+        if checkout_dir.endswith('/'):
+            n=check_dir.rfind('/')
+	    checkout_dir=checkout_dir[:n]
+        if target=='test':
+	    rsync_target=test_env_ip+':'+www_dir
+	elif target=='pre':
+	    rsync_target=pre_env_ip+':'+www_dir
+	else:
+            rsync_target=online_rsync_target_list
 	if repo_type=='git':
-	    if not checkout_dir.startswith('/'):
-		return False,u'checkout目录数据有误',None
-	    if checkout_dir.endswith('/'):
-		n=check_dir.rfind('/')
-		checkout_dir=checkout_dir[:n]
 	    code_path=checkout_dir+'/'+repo_name+'_'+target+'/'+repo_addr[repo_addr.rfind('/')+1:].split('.')[0]
 	    if not os.path.exists(code_path+'/'+'.git'):
 		return False,u'代码库未checkout,请确定是否存在再回滚',None
-	    if target=='test':
-	        rsync_target=test_env_ip+':'+www_dir
-	    elif target=='pre':
-	        rsync_target=pre_env_ip+':'+www_dir
-	    else:
-		rsync_target=online_rsync_target_list
-	    status,info,logfile=rollback_git_code(repo_name,roll_version,code_path,rsync_exclude_args,rsync_target,password)
-	    if status:
-		with open('/tmp/.d','r') as f:
-		    log=''.join(f.readlines())
-		remark='从版本 '+cur_version+' 回滚至 '+roll_version 
-		ret,info=insert_deploy_log(repo_name,target,roll_version,datetime.now(),log,user,remark)
-		logfunc(ROLL_LOG_FILE,'INFO',info)
-	    return status,info,logfile
+	    status,info,logfile=rollback_git_code(repo_name,
+		    roll_version,
+		    code_path,
+		    rsync_exclude_args,
+		    rsync_target,
+		    password)
 	else:
+	    code_path=checkout_dir+'/'+repo_name+'_'+target+'/'+repo_addr[repo_addr.rfind('/')+1:]
 	    svn_user=repo_info.repoUser
 	    svn_password=repo_info.repoPassword
-	    return False,u'暂不支持svn代码回滚',None
-	    rollback_svn_code()
+	    status,info,logfile=rollback_svn_code(repo_name,
+		    roll_version,
+		    cur_version,
+		    code_path,
+		    rsync_exclude_args,
+		    rsync_target,
+		    password,
+		    svn_user,
+		    svn_password)
+        if status:
+	    if repo_type=='svn':
+		revert_cmd='cd %s && svn revert -R .' %code_path
+		res=os.system(revert_cmd)
+	    with open('/tmp/.d','r') as f:
+		log=''.join(f.readlines())
+	    remark='从版本 '+cur_version+' 回滚至 '+roll_version 
+	    ret,info=insert_deploy_log(repo_name,
+		    target,
+		    roll_version,
+		    datetime.now(),
+		    log,user,remark)
+	    logfunc(ROLL_LOG_FILE,'INFO',info)
+        return status,info,logfile
     except Exception as e:
-	print e
+	e=str(e)
+        logfunc(log,'EERROR',e)	
 	return False,u'数据库连接失败',None
 
 
@@ -477,7 +510,8 @@ def rollback_git_code(repo_name,roll_version,path,rsync_args,rsync_target,passwo
     log=ROLL_LOG_FILE
     os.system('rm -f %s && touch %s' %(log,log))
     logfunc(log,'INFO','begin rollback. repo name: %s , code path: %s' %(repo_name,path))
-    get_diff_file_cmd=r''' cd %s && git pull origin master && git diff --name-status HEAD %s |egrep '^M' |awk -F' ' '{print $NF}' >/tmp/.d ''' %(path,roll_version)
+    get_diff_file_cmd=r''' cd %s && git pull origin master && git diff --name-status HEAD %s ''' %(path,roll_version)
+    get_diff_file_cmd=get_diff_file_cmd+''' |egrep '^M|^A' |awk -F' ' '{print $NF}' >/tmp/.d '''
     logfunc(log,'INFO','get differ file command: %s' %get_diff_file_cmd)
     res=os.system(get_diff_file_cmd)
     if res!=0:
@@ -509,8 +543,40 @@ def rollback_git_code(repo_name,roll_version,path,rsync_args,rsync_target,passwo
     
 
 
-def rollback_svn_code():
-    pass
+def rollback_svn_code(repo_name,roll_version,cur_version,path,rsync_args,rsync_target,password,svn_user,svn_password):
+    global ROLL_LOG_FILE
+    log=ROLL_LOG_FILE
+    os.system('rm -f %s && touch %s ' %(log,log))
+    logfunc(log,'INFO','begin rollback. repo name: %s , code path: %s' %(repo_name,path))
+    if not os.path.exists(path+'/.svn'):
+	return False,u'本地代码库不存在！',None
+    if int(roll_version) > int(cur_version):
+	return False,u'非法的svn回滚版本号',None
+    get_diff_cmd=''' cd %s && svn revert -R . ; svn diff --summarize -r%s:%s |egrep '^M|^A' |awk '{print $NF}' >/tmp/.s ''' %(path,cur_version,roll_version) 
+    logfunc(log,'INFO',get_diff_cmd)
+    res=os.system(get_diff_cmd)
+    if res != 0:
+	return False,u'获取回滚文件失败',None
+    rollback_cmd=''' cd %s && svn merge -r%s:%s . &>/dev/null''' %(path,cur_version,roll_version)
+    logfunc(log,'INFO',rollback_cmd)
+    res=os.system(rollback_cmd)
+    if res != 0:
+	return False,u'回退版本库失败',None
+    file_list=open('/tmp/.s','r')
+    logfunc(log,'INFO','以下文件将回滚')
+    for filename in file_list.readlines():
+	if not filename:
+	    break
+	logfunc(log,'INFO',filename)
+    if isinstance(rsync_target,list):
+	ip=[]
+	www_dir=rsync_target[0].split(':')[1]
+	for i in rsync_target:
+	    ip.append(i.split(':')[0])
+	return upload_code_with_no_password(path,www_dir,ip,'/tmp/.s',rsync_args,log)
+    else:
+	return upload_code_with_password(path,password,rsync_target,'/tmp/.s',rsync_args,log)
+    
 
 
 def judge_rollback_version_exist(project,target,cur_version,roll_version):
@@ -534,7 +600,11 @@ def upload_code_with_password(code_dir,password,rsync_target,diff_file,exclude_d
 	return False,u'不存在源代码目录: %s' %code_dir
     os.system('rm -rf /tmp/.tmp0001 && rm -rf /tmp/.up.log')
     exclude_args=exclude_dir
-    cmd_upload=''' rsync -avlpP %s --files-from=%s %s %s &>/tmp/.up.log && echo ok >/tmp/.tmp0001 || echo error >/tmp/.tmp0001 ''' %(exclude_args,diff_file,code_dir,rsync_target)
+    cmd_upload=''' rsync -avlpP %s --files-from=%s %s %s &>/tmp/.up.log ''' %(exclude_args,
+	    diff_file,
+	    code_dir,
+	    rsync_target)
+    cmd_upload=cmd_upload+r' && echo ok >/tmp/.tmp0001 || echo error >/tmp/.tmp0001' 
     logfunc(log_file,'INFO','upload file cmd: '+cmd_upload)
     f=open('/tmp/.cmd_run.sh','w')
     f.write(cmd_upload)
@@ -555,7 +625,10 @@ def upload_code_with_password(code_dir,password,rsync_target,diff_file,exclude_d
 	return False,u'上传代码执行超时！！！',log_file
     is_ok=os.system('grep ok /tmp/.tmp0001 &>/dev/null')
     logfunc(log_file,'INFO','-'*20)
-    cmd_rsync_log='''echo '%s  :  %s' >> %s && cat /tmp/.up.log >> %s ''' %(code_dir,REVISION,RSYNC_LOG_FILE,RSYNC_LOG_FILE)
+    cmd_rsync_log='''echo '%s  :  %s' >> %s && cat /tmp/.up.log >> %s ''' %(code_dir,
+	    REVISION,
+	    RSYNC_LOG_FILE,
+	    RSYNC_LOG_FILE)
     os.system(cmd_rsync_log)
     r,out=commands.getstatusoutput('cat /tmp/.up.log')
     logfunc(log_file,'INFO',out)

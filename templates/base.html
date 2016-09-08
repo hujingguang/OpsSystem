@@ -74,7 +74,7 @@
 			    <a href={% url 'asset:overview' %}>云资产概览</a>
                             </li>
 			    -->
-                           {%if request.user.is_superuser %}
+			    {%if request.user.is_superuser %}
                             <li>
 			    <a href={% url 'asset:query_cmd_log' %}>命令审计</a>
                             </li>

@@ -20,7 +20,7 @@
 	    <h4 class='panel-title'><i class='fa fa-bell'></i>&nbsp Deploy Project<h4>
 		</div>
 		<div class='panel-body'>
-		    <div class='panel panel-info' style='width:700px;height:700px;margin:auto'>
+		    <div class='panel panel-info' style='width:700px;height:800px;margin:auto'>
 			<form class='form-group' method='post' action={%url 'deploy:rollback_project'%} onsubmit='return rollback();'>
 			    {%csrf_token %}
 			    {%for f in form %}
