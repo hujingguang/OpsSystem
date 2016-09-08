@@ -191,7 +191,7 @@ def deploy_git_code(repo_name,
 		log_file)
 	os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
 	if res:
-	    remark='从版本 '+revision+' 发布至 '+lastest_revision
+	    remark='from '+revision+' deploy to '+lastest_revision
 	    recode,m=insert_deploy_log(repo_name,
 		    target,
 		    lastest_revision,
@@ -216,7 +216,7 @@ def deploy_git_code(repo_name,
 		    log_file)
 	    os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
 	    if res:
-	        remark='从版本 '+revision+' 发布至 '+lastest_revision
+	        remark='from '+revision+' deploy to '+lastest_revision
 		recode,m=insert_deploy_log(repo_name,
 			target,
 			lastest_revision,
@@ -275,6 +275,7 @@ def deploy_svn_code(repo_name,
     if not os.path.exists(checkout_code_parent_dir):
 	os.system('mkdir -p %s' %checkout_code_parent_dir)
     svn_cmd_args=' --non-interactive --username="%s" --password="%s" %s ' %(user,password,repo_address)
+    simple_args=' --non-interactive --username="%s" --password="%s" ' %(user,password)
     cmd_checkout_code=''' cd %s && svn checkout  --force %s && cd %s && svn cleanup ''' %(checkout_code_parent_dir,
 	    svn_cmd_args,
 	    code_dir)
@@ -295,8 +296,9 @@ def deploy_svn_code(repo_name,
 	return False,u'最新的版本号小于上次记录版本号！ 请检查数据库',log_file
     if int(revision) < int(lastest_revision):
 	diff_file='/tmp/.'+str(random.randint(10000,1000000))+'.log'
-	cmd_get_diff_file=''' cd %s/%s && svn diff -r%s:%s --summarize|sed "s/^\s\+//g" >%s ''' %(checkout_code_parent_dir,
+	cmd_get_diff_file=''' cd %s/%s && svn diff %s -r%s:%s --summarize|sed "s/^\s\+//g" >%s ''' %(checkout_code_parent_dir,
 		code_dir,
+		simple_args,
 		revision,
 		lastest_revision,
 		diff_file)
@@ -328,7 +330,7 @@ def deploy_svn_code(repo_name,
 		    exclude_dir,log_file)
             os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
 	    if res:
-	        remark='从版本 '+revision+' 发布至 '+lastest_revision
+	        remark='from  '+revision+' deploy to '+lastest_revision
 		recode,m=insert_deploy_log(repo_name,
 			target,
 			lastest_revision,
@@ -353,7 +355,7 @@ def deploy_svn_code(repo_name,
 			log_file)
 		os.system('rm -f %s && rm -f %s.log' %(diff_file,diff_file))
 		if res:
-	            remark='从版本 '+revision+' 发布至 '+lastest_revision
+	            remark='from '+revision+' deploy to '+lastest_revision
 		    recode,m=insert_deploy_log(repo_name,target,
 			    lastest_revision,datetime.now(),
 			    log,
@@ -489,7 +491,7 @@ def rollback(repo_name,target,cur_version,roll_version,user,password):
 		res=os.system(revert_cmd)
 	    with open('/tmp/.d','r') as f:
 		log=''.join(f.readlines())
-	    remark='从版本 '+cur_version+' 回滚至 '+roll_version 
+	    remark='from '+cur_version+' rollback to '+roll_version 
 	    ret,info=insert_deploy_log(repo_name,
 		    target,
 		    roll_version,
