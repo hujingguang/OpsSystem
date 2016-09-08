@@ -554,7 +554,11 @@ def rollback_svn_code(repo_name,roll_version,cur_version,path,rsync_args,rsync_t
 	return False,u'本地代码库不存在！',None
     if int(roll_version) > int(cur_version):
 	return False,u'非法的svn回滚版本号',None
-    get_diff_cmd=''' cd %s && svn revert -R . ; svn diff --summarize -r%s:%s |egrep '^M|^A' |awk '{print $NF}' >/tmp/.s ''' %(path,cur_version,roll_version) 
+    svn_args=''' --non-interactive --username='%s' --password='%s' ''' %(svn_user,svn_password)
+    get_diff_cmd=''' cd %s && svn revert -R . ; svn diff %s --summarize -r%s:%s |egrep '^M|^A' |awk '{print $NF}' >/tmp/.s ''' %(path,
+	    svn_args,
+	    cur_version,
+	    roll_version) 
     logfunc(log,'INFO',get_diff_cmd)
     res=os.system(get_diff_cmd)
     if res != 0:
