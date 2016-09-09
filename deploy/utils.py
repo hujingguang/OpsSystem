@@ -489,10 +489,10 @@ def rollback(repo_name,target,cur_version,roll_version,user,password):
 	    if repo_type=='svn':
 		revert_cmd='cd %s && svn revert -R .' %code_path
 		res=os.system(revert_cmd)
-	        with open('/tmp/.d','r') as f:
+	        with open('/tmp/.s','r') as f:
 		    log=''.join(f.readlines())
 	    else:
-		with open('/tmp/.s','r') as f:
+		with open('/tmp/.d','r') as f:
 		    log=''.join(f.readlines())
 	    remark='from '+cur_version+' rollback to '+roll_version 
 	    ret,info=insert_deploy_log(repo_name,
