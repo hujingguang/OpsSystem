@@ -1,0 +1,38 @@
+
+1: vim ./uwsgi.ini
+
+    [uwsgi]
+    chdir=/webdata/webdir/ops/ops_new/pro
+    module=ops_system.wsgi:application
+    pidfile=/tmp/ops.pid
+    vacuum=True
+    max-requests=10000
+    daemonize=/tmp/ops.log
+    socket=0.0.0.0:8888
+    master=True
+
+2:   python manage.py collectstatic
+
+
+3:  vim nginx.conf 
+  
+     server {
+     listen 9988;
+     server_name 127.0.0.1;
+     index index.html index.htm;
+     
+     location /static {
+        alias /webdata/webdir/ops/ops_new/pro/static;
+    }
+     location / {
+             uwsgi_pass 127.0.0.1:8888;
+             include uwsgi_params;
+         }
+       access_log  /tmp/ops_nginx.log;
+    }
+
+
+4:  pip install uwsgi
+
+
+5:  uwsgi --ini ./uwsgi.ini
