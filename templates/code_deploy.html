@@ -30,8 +30,6 @@
 		    </div>
 	           </div>
 
-		    
-
 		   <div class="modal fade" id="infoRecord" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 		       <div class="modal-dialog" style='width:1000px'>
 			   <div class="modal-content">
@@ -81,6 +79,15 @@
 					       </p>
 					   </div>
 				       </div>
+                                      <div class="form-group">
+					   <label for="lastname" class="col-sm-3 control-label">修改时间</label>
+					   <div class="col-sm-9">
+					       <p class='text-left' id='record_modify'>
+					       </p>
+					   </div>
+				       </div>
+
+
 				       <div class="form-group">
 					   <label for="lastname" class="col-sm-3 control-label">审核时间</label>
 					   <div class="col-sm-9">
@@ -157,6 +164,36 @@
 		   </div>
 
 	  
+
+
+  <div class="modal fade" id="deployRecord" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		       <div class="modal-dialog">
+			   <div class="modal-content">
+			       <div class="modal-header">
+				   <button type="button" class="close" data-dismiss="modal" 
+				       aria-hidden="true">×
+				   </button>
+				   <h4 class="modal-title" id="myModalLabel">
+				       确定发布吗 ？
+				   </h4>
+			       </div>
+			       <div class='modal-footer'>
+				       <button type="button" class="btn btn-default"  data-dismiss="modal" >
+					   取消
+				       </button>
+				       <button id='id_deploy' type="button" class="btn btn-danger" data-dismiss='modal' deploy_id='0' onclick='return deploy_record(this);'>
+					   确定发布
+				       </div>
+			   </div>
+		       </div>
+		   </div>
+
+
+
+
+
+
+
 
    <div class="modal fade" id="auditRecord" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		       <div class="modal-dialog">
@@ -373,7 +410,40 @@
 			       }
 
 
+				     var MaskLayer = new MaskLayer();
 
+			         function deploy_record(obj){
+				     var record_id=$(obj).attr('deploy_id');
+				     toastr.options.positionClass = 'toast-top-center';
+				     MaskLayer.start();
+				     options={
+				      url:"{%url 'salts:record_deploy'%}",
+				      type:'post',
+				      datatype:'json',
+				      data:{record_id:record_id},
+				      error:function(request){
+					  MaskLayer.stop();
+					  toastr.error('connect error');
+				      },
+				      success:function(data){
+					  var data=JSON.parse(data);
+					  if(data.code == 200){
+					      MaskLayer.stop();
+					      toastr.success(data.info);
+					      window.setTimeout("refreshPage()",2000); 
+					  }else{
+					      MaskLayer.stop();
+					      toastr.error(data.info);
+					      window.setTimeout("refreshPage()",2000); 
+				        }
+				      },
+				     };
+				    // setTimeout(function(){MaskLayer.stop()}, 3000);
+					//MaskLayer.stop();
+				        $.ajaxSetup({data:{csrfmiddlewaretoken:'{{csrf_token}}'}});
+				        $.ajax(options);
+					
+				 }
 
 			       function submit_modify_record(obj){
 				   record_id=$(obj).attr('record_id');
@@ -461,6 +531,10 @@
 				  // console.log($('#id_recall').attr('recall_id'));
 				   $('#id_recall').attr('recall_id',record_id);
 			       }
+			       function mark_deploy_record_id(obj){
+			           var record_id=$(obj).attr('record_id');
+				   $('#id_deploy').attr('deploy_id',record_id);
+			       }
 
 			       function mark_audit_id(obj){
 				   var record_id=$(obj).attr('record_id');
@@ -483,12 +557,13 @@
 				      error:function(request){alert('connect error');},
 				      success:function(data){
 				       var ret=JSON.parse(data);
+				       toastr.options.positionClass = 'toast-top-center';
 				       if(ret.code==200){
 					       toastr.success(ret.info);
 					       window.setTimeout("refreshPage()",1000); 
 				       }else{
 				       toastr.error(ret.info) ;
-				       window.setTimeout("refreshPage()",1000);
+				       //window.setTimeout("refreshPage()",1000);
 				        }
 				      },
 				    }
@@ -585,6 +660,7 @@
 					   <th>申请人</th>
 					   <th>审核人</th>
 					   <th>发布人</th>
+					   <th>发布状态</th>
 					   <th>SQL文件</th>
 					   <th>状态</th>
 					   <th>操作</th>
@@ -600,6 +676,16 @@
 					   <td>{{record.proposer}}</td>
 					   <td>{{record.auditor}}</td>
 					   <td>{{record.publisher}}</td>
+					   {%if record.deploy_status == 'failed' %}
+					   <td><span class='label label-danger'>{{record.deploy_status}}</span></td>
+					   {%endif%}
+					   {%if record.deploy_status == 'success' %}
+					   <td><span class="label label-success">{{record.deploy_status}}</span></td>
+					   {%endif%}
+					   {%if record.deploy_status == '' %}
+					   <td>
+					     {{record.deploy_status}}</td>
+					   {%endif%}
 					   {%if record.sql_name == '' %}
 					   <td>N</td>
 					   {%else%}
@@ -650,8 +736,8 @@
 							   <span class="label label-info">已审核</span>
 
 							   <td>
-							       <button type="button" class="btn btn-primary" >发布</button>
-							       <button type="button" class="btn btn-success" disabled='true'>审核</button>
+							       <button type="button" class="btn btn-primary" data-toggle='modal' data-target='#deployRecord' record_id='{{record.id}}' onclick='return mark_deploy_record_id(this);' >发布</button>
+							       <button type="button" class="btn btn-success" disabled='true' >审核</button>
 							       <button type="button" class="btn btn-info" disabled='true'>编辑</button>
 							       <button type="button" class="btn btn-warning" disabled='true' >撤回</button>
 							       <button type="button" class="btn btn-link" data-toggle="modal" data-target="#infoRecord" record_id='{{record.id}}' onclick='return record_info(this)' >详情</button>

@@ -55,6 +55,7 @@ class OnlineDeployModel(models.Model):
     auditor=models.CharField(max_length=100,null=True)
     publisher=models.CharField(max_length=100,null=True)
     status=models.CharField(max_length=100)
+    deploy_status=models.CharField(max_length=20,null=True)
     active=models.CharField(max_length=10)
     comment=models.CharField(max_length=2000)
     class Meta:

@@ -15,6 +15,9 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from utils import SaltByLocalApi,parse_target_params,juge_danger_cmd
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 import json
+import os
+from salts.utils import PROJECT_DICT
+from salts.utils import dowith_project_params
 ALLOW_DOWNLOAD_DIR=['/logs']
 PRO_TYPES=['mth-appportal','mps','mth-help','mth-ads-web','mth-portal-web','mth-community','mth-openapi','sup']
 @login_required(login_url='/')
@@ -349,13 +352,14 @@ def download_file(request):
 
 @login_required(login_url='/')
 def code_deploy(request):
-    global PRO_TYPES
     all_record=OnlineDeployModel.objects.filter(active='Y').order_by('-create_time')
     for r in all_record:
 	if not r.auditor:
 	    r.auditor=''
 	if not r.publisher:
 	    r.publisher=''
+	if not r.deploy_status:
+	    r.deploy_status=''
 	if r.sql_name.replace(' ','') == '':
 	    r.sql_name=''
 	r.create_time=datetime.strftime(r.create_time,'%Y-%m-%d %H:%M:%S')
@@ -366,7 +370,7 @@ def code_deploy(request):
 	projects=request.POST.get('projects','')
 	sql=request.POST.get('sql','')
 	comment=request.POST.get('comment','')
-	if types not in PRO_TYPES or version == '' or  projects.replace(' ','') == '' or comment.replace(' ','') == '':
+	if types not in PROJECT_DICT or version == '' or  projects.replace(' ','') == '' or comment.replace(' ','') == '':
 	    return HttpResponse('error')
 	else:
 	    create_time=datetime.now()
@@ -400,9 +404,9 @@ def code_deploy(request):
 @login_required(login_url='/')
 def get_record_from_id(request):
     if request.method== 'POST':
-	record_id=request.POST.get('record_id','')
+	record_id=request.POST.get('record_id',0)
     else:
-	record_id=request.GET.get('record_id','')
+	record_id=request.GET.get('record_id',0)
     if not record_id:
 	return HttpResponse(json.dumps({'code':'400','info':u'不存在该记录 !'}))
     record=OnlineDeployModel.objects.get(id=record_id)
@@ -421,16 +425,14 @@ def get_record_from_id(request):
 	    'comment':record.comment,
 	    'code':200,
 	    }
-    print return_record
     if not record.audit_time:
 	return_record['audit_time']=''
     else:
-        audit_time=datetime.strftime(record.audit_time,'%Y-%m-%d %H:%M:%S')
-	
+        return_record['audit_time']=datetime.strftime(record.audit_time,'%Y-%m-%d %H:%M:%S')
     if not record.publish_time:
 	return_record['publish_time']=''
     else:
-        publish_time=datetime.strftime(record.publish_time,'%Y-%m-%d %H:%M:%S')
+        return_record['publish_time']=datetime.strftime(record.publish_time,'%Y-%m-%d %H:%M:%S')
     if not record.auditor:
 	return_record['auditor']=''
     else:
@@ -443,15 +445,18 @@ def get_record_from_id(request):
 	return_record['sql']=''
     else:
 	return_record['sql']=record.sql_name
-    print return_record
+    if not record.deploy_status:
+	return_record['deploy_status']=''
+    else:
+	return_record['deploy_status']=record.deploy_status
     return HttpResponse(json.dumps(return_record))
 
 @login_required(login_url='/')
 def delete_record_from_id(request):
     if request.method== 'POST':
-	record_id=request.POST.get('record_id','')
+	record_id=request.POST.get('record_id',0)
     else:
-	record_id=request.GET.get('record_id','')
+	record_id=request.GET.get('record_id',0)
     if not record_id:
 	return HttpResponse(json.dumps({'code':'400','info':u'错误的id !'}))
     record=OnlineDeployModel.objects.get(id=record_id)
@@ -471,17 +476,16 @@ def delete_record_from_id(request):
 
 @login_required(login_url='/')
 def modify_record_from_id(request):
-    global PRO_TYPES
     info=''
     code=0
     if request.method == 'POST':
-	record_id=request.POST.get('record_id','');
+	record_id=request.POST.get('record_id',0);
 	types=request.POST.get('type','');
 	version=request.POST.get('version','');
 	comment=request.POST.get('comment','');
 	project=request.POST.get('projects','');
 	sql_name=request.POST.get('sql','');
-	if not version or not types or not comment or not project or not record_id or types not in PRO_TYPES:
+	if not version or not types or not comment or not project or not record_id or types not in PROJECT_DICT:
 	    code=400
 	    info='bad form data !!'
 	else:
@@ -500,7 +504,8 @@ def modify_record_from_id(request):
 		modify_record.version=version
 		modify_record.comment=comment
 		modify_record.project=project
-		modify_sql_name=sql_name
+		modify_record.sql_name=sql_name
+		modify_record.modify_time=datetime.now()
 		try:
 		    modify_record.save()
 		except Exception as e:
@@ -508,7 +513,6 @@ def modify_record_from_id(request):
 		    info=u'修改失败'
 		code=200
 		info='修改成功'
-        print code,info
 	return HttpResponse(json.dumps({'code':code,'info':info}))
     else:
 	info=u'修改失败'
@@ -519,7 +523,7 @@ def modify_record_from_id(request):
 @login_required(login_url='/')
 def audit_record_from_id(request):
     if request.method == 'POST':
-	record_id=request.POST.get('record_id','')
+	record_id=request.POST.get('record_id',0)
 	mark=request.POST.get('mark','')
 	record=OnlineDeployModel.objects.get(id=record_id)
 	if not record:
@@ -543,6 +547,29 @@ def audit_record_from_id(request):
 		return HttpResponse(json.dumps({'code':400,'info':u'审核失败'}))
 	    return HttpResponse(json.dumps({'code':200,'info':u'恭喜,审核成功'}))
 
+
+
+@login_required(login_url='/')
+def deploy_record_from_id(request):
+    if request.method=='POST':
+	record_id=request.POST.get('record_id',0)
+	record=OnlineDeployModel.objects.get(id=record_id)
+	if not record:
+	    return HttpResponse(json.dumps({'code':400,'info':u'发布失败,无该条记录'}))
+	if record.status !='pass':
+	    return HttpResponse(json.dumps({'code':400,'info':u'发布失败,非通过审核状态'}))
+	if record.proposer == request.user.username or request.user.is_superuser :
+	    cmd='ps aux|grep deploy.sh|grep -v grep'
+	    cmd='ps axu|grep deploy_test.sh|grep -v grep'
+	    ret=os.system(cmd)
+	    ret1=os.system(cmd1)
+	    print ret,ret1
+	    #os.system('/root/github/OpsSystem/test.sh')
+	    return HttpResponse(json.dumps({'code':200,'info':u'恭喜,发布成功'}))
+        else:
+	    return HttpResponse(json.dumps({'code':400,'info':u'Sorry,无权限'}))
+
+	    
 
 
 

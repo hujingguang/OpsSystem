@@ -10,6 +10,35 @@ except:
     print 'please install salt!!!   commands: pip install salt '
     exit(1)
 
+PROJECT_DICT={
+	'omp':['omp-mth-taskManagment','omp-mth-groupon','omp-mth-memberBenefits','omp-mth-pioneer','omp-mth-storeSpecialist','omp-mth-agencyService','omp-mth-platformSales','omp-mth-lotteryDraw','omp-mth-projectPromotion','omp-mth-bankApprove','omp-mth-dailyReport','omp-mth-greatHealth','omp-mobile','omp-mth-branch','omp-mth-balance','omp-mth-goldExchange','omp-mth-investManagement','omp-mth-dataWarehouse','omp-mth-pcStore','omp-mth-suppliers','omp-mth-freeGet','omp-mth-capitalAccount','omp-mth-tradeOverview','omp-mth-yygou','omp-mth-chemistVoucher','omp-mth-chemist','omp-mth-groupbuying','omp-mth-partner','omp-mth-voucherStatistics','omp-mth-storemap','omp-mth-feedback','omp-mth-advertisement','omp-mth-clean','omp-mth-consumer','omp-mth-dashboard','omp-mth-giftVoucher','omp-mth-productSpecialist','omp-mth-salesPromotion','omp-mth-selfTrade','omp-mth-stores','omp-mth-user','omp-mth-api'],
+	'appportal':['ops-finance','ops-goods','ops-infrastructure','ops-member','ops-notification','ops-order','ops-storage','ops-community','ops-schedule'],
+	'ops':['ops-finance','ops-goods','ops-infrastructure','ops-member','ops-notification','ops-order','ops-storage','ops-community','ops-schedule'],
+	'mth-help':[],
+	'sup':['partner'],
+	'mth-openapi':[],
+	'mth-help':[],
+	'mth-portal-web':[],
+	'mth-ads-web':[],
+	'mth-community':[],
+	}
+
+
+
+'''
+    @projects: list 
+    @types: string 
+'''
+def dowith_project_params(types,projects):
+    project_list=PROJECT_DICT.get(types,'')
+    if not project_list:
+	return False
+    for pro in projects:
+	if pro not in project_list:
+	    return False
+    return True
+
+
 class SaltByWebApi(object):
     '''
     SaltApi class,使用saltapi Restful获取数据

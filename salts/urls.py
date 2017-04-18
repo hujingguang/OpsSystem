@@ -15,5 +15,6 @@ urlpatterns=[
 	url('^hosts/record/delete$',delete_record_from_id,name='record_delete'),
 	url('^hosts/record/modify$',modify_record_from_id,name='record_modify'),
 	url('^hosts/record/audit$',audit_record_from_id,name='record_audit'),
+	url('^hosts/record/deploy$',deploy_record_from_id,name='record_deploy'),
 	]
 
