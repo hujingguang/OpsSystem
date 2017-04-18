@@ -1,0 +1,681 @@
+{%extends 'base.html' %}
+{%load static %}
+{%block head%}
+<li>
+<i class='fa fa-dashboard'></i><a href={%url 'index' %}>&nbsp Dashboard</a>
+</li>
+<li>
+<i class='fa fa-table'></i>&nbsp SaltStack
+</li>
+<li  class='active'>
+<i class='fa fa-building-o'></i>&nbsp;代码发布
+</li>
+{%endblock%}
+
+{%block page_content%}
+
+<div class='row'>
+    <div class='panel panel-info'>
+	<div class='panel-heading'>
+	    <h3 class='panel-title'><i class='fa fa-bell'></i>&nbsp Code Deploy<h3>
+	</div>
+	<div class='panel-body'>
+		  <div class='panel panel-info' style='width:auto;height:100px;margin:top;'>
+		      <div style='margin-top:50px;float:right'>
+		     <!-- <button type="button" class="btn btn-primary btn-lg" style="color: rgb(212, 106, 64);font-size:15px;">
+			    <span class="glyphicon glyphicon-plus"></span> 新增发布
+		    -->
+  <button class="button button-circle button-lg" style="color: rgb(212, 106, 64);font-size:15px;" data-backdrop='static' data-toggle="modal" data-target="#addRecord">
+				<i class="fa fa-plus">新增发布</i></button>
+		    </div>
+	           </div>
+
+		    
+
+		   <div class="modal fade" id="infoRecord" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+		       <div class="modal-dialog" style='width:1000px'>
+			   <div class="modal-content">
+			       <div class="modal-header">
+				   <button type="button" class="close" data-dismiss="modal" 
+				       aria-hidden="true">×
+				   </button>
+				   <h4 class="modal-title" id="myModalLabel">
+				       详细信息
+				   </h4>
+			       </div>
+			       <div class="modal-body">
+                                    <form class="form-horizontal" role="form">
+				       <div class="form-group">
+					   <label for="user_id" class="col-sm-3 control-label">发布类型</label>
+					   <div class="col-sm-9">
+					       <p class='text-left' id='record_type'> </p>
+					   </div>
+				       </div>
+
+				       <div class="form-group">
+					   <label for="lastname" class="col-sm-3 control-label">版本号</label>
+					   <div class="col-sm-9 tab-pane">
+					       <p class='text-left' id='record_version' >
+					       </p>
+					   </div>
+				       </div>
+				       <div class="form-group">
+					   <label for="lastname" class="col-sm-3 control-label">发布工程</label>
+					   <div class="col-sm-9">
+					       <p class='text-left' id='record_projects'>
+					       </p>
+					   </div>
+				       </div>
+				       <div class="form-group">
+					   <label for="lastname" class="col-sm-3 control-label">Sql脚本</label>
+					   <div class="col-sm-9">
+					       <p class='text-left' id='record_sql'>
+					       </p>
+					   </div>
+				       </div>
+
+				       <div class="form-group">
+					   <label for="lastname" class="col-sm-3 control-label">申请时间</label>
+					   <div class="col-sm-9">
+					       <p class='text-left' id='record_create'>
+					       </p>
+					   </div>
+				       </div>
+				       <div class="form-group">
+					   <label for="lastname" class="col-sm-3 control-label">审核时间</label>
+					   <div class="col-sm-9">
+					       <p class='text-left' id='record_audit'></p>
+					   </div>
+				       </div>
+				       <div class="form-group">
+					   <label for="lastname" class="col-sm-3 control-label">发布时间</label>
+					   <div class="col-sm-9">
+					       <p class='text-left' id='record_publish'></p>
+					   </div>
+				       </div>
+				       <div class="form-group">
+					   <label for="lastname" class="col-sm-3 control-label">申请人</label>
+					   <div class="col-sm-9">
+					       <p class='text-left' id='record_proposer'></p>
+					   </div>
+				       </div>
+
+				       <div class="form-group">
+					   <label for="lastname" class="col-sm-3 control-label">审核人</label>
+					   <div class="col-sm-9">
+					       <p class='text-left' id='record_auditor'></p>
+					   </div>
+				       </div>
+
+				       <div class="form-group">
+					   <label for="lastname" class="col-sm-3 control-label">发布人</label>
+					   <div class="col-sm-9">
+					       <p class='text-left' id='reoord_publisher'></p>
+					   </div>
+				       </div>
+				       <div class="form-group">
+					   <label for="lastname" class="col-sm-3 control-label">状态</label>
+					   <div class="col-sm-9">
+					       <p class='text-left' id='record_status'></p>
+					   </div>
+				       </div>
+
+				       <div class="form-group">
+					   <label for="remark" class="col-sm-3 control-label">发布内容</label>
+					   <div class="col-sm-9">
+					       <p class='text-left' id='record_comment'></p>
+					   </div>
+				       </div>
+				   </form>
+
+			       </div>
+			   </div>
+		       </div>
+		   </div>
+
+
+   <div class="modal fade" id="disableRecord" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		       <div class="modal-dialog">
+			   <div class="modal-content">
+			       <div class="modal-header">
+				   <button type="button" class="close" data-dismiss="modal" 
+				       aria-hidden="true">×
+				   </button>
+				   <h4 class="modal-title" id="myModalLabel">
+				       确定撤回该发布申请吗
+				   </h4>
+			       </div>
+			       <div class='modal-footer'>
+				       <button type="button" class="btn btn-default"  data-dismiss="modal" >
+					   不撤回 
+				       </button>
+				       <button id='id_recall' type="button" class="btn btn-primary" data-dismiss='modal' recall_id='0' onclick='return recall_record(this);'>
+					   确定撤回
+				       </div>
+			   </div>
+		       </div>
+		   </div>
+
+	  
+
+   <div class="modal fade" id="auditRecord" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		       <div class="modal-dialog">
+			   <div class="modal-content">
+			       <div class="modal-header">
+				   <button type="button" class="close" data-dismiss="modal" 
+				       aria-hidden="true">×
+				   </button>
+				   <h4 class="modal-title" id="myModalLabel">
+				       是否确定通过审核 ？
+				   </h4>
+			       </div>
+			       <div class='modal-footer'>
+				       <button id='id_audit_reject' type="button" class="btn btn-danger"  data-dismiss="modal" recall_id='0' mark='N' onclick='return audit_record(this)' >
+					   驳回
+				       </button>
+				       <button id='id_audit_pass' type="button" class="btn btn-success" data-dismiss='modal' recall_id='0' mark='Y' onclick='return audit_record(this);'>
+					   通过
+				       </div>
+			   </div>
+		       </div>
+		   </div>
+
+	  
+
+
+
+
+
+
+		   <div class="modal fade" id="modifyRecord" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		       <div class="modal-dialog">
+			   <div class="modal-content">
+			       <div class="modal-header">
+				   <button type="button" class="close" data-dismiss="modal" 
+				       aria-hidden="true">×
+				   </button>
+				   <h4 class="modal-title" id="myModalLabel">
+				       申请版本发布
+				   </h4>
+			       </div>
+			       <div class="modal-body">
+				   
+				   <form id='id_record_mod' class='form-horizontal'  method='post' role='form'>
+				       <input type='hidden' name='csrfmiddlewaretoken' value='0HGPxD7ObMDSjlolT2pBgFW3nADaSFhC' />
+
+
+				       <div class='form-group' >
+					   <label for='remark' class='col-sm-3 control-label'>类型</label>
+					   <div class='col-sm-9'>
+					       <input class="form-control" id="id_type_mod" maxlength="100" name="type" placeholder="可选类型为: mps,appportal" type="text" />
+					   </div>
+				       </div>
+
+				       <div class='form-group' >
+					   <label for='remark' class='col-sm-3 control-label'>版本号</label>
+					   <div class='col-sm-9'>
+					       <input class="form-control" id="id_version_mod" maxlength="100" name="version" type="text" />
+					   </div>
+				       </div>
+
+				       <div class='form-group' >
+					   <label for='remark' class='col-sm-3 control-label'>工程名</label>
+					   <div class='col-sm-9'>
+					       <input class="form-control" id="id_projects_mod" maxlength="1000" name="projects" placeholder="多个工程以空格相隔" type="text" />
+					   </div>
+				       </div>
+
+				       <div class='form-group' >
+					   <label for='remark' class='col-sm-3 control-label'>Sql文件名</label>
+					   <div class='col-sm-9'>
+					       <input class="form-control" id="id_sql_mod" maxlength="1000" name="sql" placeholder="若无则不填" type="text" />
+					   </div>
+				       </div>
+
+				       <div class='form-group' >
+					   <label for='remark' class='col-sm-3 control-label'>版本说明</label>
+					   <div class='col-sm-9'>
+					       <textarea class="form-control" cols="40" id="id_comment_mod" maxlength="2000" name="comment" rows="10">
+					       </textarea>
+					   </div>
+				       </div>
+
+				       <div class="modal-footer">
+					    <button type="button" class="btn btn-default" 
+					       data-dismiss="modal">不保存
+					     <button id='id_submit_mod' type="button" class="btn btn-primary" data-dismiss='modal' record_id='0' onclick='return submit_modify_record(this);'>
+						   保存
+					       </button>
+				      </div>
+				       </form> 
+				   </div>
+			       </div><!-- /.modal-content -->
+			   </div><!-- /.modal-dialog -->
+		       </div><!-- /.modal -->
+
+
+
+
+		       <div class="modal fade" id="addRecord" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			   <div class="modal-dialog">
+			       <div class="modal-content">
+				   <div class="modal-header">
+				       <button type="button" class="close" data-dismiss="modal" 
+					   aria-hidden="true">×
+				       </button>
+				       <h4 class="modal-title" id="myModalLabel">
+					   申请版本发布
+				       </h4>
+				   </div>
+				   <div class="modal-body">
+
+				       <!--
+				       <form class="form-horizontal" role="form">
+					   <div class="form-group">
+					       <label for="user_id" class="col-sm-3 control-label">用户ID</label>
+					       <div class="col-sm-9">
+						   <input type="text" class="form-control" id="user_id" name="user_id" value="{user_id}"
+						   placeholder="请输入用户ID">
+					       </div>
+					   </div>
+
+					   <div class="form-group">
+					       <label for="lastname" class="col-sm-3 control-label">用户名</label>
+					       <div class="col-sm-9">
+						   <input type="text" class="form-control" name="user_name" value="" id="user_name"
+						   placeholder="用户名">
+					       </div>
+					   </div>
+					   <div class="form-group">
+					       <label for="lastname" class="col-sm-3 control-label">地址</label>
+					       <div class="col-sm-9">
+						   <input type="text" class="form-control" name="address" value="" id="address"
+						   placeholder="地址">
+					       </div>
+					   </div>
+
+					   <div class="form-group">
+					       <label for="remark" class="col-sm-3 control-label">备注</label>
+					       <div class="col-sm-9">
+						   <textarea  class="form-control"  name="remark" value="{remark}" id="remark"
+						       placeholder="备注">
+						   </textarea>
+					       </div>
+					   </div>
+				       </form>
+				       -->
+
+				       <form id='id_record' class='form-horizontal'  method='post' role='form'>
+					   {%csrf_token%}
+					   {%if records%}
+					   {%for r in records%}
+					   <div class='form-group' >
+					       <label for='remark' class='col-sm-3 control-label'>{{r.label}}</label>
+					       <div class='col-sm-9'>
+						   {{r}}
+					       </div>
+					   </div>
+					   {%endfor%}
+					   {%endif%}
+					   <div class="modal-footer">
+					       <!--  <button type="button" class="btn btn-default" 
+						   data-dismiss="modal">关闭
+						   -->
+						   <button type="reset" class="btn btn-default" value='reset'>重置
+						   </button>
+						   <button id='id_submit' type="button" class="btn btn-primary" data-dismiss='modal' onclick='return validate_form();'>
+						       提交
+						   </button>
+					       </div>
+					   </form> 
+				       </div>
+				   </div><!-- /.modal-content -->
+			       </div><!-- /.modal-dialog -->
+			   </div><!-- /.modal -->
+
+			   <script>
+			       $(function () { $('#myModal').modal({
+				       keyboard: true
+			       })});
+
+
+			       function validate_form(){
+				   type=document.getElementById('id_type');
+				   version=document.getElementById('id_version');
+				   projects=document.getElementById('id_projects');
+				   comment=document.getElementById('id_comment');
+				   sql=document.getElementById('id_sql');
+				   console.log('type:'+type.value+'version:'+version.value+'projects:'+projects.value+'comment:'+comment.value+'sql:'+sql.value);
+				   if(type.value==null || version.value == null || projects.value == null || comment.value == null || type.value.replace(/(^\s*)|(\s*$)/g, "")=='' || version.value.replace(/(^\s*)|(\s*$)/g, "")=='' || projects.value.replace(/(^\s*)|(\s*$)/g, "")=='' || comment.value.replace(/(^\s*)|(\s*$)/g, "")==''){
+				       alert('请输入所有选项');
+				       return false;
+				   }
+				   else{
+				       var options={
+					   url:'{%url "salts:code_deploy" %}',
+					   type:'post',
+					   async:true,
+					   data:{type:type.value,version:version.value,projects:projects.value,comment:comment.value,sql:sql.value},
+					   error:function(request){alert('error');},
+					   success:function(data){
+					       toastr.options.positionClass = 'toast-top-center';
+					       if (data == 'ok'){
+						   toastr.success('恭喜，申请成功！！！');
+						   window.setTimeout("refreshPage()",1000); 
+						   }else{
+						   toastr.error('Sorry,申请失败！！！');
+					   }},
+				       }
+				       //console.log('submit')
+				       $.ajaxSetup({data:{csrfmiddlewaretoken:'{{csrf_token}}'}});
+				       $.ajax(options);
+				   }
+			       }
+
+
+
+
+			       function submit_modify_record(obj){
+				   record_id=$(obj).attr('record_id');
+			       	   type=document.getElementById('id_type_mod');
+				   version=document.getElementById('id_version_mod');
+				   projects=document.getElementById('id_projects_mod');
+				   comment=document.getElementById('id_comment_mod');
+				   sql=document.getElementById('id_sql_mod');
+			           console.log($('#id_submit_mod').attr('record_id'));
+				   if(type.value==null || version.value == null || projects.value == null || comment.value == null || type.value.replace(/(^\s*)|(\s*$)/g, "")=='' || version.value.replace(/(^\s*)|(\s*$)/g, "")=='' || projects.value.replace(/(^\s*)|(\s*$)/g, "")=='' || comment.value.replace(/(^\s*)|(\s*$)/g, "")==''){
+				          alert('请输入正确的选项');
+					  return false;
+					  }else{
+					  var options={
+					      url:"{%url 'salts:record_modify'%}",
+					      datatype:'json',
+					      type:'post',
+					      data:{record_id:record_id,type:type.value,version:version.value,projects:projects.value,comment:comment.value,sql:sql.value},
+					      error:function(request){alert(request);window.location.reload();},
+					      success:function(data){
+						  var data=JSON.parse(data);
+					       toastr.options.positionClass = 'toast-top-center';
+						  if(data.code==200){
+					           toastr.success(data.info);
+					           window.setTimeout("refreshPage()",1000); 
+						  }else{
+					           toastr.error(data.info);
+					      }
+					      },
+					  }; 
+				        $.ajaxSetup({data:{csrfmiddlewaretoken:'{{csrf_token}}'}});
+				        $.ajax(options);
+			                 }
+			                }
+
+			       function record_info(obj){
+				   var record_id=$(obj).attr('record_id');
+				   var options={
+				       url:'{%url "salts:record" %}',
+				       type:'post',
+				       datatype:'json',
+				       data:{record_id:record_id},
+				       error:function(request){alert('error');},
+				       success:function(data){
+					   data=JSON.parse(data);
+					   if(data.code == 400){
+					       toastr.options.positionClass = 'toast-top-center';
+					       toastr.error(data.info);}
+					   else{
+					       $('#record_type').text(data.type);
+					       $('#record_projects').text(data.projects);
+					       $('#record_version').text(data.version);
+					       $('#record_create').text(data.create_time);
+					       $('#record_modify').text(data.modify_time);
+					       $('#record_publish').text(data.publish_time);
+					       $('#record_audit').text(data.audit_time);
+					       $('#record_proposer').text(data.proposer);
+					       $('#record_auditor').text(data.auditor);
+					       $('#record_publisher').text(data.publisher);
+					       $('#record_comment').text(data.comment);
+					       $('#record_sql').text(data.sql);
+					       if(data.record_status=='waited'){
+						   $('#record_status').text('待审核');
+					       }
+					       if(data.record_status=='cancled'){
+						   $('#record_status').text('已取消');
+					       }
+					       if(data.record_status=='pass'){
+						   $('#record_status').text('已审核');
+					       }
+					       if(data.record_status=='reject'){
+						   $('#record_status').text('驳回');
+					       }
+					       if(data.record_status=='published'){
+						   $('#record_status').text('已发布');
+					       }
+					   }
+				       },
+				   };
+				   $.ajaxSetup({data:{csrfmiddlewaretoken:'{{csrf_token}}'}});
+				   $.ajax(options);
+			       }
+			       function mark_id(obj){
+				   var record_id=$(obj).attr('record_id');
+				  // console.log($('#id_recall').attr('recall_id'));
+				   $('#id_recall').attr('recall_id',record_id);
+			       }
+
+			       function mark_audit_id(obj){
+				   var record_id=$(obj).attr('record_id');
+				   $('#id_audit_pass').attr('recall_id',record_id);
+				   $('#id_audit_reject').attr('recall_id',record_id);
+			       }
+
+			       //提交审核
+			       function audit_record(obj){
+				   var mark=$(obj).attr('mark');
+				   record_id=$(obj).attr('recall_id');
+				   if(mark==''){
+				       return false;
+				   }
+				    options={
+				      url:"{%url 'salts:record_audit' %}",
+				      type:'post',
+				      datatype:'json',
+				      data:{record_id:record_id,mark:mark},
+				      error:function(request){alert('connect error');},
+				      success:function(data){
+				       var ret=JSON.parse(data);
+				       if(ret.code==200){
+					       toastr.success(ret.info);
+					       window.setTimeout("refreshPage()",1000); 
+				       }else{
+				       toastr.error(ret.info) ;
+				       window.setTimeout("refreshPage()",1000);
+				        }
+				      },
+				    }
+				   $.ajaxSetup({data:{csrfmiddlewaretoken:'{{csrf_token}}'}});
+				   $.ajax(options);
+			       }
+
+			       function modify_record(obj){
+			           var record_id=$(obj).attr('record_id')
+				   $('#id_submit_mod').attr('record_id',record_id);
+				   options={
+				   url:"{%url 'salts:record'%}",
+				   datatype:'json',
+				   type:'post',
+				   data:{record_id:record_id},
+				   error:function(request){alert('error');return false;},
+				   success:function(data){
+				       var data=JSON.parse(data);
+				       if(data.code == 200){
+				       $('#id_type_mod').val(data.type);
+				       $('#id_version_mod').val(data.version);
+				       $('#id_projects_mod').val(data.projects);
+				       $('#id_sql_mod').val(data.sql);
+				       $('#id_comment_mod').val(data.comment);
+				       //console.log(data);
+				       }
+				       else{
+					   alert('获取资源错误！！！');
+					   //window.location.reload();
+				       }
+				       },
+				   };
+				   $.ajaxSetup({data:{csrfmiddlewaretoken:'{{csrf_token}}'}});
+				   $.ajax(options);
+			       
+			       }
+			       function sleep(numberMillis){ 
+				   var now = new Date(); 
+				   var exitTime = now.getTime() + numberMillis; 
+				   while (true) { 
+				       now = new Date(); 
+				       if (now.getTime() > exitTime) 
+				       return; 
+				   } 
+			       }
+			       function refreshPage(){
+				   window.location.reload();
+			       }
+			       function recall_record(obj){
+				   var record_id=$(obj).attr('recall_id');
+				   options={
+				       url:"{%url 'salts:record_delete'%}",
+				       data:{record_id:record_id},
+				       datatype:'json',
+				       async:false,
+				       type:'post',
+				       error:function(request){alert('error！');return false;},
+				       success:function(data){
+					   var data=JSON.parse(data);
+					   toastr.options={
+					       "positionClass": "toast-top-center",
+					       "showDuration": "300",//显示的动画时间
+					       "hideDuration": "1000",//消失的动画时间
+					       "timeOut": "5000", //展现时间
+					       "extendedTimeOut": "1000",//加长展示时间
+					       "showMethod": "fadeIn",//显示时的动画方式
+					       "hideMethod": "fadeOut" //消失时的动画方式
+					   };
+					   if(data.code==200){
+					       toastr.success(data.info);
+					       window.setTimeout("refreshPage()",1000); 
+					   }
+					   else{
+					       toastr.options.positionClass = 'toast-top-center';
+					       toastr.error(data.info);
+					   }
+				       },
+				   }
+				   $.ajaxSetup({data:{csrfmiddlewaretoken:'{{csrf_token}}'}});
+				   $.ajax(options);
+			       }
+
+			   </script>
+
+
+			   <div class='panel panel-info' style='width:auto;height:400px;margin:top'>
+			       <table class="table table-bordered">
+				   <thead>
+				       <tr>
+					   <th>ID</th>
+					   <th>类型</th>
+					   <th>版本号</th>
+					   <th>创建时间</th>
+					   <th>申请人</th>
+					   <th>审核人</th>
+					   <th>发布人</th>
+					   <th>SQL文件</th>
+					   <th>状态</th>
+					   <th>操作</th>
+				       </tr>
+				   </thead>
+				   <tbody>
+				       {%for record in all_record %}
+				       <tr>
+					   <td>{{record.id}}</td>
+					   <td>{{record.type}}</td>
+					   <td>{{record.version}}</td>
+					   <td>{{record.create_time}}</td>
+					   <td>{{record.proposer}}</td>
+					   <td>{{record.auditor}}</td>
+					   <td>{{record.publisher}}</td>
+					   {%if record.sql_name == '' %}
+					   <td>N</td>
+					   {%else%}
+					   <td>Y</td>
+					   {%endif%}
+					   <td>
+					       {%if record.status == 'published'%}
+					       <span class="label label-success">已发布</span>
+					   </td>
+					   <td>
+					       <button type="button" class="btn btn-primary" disabled='true'>发布</button>
+					       <button type="button" class="btn btn-success" disabled='true'>审核</button>
+					       <button type="button" class="btn btn-info" disabled='true'>编辑</button>
+					       <button type="button" class="btn btn-warning" disabled='true' >撤回</button>
+					       <button type="button" class="btn btn-link"  data-toggle="modal" data-target="#infoRecord" record_id='{{record.id}}' onclick='return record_info(this)' >详情</button>
+					       {%endif%}
+					       {%if record.status == 'cancled' %}
+					       <span class="label label-warning">已取消</span>
+
+					       <td>
+						   <button type="button" class="btn btn-primary" disabled='true'>发布</button>
+						   <button type="button" class="btn btn-success" disabled='true'>审核</button>
+						   <button type="button" class="btn btn-info" disabled='true'>编辑</button>
+						   <button type="button" class="btn btn-warning" disabled='true' >撤回</button>
+						   <button type="button" class="btn btn-link"  data-toggle="modal" data-target="#infoRecord" record_id='{{record.id}}' onclick='return record_info(this)'>详情</button>
+
+						   {%endif%}
+						   {%if record.status == 'waited' %}
+						   <span class="label label-default">待审核</span>
+						   <td>
+						       <button type="button" class="btn btn-primary" disabled='true'>发布</button>
+						       <button type="button" class="btn btn-success" data-toggle='modal' data-target='#auditRecord' record_id='{{record.id}}' onclick='return mark_audit_id(this);' >审核</button>
+						       <button type="button" class="btn btn-info" data-toggle='modal' data-target='#modifyRecord' record_id='{{record.id}}' onclick='return modify_record(this);'>编辑</button>
+						       <button type="button" class="btn btn-warning" data-toggle='modal' data-target='#disableRecord' record_id='{{record.id}}' onclick='return mark_id(this);' >撤回</button>
+						       <button type="button" class="btn btn-link" data-toggle="modal" data-target="#infoRecord" record_id='{{record.id}}' onclick='return record_info(this)'>详情</button>
+						       {%endif%}
+						       {%if record.status == 'reject' %}
+						       <span class="label label-danger">已驳回</span>
+
+						       <td>
+							   <button type="button" class="btn btn-primary" disabled='true'>发布</button>
+							   <button type="button" class="btn btn-success" disabled='true'>审核</button>
+							   <button type="button" class="btn btn-info" disabled='true'>编辑</button>
+							   <button type="button" class="btn btn-warning" disabled='true' >撤回</button>
+							   <button type="button" class="btn btn-link" data-toggle="modal" data-target="#infoRecord" record_id='{{record.id}}' onclick='return record_info(this)'>详情</button>
+							   {%endif%}
+							   {%if record.status == 'pass' %}
+							   <span class="label label-info">已审核</span>
+
+							   <td>
+							       <button type="button" class="btn btn-primary" >发布</button>
+							       <button type="button" class="btn btn-success" disabled='true'>审核</button>
+							       <button type="button" class="btn btn-info" disabled='true'>编辑</button>
+							       <button type="button" class="btn btn-warning" disabled='true' >撤回</button>
+							       <button type="button" class="btn btn-link" data-toggle="modal" data-target="#infoRecord" record_id='{{record.id}}' onclick='return record_info(this)' >详情</button>
+							       {%endif%}
+							   </td>
+						       </tr>
+						       {%endfor%}
+						   </tbody>
+					       </table>
+					   </div>
+				       </div>
+				       <div class='pager' style='argin-top:30px;width:auto;margin-left:50px'> 
+					   <span class='step-links'>
+					       {%if all_record.has_previous %}
+					       <li><a href="?page={{all_record.previous_page_number}}">&larr;Previous</a></li>
+					       {%endif%}
+					       <span class='current'> Page {{ all_record.number }} of {{ all_record.paginator.num_pages }}. </span>
+					       {%if all_record.has_next %}
+					       <li>  <a href="?page={{all_record.next_page_number}}">Next &rarr;</a> </li>
+					       {%endif%}
+					   </span>
+				       </div>
+
+
+				   </div>
+			       </div>
+			       {%endblock%}

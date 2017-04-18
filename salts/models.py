@@ -39,3 +39,26 @@ class CmdRunLogModel(models.Model):
     total=models.IntegerField()
     class Meta:
 	db_table='ops_cmd_run_log'
+
+
+
+class OnlineDeployModel(models.Model):
+    type=models.CharField(max_length=50)
+    version=models.CharField(max_length=50)
+    project=models.CharField(max_length=1000)
+    sql_name=models.CharField(max_length=1000,null=True)
+    create_time=models.DateTimeField()
+    modify_time=models.DateTimeField()
+    audit_time=models.DateTimeField(null=True)
+    publish_time=models.DateTimeField(null=True)
+    proposer=models.CharField(max_length=100)
+    auditor=models.CharField(max_length=100,null=True)
+    publisher=models.CharField(max_length=100,null=True)
+    status=models.CharField(max_length=100)
+    active=models.CharField(max_length=10)
+    comment=models.CharField(max_length=2000)
+    class Meta:
+	db_table='ops_publish_record'
+
+
+

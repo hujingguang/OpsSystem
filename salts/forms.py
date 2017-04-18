@@ -27,3 +27,12 @@ class DownloadFileForm(forms.Form):
 	    max_length=1000,
 	    required=True,
 	    widget=forms.TextInput(attrs={'class':'form-control'}))
+
+class ProjectRecord(forms.Form):
+    type=forms.CharField(label=u'类型',max_length=100,required=True,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'可选类型为: mps,appportal'}))
+    version=forms.CharField(label=u'版本号',max_length=100,required=True,widget=forms.TextInput(attrs={'class':'form-control'}))
+    projects=forms.CharField(label=u'工程名',max_length=1000,required=True,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'多个工程以空格相隔'}))
+    sql=forms.CharField(label=u'Sql文件名',max_length=1000,required=False,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'若无则不填'}))
+    comment=forms.CharField(label=u'版本说明',max_length=2000,required=True,widget=forms.Textarea(attrs={'class':'form-control'}))
+    #comment=forms.Textarea()
+

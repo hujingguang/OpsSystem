@@ -2,18 +2,21 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
-from django.http import HttpResponseRedirect,HttpResponseServerError,HttpResponseNotAllowed,HttpResponseForbidden,StreamingHttpResponse
+from django.http import HttpResponseRedirect,HttpResponseServerError,HttpResponseNotAllowed,HttpResponseForbidden,StreamingHttpResponse,HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate
 from datetime import datetime
 from django.shortcuts import render_to_response
 from models import *
-from forms import CmdInputForm,DownloadFileForm
+from forms import CmdInputForm,DownloadFileForm,ProjectRecord
 import time,commands,os
+from django.db import connection
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from utils import SaltByLocalApi,parse_target_params,juge_danger_cmd
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
+import json
 ALLOW_DOWNLOAD_DIR=['/logs']
+PRO_TYPES=['mth-appportal','mps','mth-help','mth-ads-web','mth-portal-web','mth-community','mth-openapi','sup']
 @login_required(login_url='/')
 def list_host_info(request):
     hosts=HostInfoModel.objects.all().order_by('group')
@@ -311,7 +314,6 @@ def download_file(request):
 	        return render_to_response('download_file.html',RequestContext(request,{'form':form}))
 	    output=saltapi.client.cmd(target,'cp.push',[file_path]) 
 	    local_absolute_path=default_dir+'/'+target+'/files/'+file_path
-	    print local_absolute_path
 	    if not output.get(target,False):
 		form.errors['file_path']=u'不存在该文件或输入的为目录！！'
 	    elif not os.path.exists(local_absolute_path):
@@ -342,6 +344,207 @@ def download_file(request):
 	    return render_to_response('download_file.html',RequestContext(request,{'form':form}))
 	#return render_to_response('download_file.html',RequestContext(request,{'form':form,'file':file_path}))
     return render_to_response('download_file.html',RequestContext(request,{'form':form}))
+
+
+
+@login_required(login_url='/')
+def code_deploy(request):
+    global PRO_TYPES
+    all_record=OnlineDeployModel.objects.filter(active='Y').order_by('-create_time')
+    for r in all_record:
+	if not r.auditor:
+	    r.auditor=''
+	if not r.publisher:
+	    r.publisher=''
+	if r.sql_name.replace(' ','') == '':
+	    r.sql_name=''
+	r.create_time=datetime.strftime(r.create_time,'%Y-%m-%d %H:%M:%S')
+    record_form=ProjectRecord()
+    if request.method == 'POST':
+	types=request.POST.get('type','').replace(' ','')
+	version=request.POST.get('version','').replace(' ','')
+	projects=request.POST.get('projects','')
+	sql=request.POST.get('sql','')
+	comment=request.POST.get('comment','')
+	if types not in PRO_TYPES or version == '' or  projects.replace(' ','') == '' or comment.replace(' ','') == '':
+	    return HttpResponse('error')
+	else:
+	    create_time=datetime.now()
+	    record=OnlineDeployModel(type=types,
+		    version=version,
+		    project=projects,
+		    sql_name=sql,
+		    create_time=create_time,
+		    modify_time=create_time,
+		    proposer=request.user.username,
+		    publisher='',
+		    status='waited',
+		    active='Y',
+		    comment=comment)
+	    try:
+		record.save()
+	    except Exception as e:
+	        return HttpResponse(u'internal_error')
+	    return HttpResponse('ok')
+    else:
+        paginator=Paginator(all_record,7)
+        page=request.GET.get('page')
+	try:
+	    all_record=paginator.page(page)
+	except PageNotAnInteger:
+	    all_record=paginator.page(1)
+	except EmptyPage:
+	    all_record=paginator.page(paginator.num_pages)
+        return render_to_response('code_deploy.html',RequestContext(request,{'all_record':all_record,'records':record_form}))
+
+@login_required(login_url='/')
+def get_record_from_id(request):
+    if request.method== 'POST':
+	record_id=request.POST.get('record_id','')
+    else:
+	record_id=request.GET.get('record_id','')
+    if not record_id:
+	return HttpResponse(json.dumps({'code':'400','info':u'不存在该记录 !'}))
+    record=OnlineDeployModel.objects.get(id=record_id)
+    if not record:
+	return HttpResponse(json.dumps({'code':'400','info':u'不存在该记录 !'}))
+    create_time=datetime.strftime(record.create_time,'%Y-%m-%d %H:%M:%S')
+    modify_time=datetime.strftime(record.modify_time,'%Y-%m-%d %H:%M:%S')
+    return_record={
+	    'type':record.type,
+	    'version':record.version,
+	    'projects':record.project,
+	    'create_time':create_time,
+	    'modify_time':modify_time,
+	    'proposer':record.proposer,
+	    'record_status':record.status,
+	    'comment':record.comment,
+	    'code':200,
+	    }
+    print return_record
+    if not record.audit_time:
+	return_record['audit_time']=''
+    else:
+        audit_time=datetime.strftime(record.audit_time,'%Y-%m-%d %H:%M:%S')
+	
+    if not record.publish_time:
+	return_record['publish_time']=''
+    else:
+        publish_time=datetime.strftime(record.publish_time,'%Y-%m-%d %H:%M:%S')
+    if not record.auditor:
+	return_record['auditor']=''
+    else:
+	return_record['auditor']=record.auditor
+    if not record.publisher:
+	return_record['publisher']=''
+    else:
+	return_record['publisher']=record.publisher
+    if not record.sql_name:
+	return_record['sql']=''
+    else:
+	return_record['sql']=record.sql_name
+    print return_record
+    return HttpResponse(json.dumps(return_record))
+
+@login_required(login_url='/')
+def delete_record_from_id(request):
+    if request.method== 'POST':
+	record_id=request.POST.get('record_id','')
+    else:
+	record_id=request.GET.get('record_id','')
+    if not record_id:
+	return HttpResponse(json.dumps({'code':'400','info':u'错误的id !'}))
+    record=OnlineDeployModel.objects.get(id=record_id)
+    if not record:
+	return HttpResponse(json.dumps({'code':'400','info':u'不存在该记录 !'}))
+    if record.proposer != request.user.username:
+	return HttpResponse(json.dumps({'code':'400','info':u'非申请人无法撤回'}))
+    if record.status == 'waited' and record.active == 'Y':
+	record.status='cancled'
+	try:
+	    record.save()
+	except Exception as e:
+	    return HttpResponse(json.dumps({'code':'400','info':u'撤回失败'}))
+	return HttpResponse(json.dumps({'code':'200','info':u'撤回成功'}))
+    else:
+	return HttpResponse(json.dumps({'code':'400','info':u'无法撤回'}))
+
+@login_required(login_url='/')
+def modify_record_from_id(request):
+    global PRO_TYPES
+    info=''
+    code=0
+    if request.method == 'POST':
+	record_id=request.POST.get('record_id','');
+	types=request.POST.get('type','');
+	version=request.POST.get('version','');
+	comment=request.POST.get('comment','');
+	project=request.POST.get('projects','');
+	sql_name=request.POST.get('sql','');
+	if not version or not types or not comment or not project or not record_id or types not in PRO_TYPES:
+	    code=400
+	    info='bad form data !!'
+	else:
+	    modify_record=OnlineDeployModel.objects.get(id=record_id)
+	    if not modify_record:
+		code=400
+		info=u'修改失败'
+	    elif modify_record.status != 'waited':
+		code=400
+		info=u'无法修改非待审核的数据'
+	    elif modify_record.proposer != request.user.username:
+		code=400
+		info=u'非申请人无权修改！'
+	    else:
+		modify_record.type=types
+		modify_record.version=version
+		modify_record.comment=comment
+		modify_record.project=project
+		modify_sql_name=sql_name
+		try:
+		    modify_record.save()
+		except Exception as e:
+		    code=400
+		    info=u'修改失败'
+		code=200
+		info='修改成功'
+        print code,info
+	return HttpResponse(json.dumps({'code':code,'info':info}))
+    else:
+	info=u'修改失败'
+	return HttpResponse(json.dumps({'code':400,'info':info}))
+
+
+
+@login_required(login_url='/')
+def audit_record_from_id(request):
+    if request.method == 'POST':
+	record_id=request.POST.get('record_id','')
+	mark=request.POST.get('mark','')
+	record=OnlineDeployModel.objects.get(id=record_id)
+	if not record:
+	    return HttpResponse(json.dumps({'code':400,'info':u'审核失败,不存在该记录'}))
+	if record.status !='waited':
+	    return HttpResponse(json.dumps({'code':400,'info':u'审核失败,非待审核状态不允许审核！'}))
+        if not request.user.is_superuser:
+	    return HttpResponse(json.dumps({'code':400,'info':u'审核失败,非管理员无法审核！'}))
+	else:
+	    if mark not in ['Y','N']:
+		return HttpResponse(json.dumps({'code':400,'info':u'错误的数据格式'}))
+	    if mark == 'Y':
+		record.status='pass'
+	    else:
+		record.status='reject'
+	    record.audit_time=datetime.now()
+	    record.auditor=request.user.username
+	    try:
+		record.save()
+	    except Exception as e:
+		return HttpResponse(json.dumps({'code':400,'info':u'审核失败'}))
+	    return HttpResponse(json.dumps({'code':200,'info':u'恭喜,审核成功'}))
+
+
+
 
 
 

@@ -10,5 +10,10 @@ urlpatterns=[
 	url('^hosts/list_cmd_run_info$',list_cmd_run_info,name='list_cmd_run_info'),
 	url('^hosts/cmd_run$',cmd_run,name='cmd_run'),
 	url('^hosts/download_file$',download_file,name='download_file'),
+	url('^hosts/code_deploy$',code_deploy,name='code_deploy'),
+	url('^hosts/record/info$',get_record_from_id,name='record'),
+	url('^hosts/record/delete$',delete_record_from_id,name='record_delete'),
+	url('^hosts/record/modify$',modify_record_from_id,name='record_modify'),
+	url('^hosts/record/audit$',audit_record_from_id,name='record_audit'),
 	]
 

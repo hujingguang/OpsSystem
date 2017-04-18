@@ -12,12 +12,17 @@
     <link href={% static "bootstrap/css/bootstrap-datetimepicker.css" %} rel="stylesheet">
     <link href={% static "css/sb-admin.css" %} rel="stylesheet">
     <link href={% static "font-awesome/css/font-awesome.min.css" %} rel="stylesheet" type="text/css">
+    <link href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
     <script src={% static "js/jquery.js" %}></script>
     <script src={% static "bootstrap/js/bootstrap.min.js" %}></script>
-    <script src={% static "bootstrap/js/jquery-1.8.3.min.js" %}></script>
+    <!-- <script src={% static "bootstrap/js/jquery-1.8.3.min.js" %}></script> -->
     <script src={% static "bootstrap/js/bootstrap-datetimepicker.js" %}></script>
     <script src={% static "bootstrap/js/locales/bootstrap-datetimepicker.zh-CN.js" %}></script>
     <script src={% static "js/echarts.js"%}></script>
+    <script src="http://cdn.bootcss.com/bootbox.js/3.0.0/bootbox.min.js"></script>
+    <script src="http://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
 
 </head>
 <body>
@@ -103,6 +108,9 @@
 			    </li>
                             <li>
 			    <a href={% url 'salts:download_file' %}>文件下载</a>
+			    </li>
+			    <li>
+			    <a href={% url 'salts:code_deploy' %}>代码发布</a>
 			    </li>
                         </ul>
 	       	</li>
