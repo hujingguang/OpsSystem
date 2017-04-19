@@ -597,6 +597,8 @@ def deploy_record_from_id(request):
 		result=os.system('/bin/bash /tmp/.tmp.sh')
 		print result
 		if result == 512:
+		    record.active='Y'
+		    record.save()
 	            return HttpResponse(json.dumps({'code':400,'info':u'Sorry,其他用户正在发布,请稍后再试!'}))
 		if result == 0:
 		    flag=True
