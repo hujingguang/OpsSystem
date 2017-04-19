@@ -92,3 +92,6 @@ Dashboard
 
 命令审计
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/12.png)
+
+集成脚本代码发布
+![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/14.png)
