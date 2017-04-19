@@ -21,5 +21,5 @@ set -o nounset                              # Treat unset variables as an error
 
 
 
-sleep 30
+sleep 60
 

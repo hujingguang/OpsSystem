@@ -5,6 +5,7 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect,HttpResponseServerError,HttpResponseNotAllowed,HttpResponseForbidden,StreamingHttpResponse,HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate
+from django.db import connection
 from datetime import datetime
 from django.shortcuts import render_to_response
 from models import *
@@ -16,10 +17,11 @@ from utils import SaltByLocalApi,parse_target_params,juge_danger_cmd
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 import json
 import os
+import commands
 from salts.utils import PROJECT_DICT
 from salts.utils import dowith_project_params
 ALLOW_DOWNLOAD_DIR=['/logs']
-PRO_TYPES=['mth-appportal','mps','mth-help','mth-ads-web','mth-portal-web','mth-community','mth-openapi','sup']
+LOG_FILE='/tmp/.ops_deploy.log'
 @login_required(login_url='/')
 def list_host_info(request):
     hosts=HostInfoModel.objects.all().order_by('group')
@@ -464,7 +466,7 @@ def delete_record_from_id(request):
 	return HttpResponse(json.dumps({'code':'400','info':u'不存在该记录 !'}))
     if record.proposer != request.user.username:
 	return HttpResponse(json.dumps({'code':'400','info':u'非申请人无法撤回'}))
-    if record.status == 'waited' and record.active == 'Y':
+    if (record.status == 'waited' and record.active == 'Y') or record.status== 'pass':
 	record.status='cancled'
 	try:
 	    record.save()
@@ -558,13 +560,64 @@ def deploy_record_from_id(request):
 	    return HttpResponse(json.dumps({'code':400,'info':u'发布失败,无该条记录'}))
 	if record.status !='pass':
 	    return HttpResponse(json.dumps({'code':400,'info':u'发布失败,非通过审核状态'}))
+	project_list=[p.replace(' ','') for p in record.project.split(' ')if p !='']
+	Type=record.type.replace(' ','')
+	if not dowith_project_params(Type,project_list):
+	    return HttpResponse(json.dumps({'code':400,'info':u'错误的申请数据！请修改核对后再发布'}))
 	if record.proposer == request.user.username or request.user.is_superuser :
-	    cmd='ps aux|grep deploy.sh|grep -v grep'
-	    cmd='ps axu|grep deploy_test.sh|grep -v grep'
-	    ret=os.system(cmd)
-	    ret1=os.system(cmd1)
-	    print ret,ret1
-	    #os.system('/root/github/OpsSystem/test.sh')
+	    record.active='N'
+	    flag=False
+	    try:
+		record.save()
+	    except Exception as e:
+	        return HttpResponse(json.dumps({'code':400,'info':u'数据库错误'}))
+	    try:
+		if record.type in ['omp','appportal','ops']:
+		    shell_script='/root/deploy/deploy_auto.sh'
+		else:
+		    shell_script='/root/deploy/deploy_node_auto.sh'
+		if not os.path.exists(shell_script):
+	            return HttpResponse(json.dumps({'code':400,'info':u'发布脚本不存在'}))
+		deploy_cmd=shell_script + ' -t '+record.type+' -p "'+' '.join(project_list)+'" >>' + LOG_FILE
+		record.command=deploy_cmd
+		record.save()
+		cmd_write=''' echo '%s' > /tmp/.tmp.sh ''' %deploy_cmd
+		os.system(cmd_write)
+		date_str=datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+		str_cmd='''echo '**************************************************' >> '''+LOG_FILE
+		os.system(str_cmd)
+		str_cmd=' echo " %s id: %s " >> %s ' %(date_str,record.id,LOG_FILE)
+		os.system(str_cmd)
+		cmd_print=''' echo '%s' >> %s ''' %(deploy_cmd,LOG_FILE)
+		os.system(cmd_print)
+		str_cmd=''' echo '**************************************************' >>'''+LOG_FILE
+		os.system(str_cmd)
+		if record.type in ['appportal','ops']:
+	            return HttpResponse(json.dumps({'code':400,'info':u'未开放appportal工程发布'}))
+		result=os.system('/bin/bash /tmp/.tmp.sh')
+		print result
+		if result == 512:
+	            return HttpResponse(json.dumps({'code':400,'info':u'Sorry,其他用户正在发布,请稍后再试!'}))
+		if result == 0:
+		    flag=True
+		else:
+		    flag=False
+		record.publish_time=datetime.now()
+		record.publisher=request.user.username
+	    except Exception as e:
+		record.deploy_status='failed'
+		print e
+	    connection.close()
+            record_new=OnlineDeployModel.objects.get(id=record_id)
+	    if flag:
+		record_new.deploy_status='success'
+		record_new.status='published'
+		record_new.publish_time=datetime.now()
+		record_new.publisher=request.user.username
+	    else:
+		record_new.deploy_status='failed'
+	    record_new.active='Y'
+	    record_new.save()
 	    return HttpResponse(json.dumps({'code':200,'info':u'恭喜,发布成功'}))
         else:
 	    return HttpResponse(json.dumps({'code':400,'info':u'Sorry,无权限'}))

@@ -21,6 +21,7 @@ PROJECT_DICT={
 	'mth-portal-web':[],
 	'mth-ads-web':[],
 	'mth-community':[],
+	'mth-appportal':[],
 	}
 
 
@@ -30,9 +31,11 @@ PROJECT_DICT={
     @types: string 
 '''
 def dowith_project_params(types,projects):
+    if types not in PROJECT_DICT:
+	return False
     project_list=PROJECT_DICT.get(types,'')
     if not project_list:
-	return False
+	return True
     for pro in projects:
 	if pro not in project_list:
 	    return False

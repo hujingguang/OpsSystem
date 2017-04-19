@@ -117,7 +117,7 @@
 				       <div class="form-group">
 					   <label for="lastname" class="col-sm-3 control-label">发布人</label>
 					   <div class="col-sm-9">
-					       <p class='text-left' id='reoord_publisher'></p>
+					       <p class='text-left' id='record_publisher'></p>
 					   </div>
 				       </div>
 				       <div class="form-group">
@@ -415,7 +415,7 @@
 			         function deploy_record(obj){
 				     var record_id=$(obj).attr('deploy_id');
 				     toastr.options.positionClass = 'toast-top-center';
-				     MaskLayer.start();
+				     MaskLayer.start('正在发布');
 				     options={
 				      url:"{%url 'salts:record_deploy'%}",
 				      type:'post',
@@ -739,7 +739,7 @@
 							       <button type="button" class="btn btn-primary" data-toggle='modal' data-target='#deployRecord' record_id='{{record.id}}' onclick='return mark_deploy_record_id(this);' >发布</button>
 							       <button type="button" class="btn btn-success" disabled='true' >审核</button>
 							       <button type="button" class="btn btn-info" disabled='true'>编辑</button>
-							       <button type="button" class="btn btn-warning" disabled='true' >撤回</button>
+							       <button type="button" class="btn btn-warning" data-toggle='modal' data-target='#disableRecord' record_id='{{record.id}}' onclick='return mark_id(this);' >撤回</button>
 							       <button type="button" class="btn btn-link" data-toggle="modal" data-target="#infoRecord" record_id='{{record.id}}' onclick='return record_info(this)' >详情</button>
 							       {%endif%}
 							   </td>

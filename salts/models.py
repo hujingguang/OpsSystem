@@ -58,6 +58,7 @@ class OnlineDeployModel(models.Model):
     deploy_status=models.CharField(max_length=20,null=True)
     active=models.CharField(max_length=10)
     comment=models.CharField(max_length=2000)
+    command=models.CharField(max_length=1000,null=True)
     class Meta:
 	db_table='ops_publish_record'
 
