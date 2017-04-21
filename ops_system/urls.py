@@ -1,9 +1,10 @@
 from django.conf.urls import url,include
 from django.contrib import admin
 from ops_system.views import index
-from ops_system.views import login_view,logout_view
+from ops_system.views import login_view,logout_view,change_password
 urlpatterns = [
     url(r'^$',login_view,name='login'),
+    url(r'^changePasswd$',change_password,name='changePassword'),
     url(r'^admin/', admin.site.urls),
     url(r'^index/$',index,name='index'),
     url(r'^asset/', include('asset.urls',namespace='asset',app_name='asset')),

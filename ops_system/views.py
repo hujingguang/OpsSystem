@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from django.template import RequestContext
-from django.http import HttpResponseRedirect,HttpResponseNotAllowed
+from django.http import HttpResponseRedirect,HttpResponseNotAllowed,HttpResponse
 from utils import *
 import json
 from salts.utils import SaltByLocalApi
@@ -39,4 +40,25 @@ def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')
 
+@login_required(login_url='/')
+def change_password(request):
+    if request.method=='POST':
+	old_pwd=request.POST.get('old_pwd','')
+	new_pwd=request.POST.get('new_pwd','')
+	again_pwd=request.POST.get('again_pwd','')
+	print old_pwd,new_pwd,again_pwd
+	if new_pwd.replace(' ','') == '' or again_pwd.replace(' ','')=='' or old_pwd.replace(' ','')=='':
+	    return HttpResponse(json.dumps({'code':400,'info':u'请输入所有选项'}))
+	user=authenticate(username=request.user.username,password=old_pwd)
+	if user is not None and  user.is_active:
+	    print user.is_active,user
+	    user.set_password(again_pwd)
+	    try:
+		user.save()
+	    except Exception as e:
+	        return HttpResponse(json.dumps({'code':400,'info':u'修改失败'}))
+	    else:
+	        return HttpResponse(json.dumps({'code':200,'info':u'修改成功'}))
+	else:
+	    return HttpResponse(json.dumps({'code':400,'info':u'原密码错误！'}))
 

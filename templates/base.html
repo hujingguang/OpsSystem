@@ -36,7 +36,10 @@
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>&nbsp {{ request.user }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-			<a href={% url 'logout' %}><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+			<a href='#' data-toggle='modal' data-target='#changePassword'><i class="glyphicon glyphicon-hand-right"></i> 修改密码</a>
+                        </li>
+                        <li>
+			<a href={% url 'logout' %} ><i class="fa fa-fw fa-power-off" ></i> 登出</a>
                         </li>
                     </ul>
                 </li>
@@ -127,28 +130,118 @@
              </div>
         </nav>
              
-        <div  id="page-wrapper">
-             <div class="container-fluid">
-                 <!-- Page Heading -->
-                 <div class="row">
-                     <div class="col-lg-12">
-                         <ol class="breadcrumb">
-			    {%block head %}
-			    {%endblock%}
-                        </ol>
-                    </div>
-                </div>
-		{%block page_content%}
 
-		{%endblock%}
-            </div>
-            <!-- /.container-fluid -->
 
-        </div>
-        <!-- /#page-wrapper -->
+<div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		       <div class="modal-dialog">
+			   <div class="modal-content">
+			       <div class="modal-header">
+				   <button type="button" class="close" data-dismiss="modal" 
+				       aria-hidden="true">×
+				   </button>
+				   <h4 class="modal-title" id="myModalLabel">
+				       修改密码
+				   </h4>
+			       </div>
+			       <div class="modal-body">
+				   
+				   <form id='id_password_form' class='form-horizontal'  method='post' role='form'>
+				       <div class='form-group' >
+					   <label for='remark' class='col-sm-2 control-label'>原密码</label>
+					   <div class='col-sm-9'>
+					       <input class="form-control" id="id_old_password" maxlength="100" name="type" type="password" />
+					   </div>
+				       </div>
 
-    </div>
-    <!-- /#wrapper -->
-</body>
+				       <div class='form-group' >
+					   <label for='remark' class='col-sm-2 control-label'>新密码</label>
+					   <div class='col-sm-9'>
+					       <input class="form-control" id="id_new_password" maxlength="100" name="version" type="password" />
+					   </div>
+				       </div>
+				     
+				       <div class='form-group' >
+					   <label for='remark' class='col-sm-2 control-label'>确认密码</label>
+					   <div class='col-sm-9'>
+					       <input class="form-control" id="id_again_password" maxlength="100" name="version" type="password" />
+					   </div>
+				       </div>
+				     
+				       <div class="modal-footer">
+					    <button type="button" class="btn btn-default" 
+					       data-dismiss="modal">不保存
+					     <button id='id_password_submit' type="button" class="btn btn-primary" data-dismiss='modal'  onclick='return change_password(this);'>
+						   保存
+					       </button>
+				      </div>
+				       </form> 
+				   </div>
+			       </div><!-- /.modal-content -->
+			   </div><!-- /.modal-dialog -->
+		       </div><!-- /.modal -->
 
-</html>
+		       <script>
+                               function change_password(obj){
+				   var old_password=$('#id_old_password').val();
+				   var new_password=$('#id_new_password').val();
+				   var again_password=$('#id_again_password').val();
+				   if(new_password != again_password){
+				     alert('新密码不一致！');
+				   }
+				   else if(new_password==''||again_password==''||old_password==''){
+				     alert('请输入所有选项！');
+				   }
+				   else{
+				       options={
+					   url:"{% url 'changePassword' %}",
+					   data:{old_pwd:old_password,new_pwd:new_password,again_pwd:again_password},
+					   type:'post',
+					   datatype:'json',
+					   error:function(request){alert('connect error');},
+					   success:function(data){
+					       toastr.options.positionClass = 'toast-top-center';
+					       var data=JSON.parse(data);
+					       if(data.code==200){
+						   toastr.success(data.info);
+					       }
+					       else{
+					          toastr.error(data.info); 
+					       }
+					       },
+				       };
+				       $.ajaxSetup({data:{csrfmiddlewaretoken:'{{csrf_token}}'}});
+				       $.ajax(options);
+				    }
+				   //console.log(old_password+'::::'+new_password+':::::'+again_password);
+			       
+			       }
+
+		       </script>
+
+
+
+			   <div  id="page-wrapper">
+			       <div class="container-fluid">
+				   <!-- Page Heading -->
+				   <div class="row">
+				       <div class="col-lg-12">
+					   <ol class="breadcrumb">
+					       {%block head %}
+					       {%endblock%}
+					   </ol>
+				       </div>
+				   </div>
+				   {%block page_content%}
+
+				   {%endblock%}
+			       </div>
+			       <!-- /.container-fluid -->
+
+			   </div>
+			   <!-- /#page-wrapper -->
+
+		       </div>
+		       <!-- /#wrapper -->
+		   </body>
+
+	       </html>
