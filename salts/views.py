@@ -401,7 +401,7 @@ def code_deploy(request):
 	    all_record=paginator.page(1)
 	except EmptyPage:
 	    all_record=paginator.page(paginator.num_pages)
-        return render_to_response('code_deploy.html',RequestContext(request,{'all_record':all_record,'records':record_form}))
+	return render_to_response('code_deploy.html',RequestContext(request,{'all_record':all_record,'records':record_form,'request':request}))
 
 @login_required(login_url='/')
 def get_record_from_id(request):

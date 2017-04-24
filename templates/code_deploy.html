@@ -717,7 +717,11 @@
 						   <span class="label label-default">待审核</span>
 						   <td>
 						       <button type="button" class="btn btn-primary" disabled='true'>发布</button>
+						       {%if request.user.is_superuser%}
 						       <button type="button" class="btn btn-success" data-toggle='modal' data-target='#auditRecord' record_id='{{record.id}}' onclick='return mark_audit_id(this);' >审核</button>
+						       {%else%}
+						       <button type="button" class="btn btn-success" disabled='true' >审核</button>
+						       {%endif%}
 						       <button type="button" class="btn btn-info" data-toggle='modal' data-target='#modifyRecord' record_id='{{record.id}}' onclick='return modify_record(this);'>编辑</button>
 						       <button type="button" class="btn btn-warning" data-toggle='modal' data-target='#disableRecord' record_id='{{record.id}}' onclick='return mark_id(this);' >撤回</button>
 						       <button type="button" class="btn btn-link" data-toggle="modal" data-target="#infoRecord" record_id='{{record.id}}' onclick='return record_info(this)'>详情</button>
