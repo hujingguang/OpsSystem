@@ -123,9 +123,11 @@
                             <li>
 			    <a href={%url 'users:userList'%}>用户信息</a>
                             </li>
+			    {%if request.user.is_superuser%}
                             <li>
-			    <a href='#'>添加用户</a>
+			    <a href='#' data-toggle='modal' data-target='#addUser' >添加用户</a>
                             </li>
+			    {%endif%}
                         </ul>
 	       	</li>
 
@@ -144,7 +146,7 @@
              
 
 
-<div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		       <div class="modal-dialog">
 			   <div class="modal-content">
 			       <div class="modal-header">
@@ -192,6 +194,82 @@
 			   </div><!-- /.modal-dialog -->
 		       </div><!-- /.modal -->
 
+
+
+
+ <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+		       <div class="modal-dialog">
+			   <div class="modal-content">
+			       <div class="modal-header">
+				   <button type="button" class="close" data-dismiss="modal" 
+				       aria-hidden="true">×
+				   </button>
+				   <h4 class="modal-title" id="myModalLabel">
+				       添加用户
+				   </h4>
+			       </div>
+			       <div class="modal-body">
+				   
+				   <form id='id_user_form' class='form-horizontal'  method='post' role='form'>
+				       <div class='form-group' >
+					   <label for='remark' class='col-sm-3 control-label'>用户名</label>
+					   <div class='col-sm-9'>
+					       <input class="form-control" id="id_username" maxlength="100" name="type" type="text" />
+					   </div>
+				       </div>
+
+				       <div class='form-group' >
+					   <label for='remark' class='col-sm-3 control-label'>邮箱名</label>
+					   <div class='col-sm-9'>
+					       <input class="form-control" id="id_email" maxlength="100" name="type" type="text" />
+					   </div>
+				       </div>
+				       <div class='form-group' >
+					   <label for='remark' class='col-sm-3 control-label'>新密码</label>
+					   <div class='col-sm-9'>
+					       <input class="form-control" id="id_userpassword" maxlength="100" name="version" type="password" />
+					   </div>
+				       </div>
+				     
+				       <div class='form-group' >
+					   <label for='remark' class='col-sm-3 control-label'>确认密码</label>
+					   <div class='col-sm-9'>
+					       <input class="form-control" id="id_userpassword_again" maxlength="100" name="version" type="password" />
+					   </div>
+				       </div>
+				     
+				       <div class='form-group' >
+					   <label for='remark' class='col-sm-3 control-label'>管理员权限</label>
+					   <div class='col-sm-9'>
+					       <select class="form-control" id="id_isadmin" name="is_admin" >
+						   <option value="N">No</option>
+						   <option value="Y">Yes</option>
+					       </select>
+					   </div>
+				       </div>
+				       <div class="modal-footer">
+					    <button type="button" class="btn btn-default" 
+					       data-dismiss="modal">取消
+					     <button id='id_addUser' type="button" class="btn btn-primary" data-dismiss='modal'  onclick='return addUser();'>
+						   添加
+					       </button>
+				      </div>
+				       </form> 
+				   </div>
+			       </div><!-- /.modal-content -->
+			   </div><!-- /.modal-dialog -->
+		       </div><!-- /.modal -->
+
+
+
+
+
+
+
+
+
+
 		       <script>
                                function change_password(obj){
 				   var old_password=$('#id_old_password').val();
@@ -225,7 +303,42 @@
 				       $.ajax(options);
 				    }
 				   //console.log(old_password+'::::'+new_password+':::::'+again_password);
-			       
+			       }
+			       function addUser(){
+			          var username=$('#id_username').val();
+				  var password=$('#id_userpassword').val();
+				  var again_password=$('#id_userpassword_again').val();
+				  var email=$('#id_email').val();
+				  var is_admin=$('#id_isadmin').val();
+				  if(username == '' || password=='' || again_password=='' || email==''){
+				     alert('选项不能为空！');
+				     return false;
+				  }
+				  else if(password != again_password){
+				      alert('两次密码不一致');
+				      return false;
+				    }
+				    else{
+					options={
+					    datatype:'json',
+					    url: "{%url 'users:userAdd'%}",
+					    type:'post',
+					    data:{username:username,password:password,email:email,isadmin:is_admin},
+					    error:function(reequest){alert('Connect Error')},
+					    success:function(data){
+					      var data=JSON.parse(data);
+					       toastr.options.positionClass = 'toast-top-center';
+					      if(data.code=200){
+					        toastr.success(data.info);
+					      }else{
+					      toastr.error(data.info);
+					      }
+					    },
+					};
+				       $.ajaxSetup({data:{csrfmiddlewaretoken:'{{csrf_token}}'}});
+				       $.ajax(options);
+				    }
+				  //console.log(username+':'+password+':'+again_password+':'+email+':'+is_admin);
 			       }
 
 		       </script>
