@@ -276,7 +276,7 @@ def deploy_svn_code(repo_name,
 	os.system('mkdir -p %s' %checkout_code_parent_dir)
     svn_cmd_args=' --non-interactive --username="%s" --password="%s" %s ' %(user,password,repo_address)
     simple_args=' --non-interactive --username="%s" --password="%s" ' %(user,password)
-    cmd_checkout_code=''' cd %s && svn checkout  --force %s && cd %s && svn cleanup ''' %(checkout_code_parent_dir,
+    cmd_checkout_code='''export LC_ALL=zh_CN.UTF-8 && cd %s && svn checkout  --force %s && cd %s && svn cleanup ''' %(checkout_code_parent_dir,
 	    svn_cmd_args,
 	    code_dir)
     logfunc(log_file,'INFO','checkout out cmd: '+cmd_checkout_code)

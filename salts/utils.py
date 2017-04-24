@@ -199,6 +199,7 @@ def test_cmd():
 if __name__=='__main__':
     #salt=SaltApi('http://10.117.74.247:8080','salt','hoover123')
     #salt.get_minion_info('/run')
-    #local=SaltByLocalApi('/etc/salt/master')
+    local=SaltByLocalApi('/etc/salt/master')
     #print parse_target_params('supply_webs','nodegroup')
-    test_cmd()
+    print local.total
+    #test_cmd()
