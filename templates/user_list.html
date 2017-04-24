@@ -1,0 +1,64 @@
+{%extends 'base.html' %}
+{%load static %}
+{%block head%}
+<li>
+   <i class='fa fa-dashboard'></i><a href={%url 'index' %}>&nbsp Dashboard</a>
+</li>
+<li>
+   <i class='fa fa-table'></i>&nbsp 用户管理
+</li>
+<li  class='active'>
+<i class='fa fa-building-o'></i>&nbsp; 用户信息
+</li>
+{%endblock%}
+
+{%block page_content%}
+
+<div class='row'>
+    <div class='panel panel-info'>
+     <div class='panel-heading'>
+	 <h3 class='panel-title'><i class='fa fa-bell'></i>&nbsp 用户信息浏览<h3>
+     </div>
+     <div class='panel-body'>
+          <div class='panel panel-info' style='width:auto;height:1300px;margin:auto'>
+	      <div class='table-responsive'>
+		  <table class="table table-striped table-bordered">
+		      <thead>
+			  <tr class='info'>
+			      <th>Id</th>
+			      <th>用户名</th>
+			      <th>是否为管理员</th>
+			      <th>邮箱</th>
+			      <th>创建时间</th>
+			      <th>最后登录时间</th>
+			      <th>当前状态</th>
+			  </tr>
+		      </thead>
+		      <tbody>
+			  {%for user in users %}
+			  <tr>
+			      <td>{{user.id}}</td>
+			      <td>{{user.username}}</td>
+			      {%if user.is_superuser %}
+			      <td>Y</td>
+			      {%else%}
+			      <td>N</td>
+			      {%endif%}
+			      <td>{{user.email}}</td>
+			      <td>{{user.date_joined}}</td>
+			      <td>{{user.last_login}}</td>
+			      {%if user.is_active%}
+			      <td>激活</td>
+			      {%else%}
+			      <td>失效</td>
+			      {%endif%}
+			  </tr>
+			  {%endfor%}
+		      </tbody>
+		  </table>
+	  </div>
+      </div>
+	 </div>
+    </div>
+</div>
+{%endblock%}
