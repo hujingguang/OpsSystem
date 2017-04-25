@@ -32,6 +32,7 @@
 			      <th>创建时间</th>
 			      <th>最后登录时间</th>
 			      <th>当前状态</th>
+			      <th>操作</th>
 			  </tr>
 		      </thead>
 		      <tbody>
@@ -48,10 +49,21 @@
 			      <td>{{user.date_joined}}</td>
 			      <td>{{user.last_login}}</td>
 			      {%if user.is_active%}
-			      <td>激活</td>
+			      <td><span class='label label-success'>激活</span></td>
 			      {%else%}
-			      <td>失效</td>
+			      <td><span class='label label-danger'>失效</span></td>
 			      {%endif%}
+			      <td>
+				  <button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteUser' userid='{{user.id}}' opt='delete' onclick='return markid(this);'>删除</button>
+				  {%if user.is_active %}
+				  <button type='button' class='btn btn-primary'disabled='true' >激活</button>
+				  <button type='button' class='btn btn-warning' data-toggle='modal' data-target='#freezeUser' userid='{{user.id}}' opt='freeze' onclick='return markid(this);'>冻结 </button>
+				  {%else%}
+				  <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#activeUser' userid='{{user.id}}' opt='active' onclick='return markid(this);'>激活</button>
+				  <button type='button' class='btn btn-warning' disabled='true' >冻结</button>
+				  {%endif%}
+			      </td>
+
 			  </tr>
 			  {%endfor%}
 		      </tbody>
@@ -61,4 +73,119 @@
 	 </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="deleteUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		       <div class="modal-dialog">
+			   <div class="modal-content">
+			       <div class="modal-header">
+				   <button type="button" class="close" data-dismiss="modal" 
+				       aria-hidden="true">×
+				   </button>
+				   <h4 class="modal-title" id="myModalLabel">
+				       确定删除该用户吗
+				   </h4>
+			       </div>
+			       <div class='modal-footer'>
+				       <button type="button" class="btn btn-default"  data-dismiss="modal" >
+					   取消
+				       </button>
+				       <button id='id_delete_confirm' type="button" class="btn btn-primary" data-dismiss='modal' userid='0'  opt='delete' onclick='return changeUser(this);'>
+					   确定删除
+				       </div>
+			   </div>
+		       </div>
+		   </div>
+
+
+<div class="modal fade" id="activeUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		       <div class="modal-dialog">
+			   <div class="modal-content">
+			       <div class="modal-header">
+				   <button type="button" class="close" data-dismiss="modal" 
+				       aria-hidden="true">×
+				   </button>
+				   <h4 class="modal-title" id="myModalLabel">
+				       确定激活该用户吗
+				   </h4>
+			       </div>
+			       <div class='modal-footer'>
+				       <button type="button" class="btn btn-default"  data-dismiss="modal" >
+					   取消
+				       </button>
+				       <button id='id_active_confirm' type="button" class="btn btn-primary" data-dismiss='modal' userid='0' opt='active' onclick='return changeUser(this);'>
+					   确定激活
+				       </div>
+			   </div>
+		       </div>
+		   </div>
+
+
+<div class="modal fade" id="freezeUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		       <div class="modal-dialog">
+			   <div class="modal-content">
+			       <div class="modal-header">
+				   <button type="button" class="close" data-dismiss="modal" 
+				       aria-hidden="true">×
+				   </button>
+				   <h4 class="modal-title" id="myModalLabel">
+				       确定冻结该用户吗
+				   </h4>
+			       </div>
+			       <div class='modal-footer'>
+				       <button type="button" class="btn btn-default"  data-dismiss="modal" >
+					   取消
+				       </button>
+				       <button id='id_freeze_confirm' type="button" class="btn btn-primary" data-dismiss='modal' opt='freeze' userid='0' onclick='return changeUser(this);'>
+					   确定
+				       </div>
+			   </div>
+		       </div>
+		   </div>
+
+		 <script>
+		     function markid(obj){
+		        var userid=$(obj).attr('userid');
+			var opt=$(obj).attr('opt');
+			if(opt=='delete'){
+			    $('#id_delete_confirm').attr('userid',userid);
+			}else if(opt=='freeze'){
+			    $('#id_freeze_confirm').attr('userid',userid);
+		    }else if(opt=='active'){
+			    $('#id_active_confirm').attr('userid',userid);
+		        }else{
+		              return false;
+		        }
+		     }
+
+		     function changeUser(obj){
+			 var userid=$(obj).attr('userid');
+			 var opt=$(obj).attr('opt');
+			 options={
+			     data:{userid:userid,opt:opt},
+			     type:'post',
+			     datatype:'json',
+			     url:'{%url "users:changeUser"%}',
+			     error:function(request){alert('Connect Error');},
+			     success:function(data){
+			         var data=JSON.parse(data);
+				 toastr.options.positionClass = 'toast-top-center';
+				 if(data.code==200){
+				     toastr.success(data.info) ;
+				     window.setTimeout("refreshPage()",1000);
+				 }else{
+				 toastr.error(data.info);
+			          }
+			     },
+			 }
+			  $.ajaxSetup({data:{csrfmiddlewaretoken:'{{csrf_token}}'}});
+			  $.ajax(options);
+		      }
+
+		      function refreshPage(){
+		        window.location.reload();
+		      }
+	       </script>
+
+
 {%endblock%}
