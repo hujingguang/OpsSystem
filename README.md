@@ -57,6 +57,12 @@ cd OpsSystem && ./install.sh
 Dashboard
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/1.png)
 
+用户管理
+![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/15.png)
+
+用户添加
+![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/16.png)
+
 添加SVN版本库项目
 ![](https://github.com/hujingguang/OpsSystem/blob/master/screenshots/2.png)
 
