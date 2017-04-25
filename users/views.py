@@ -28,6 +28,8 @@ def add_user(request):
 	password=request.POST.get('password','').replace(' ','')
 	email=request.POST.get('email','').replace(' ','')
 	isadmin=request.POST.get('isadmin','').replace(' ','')
+	if not request.user.is_superuser:
+	    return HttpResponse(json.dumps({'code':400,'info':'No Permission'}))
 	if username == '' or password == '' or email== '' or isadmin == '':
 	    return HttpResponse(json.dumps({'code':400,'info':'Error Form Params'}))
 	if isadmin == 'Y':
