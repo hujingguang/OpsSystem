@@ -14,7 +14,7 @@ ops platform  Demo 地址:  http://demo.wikiki.cn    username: guest      passwo
 
 3: 进入工程根目录，配置好mysql数据库，执行python manage.py test 测试数据库连接
 
-4： 初始化数据库表，python manage.py migrate
+4： 初始化数据库表，python manage.py makemigrations && python manage.py migrate
 
 5:  创建一个管理员账号, python manage.py createsuperuser ,（在该平台里，只有管理员才能发布工程到正式环境）
 
