@@ -654,7 +654,7 @@ def logfunc(log_file,log_rate,info):
     f.close()
 
 def loopfunc(pid):
-    cmd=''' pstree -p|grep python |grep '%s'|grep rsync ''' %pid
+    cmd=''' pstree -p|grep '%s'|grep rsync ''' %pid
     while True:
 	res=os.system(cmd)
 	if res == 0:
