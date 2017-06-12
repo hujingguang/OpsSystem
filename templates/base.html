@@ -130,7 +130,19 @@
 			    {%endif%}
                         </ul>
 	       	</li>
-
+			    {%if request.user.is_superuser%}
+                 <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#auths"><i class="fa fa-fw fa-user"></i> 权限管理<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="auth" class="collapse">
+                            <li>
+			    <a href={%url 'auths:db_info_list'%}>数据库管理</a>
+                            </li>
+                            <li>
+			    <a href='#'>数据库管理</a>
+                            </li>
+                        </ul>
+	       	</li>
+			    {%endif%}
                  <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#zabbix"><i class="fa fa-fw fa-cubes"></i> Zabbix集成 <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="zabbix" class="collapse">

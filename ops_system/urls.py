@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^logout/$',logout_view,name='logout'),
     url(r'^api/',include('api.urls',namespace='api',app_name='api')),
     url(r'^user/',include('users.urls',namespace='users',app_name='users')),
+    url(r'^auths/',include('auths.urls',namespace='auths',app_name='auths')),
 	]
 
 
