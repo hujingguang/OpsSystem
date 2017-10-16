@@ -337,7 +337,7 @@ def upload_file(request):
 		client.client.cmd(target,'cmd.run',[bak_cmd],expr_form=mapping)
 		output=client.client.cmd(target,'cp.get_file',['salt://upload/'+f.name,file_path,'makedirs=True'],expr_form=mapping)
 		DistributeFileRecordModel.objects.create(user=request.user.username,hostname=target,pattern=mapping,path=file_path,filename=f.name,opttime=datetime.now())
-		return render_to_response('upload_file.html',RequestContext(request,{'form':upload_form,'error':error,'result':output}))
+		return render_to_response('upload_file.html',RequestContext(request,{'form':upload_form,'error':error,'result':output,'status':200}))
         else:
 	    return render_to_response('upload_file.html',RequestContext(request,{'form':upload_form,'cmd_error':'请选择上传的文件!'}))
     upload_form=UploadFileForm()
