@@ -9,7 +9,7 @@ from django.db import connection
 from datetime import datetime
 from django.shortcuts import render_to_response
 from models import *
-from forms import CmdInputForm,DownloadFileForm,ProjectRecord
+from forms import CmdInputForm,DownloadFileForm,ProjectRecord,UploadFileForm
 import time,commands,os
 from django.db import connection
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -19,7 +19,13 @@ import json
 import os
 import commands
 from salts.utils import PROJECT_DICT
-from salts.utils import dowith_project_params
+from salts.utils import dowith_project_params,is_exist_minion
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+
+
 ALLOW_DOWNLOAD_DIR=['/logs']
 LOG_FILE='/tmp/.ops_deploy.log'
 @login_required(login_url='/')
@@ -297,6 +303,46 @@ def list_cmd_run_info(request):
     except EmptyPage:
 	cmd_info=paginator.page(paginator.num_pages)
     return render_to_response('list_cmd_run_info.html',RequestContext(request,{'cmd_info':cmd_info}))
+
+
+
+@login_required(login_url='/')
+def upload_file(request):
+    error=None
+    if request.method=='POST':
+	upload_form=UploadFileForm(request.POST,request.FILES)
+	if upload_form.is_valid():
+	    client=SaltByLocalApi('/etc/salt/master')
+	    target=upload_form.cleaned_data['target']
+	    mapping=upload_form.cleaned_data['mapping']
+	    upload_path=upload_form.cleaned_data['upload_path']
+	    if not is_exist_minion(client,target,mapping) or not request.user.is_superuser:
+		error='主机名中存在离线主机,请确认后再上传'
+		return render_to_response('upload_file.html',RequestContext(request,{'form':upload_form,'error':error}))
+	    else:
+		f=request.FILES.get('upload_file',None)
+		if not f:
+		    return render_to_response('upload_file.html',RequestContext(request,{'form':upload_form,'error':'文件损坏'})) 
+		tmp_path=os.path.join('/tmp/',f.name)
+		with open(tmp_path,'wb+') as tmp_file:
+		    for chunk in f.chunks():
+			tmp_file.write(chunk)
+		if not os.path.exists('/srv/salt/upload'):
+		    os.system('mkdir -p /srv/salt/upload')
+		cmd="mv {} /srv/salt/upload/".format(tmp_path)
+		#os.system(cmd)
+		file_path=os.path.join(upload_path,f.name)
+		bak_file_path=file_path+'.bak'
+		bak_cmd='rm -f %s && cp  %s %s' %(bak_file_path,file_path,bak_file_path)
+		client.client.cmd(target,'cmd.run',[bak_cmd],expr_form=mapping)
+		output=client.client.cmd(target,'cp.get_file',['salt://upload/'+f.name,file_path,'makedirs=True'],expr_form=mapping)
+		DistributeFileRecordModel.objects.create(user=request.user.username,hostname=target,pattern=mapping,path=file_path,filename=f.name,opttime=datetime.now())
+		return render_to_response('upload_file.html',RequestContext(request,{'form':upload_form,'error':error,'result':output}))
+        else:
+	    return render_to_response('upload_file.html',RequestContext(request,{'form':upload_form,'cmd_error':'请选择上传的文件!'}))
+    upload_form=UploadFileForm()
+    return render_to_response('upload_file.html',RequestContext(request,{'form':upload_form,'error':error}))
+
 
 @login_required(login_url='/')
 def download_file(request):

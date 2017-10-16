@@ -63,4 +63,16 @@ class OnlineDeployModel(models.Model):
 	db_table='ops_publish_record'
 
 
+class DistributeFileRecordModel(models.Model):
+    user=models.CharField(max_length=100)
+    hostname=models.CharField(max_length=100)
+    pattern=models.CharField(max_length=100)
+    opttime=models.DateTimeField()
+    path=models.CharField(max_length=200)
+    filename=models.CharField(max_length=100)
+    class Meta:
+	db_table='ops_upload_file_record'
+
+    
+
 

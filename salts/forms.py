@@ -15,6 +15,34 @@ class CmdInputForm(forms.Form):
 	    max_length=1000,
 	    required=True,
 	    widget=forms.TextInput(attrs={'class':'form-control'}))
+
+
+
+
+class UploadFileForm(forms.Form):
+    global Choice
+    target=forms.CharField(error_messages={'required':u'请输入目标主机'},
+	    label=u'分发主机',
+	    max_length=200,
+	    required=True,
+	    widget=forms.TextInput(attrs={'class':'form-control'}))
+    mapping=forms.ChoiceField(required=True,choices=Choice,
+	    widget=forms.RadioSelect(attrs={'checked':None}))
+    upload_path=forms.RegexField(error_messages={'invalid':u'分发路径书写不正确,请以/开头'},
+	    label=u'分发路径',
+	    max_length=500,
+	    regex=r'^/',
+	    required=True,
+	    widget=forms.TextInput(attrs={'class':'form-control','placeholder':'中文名命名文件无法分发'}))
+    upload_file=forms.FileField(label=u'上传文件',required=True,
+	    widget=forms.FileInput(attrs={'style':'margin-left:100px'}))
+
+
+
+
+
+
+
 class DownloadFileForm(forms.Form):
     target=forms.CharField(error_messages={'required':u'请输入目标主机！'},
 	    label=u'Target',

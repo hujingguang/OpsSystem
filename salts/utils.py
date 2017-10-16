@@ -184,6 +184,28 @@ def juge_danger_cmd(cmd):
 	    return True
     return False
 
+def is_exist_minion(client,input_string,patterns='glob'):
+    minion_list=client.connected_minions_list
+    PATTERNS=['glob','list']
+    if patterns in PATTERNS:
+	if patterns == 'glob':
+	    if input_string not in minion_list:
+		return None
+	    else:
+		return input_string
+	else:
+	    h_list=[]
+	    tmp_list=input_string.replace(' ','').split(',')
+	    tmp_list.remove('')
+	    for h in tmp_list:
+		if h not in minion_list:
+		    return None
+		else:
+		    h_list.append(h)
+            return ','.join(h_list)
+    else:
+	return input_string
+
 
 def test_cmd():
     client=SaltByLocalApi('/etc/salt/master')

@@ -109,6 +109,11 @@
                             <li>
 			    <a href={% url 'salts:list_cmd_run_info'%}>命令记录</a>
 			    </li>
+			    {%if request.user.is_superuser %}
+                            <li>
+			    <a href={% url 'salts:upload_file' %}>文件分发</a>
+			    </li>
+                            {%endif%}
                             <li>
 			    <a href={% url 'salts:download_file' %}>文件下载</a>
 			    </li>

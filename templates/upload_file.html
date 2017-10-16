@@ -1,0 +1,129 @@
+{%extends 'base.html' %}
+{%load static %}
+{%block head%}
+<li>
+<i class='fa fa-dashboard'></i><a href={%url 'index' %}>&nbsp Dashboard</a>
+</li>
+<li>
+<i class='fa fa-table'></i>&nbsp SaltStack
+</li>
+<li  class='active'>
+<i class='fa fa-building-o'></i>&nbsp;文件分发 
+</li>
+{%endblock%}
+
+{%block page_content%}
+
+<div class='row'>
+    <div class='panel panel-info'>
+	<div class='panel-heading'>
+	    <h3 class='panel-title'><i class='fa fa-bell'></i>&nbsp 文件分发<h3>
+		</div>
+		<div class='panel-body'>
+		    <div class='panel panel-info' style='width:900px;height:600px;margin:auto'>
+                     <div class='row' >
+			 <div class="col-lg-9" > 
+			     <form class='form-group' enctype="multipart/form-data" method='post' action={%url 'salts:upload_file'%} onsubmit='return validation();'>
+				 {%csrf_token%}
+				 <div class='form-group input-group'>
+				 </div>
+                                <div class='form-group input-group' style='margin-left:20px;margin-top:20px' >
+				 <span class='input-group-btn'>
+				     <button class='btn btn-default' type='button' style='width:100px'>
+					 目标主机
+				     </button>
+				 </span>
+			             {{form.target}}
+			         </div>
+                             {% if error %}
+			     <div class='form-group input-group' style='width:100%'>
+				 <div class='alert alert-danger' style='text-align:center'> {{error}} </div>
+			     </div>
+			     {%endif%}
+
+
+				 <div class='form-group input-group' style='margin-top:60px;float:left'>
+                                  <label class='checkbox-inline' style='margin-left:0px'>
+				     <button class='btn btn-default' type='button' style='width:100px;'> 匹配模式 </button>
+				 </label>
+				 {%for f in form.mapping %}
+				       <label class='checkbox-inline'>
+					    {{f.tag}}
+					    {{f.choice_label}}
+				       </label> 
+				 {%endfor%}
+				  </div> 
+                                <div class='form-group input-group' style='margin-top:200px;margin-left:20px' >
+				 <span class='input-group-btn'>
+				     <button class='btn btn-default' type='button' style='width:100px'>
+				         分发路径
+				     </button>
+				 </span>
+			             {{form.upload_path}}
+			         </div>
+                                 <div class='form-group input-group' style='margin-top:100px;margin-left:20px' >
+                                  <label class='input-group-btn' style='margin-left:0px'>
+				     <button class='btn btn-default' type='button' style='width:100px;'> 上传文件 </button>
+				 </label>
+				   {{form.upload_file}} 
+			         </div>
+
+                            {% if form.upload_path.errors %}
+			     <div class='form-group input-group' style='width:100%'>
+				 <div class='alert alert-danger' style='text-align:center'> {{form.upload_path.errors}} </div>
+			     </div>
+			     {%endif%}
+                            {% if cmd_error %}
+			     <div class='form-group input-group' style='width:100%'>
+				 <div class='alert alert-danger' style='text-align:center'> {{cmd_error}} </div>
+			     </div>
+			     {%endif%}
+
+
+                  <div class='input-group' style='margin:auto;width:400px'>
+			     <button class='btn btn-danger' type='submit' value='upload' id='d' style='width:400px;margin-top:80px'> Submit </button>
+		<span id='r' style='display:none;width:200px;margin-top:500px'><img style='width:200px;height:200px;' src={%static 'img/wait.gif'%} />正在上传.......</span>
+			     </div>
+                             <script type='text/javascript'>
+				 function validation(){
+				    var target=document.getElementById('id_target');
+				    var cmd=document.getElementById('id_upload_path')
+				    if (target.value==null || target.value.replace(/(^\s*)|(\s*$)/g, "")=='')
+				    {
+				            alert('请输入目标主机!!!');
+					    return false;
+				    }
+				    if(cmd.value==null||cmd.value.replace(/(^\s*)|(\s*$)/g, "")==''){
+				            alert('请输入上传路径！！！')
+				            return false;
+				    }
+				    document.getElementById('d').style.display="none";
+				    document.getElementById('r').style.display='';
+				    return true;
+				 }
+			     </script>
+			      </form>
+
+			 </div>
+		     </div>
+		    </div>
+	  	</div>
+	    </div>
+	</div>
+{%if result %}
+<div class='row'>
+<div class='panel'> 
+<div class='panel-body'>
+<div class='panel panel-info' style='width:900px;height:1200px;margin:auto;'>
+<div class='alert alert-info'>
+<textarea style='width:100%;height:1000px;background: #300a24'>
+上传结果：
+{{result}}
+</textarea>
+</div>
+</div>
+</div>
+</div>
+</div>
+{%endif%}
+	{%endblock%}
