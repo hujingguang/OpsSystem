@@ -31,9 +31,9 @@ def login_view(request):
 	    #return render_to_response('index.html',RequestContext(request))
 	    return HttpResponseRedirect(reverse('index'))
         else:
-	    return render_to_response('login.html',RequestContext(request,{'error':'Bad Username or Password'}))
+	    return render_to_response('login_new.html',RequestContext(request,{'error':'Bad Username or Password'}))
     else:
-	return render_to_response('login.html',RequestContext(request,{'error':''}))
+	return render_to_response('login_new.html',RequestContext(request,{'error':''}))
 
 @login_required(login_url='/')
 def logout_view(request):
