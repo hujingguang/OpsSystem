@@ -196,6 +196,11 @@ def is_exist_minion(client,input_string,patterns='glob'):
 	else:
 	    h_list=[]
 	    tmp_list=input_string.replace(' ','').split(',')
+	    while True:
+		if '' in tmp_list:
+		    tmp_list.remove('')
+		else:
+		    break
 	    for h in tmp_list:
 		if h not in minion_list:
 		    return None
