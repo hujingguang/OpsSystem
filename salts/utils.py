@@ -189,7 +189,7 @@ def is_exist_minion(client,input_string,patterns='glob'):
     PATTERNS=['glob','list']
     if patterns in PATTERNS:
 	if patterns == 'glob':
-	    if input_string not in minion_list:
+	    if input_string not in minion_list and input_string != '*':
 		return None
 	    else:
 		return input_string

@@ -330,7 +330,7 @@ def upload_file(request):
 		if not os.path.exists('/srv/salt/upload'):
 		    os.system('mkdir -p /srv/salt/upload')
 		cmd="mv {} /srv/salt/upload/".format(tmp_path)
-		#os.system(cmd)
+		os.system(cmd)
 		file_path=os.path.join(upload_path,f.name)
 		bak_file_path=file_path+'.bak'
 		bak_cmd='rm -f %s && cp  %s %s' %(bak_file_path,file_path,bak_file_path)
