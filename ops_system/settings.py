@@ -51,10 +51,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ops',
-        'HOST': '10.117.74.247',
-	'USER': 'root',
-	'PORT': 3306,
-	'PASSWORD': 'helloworld',
+        'HOST': '172.22.0.8',
+	'USER': 'ops',
+	'PORT': 33060,
+	'PASSWORD': 'opsILOVEYOU',
                }
 }
 AUTH_PASSWORD_VALIDATORS = [
@@ -72,7 +72,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 #LANGUAGE_CODE = 'en-US'
-LANGUAGE_CODE = 'zh-CN'
+LANGUAGE_CODE = 'zh-Hans'
 TIME_ZONE = 'Asia/Shanghai'
 USE_I18N = True
 USE_L10N = True

@@ -1,0 +1,8 @@
+django==v1.9
+pexpect
+zmq
+tornado
+pyaml
+MySQL-python
+msgpack-python
+salt

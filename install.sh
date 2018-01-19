@@ -92,7 +92,7 @@ yum install salt salt-master  salt-ssh salt-syndic salt-minion  -y &>/dev/null
     echo 'install pexpect , salt , django ,MySQL-python'
     if [ -e /usr/local/ops/python2.7/bin/pip ]
     then
-    /usr/local/ops/python2.7/bin/pip install django
+    /usr/local/ops/python2.7/bin/pip install django==v1.9
     /usr/local/ops/python2.7/bin/pip install salt
     /usr/local/ops/python2.7/bin/pip install pexpect
     /usr/local/ops/python2.7/bin/pip install MySQL-python
@@ -101,7 +101,7 @@ yum install salt salt-master  salt-ssh salt-syndic salt-minion  -y &>/dev/null
     /usr/local/ops/python2.7/bin/pip install zmq
     /usr/local/ops/python2.7/bin/pip install msgpack-python
     else
-    pip install django
+    pip install django==v1.9
     pip install salt
     pip install pexpect
     pip install pyaml
