@@ -33,20 +33,19 @@ ops platform  Demo 地址:  http://demo.wikiki.cn    username: guest      passwo
 
 
 
-----快捷安装：
 
 git clone https://github.com/hujingguang/OpsSystem.git
 
-cd OpsSystem && ./install.sh
+cd OpsSystem && cat INSTALL
 
 
 -----Demo 地址：
 
-   http://demo.wikiki.cn 
+   http://demo.hujingguang.cn 
 
    username: guest
 
-   password: hoover#123$
+   password: 123123
 
 
 #### Screenshots
