@@ -5,6 +5,7 @@ requiments:
 pip install -r ./requirements
 
 
+chkconfig --level 35 salt-master on  && service salt-master start
 
 vim ./ops_system/settings  
 
