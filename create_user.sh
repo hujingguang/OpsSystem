@@ -1,1 +1,0 @@
-python manage.py createsuperuser

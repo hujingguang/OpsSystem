@@ -1,0 +1,21 @@
+
+requiments:
+    python2.7 centos6.x salt-master salt-minion salt-api mysql-devel mysql-server git subversion MySQL-python
+
+pip install -r ./requirements
+
+
+
+vim ./ops_system/settings  
+
+  #  configure your database info
+
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+python manage.py createsuperuser
+
+
+python manage.py runserver 0.0.0.0:8080
