@@ -1,5 +1,5 @@
 # OpsSystem
-ops platform  Demo 地址:  http://demo.hujingguang.cn    username: guest      password: 123123
+运维管理发布系统  Demo 地址:  http://demo.hujingguang.cn    username: guest    管理系统  password: 123123
 
 
 #这是一个运维平台，使用bootstrap 和django 框架进行开发。目前实现了项目管理模块，发布Git和SVN代码库的php工程,回滚代码，以及集成Saltstack 进行应用批量部署模块和命令批量执行. 命令审计查询
