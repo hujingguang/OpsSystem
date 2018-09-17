@@ -87,7 +87,8 @@ def check_ip_reachable(ip):
     return True
     
 def check_ssh_passwd(passwd,ip):
-        ch=pexpect.spawn('ssh root@%s' %ip)
+	global _SSH_PORT
+        ch=pexpect.spawn('ssh -p %d root@%s' %(_SSH_PORT,ip))
 	res=ch.expect(['yes','assword',pexpect.EOF,pexpect.TIMEOUT],timeout=120)
 	if res == 0:
 	    ch.sendline('yes')
