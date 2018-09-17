@@ -605,12 +605,12 @@ def judge_rollback_version_exist(project,target,cur_version,roll_version):
 
 
 def upload_code_with_password(code_dir,password,rsync_target,diff_file,exclude_dir,log_file):
-    global RSYNC_LOG_FILE,REVISION
+    global RSYNC_LOG_FILE,REVISION,_SSH_PORT
     if not os.path.exists(code_dir):
 	return False,u'不存在源代码目录: %s' %code_dir
     os.system('rm -rf /tmp/.tmp0001 && rm -rf /tmp/.up.log')
     exclude_args=exclude_dir
-    cmd_upload=''' rsync -avlpP %s --files-from=%s %s %s &>/tmp/.up.log ''' %(exclude_args,
+    cmd_upload=''' rsync  -e 'ssh -p %d' -avlpP %s --files-from=%s %s %s &>/tmp/.up.log ''' %(_SSH_PORT,exclude_args,
 	    diff_file,
 	    code_dir,
 	    rsync_target)
