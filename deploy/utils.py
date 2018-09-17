@@ -17,6 +17,7 @@ IP_regex=r'((?:(?:25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))\.){3}(?:25[0-5]|2[0-4]
 RSYNC_LOG_FILE='/tmp/ops_rsync.log'
 ROLL_LOG_FILE='/tmp/rollback.log'
 REVISION=''
+_SSH_PORT=22
 def check_svn_validated(user,password,url):
     global IP_regex
     ip_match=re.search(IP_regex,url)
@@ -374,20 +375,20 @@ def upload_code_with_no_password(code_dir,
 	diff_file,
 	exclude_dir,
 	log_file):
-    global RSYNC_LOG_FILE,REVISION
+    global RSYNC_LOG_FILE,REVISION,_SSH_PORT
     if not os.path.exists(code_dir):
 	return False,u'不存在源码目录: %s' %code_dir,log_file
     os.system('rm -rf /tmp/.tmp0001')
     exclude_args=exclude_dir
     for i in ip:
-	ch=pexpect.spawn('ssh %s' %i)
+	ch=pexpect.spawn('ssh  %s -p%d ' %(i,_SSH_PORT))
 	res=ch.expect(['password','#',pexpect.EOF,pexpect.TIMEOUT])
 	if res != 1:
 	    return False,u'IP: %s 没有配置秘钥连接！！请先配置ssh key 登陆再进行操作' %i,None
     failed=0
     for ii in ip:
 	os.system('rm -rf /tmp/.up.log')
-        cmd_upload=''' rsync -avlpP %s --files-from=%s %s %s:%s &>/tmp/.up.log ''' %(exclude_args,
+        cmd_upload=''' rsync -e 'ssh -p %d' -avlpP %s --files-from=%s %s %s:%s &>/tmp/.up.log ''' %(_SSH_PORT,exclude_args,
 		diff_file,
 		code_dir,
 		ii,
