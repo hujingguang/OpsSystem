@@ -6,3 +6,4 @@ pyaml
 MySQL-python
 msgpack-python
 salt==v2015.8.13
+uwsgi
