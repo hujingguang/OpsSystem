@@ -5,4 +5,4 @@ tornado
 pyaml
 MySQL-python
 msgpack-python
-salt
+salt==v2015.8.13
