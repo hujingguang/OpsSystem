@@ -11,7 +11,7 @@
 
 1 ：安装python2.7版本，CentOS6.x, django1.9框架  pexpect python模块，svn工具  git工具 Saltstack 自动化工具
 
-2： pip install django==v1.9.0  && pip install pexpect && yum install git subversion -y && pip install salt
+2： pip install django==v1.9.0  && pip install pexpect && yum install git subversion -y && pip install salt==v2015.8.13
 
 3: 进入工程根目录，配置好mysql数据库，执行python manage.py test 测试数据库连接
 
