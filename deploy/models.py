@@ -6,7 +6,7 @@ from django.db import models
 class RepoModel(models.Model):
     repo_type_choice=(('svn','svn repo type'),('git','git repo type'))
     repoName=models.CharField(max_length=100)
-    repoAddress=models.CharField(max_length=100)
+    repoAddress=models.CharField(max_length=200)
     repoUser=models.CharField(max_length=50,blank=False)
     repoPassword=models.CharField(max_length=50,blank=True)
     wwwDir=models.CharField(max_length=50)
