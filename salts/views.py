@@ -623,6 +623,8 @@ def deploy_record_from_id(request):
 		else:
 		    shell_script='/root/deploy/deploy_node_auto.sh'
 		if not os.path.exists(shell_script):
+		    record_new.active='Y'
+	            record_new.save()
 	            return HttpResponse(json.dumps({'code':400,'info':u'发布脚本不存在'}))
 		deploy_cmd=shell_script + ' -t '+record.type+' -p "'+' '.join(project_list)+'" >>' + LOG_FILE
 		record.command=deploy_cmd
@@ -639,6 +641,8 @@ def deploy_record_from_id(request):
 		str_cmd=''' echo '**************************************************' >>'''+LOG_FILE
 		os.system(str_cmd)
 		if record.type in ['appportal','ops']:
+		    record_new.active='Y'
+	            record_new.save()
 	            return HttpResponse(json.dumps({'code':400,'info':u'未开放appportal工程发布'}))
 		result=os.system('/bin/bash /tmp/.tmp.sh')
 		print result
