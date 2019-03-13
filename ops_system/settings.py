@@ -51,10 +51,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ops',
-        'HOST': '172.22.0.8',
-	'USER': 'ops',
-	'PORT': 33060,
-	'PASSWORD': 'opsILOVEYOU',
+        'HOST': '127.0.0.1',
+	'USER': 'root',
+	'PORT': 3306,
+	'PASSWORD': '123123',
                }
 }
 AUTH_PASSWORD_VALIDATORS = [
