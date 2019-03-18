@@ -7,7 +7,21 @@
 
 前端模板下载地址： https://startbootstrap.com/
 
-部署步骤，  
+
+Docker Image 部署 
+
+
+docker pull hooversa/ops_system:latest
+
+docker  run --name ops_system -p 80:81 -d hooversa/ops_system 
+
+浏览器打开  127.0.0.1   （用户名/密码: admin/helloworld）
+
+
+
+
+
+服务器部署步骤，  
 
 1 ：安装python2.7版本，CentOS6.x, django1.9框架  pexpect python模块，svn工具  git工具 Saltstack 自动化工具
 
