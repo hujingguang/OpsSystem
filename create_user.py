@@ -5,3 +5,4 @@ def create_superuser():
     user.save()
 
 create_superuser()
+
