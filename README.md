@@ -13,7 +13,7 @@ Docker Image 部署
 
 docker pull hooversa/ops_system:latest
 
-docker  run --name ops_system -p 80:81 -d hooversa/ops_system 
+docker  run --name ops_system --rm -p 80:81 -d hooversa/ops_system 
 
 浏览器打开  127.0.0.1   （用户名/密码: admin/helloworld）
 
